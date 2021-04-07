@@ -51,7 +51,7 @@ namespace pdfconverter_csharp
             this.btn_Convert.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Convert.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_Convert.ForeColor = System.Drawing.Color.IndianRed;
-            this.btn_Convert.Location = new System.Drawing.Point(240, 286);
+            this.btn_Convert.Location = new System.Drawing.Point(245, 284);
             this.btn_Convert.Name = "btn_Convert";
             this.btn_Convert.Size = new System.Drawing.Size(285, 40);
             this.btn_Convert.TabIndex = 0;
@@ -73,17 +73,16 @@ namespace pdfconverter_csharp
             // 
             // llbl_pathLink
             // 
-            this.llbl_pathLink.AutoSize = true;
             this.llbl_pathLink.Cursor = System.Windows.Forms.Cursors.Hand;
             this.llbl_pathLink.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.llbl_pathLink.LinkColor = System.Drawing.Color.Pink;
-            this.llbl_pathLink.Location = new System.Drawing.Point(32, 247);
+            this.llbl_pathLink.Location = new System.Drawing.Point(12, 247);
             this.llbl_pathLink.Name = "llbl_pathLink";
-            this.llbl_pathLink.Size = new System.Drawing.Size(687, 24);
+            this.llbl_pathLink.Size = new System.Drawing.Size(759, 24);
             this.llbl_pathLink.TabIndex = 2;
             this.llbl_pathLink.TabStop = true;
-            this.llbl_pathLink.Text = "C:\\Users\\dvp10\\Desktop\\Desktop\\pdfconverter\\pdfconverter-csharp\\bin\\Debug\\netcore" +
-    "app3.1";
+            this.llbl_pathLink.Text = "Caminho do diretório atual";
+            this.llbl_pathLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.llbl_pathLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbl_Path_LinkClicked);
             // 
             // img_pdf

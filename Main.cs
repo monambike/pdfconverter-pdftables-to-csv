@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 namespace pdfconverter_csharp
@@ -9,12 +10,13 @@ namespace pdfconverter_csharp
         public Main()
         {
             InitializeComponent();
+
+            llbl_pathLink.Text = Directory.GetCurrentDirectory();
         }
 
         private void llbl_Path_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string path = llbl_pathLink.Text;
-            Process.Start("explorer.exe", path);
+            Process.Start("explorer.exe", llbl_pathLink.Text);
         }
 
         private void btn_Converter_Click(object sender, EventArgs e)
