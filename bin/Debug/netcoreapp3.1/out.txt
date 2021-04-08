@@ -1,0 +1,38 @@
+-------------------------------------------------------------------
+CONVERSÃO (0)
+O arquivo ITENS.PDF foi lido e está pronto pra ser convertido
+
+- O arquivo 'ITENS-0.csv' foi convertido
+               Item  Quantidade  Unid. Tipo Cota                                                                                                                                  Descrição Vl. Unitário    Vl. Total
+0   COTA ABERTA 75%         NaN    NaN       NaN                                                                                                                                        NaN          NaN          NaN
+1                 1       900.0    FRC    Aberta                                                                      ACEBROFILINA 05 MG/ ML X FR C/ 120 ML ( XAROPE INFANTIL)\r+ COPO MED.      R$10,21   R$9.189,00
+2                 2       900.0    FRC    Aberta                                                                         ACEBROFILINA 10 MG/ML X FR C/  120 ML (XAROPE ADULTO) +\rCOPO MED.      R$13,55  R$12.195,00
+3                 3        19.0    FRC    Aberta                                                                                                    ACETATO DE FLUORMETOLONA OFTÁLMICA 0,1%      R$23,64     R$449,16
+4                 4       750.0     TB    Aberta              ACETATO DE HIDROCORTISONA 0,5% + LIDOCAÍNA BASE 2,0% +\rSUBGALATO DE BISMUTO 2,0% + ÓXIDO DE ZINCO 10,0%\rPOMADA TUBO COM 25G      R$34,96  R$26.220,00
+5                 5       375.0     TB    Aberta  ACETATO DE HIDROCORTISONA 5 MG, SULFATO DE NEOMICINA 5\rMG, TROXERRUTINA 20MG, ÁCIDO ASCÓRBICO 50 MG,\rBENZOCAÍNA 2 MG TUBO COM 10 GRAMAS      R$19,02   R$7.132,50
+6                 6       750.0    FRC    Aberta                                             ACETATO DE RETINOL (VITAMINA A) 50.000 U.I.\rCOLECALCIFEROL (VITAMINA D) 10.000 U.I. COM 20 ML      R$11,34   R$8.505,00
+7                 7       750.0    AMP    Aberta                                                                                              ACETILCISTEÍNA 100MG/ML INJETÁVEL AMP COM 3ML       R$1,93   R$1.447,50
+8                 8       750.0  SACHE    Aberta                                                                                                       ACETILCISTEINA 600 MG COM 5 GRS CADA       R$2,20   R$1.650,00
+9                 9       375.0    FRC    Aberta                                                                                           ACETILCISTEÍNA XAROPE ADULTO 40 MG/ML COM 120 ML      R$31,36  R$11.760,00
+10               10       375.0    FRC    Aberta                                                                               ACETILCISTEÍNA XAROPE PEDIÁTRICO 20MG/ML - FRASCO COM\r120ML      R$16,15   R$6.056,25
+11               11       750.0     TB    Aberta                                                                               ACETONIDO DE TRIANCINOLONA 1MG/G BISNAGA C/ 10G\rPOMADA ORAL       R$7,79   R$5.842,50
+12               12       750.0     TB    Aberta                                                                                             ACICLOVIR  50 MG/G X CREME DERMATÓLOGICO 10 GR      R$14,00  R$10.500,00
+13               13     60000.0     CP    Aberta                                                                                                              ÁCIDO ACETILSALICILICO 100 MG       R$0,10   R$6.000,00
+14               14      2250.0   COMP    Aberta                       ÁCIDO ACETILSALICILICO 100MG, GLICINATO DE ALUMÍNIO\r15MG, CARBONATO DE MAGNESIO 30MG - COMPRIMIDO\rTAMPONADO CARDIO       R$0,53   R$1.192,50
+15               15       750.0     CP    Aberta                                                                                                      ÁCIDO ACETILSALICÍLICO TAMPONADO 81MG       R$0,41     R$307,50
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+CONVERSÃO (1)
+O arquivo pdftest.pdf foi lido e está pronto pra ser convertido
+
+- O arquivo 'pdftest-0.csv' foi convertido
+    1   2   3   4   5
+0   6   7   8   9  10
+1  11  12  13  14  15
+2  16  17  18  19  20
+3  21  22  23  24  25
+- O arquivo 'pdftest-1.csv' foi convertido
+   26
+0  27
+1  28
+-------------------------------------------------------------------
