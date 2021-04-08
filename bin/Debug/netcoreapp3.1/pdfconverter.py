@@ -32,10 +32,13 @@ def Main():
 			# Para cada uma das tabelas 'DataFrames' contidos no arquivo csv completo 'lista de tabelas' será convertido
 			indexDataFrame = 0
 			for df in listOfDataFrames:
-				df.to_csv("../resultados/"+ pdfFile[:-4] + "-" + str(indexDataFrame) + ".csv")
+				df = df.replace({r'\r': ''}, regex=True)
+
+				csvFile = pdfFile[:-4] + "-" + str(indexDataFrame) + ".csv"
+				df.to_csv("../resultados/"+ csvFile, line_terminator="\n")
 
 				# Indica que uma tabela foi convertida com sucesso
-				print("- O arquivo '" + pdfFile[:-4] + "-" + str(indexDataFrame) + ".csv' foi convertido")
+				print("- O arquivo '" + csvFile + "' foi convertido")
 				print(pandas.DataFrame(df))
 
 				indexDataFrame = indexDataFrame + 1
@@ -44,17 +47,11 @@ def Main():
 			indexFile = indexFile + 1
 				
 		except Exception as err:
-			errorFile = open("../pdfconverter/bin/Debug/netcoreapp3.1/error-file.txt", "w")
-			errorFile.write("Ocorreu um erro ao tentar converter um arquivo.")
-
-			print("Error {0}".format(str(err)))
-			print("Ocorreu um erro, ao tentar converter"
-			"o arquivo")
+			print("Ocorreu um erro, ao tentar converter o arquivo")
 			breakline = input("-- pressione enter para continuar --")
 	else:
-		errorFile = open("../pdfconverter/bin/Debug/netcoreapp3.1/error-file.txt", "w")
-		errorFile.write("Não há arquivos de PDF para serem convertidos.")
-		errorFile.close()
+		print("Não há arquivos de PDF para serem convertidos.")
+		breakline = input("-- pressione enter para continuar --")
 
 def criarPastas():
 	# Cria as pastas necessárias para importar e exportar os arquivos 'não sobrescreve caso já exista'
@@ -73,5 +70,6 @@ def definirConfiguracoesPanda():
 	pandas.options.display.max_colwidth = None
 	pandas.options.display.max_info_columns = 500
 	pandas.options.display.encoding = "UTF-8"
+	pandas.options.display.max_seq_items = 500
 
 Main()
