@@ -3,19 +3,8 @@ import pandas
 from glob import glob
 from os import chdir
 
-listDf = []
 
-def main():
-	# Pega todos os PDFs dentro da pasta com o Script
-	chdir(".")
-	# Filtra por PDF
-	for pdfFile in glob("*.pdf"):
-		# Convertendo PDF para .csv
-		tabula.convert_into(pdfFile, pdfFile[:-4] + "-teste-pdfconverter-tabula.txt", output_format="csv", pages="all", lattice=True)
-
-		# Convertendo PDF para .csv
-		tabula.convert_into(pdfFile, pdfFile[:-4] + "-teste-pdfconverter-tabula.xls", output_format="csv", pages="all", lattice=True)
-		
+	
 def pandasTest():# CONFIGURAÇÕES
 	# Evita com que os dados acabem sendo quebrados
 	pandas.options.display.expand_frame_repr = False
@@ -35,7 +24,7 @@ def pandasTest():# CONFIGURAÇÕES
 		try:
 			indexFile = 0
 
-			# Fazendo leitura do arquivo completo
+			# Fazendo leitura do arquivo completo e passando para a variável
 			listOfDataFrames = tabula.read_pdf(pdfFile, pages="1", lattice=True, multiple_tables=True)
 
 			# Indica que um arquivo completo foi lido com sucesso
@@ -69,8 +58,15 @@ def pandasTest():# CONFIGURAÇÕES
 			print("-------------------------------------------------------------------")
 				
 		except Exception as err:
+			errorFile = open("error-file.txt", "w")
+			errorFile.write("Ocorreu um erro ao tentar converter um arquivo.")
+
 			print("Error {0}".format(str(err)))
 			print("Ocorreu um erro, ao tentar converter o arquivo")
 			breakline = input("-- pressione enter para continuar --")
+	else:
+		errorFile = open("error-file.txt", "w")
+		errorFile.write("Não há arquivos de PDF para serem convertidos.")
+		errorFile.close()
 
 pandasTest()
