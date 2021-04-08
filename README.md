@@ -1,7 +1,7 @@
 # PDFConverter
 ### (pdfconverter)
 
-PDFConverter é um aplicativo desenvolvido em C# e em Python para OuroWeb com o objetivo de converter um grande número de PDFs rapidamente e sem precisar de muitas ações por parte do usuário.
+PDFConverter é um projeto desenvolvido em C# e em Python para OuroWeb com o objetivo de converter um grande número de PDFs rapidamente e sem precisar de muitas ações por parte do usuário.
 
 ## BIBLIOTECAS
 ### Python
