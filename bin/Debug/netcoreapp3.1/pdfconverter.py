@@ -2,7 +2,7 @@ import tabula
 import pandas
 from glob import glob
 from os import chdir
-
+from pathlib import Path
 
 	
 def pandasTest():# CONFIGURAÇÕES
@@ -16,6 +16,10 @@ def pandasTest():# CONFIGURAÇÕES
 	pandas.options.display.max_colwidth = None
 	pandas.options.display.max_info_columns = 500
 	pandas.options.display.encoding = "UTF-8"
+
+	# Cria as pastas necessárias para importar e exportar os arquivos
+	Path("../../../../PDFs").mkdir(parents=True, exist_ok=True)
+	Path("../../../../convertido").mkdir(parents=True, exist_ok=True)
 
 	# Pega todos os PDFs dentro da pasta com o Script
 	chdir(".")
