@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qFjp50XBRXFo81jxiIN/MVAIJq27hqVfDQnMpkGYBjJZGW17ibZ+PfmI+gqGTA5k5JSgMr+oTGzb6utvorOKLg==",
+  "dgSpecHash": "Whjm0h9AEm8asQ+sdnTjXaLWWuxbHc7pewxlmAtKtTHZ5wTPL+P4+OEJlBTKTleiPRXMiiRDKsZOh93SDrVCAg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dvp10\\Desktop\\Desktop\\pdfconverter\\pdfconverter-csharp.csproj",
+  "projectFilePath": "C:\\Users\\dvp10\\Desktop\\Desktop\\pdfconverter\\pdfconverter\\pdfconverter-csharp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dvp10\\Desktop\\Desktop\\pdfconverter\\pdfconverter-csharp.csproj",
+      "projectUniqueName": "C:\\Users\\dvp10\\Desktop\\Desktop\\pdfconverter\\pdfconverter\\pdfconverter-csharp.csproj",
       "projectName": "pdfconverter",
-      "projectPath": "C:\\Users\\dvp10\\Desktop\\Desktop\\pdfconverter\\pdfconverter-csharp.csproj",
+      "projectPath": "C:\\Users\\dvp10\\Desktop\\Desktop\\pdfconverter\\pdfconverter\\pdfconverter-csharp.csproj",
       "packagesPath": "C:\\Users\\dvp10\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dvp10\\Desktop\\Desktop\\pdfconverter\\obj\\",
+      "outputPath": "C:\\Users\\dvp10\\Desktop\\Desktop\\pdfconverter\\pdfconverter\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dvp10\\AppData\\Roaming\\NuGet\\NuGet.Config",
