@@ -1,11 +1,13 @@
-import tabula
 import pandas
-from glob import glob
+import tabula
 from os import chdir
+from glob import glob
 from pathlib import Path
 
-	
-def pandasTest():# CONFIGURAÇÕES
+def Main():
+	criarPastas()
+
+	# CONFIGURAÇÕES
 	# Evita com que os dados acabem sendo quebrados
 	pandas.options.display.expand_frame_repr = False
 	# Fazer com que caso tenha um ';' ele não passe os dados pra outra célula
@@ -17,9 +19,6 @@ def pandasTest():# CONFIGURAÇÕES
 	pandas.options.display.max_info_columns = 500
 	pandas.options.display.encoding = "UTF-8"
 
-	# Cria as pastas necessárias para importar e exportar os arquivos
-	Path("../../../../PDFs").mkdir(parents=True, exist_ok=True)
-	Path("../../../../convertido").mkdir(parents=True, exist_ok=True)
 
 	# Pega todos os PDFs dentro da pasta com o Script
 	chdir(".")
@@ -73,4 +72,12 @@ def pandasTest():# CONFIGURAÇÕES
 		errorFile.write("Não há arquivos de PDF para serem convertidos.")
 		errorFile.close()
 
-pandasTest()
+def criarPastas():
+	folderPDFs = "../../../../PDFs"
+	folderConvertido = "../../../../resultados"
+
+	# Cria as pastas necessárias para importar e exportar os arquivos 'não sobrescreve caso já exista'
+	Path(folderPDFs).mkdir(parents=True, exist_ok=True)
+	Path(folderConvertido).mkdir(parents=True, exist_ok=True)
+
+criarPastas()
