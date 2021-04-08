@@ -28,7 +28,7 @@ namespace pdfconverter_csharp
             {
                 Process process = new Process();
 
-                process = Process.Start(new ProcessStartInfo(@"..\..\..\pdfconverter-exe\pdfconverter.exe")
+                process = Process.Start(new ProcessStartInfo(@"..\..\..\exe\pdfconverter.exe")
                 {
                     WindowStyle = ProcessWindowStyle.Normal,
                     CreateNoWindow = true,
