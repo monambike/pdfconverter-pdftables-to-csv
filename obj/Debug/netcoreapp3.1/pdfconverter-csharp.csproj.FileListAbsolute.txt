@@ -35,7 +35,6 @@ C:\Users\dvp10\Desktop\Desktop\pdfconverter\pdfconverter\bin\Debug\netcoreapp3.1
 C:\Users\dvp10\Desktop\Desktop\pdfconverter\pdfconverter\bin\Debug\netcoreapp3.1\pdfconverter.runtimeconfig.dev.json
 C:\Users\dvp10\Desktop\Desktop\pdfconverter\pdfconverter\bin\Debug\netcoreapp3.1\pdfconverter.dll
 C:\Users\dvp10\Desktop\Desktop\pdfconverter\pdfconverter\bin\Debug\netcoreapp3.1\pdfconverter.pdb
-C:\Users\dvp10\Desktop\Desktop\pdfconverter\pdfconverter\obj\Debug\netcoreapp3.1\pdfconverter-csharp.csprojAssemblyReference.cache
 C:\Users\dvp10\Desktop\Desktop\pdfconverter\pdfconverter\obj\Debug\netcoreapp3.1\pdfconverter_csharp.Main.resources
 C:\Users\dvp10\Desktop\Desktop\pdfconverter\pdfconverter\obj\Debug\netcoreapp3.1\pdfconverter_csharp.Properties.Resources.resources
 C:\Users\dvp10\Desktop\Desktop\pdfconverter\pdfconverter\obj\Debug\netcoreapp3.1\pdfconverter-csharp.csproj.GenerateResource.cache
