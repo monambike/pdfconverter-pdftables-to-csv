@@ -9,48 +9,53 @@ folderResultados = "../../../../resultados"
 
 def Main():
 	criarPastas()
-	definirConfiguracoesPanda()
+	#definirConfiguracoesPanda()
 
 	# Pega todos os PDFs
 	chdir(folderPDFs)
 	
 	# Pega todos os PDFs dentro da pasta
 	indexFile = 0
-	for pdfFile in glob("*.pdf"):
-		try:
-			# Fazendo leitura do arquivo completo e passando para a variável
-			listOfDataFrames = tabula.read_pdf(pdfFile, pages="1", lattice=True, multiple_tables=True)
+	try:
+		for pdfFile in glob("*.pdf"):
+			try:
+				# Fazendo leitura do arquivo completo e passando para a variável
+				listOfDataFrames = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True, encoding='utf-8')
 
-			strIndexFile = str(indexFile)
+				strIndexFile = str(indexFile)
 
-			# Indica que um arquivo completo foi lido com sucesso
-			print("-------------------------------------------------------------------")
-			print("CONVERSÃO (" + strIndexFile + ")")
-			print("O arquivo " + pdfFile + " foi lido e está pronto pra ser convertido\n")
+				# Indica que um arquivo completo foi lido com sucesso
+				print("-------------------------------------------------------------------")
+				print("CONVERSÃO (" + strIndexFile + ")")
+				print("O arquivo " + pdfFile + " foi lido e está pronto pra ser convertido\n")
 
 
-			# Para cada uma das tabelas 'DataFrames' contidos no arquivo csv completo 'lista de tabelas' será convertido
-			indexDataFrame = 0
-			for df in listOfDataFrames:
-				df = df.replace({r'\r': ''}, regex=True)
+				# Para cada uma das tabelas 'DataFrames' contidos no arquivo csv completo 'lista de tabelas' será convertido
+				indexDataFrame = 0
+				for df in listOfDataFrames:
+					df = df.replace({r'\r': ''}, regex=True)
 
-				csvFile = pdfFile[:-4] + "-" + str(indexDataFrame) + ".csv"
-				df.to_csv("../resultados/"+ csvFile, line_terminator="\n")
+					fileName = pdfFile[:-4] + "-" + str(indexDataFrame)
 
-				# Indica que uma tabela foi convertida com sucesso
-				print("- O arquivo '" + csvFile + "' foi convertido")
-				print(pandas.DataFrame(df))
+					df.to_csv("../resultados/" + fileName + ".csv", line_terminator="\n", encoding='utf-8')
+					df.to_csv("../resultados/" + fileName + ".txt", line_terminator="\n", encoding='utf-8')
 
-				indexDataFrame = indexDataFrame + 1
+					# Indica que uma tabela foi convertida com sucesso
+					print("- O arquivo '" + fileName + "' foi convertido")
+					print(pandas.DataFrame(df))
 
-			print("-------------------------------------------------------------------")
-			indexFile = indexFile + 1
-				
-		except Exception as err:
-			print("Ocorreu um erro, ao tentar converter o arquivo")
-			breakline = input("-- pressione enter para continuar --")
-	else:
+					indexDataFrame = indexDataFrame + 1
+
+				print("-------------------------------------------------------------------")
+				indexFile = indexFile + 1
+					
+			except Exception as err:
+				print("Ocorreu um erro, ao tentar converter o arquivo")
+				breakline = input("-- pressione enter para continuar --")
+	except Exception as err:
 		print("Não há arquivos de PDF para serem convertidos.")
+		print("Erro:")
+		print(str(err))
 		breakline = input("-- pressione enter para continuar --")
 
 def criarPastas():
@@ -69,7 +74,7 @@ def definirConfiguracoesPanda():
 	pandas.options.display.max_rows = None
 	pandas.options.display.max_colwidth = None
 	pandas.options.display.max_info_columns = 500
-	pandas.options.display.encoding = "UTF-8"
+	pandas.options.display.encoding = "utf-8"
 	pandas.options.display.max_seq_items = 500
 
 Main()
