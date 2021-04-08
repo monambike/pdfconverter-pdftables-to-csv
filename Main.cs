@@ -10,13 +10,6 @@ namespace pdfconverter_csharp
         public Main()
         {
             InitializeComponent();
-
-            llbl_pathLink.Text = Directory.GetCurrentDirectory();
-        }
-
-        private void llbl_Path_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("explorer.exe", llbl_pathLink.Text);
         }
 
         private void btn_Converter_Click(object sender, EventArgs e)
@@ -28,7 +21,7 @@ namespace pdfconverter_csharp
             {
                 Process process = new Process();
 
-                process = Process.Start(new ProcessStartInfo(@"..\..\..\exe\pdfconverter.exe")
+                process = Process.Start(new ProcessStartInfo(@"..\..\..\exe\dist\pdfconverter\pdfconverter.exe")
                 {
                     WindowStyle = ProcessWindowStyle.Normal,
                     CreateNoWindow = true,

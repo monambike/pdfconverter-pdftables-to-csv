@@ -31,8 +31,6 @@ namespace pdfconverter_csharp
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.btn_Convert = new System.Windows.Forms.Button();
-            this.lbl_pathDesc = new System.Windows.Forms.Label();
-            this.llbl_pathLink = new System.Windows.Forms.LinkLabel();
             this.img_pdf = new System.Windows.Forms.PictureBox();
             this.img_csv = new System.Windows.Forms.PictureBox();
             this.pnl_whitebackground = new System.Windows.Forms.Panel();
@@ -58,32 +56,6 @@ namespace pdfconverter_csharp
             this.btn_Convert.Text = "Converter";
             this.btn_Convert.UseVisualStyleBackColor = true;
             this.btn_Convert.Click += new System.EventHandler(this.btn_Converter_Click);
-            // 
-            // lbl_pathDesc
-            // 
-            this.lbl_pathDesc.AutoSize = true;
-            this.lbl_pathDesc.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbl_pathDesc.ForeColor = System.Drawing.Color.Snow;
-            this.lbl_pathDesc.Location = new System.Drawing.Point(149, 174);
-            this.lbl_pathDesc.Name = "lbl_pathDesc";
-            this.lbl_pathDesc.Size = new System.Drawing.Size(441, 48);
-            this.lbl_pathDesc.TabIndex = 1;
-            this.lbl_pathDesc.Text = "Clique no botão abaixo para converter os arquivos em PDF\r\npara CSV que estão em:";
-            this.lbl_pathDesc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // llbl_pathLink
-            // 
-            this.llbl_pathLink.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.llbl_pathLink.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.llbl_pathLink.LinkColor = System.Drawing.Color.Pink;
-            this.llbl_pathLink.Location = new System.Drawing.Point(12, 247);
-            this.llbl_pathLink.Name = "llbl_pathLink";
-            this.llbl_pathLink.Size = new System.Drawing.Size(759, 24);
-            this.llbl_pathLink.TabIndex = 2;
-            this.llbl_pathLink.TabStop = true;
-            this.llbl_pathLink.Text = "Caminho do diretório atual";
-            this.llbl_pathLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.llbl_pathLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbl_Path_LinkClicked);
             // 
             // img_pdf
             // 
@@ -168,8 +140,6 @@ namespace pdfconverter_csharp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(782, 353);
-            this.Controls.Add(this.llbl_pathLink);
-            this.Controls.Add(this.lbl_pathDesc);
             this.Controls.Add(this.btn_Convert);
             this.Controls.Add(this.pnl_whitebackground);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -183,15 +153,12 @@ namespace pdfconverter_csharp
             this.pnl_whitebackground.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_arrow)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button btn_Convert;
-        private System.Windows.Forms.Label lbl_pathDesc;
-        private System.Windows.Forms.LinkLabel llbl_pathLink;
         private System.Windows.Forms.PictureBox img_pdf;
         private System.Windows.Forms.PictureBox img_csv;
         private System.Windows.Forms.Panel pnl_whitebackground;

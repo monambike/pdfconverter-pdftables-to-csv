@@ -44,3 +44,4 @@ C:\Users\dvp10\Desktop\Desktop\pdfconverter\pdfconverter\obj\Debug\netcoreapp3.1
 C:\Users\dvp10\Desktop\Desktop\pdfconverter\pdfconverter\obj\Debug\netcoreapp3.1\pdfconverter.dll
 C:\Users\dvp10\Desktop\Desktop\pdfconverter\pdfconverter\obj\Debug\netcoreapp3.1\pdfconverter.pdb
 C:\Users\dvp10\Desktop\Desktop\pdfconverter\pdfconverter\obj\Debug\netcoreapp3.1\pdfconverter-csharp.genruntimeconfig.cache
+C:\Users\dvp10\Desktop\Desktop\pdfconverter\pdfconverter\obj\Debug\netcoreapp3.1\pdfconverter-csharp.csprojAssemblyReference.cache
