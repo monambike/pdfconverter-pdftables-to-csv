@@ -4,25 +4,16 @@ from os import chdir
 from glob import glob
 from pathlib import Path
 
+folderPDFs = "../../../../PDFs"
+folderResultados = "../../../../resultados"
+
 def Main():
 	criarPastas()
+	definirConfiguracoesPanda()
 
-	# CONFIGURAÇÕES
-	# Evita com que os dados acabem sendo quebrados
-	pandas.options.display.expand_frame_repr = False
-	# Fazer com que caso tenha um ';' ele não passe os dados pra outra célula
-	pandas.options.display.latex.multicolumn = False
-	
-	pandas.options.display.max_columns = None
-	pandas.options.display.max_rows = None
-	pandas.options.display.max_colwidth = None
-	pandas.options.display.max_info_columns = 500
-	pandas.options.display.encoding = "UTF-8"
-
-
-	# Pega todos os PDFs dentro da pasta com o Script
-	chdir(".")
-	# Filtra por PDF
+	# Pega todos os PDFs
+	chdir(folderPDFs)
+	# Pega todos os PDFs dentro da pasta
 	for pdfFile in glob("*.pdf"):
 		try:
 			indexFile = 0
@@ -50,7 +41,7 @@ def Main():
 			# Para cada uma das tabelas 'DataFrames' contidos no arquivo csv completo 'lista de tabelas' será convertido
 			indexDataFrame = 0
 			for df in listOfDataFrames:
-				df.to_csv(pdfFile[:-4] + "-" + str(indexDataFrame) + ".csv")
+				df.to_csv("../resultados/"+ pdfFile[:-4] + "-" + str(indexDataFrame) + ".csv")
 
 				# Indica que uma tabela foi convertida com sucesso
 				print("- O arquivo '" + pdfFile[:-4] + "-" + str(indexDataFrame) + ".csv' foi convertido")
@@ -61,23 +52,34 @@ def Main():
 			print("-------------------------------------------------------------------")
 				
 		except Exception as err:
-			errorFile = open("error-file.txt", "w")
+			errorFile = open("../pdfconverter/bin/Debug/netcoreapp3.1/error-file.txt", "w")
 			errorFile.write("Ocorreu um erro ao tentar converter um arquivo.")
 
 			print("Error {0}".format(str(err)))
-			print("Ocorreu um erro, ao tentar converter o arquivo")
+			print("Ocorreu um erro, ao tentar converter"
+			"o arquivo")
 			breakline = input("-- pressione enter para continuar --")
-	else:
-		errorFile = open("error-file.txt", "w")
-		errorFile.write("Não há arquivos de PDF para serem convertidos.")
-		errorFile.close()
+	#else:
+	#	errorFile = open("../pdfconverter/bin/Debug/netcoreapp3.1/error-file.txt", "w")
+	#	errorFile.write("Não há arquivos de PDF para serem convertidos.")
+	#	errorFile.close()
 
 def criarPastas():
-	folderPDFs = "../../../../PDFs"
-	folderConvertido = "../../../../resultados"
-
 	# Cria as pastas necessárias para importar e exportar os arquivos 'não sobrescreve caso já exista'
 	Path(folderPDFs).mkdir(parents=True, exist_ok=True)
-	Path(folderConvertido).mkdir(parents=True, exist_ok=True)
+	Path(folderResultados).mkdir(parents=True, exist_ok=True)
 
-criarPastas()
+def definirConfiguracoesPanda():
+	# CONFIGURAÇÕES
+	# Evita com que os dados acabem sendo quebrados
+	pandas.options.display.expand_frame_repr = False
+	# Fazer com que caso tenha um ';' ele não passe os dados pra outra célula
+	pandas.options.display.latex.multicolumn = False
+	
+	pandas.options.display.max_columns = None
+	pandas.options.display.max_rows = None
+	pandas.options.display.max_colwidth = None
+	pandas.options.display.max_info_columns = 500
+	pandas.options.display.encoding = "UTF-8"
+
+Main()
