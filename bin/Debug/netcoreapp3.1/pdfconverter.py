@@ -58,9 +58,9 @@ def Main():
 
 						rewroteDf.to_csv("../resultados/texto/"+ fileName + ".txt", index=False, index_label=False, line_terminator="\n", sep=";", mode="a")
 
-						#writer = pandas.ExcelWriter("../resultados/tabelas/" + fileName + "/" + str(indexDataFrame) + ".xlsx", engine='xlsxwriter')
+						#rewroteDf = pandas.ExcelWriter("../resultados/tabelas/" + fileName + "/" + str(indexDataFrame) + ".xlsx", engine='xlsxwriter')
 						#rewroteDf.to_excel(writer, index=False, engine="xlsxwriter")
-						#writer.save()
+						#reWroteDf.save()
 
 						# Indica que uma tabela foi convertida com sucesso
 						print(
