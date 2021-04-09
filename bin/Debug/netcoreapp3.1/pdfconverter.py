@@ -45,8 +45,9 @@ def Main():
 
 					fileName = pdfFile[:-4] + "-" + str(indexDataFrame)
 
-					df.to_csv("../resultados/" + fileName + ".xls", line_terminator="\n", sep=";", index=False)
-					df.to_csv("../resultados/" + fileName + ".csv", line_terminator="\n", sep=";", index=False)
+					df.to_csv("../resultados/tabelas/" + fileName + ".xls", line_terminator="\n", sep=";", index=False)
+					df.to_csv("../resultados/csv/" + fileName + ".csv", line_terminator="\n", sep=";", index=False)
+					df.to_csv("../resultados/texto/" + fileName + ".txt", line_terminator="\n", sep=";", index=False)
 
 					# Indica que uma tabela foi convertida com sucesso
 					print("- O arquivo '" + fileName + "' foi convertido")
@@ -67,9 +68,13 @@ def Main():
 		breakline = input("-- pressione enter para continuar --")
 
 def criarPastas():
-	# Cria as pastas necessárias para importar e exportar os arquivos 'não sobrescreve caso já exista'
+	# Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam
 	Path(folderPDFs).mkdir(parents=True, exist_ok=True)
 	Path(folderResultados).mkdir(parents=True, exist_ok=True)
+	Path(folderResultados + "/texto").mkdir(parents=True, exist_ok=True)
+	Path(folderResultados + "/tabelas").mkdir(parents=True, exist_ok=True)
+	Path(folderResultados + "/csv").mkdir(parents=True, exist_ok=True)
+
 
 #def definirConfiguracoesPanda():
 
