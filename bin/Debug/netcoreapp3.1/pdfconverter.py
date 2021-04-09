@@ -45,8 +45,8 @@ def Main():
 
 					fileName = pdfFile[:-4] + "-" + str(indexDataFrame)
 
-					df.to_csv("../resultados/" + fileName + ".xls", line_terminator="\n", encoding="utf-8-sig", sep=";")
-					df.to_csv("../resultados/" + fileName + ".txt", line_terminator="\n", encoding="utf-8-sig", sep=";")
+					df.to_csv("../resultados/" + fileName + ".xls", line_terminator="\n", encoding="utf-8-sig", sep=";", index=False)
+					df.to_csv("../resultados/" + fileName + ".csv", line_terminator="\n", encoding="utf-8-sig", sep=";", index=False)
 
 					# Indica que uma tabela foi convertida com sucesso
 					print("- O arquivo '" + fileName + "' foi convertido")
