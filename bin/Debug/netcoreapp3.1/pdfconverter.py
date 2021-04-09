@@ -10,7 +10,8 @@ folderResultados = "../../../../resultados"
 outputFile = outputFile=open(folderResultados + "/" + "output.txt", "a")
 
 # CONFIGURAÇÕES DO PANDAS
-# Evita com que os dados acabem sendo quebrados
+# Evita com que os dados acabem sendo quebrados na saída do terminal e no arquivo exportado
+pandas.options.display.max_colwidth = None
 pandas.options.display.expand_frame_repr = False
 # Define o padrão de codificação para UTF-8 com BOM
 pandas.options.display.encoding = "utf-8-sig"
@@ -18,12 +19,13 @@ pandas.options.display.encoding = "utf-8-sig"
 pandas.options.display.date_dayfirst = True
 # Fazer com que caso tenha um ';' ele não passe os dados pra outra célula
 pandas.options.display.latex.multicolumn = False
-# TESTE
-pandas.options.display.max_colwidth = None
 
 def Main():
-	criarPastas()
-	#definirConfiguracoesPanda()
+	# Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam
+	Path(folderPDFs).mkdir(parents=True, exist_ok=True)
+	Path(folderResultados).mkdir(parents=True, exist_ok=True)
+	Path(folderResultados + "/texto").mkdir(parents=True, exist_ok=True)
+	Path(folderResultados + "/tabelas").mkdir(parents=True, exist_ok=True)
 
 	# Pega todos os PDFs
 	chdir(folderPDFs)
@@ -108,12 +110,5 @@ def Main():
 			"Não há arquivos de PDF para serem convertidos\n"
 			"**********************************************************************",
 		file=outputFile)
-
-def criarPastas():
-	# Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam
-	Path(folderPDFs).mkdir(parents=True, exist_ok=True)
-	Path(folderResultados).mkdir(parents=True, exist_ok=True)
-	Path(folderResultados + "/texto").mkdir(parents=True, exist_ok=True)
-	Path(folderResultados + "/tabelas").mkdir(parents=True, exist_ok=True)
 
 Main()
