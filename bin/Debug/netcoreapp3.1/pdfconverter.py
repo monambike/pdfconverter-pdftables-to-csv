@@ -43,15 +43,14 @@ def Main():
 				indexDataFrame = 0
 				for df in listOfDataFrames:
 					try:
+						# Removendo quebras de linha
 						df = df.replace({r'\r': ''}, regex=True)
 
 						fileName = pdfFile[:-4] + "-" + str(indexDataFrame)
 
-						df.to_csv("../resultados/tabelas-csv/" + fileName + ".csv", line_terminator="\n", sep=";", index=False)
-						df.to_csv("../resultados/ponto_virgula-xls/" + fileName + ".xls", line_terminator="\n", sep=";", index=False)
-						df.to_csv("../resultados/ponto_virgula-txt/" + fileName + ".txt", line_terminator="\n", sep=";", index=False)
+						df.to_csv("../resultados/texto/" + fileName + ".txt", line_terminator="\n", sep=";", index=False)
 
-						writer = pandas.ExcelWriter("../resultados/tabelas-xlsx/" + fileName + ".xlsx", engine='xlsxwriter')
+						writer = pandas.ExcelWriter("../resultados/tabelas/" + fileName + ".xlsx", engine='xlsxwriter')
 						df.to_excel(writer, engine="xlsxwriter", index=False)
 						writer.save()
 
@@ -82,9 +81,7 @@ def criarPastas():
 	# Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam
 	Path(folderPDFs).mkdir(parents=True, exist_ok=True)
 	Path(folderResultados).mkdir(parents=True, exist_ok=True)
-	Path(folderResultados + "/tabelas-csv").mkdir(parents=True, exist_ok=True)
-	Path(folderResultados + "/tabelas-xlsx").mkdir(parents=True, exist_ok=True)
-	Path(folderResultados + "/ponto_virgula-txt").mkdir(parents=True, exist_ok=True)
-	Path(folderResultados + "/ponto_virgula-xls").mkdir(parents=True, exist_ok=True)
+	Path(folderResultados + "/texto").mkdir(parents=True, exist_ok=True)
+	Path(folderResultados + "/tabelas").mkdir(parents=True, exist_ok=True)
 
 Main()
