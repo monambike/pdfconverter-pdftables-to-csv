@@ -28,7 +28,7 @@ def Main():
 		for pdfFile in glob("*.pdf"):
 			try:
 				# Fazendo leitura do arquivo completo e passando para a variável
-				listOfDataFrames = tabula.read_pdf(pdfFile, pages="all", lattice=True, encoding='utf-8')
+				listOfDataFrames = tabula.read_pdf(pdfFile, pages="all", lattice=True)
 
 				strIndexFile = str(indexFile)
 
@@ -45,8 +45,8 @@ def Main():
 
 					fileName = pdfFile[:-4] + "-" + str(indexDataFrame)
 
-					df.to_csv("../resultados/" + fileName + ".xls", line_terminator="\n", encoding="utf-8-sig", sep=";", index=False)
-					df.to_csv("../resultados/" + fileName + ".csv", line_terminator="\n", encoding="utf-8-sig", sep=";", index=False)
+					df.to_csv("../resultados/" + fileName + ".xls", line_terminator="\n", sep=";", index=False)
+					df.to_csv("../resultados/" + fileName + ".csv", line_terminator="\n", sep=";", index=False)
 
 					# Indica que uma tabela foi convertida com sucesso
 					print("- O arquivo '" + fileName + "' foi convertido")
