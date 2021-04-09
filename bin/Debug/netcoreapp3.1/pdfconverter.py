@@ -7,7 +7,7 @@ from pathlib import Path
 
 folderPDFs = "../../../../PDFs"
 folderResultados = "../../../../resultados"
-outputFile = outputFile=open(folderResultados + "/output.txt", "a")
+outputFile = outputFile=open(folderResultados + "/" + "output.txt", "a")
 
 # CONFIGURAÇÕES DO PANDAS
 # Evita com que os dados acabem sendo quebrados
@@ -18,6 +18,8 @@ pandas.options.display.encoding = "utf-8-sig"
 pandas.options.display.date_dayfirst = True
 # Fazer com que caso tenha um ';' ele não passe os dados pra outra célula
 pandas.options.display.latex.multicolumn = False
+# TESTE
+pandas.options.display.max_colwidth = None
 
 def Main():
 	criarPastas()
@@ -50,13 +52,13 @@ def Main():
 				for df in listOfDataFrames:
 					try:
 						# Removendo quebras de linha
-						df = df.replace({r'\r': ''}, regex=True)
+						rewroteDf = df.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
 
-						df.to_csv("../resultados/texto/"+ fileName + ".txt", index=False, line_terminator="\n", sep=";", mode="a")
+						rewroteDf.to_csv("../resultados/texto/"+ fileName + ".txt", index=False, index_label=False, line_terminator="\n", sep=";", mode="a")
 
-						writer = pandas.ExcelWriter("../resultados/tabelas/" + fileName + "/" + str(indexDataFrame) + ".xlsx", engine='xlsxwriter')
-						df.to_excel(writer, index=False, engine="xlsxwriter")
-						writer.save()
+						#writer = pandas.ExcelWriter("../resultados/tabelas/" + fileName + "/" + str(indexDataFrame) + ".xlsx", engine='xlsxwriter')
+						#rewroteDf.to_excel(writer, index=False, engine="xlsxwriter")
+						#writer.save()
 
 						# Indica que uma tabela foi convertida com sucesso
 						print(
@@ -64,7 +66,7 @@ def Main():
 							"A tabela da página "+ str(indexDataFrame + 1) + " do PDF foi convertida |\n"
 							"___________________________________________/\n",
 						file=outputFile)
-						print(pandas.DataFrame(df), file=outputFile)
+						print(pandas.DataFrame(rewroteDf), file=outputFile)
 						indexDataFrame = indexDataFrame + 1
 					except Exception as err: 
 						# Fecha o design
