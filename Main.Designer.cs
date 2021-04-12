@@ -52,7 +52,7 @@ namespace pdfconverter_csharp
             this.btn_Convert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Convert.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_Convert.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.btn_Convert.Location = new System.Drawing.Point(245, 284);
+            this.btn_Convert.Location = new System.Drawing.Point(27, 301);
             this.btn_Convert.Name = "btn_Convert";
             this.btn_Convert.Size = new System.Drawing.Size(285, 40);
             this.btn_Convert.TabIndex = 0;
@@ -63,9 +63,9 @@ namespace pdfconverter_csharp
             // img_pdf
             // 
             this.img_pdf.Image = global::pdfconverter_csharp.Properties.Resources.pdf_icon;
-            this.img_pdf.Location = new System.Drawing.Point(428, 16);
+            this.img_pdf.Location = new System.Drawing.Point(375, 16);
             this.img_pdf.Name = "img_pdf";
-            this.img_pdf.Size = new System.Drawing.Size(115, 115);
+            this.img_pdf.Size = new System.Drawing.Size(80, 80);
             this.img_pdf.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.img_pdf.TabIndex = 4;
             this.img_pdf.TabStop = false;
@@ -73,9 +73,9 @@ namespace pdfconverter_csharp
             // img_csv
             // 
             this.img_csv.Image = ((System.Drawing.Image)(resources.GetObject("img_csv.Image")));
-            this.img_csv.Location = new System.Drawing.Point(659, 16);
+            this.img_csv.Location = new System.Drawing.Point(571, 16);
             this.img_csv.Name = "img_csv";
-            this.img_csv.Size = new System.Drawing.Size(115, 115);
+            this.img_csv.Size = new System.Drawing.Size(80, 80);
             this.img_csv.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.img_csv.TabIndex = 5;
             this.img_csv.TabStop = false;
@@ -96,7 +96,7 @@ namespace pdfconverter_csharp
             // 
             // prg_pdfConversion
             // 
-            this.prg_pdfConversion.Location = new System.Drawing.Point(549, 62);
+            this.prg_pdfConversion.Location = new System.Drawing.Point(461, 42);
             this.prg_pdfConversion.Name = "prg_pdfConversion";
             this.prg_pdfConversion.Size = new System.Drawing.Size(104, 29);
             this.prg_pdfConversion.TabIndex = 7;
