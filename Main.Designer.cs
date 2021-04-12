@@ -63,7 +63,7 @@ namespace pdfconverter_csharp
             // img_pdf
             // 
             this.img_pdf.Image = global::pdfconverter_csharp.Properties.Resources.pdf_icon;
-            this.img_pdf.Location = new System.Drawing.Point(375, 16);
+            this.img_pdf.Location = new System.Drawing.Point(375, 46);
             this.img_pdf.Name = "img_pdf";
             this.img_pdf.Size = new System.Drawing.Size(80, 80);
             this.img_pdf.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -73,7 +73,7 @@ namespace pdfconverter_csharp
             // img_csv
             // 
             this.img_csv.Image = ((System.Drawing.Image)(resources.GetObject("img_csv.Image")));
-            this.img_csv.Location = new System.Drawing.Point(571, 16);
+            this.img_csv.Location = new System.Drawing.Point(571, 46);
             this.img_csv.Name = "img_csv";
             this.img_csv.Size = new System.Drawing.Size(80, 80);
             this.img_csv.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -91,12 +91,12 @@ namespace pdfconverter_csharp
             this.pnl_whitebackground.Controls.Add(this.pnl_pinkbackground);
             this.pnl_whitebackground.Location = new System.Drawing.Point(-3, -4);
             this.pnl_whitebackground.Name = "pnl_whitebackground";
-            this.pnl_whitebackground.Size = new System.Drawing.Size(787, 166);
+            this.pnl_whitebackground.Size = new System.Drawing.Size(787, 199);
             this.pnl_whitebackground.TabIndex = 6;
             // 
             // prg_pdfConversion
             // 
-            this.prg_pdfConversion.Location = new System.Drawing.Point(461, 42);
+            this.prg_pdfConversion.Location = new System.Drawing.Point(461, 72);
             this.prg_pdfConversion.Name = "prg_pdfConversion";
             this.prg_pdfConversion.Size = new System.Drawing.Size(104, 29);
             this.prg_pdfConversion.TabIndex = 7;
@@ -106,7 +106,7 @@ namespace pdfconverter_csharp
             this.lbl_warningDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(125)))), ((int)(((byte)(120)))));
             this.lbl_warningDesc.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_warningDesc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lbl_warningDesc.Location = new System.Drawing.Point(36, 101);
+            this.lbl_warningDesc.Location = new System.Drawing.Point(36, 131);
             this.lbl_warningDesc.Name = "lbl_warningDesc";
             this.lbl_warningDesc.Size = new System.Drawing.Size(333, 54);
             this.lbl_warningDesc.TabIndex = 10;
@@ -119,7 +119,7 @@ namespace pdfconverter_csharp
             this.lbl_PDFConverter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(20)))), ((int)(((byte)(10)))));
             this.lbl_PDFConverter.Font = new System.Drawing.Font("Arial", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_PDFConverter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-            this.lbl_PDFConverter.Location = new System.Drawing.Point(30, 16);
+            this.lbl_PDFConverter.Location = new System.Drawing.Point(30, 46);
             this.lbl_PDFConverter.Name = "lbl_PDFConverter";
             this.lbl_PDFConverter.Size = new System.Drawing.Size(339, 55);
             this.lbl_PDFConverter.TabIndex = 8;
@@ -130,7 +130,7 @@ namespace pdfconverter_csharp
             // 
             this.pnl_pinkbackground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(125)))), ((int)(((byte)(120)))));
             this.pnl_pinkbackground.Controls.Add(this.lbl_warningTitle);
-            this.pnl_pinkbackground.Location = new System.Drawing.Point(30, 71);
+            this.pnl_pinkbackground.Location = new System.Drawing.Point(30, 101);
             this.pnl_pinkbackground.Name = "pnl_pinkbackground";
             this.pnl_pinkbackground.Size = new System.Drawing.Size(339, 84);
             this.pnl_pinkbackground.TabIndex = 12;
