@@ -53,31 +53,41 @@ def Main():
 				indexDataFrame = 0
 				for tableDataFrame in tableListOfDataFrames:
 					try:
+						# FAZENDO COM QUE O CABEÇALHO SE TORNE UMA LINHA COMUM
 						# Cria ou limpa a lista que vai manipular o cabeçalho
 						tableDataFrameHeader = []
-
 						# Pegando o cabeçalho da tabela e passando ela como lista para a variável
 						tableDataFrameHeader = [*tableDataFrame]
-
 						# Removendo o cabeçalho da tabela atual
 						tableDataFrame = tableDataFrame.T.reset_index().T.reset_index(drop=True)
-
 						# Adicionando a lista como primeira linha do cabeçalho do DataFrame criado para manipular cabeçalho
 						tableDataFrameHeader.insert(1, tableDataFrameHeader)
-
 						# Concatenando à tabela principal
 						pandas.concat([pandas.DataFrame(tableDataFrameHeader), tableDataFrame], ignore_index=True)
 
 						# Removendo quebras de linha
 						# O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
 						# O segundo replace remove as que acontecem por conta do ponto e vírgula
-						tableRewriteDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
+						tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
 
-						tableRewriteDataFrame.to_csv("../resultados/texto/"+ fileName + ".txt", index=False, index_label=False, line_terminator="\n", sep=";", mode="a")
+						# REMOVENDO A PRIMEIRA LINHA QUE CONTÉM O INDEX
+						#tableDataFrame.reset_index(drop=True, inplace=True)
+						#tableDataFrame.reset_index()
+						#tableDataFrame.T.reset_index().T.reset_index(drop=True)
 
-						#tableRewriteDataFrame = pandas.ExcelWriter("../resultados/tabelas/" + fileName + "/" + str(indexDataFrame) + ".xlsx", engine='xlsxwriter')
-						#tableRewriteDataFrame.to_excel(writer, index=False, engine="xlsxwriter")
-						#tableRewriteDataFrame.save()
+						tableDataFrame.to_csv(
+							"../resultados/texto/"+ fileName + ".txt",
+							index=False,
+							index_label=False,
+							header=False,
+							line_terminator="\n", # Define a quebra de linha como '\n' para evitar conflito com o terminal que normalmente gera '\r' como quebra
+							sep=";",
+							mode="a"
+						)
+
+						#tableDataFrame = pandas.ExcelWriter("../resultados/tabelas/" + fileName + "/" + str(indexDataFrame) + ".xlsx", engine='xlsxwriter')
+						#tableDataFrame.to_excel(writer, index=False, engine="xlsxwriter")
+						#tableDataFrame.save()
 
 						# Indica que uma tabela foi convertida com sucesso
 						print(
@@ -85,7 +95,7 @@ def Main():
 							"A tabela da página "+ str(indexDataFrame + 1) + " do PDF foi convertida |\n"
 							"___________________________________________/\n",
 						file=outputFile)
-						print(pandas.DataFrame(tableRewriteDataFrame), file=outputFile)
+						print(pandas.DataFrame(tableDataFrame), file=outputFile)
 						indexDataFrame = indexDataFrame + 1
 					except Exception as err: 
 						# Fecha o design
