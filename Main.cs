@@ -1,7 +1,5 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
 using System.Windows.Forms;
 
 namespace pdfconverter_csharp
@@ -43,10 +41,6 @@ namespace pdfconverter_csharp
 
                     cmdProcess.Start();
 
-                    /*cmdProcess.Exited += (sender, e) => {
-                        prg_pdfConversion.Style = ProgressBarStyle.Continuous;
-                    };*/
-
                     cmdProcess.WaitForExit();
 
                     prg_pdfConversion.Style = ProgressBarStyle.Continuous;
@@ -59,8 +53,6 @@ namespace pdfconverter_csharp
             {
                 MessageBox.Show("Não foi possível executar o programa devido à um errro.\n\n" + err.ToString());
             }
-
-
         }
     }
 }
