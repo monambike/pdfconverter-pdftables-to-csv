@@ -5,6 +5,7 @@ from os import chdir
 from glob import glob
 from pathlib import Path
 
+# Faz caminhos baseados na onde o projeto está localizado (pdfconverter\bin\Debug\netcoreapp3.1)
 folderPDFs = "../../../../PDFs"
 folderResultados = "../../../../resultados"
 outputFile = outputFile=open(folderResultados + "/" + "output.txt", "a")
@@ -70,11 +71,6 @@ def Main():
 						# O segundo replace remove as que acontecem por conta do ponto e vírgula
 						tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
 
-						# REMOVENDO A PRIMEIRA LINHA QUE CONTÉM O INDEX
-						#tableDataFrame.reset_index(drop=True, inplace=True)
-						#tableDataFrame.reset_index()
-						#tableDataFrame.T.reset_index().T.reset_index(drop=True)
-
 						tableDataFrame.to_csv(
 							"../resultados/texto/"+ fileName + ".txt",
 							index=False,
@@ -85,16 +81,25 @@ def Main():
 							mode="a"
 						)
 
-						#tableDataFrame = pandas.ExcelWriter("../resultados/tabelas/" + fileName + "/" + str(indexDataFrame) + ".xlsx", engine='xlsxwriter')
-						#tableDataFrame.to_excel(writer, index=False, engine="xlsxwriter")
-						#tableDataFrame.save()
+						excelWriter = pandas.ExcelWriter("../resultados/tabelas/" + fileName + "/" + str(indexDataFrame) + ".xlsx",
+							engine='xlsxwriter'
+						)
+						tableDataFrame.to_excel(
+							excelWriter,
+							index=False,
+							header=False,
+							engine="xlsxwriter"
+						)
+						excelWriter.save()
 
 						# Indica que uma tabela foi convertida com sucesso
 						print(
 							"______________________________________________________________________\n"
 							"A tabela da página "+ str(indexDataFrame + 1) + " do PDF foi convertida |\n"
 							"___________________________________________/\n",
-						file=outputFile)
+							# Configurações
+							file=outputFile
+						)
 						print(pandas.DataFrame(tableDataFrame), file=outputFile)
 						indexDataFrame = indexDataFrame + 1
 					except Exception as err: 
