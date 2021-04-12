@@ -36,7 +36,7 @@ def Main():
 		for pdfFile in glob("*.pdf"):
 			try:
 				# Fazendo leitura do arquivo completo e passando para a variável
-				listOfDataFrames = tabula.read_pdf(pdfFile, pages="all", lattice=True)
+				tableListOfDataFrames = tabula.read_pdf(pdfFile, pages="all", lattice=True)
 
 				# Indica que um arquivo completo foi lido com sucesso
 				print("======================================================================\n"
@@ -51,16 +51,33 @@ def Main():
 
 				# Para cada uma das tabelas 'DataFrames' contidos no arquivo csv completo 'lista de tabelas' será convertido
 				indexDataFrame = 0
-				for df in listOfDataFrames:
+				for tableDataFrame in tableListOfDataFrames:
 					try:
+						# Cria ou limpa a lista que vai manipular o cabeçalho
+						tableDataFrameHeader = []
+
+						# Pegando o cabeçalho da tabela e passando ela como lista para a variável
+						tableDataFrameHeader = [*tableDataFrame]
+
+						# Removendo o cabeçalho da tabela atual
+						tableDataFrame = tableDataFrame.T.reset_index().T.reset_index(drop=True)
+
+						# Adicionando a lista como primeira linha do cabeçalho do DataFrame criado para manipular cabeçalho
+						tableDataFrameHeader.insert(1, tableDataFrameHeader)
+
+						# Concatenando à tabela principal
+						pandas.concat([pandas.DataFrame(tableDataFrameHeader), tableDataFrame], ignore_index=True)
+
 						# Removendo quebras de linha
-						rewroteDf = df.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
+						# O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
+						# O segundo replace remove as que acontecem por conta do ponto e vírgula
+						tableRewriteDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
 
-						rewroteDf.to_csv("../resultados/texto/"+ fileName + ".txt", index=False, index_label=False, line_terminator="\n", sep=";", mode="a")
+						tableRewriteDataFrame.to_csv("../resultados/texto/"+ fileName + ".txt", index=False, index_label=False, line_terminator="\n", sep=";", mode="a")
 
-						#rewroteDf = pandas.ExcelWriter("../resultados/tabelas/" + fileName + "/" + str(indexDataFrame) + ".xlsx", engine='xlsxwriter')
-						#rewroteDf.to_excel(writer, index=False, engine="xlsxwriter")
-						#reWroteDf.save()
+						#tableRewriteDataFrame = pandas.ExcelWriter("../resultados/tabelas/" + fileName + "/" + str(indexDataFrame) + ".xlsx", engine='xlsxwriter')
+						#tableRewriteDataFrame.to_excel(writer, index=False, engine="xlsxwriter")
+						#tableRewriteDataFrame.save()
 
 						# Indica que uma tabela foi convertida com sucesso
 						print(
@@ -68,7 +85,7 @@ def Main():
 							"A tabela da página "+ str(indexDataFrame + 1) + " do PDF foi convertida |\n"
 							"___________________________________________/\n",
 						file=outputFile)
-						print(pandas.DataFrame(rewroteDf), file=outputFile)
+						print(pandas.DataFrame(tableRewriteDataFrame), file=outputFile)
 						indexDataFrame = indexDataFrame + 1
 					except Exception as err: 
 						# Fecha o design
