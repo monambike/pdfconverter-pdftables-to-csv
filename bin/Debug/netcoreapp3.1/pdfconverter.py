@@ -1,6 +1,5 @@
 import pandas
 import tabula
-import xlsxwriter
 from os import chdir
 from glob import glob
 from pathlib import Path
@@ -26,94 +25,73 @@ def Main():
 	makeDirectories()
 
 	indexFile = 0
-	try:
-		# Pega todos os PDFs
-		chdir(pathFolderPDFs)
-		for pdfFile in glob("*.pdf"):
-			try:
-				# Fazendo leitura do arquivo completo e passando para a variável
-				tableListOfDataFrames_stream = tabula.read_pdf(pdfFile, pages="all", stream=True, multiple_tables=True, guess=True)
-				tableListOfDataFrames_lattice = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True, guess=True)
+	# Pega todos os PDFs
+	chdir(pathFolderPDFs)
+	for pdfFile in glob("*.pdf"):
+		try:
+			# Remove extensão do arquivo, pegando apenas o nome e atribui pra variavel
+			fileName = pdfFile[:-4]
+			# Fazendo leitura do arquivo completo e passando para a variável
+			tableListOfDataFrames_stream = tabula.read_pdf(pdfFile, pages="all", stream=True, multiple_tables=True, guess=True)
+			tableListOfDataFrames_lattice = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True, guess=True)
 
-				# Indica que um arquivo completo foi lido com sucesso
-				print(
-					"======================================================================\n"
-					"LEITURA DE ARQUIVO - NÚMERO " + str(indexFile) + "\n"
-					"O arquivo " + pdfFile + " foi lido e está pronto pra ser convertido\n",
+			# Indica que um arquivo completo foi lido com sucesso
+			print(
+				"======================================================================\n"
+				"LEITURA DE ARQUIVO - NÚMERO " + str(indexFile) + "\n"
+				"O arquivo " + pdfFile + " foi lido e está pronto pra ser convertido\n",
 
-					file=outputFile
-				)
+				file=outputFile
+			)
 
-				# Remove extensão do arquivo, pegando apenas o nome e atribui pra variavel
-				fileName = pdfFile[:-4]
-				# Cria uma pasta para armazenar tabelas com o mesmo nome pra cada arquivo
-				Path("../resultados/tabelas/" + fileName).mkdir(parents=True, exist_ok=True)
+			# LATTICE
+			# Para cada uma das tabelas 'DataFrames' contidos no arquivo csv completo 'lista de tabelas' será convertido
+			indexDataFrame = 0
+			for tableDataFrame in tableListOfDataFrames_lattice:
+				try:
+					turnHeaderInSimpleRow(tableDataFrame)
 
-				# LATTICE
-				# Para cada uma das tabelas 'DataFrames' contidos no arquivo csv completo 'lista de tabelas' será convertido
-				indexDataFrame = 0
-				for tableDataFrame in tableListOfDataFrames_lattice:
-					try:
-						turnHeaderInSimpleRow(tableDataFrame)
+					# Removendo quebras de linha
+					# O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
+					# O segundo replace remove as que acontecem por conta do ponto e vírgula
+					tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
 
-						# Removendo quebras de linha
-						# O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
-						# O segundo replace remove as que acontecem por conta do ponto e vírgula
-						tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
+					# Converte para .txt no formato de um CSV
+					tableDataFrame.to_csv(
+						"../resultados/texto/"+ fileName + ".txt",
+						index=False,
+						index_label=False,
+						header=False,
+						line_terminator="\n", # Define a quebra de linha como '\n' para evitar conflito com o terminal que gera \r
+						sep=";",
+						mode="a"
+					)
 
-						# Converte para .txt no formato de um CSV
-						tableDataFrame.to_csv(
-							"../resultados/texto/"+ fileName + ".txt",
-							index=False,
-							index_label=False,
-							header=False,
-							line_terminator="\n", # Define a quebra de linha como '\n' para evitar conflito com o terminal que gera \r
-							sep=";",
-							mode="a"
-						)
+					print(
+						"______________________________________________________________________\n"
+						"A tabela da página "+ str(indexDataFrame + 1) + " do PDF foi convertida |\n"
+						"___________________________________________/\n",
 
-						# Converte para excel
-						excelWriter = pandas.ExcelWriter(
-							"../resultados/tabelas/" + fileName + "/" + str(indexDataFrame) + ".xlsx",
-							engine="xlsxwriter"
-						)
-						tableDataFrame.to_excel(
-							excelWriter,
-							index=False,
-							header=False,
-							engine="xlsxwriter"
-						)
-						excelWriter.save()
+						file=outputFile
+					)
+					# Imprime o DataFrame
+					print(pandas.DataFrame(tableDataFrame), file=outputFile)
 
-						print(
-							"______________________________________________________________________\n"
-							"A tabela da página "+ str(indexDataFrame + 1) + " do PDF foi convertida |\n"
-							"___________________________________________/\n",
+					indexDataFrame = indexDataFrame + 1
+				except Exception as err: 
+					showError("Ocorreu um erro, ao tentar converter o arquivo", err)
+					break
+			print("======================================================================", file=outputFile)
 
-							file=outputFile
-						)
-						# Imprime o DataFrame
-						print(pandas.DataFrame(tableDataFrame), file=outputFile)
+			# MÉTODO STREAM
+			# espaço reservado
 
-						indexDataFrame = indexDataFrame + 1
-					except Exception as err: 
-						showError("Ocorreu um erro, ao tentar converter o arquivo", err)
-						break
-				print("======================================================================", file=outputFile)
+			indexFile = indexFile + 1
 
-				# STREAM
-				# espaço reservado
-
-				indexFile = indexFile + 1
-
-			except Exception as err:
-				showError("Ocorreu um erro ao tentar ler o arquivo.", err)
-
-		else:
-			showError("Não há arquivos de PDF para serem convertidos", err)
-
-	except Exception as err:
-		showError("Ocorreu um erro desconhecido.", err)
+		except Exception as err:
+			showError("Ocorreu um erro ao tentar ler o arquivo.", err)
+	else:
+		showError("Não há arquivos de PDF para serem convertidos", err)
 
 def makeDirectories():
 	# Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam
