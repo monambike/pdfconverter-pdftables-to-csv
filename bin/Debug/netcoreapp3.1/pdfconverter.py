@@ -4,11 +4,7 @@ from os import chdir
 from glob import glob
 from pathlib import Path
 
-tableDataFrame = None
 tableDataFrameHeader = []
-tableListOfDataFrames_stream = None
-tableListOfDataFrames_lattice = None
-err = None
 # Caminhos baseados na onde o executável fonte do projeto está localizado
 # (pdfconverter\bin\Debug\netcoreapp3.1)
 pathFolderPDFs = "../../../../PDFs"
@@ -91,7 +87,7 @@ def Main():
 		except Exception as err:
 			showError("Ocorreu um erro ao tentar ler o arquivo.", err)
 	else:
-		showError("Não há arquivos de PDF para serem convertidos", err)
+		showError("Não há arquivos de PDF para serem convertidos", "")
 
 def makeDirectories():
 	# Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam
@@ -142,8 +138,8 @@ def showError(errorMessage, errorErr):
 	)
 
 	print(str(errorErr), file=outputFile)
-	#if err is not None:
-	#	print(str(errorErr), file=outputFile)
+	if errorErr != "":
+		print(str(errorErr), file=outputFile)
 
 	print("**********************************************************************", file=outputFile)
 
