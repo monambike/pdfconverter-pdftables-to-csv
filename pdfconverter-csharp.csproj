@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>pdfconverter_csharp</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
-    <ApplicationIcon>app-icon.ico</ApplicationIcon>
+    <ApplicationIcon>pdfconverter-icon.ico</ApplicationIcon>
     <AssemblyName>pdfconverter</AssemblyName>
   </PropertyGroup>
 
