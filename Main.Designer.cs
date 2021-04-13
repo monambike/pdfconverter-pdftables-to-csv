@@ -160,6 +160,7 @@ namespace pdfconverter_csharp
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Main";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PDFConverter";
             ((System.ComponentModel.ISupportInitialize)(this.img_pdf)).EndInit();

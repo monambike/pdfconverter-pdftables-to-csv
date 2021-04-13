@@ -13,10 +13,7 @@ namespace pdfconverter_csharp
 
         public void btn_Converter_Click(object sender, EventArgs e)
         {
-            prg_pdfConversion.Style = ProgressBarStyle.Marquee;
-            prg_pdfConversion.Value = 0;
-            lbl_warningTitle.Text = "POR FAVOR AGUARDE...";
-            lbl_warningDesc.Text = "Seus PDF's estão sendo convertidos nesse momento.";
+            inProgress(true);
 
             pnl_pinkbackground.Visible = true;
             lbl_warningTitle.Visible = true;
@@ -43,15 +40,40 @@ namespace pdfconverter_csharp
 
                     cmdProcess.WaitForExit();
 
-                    prg_pdfConversion.Style = ProgressBarStyle.Continuous;
-                    prg_pdfConversion.Value = 100;
-                    lbl_warningTitle.Text = "CONCLUÍDO!";
-                    lbl_warningDesc.Text = "A conversão foi realizada com sucesso!";
+                    inProgress(false);
                 }
             }
             catch (Exception err)
             {
                 MessageBox.Show("Não foi possível executar o programa devido à um errro.\n\n" + err.ToString());
+            }
+
+            void inProgress(bool state)
+            {
+                if (state)
+                {
+                    prg_pdfConversion.Style = ProgressBarStyle.Marquee;
+                    prg_pdfConversion.Value = 0;
+
+                    lbl_warningTitle.Text = "POR FAVOR AGUARDE...";
+                    lbl_warningDesc.Text = "Seus PDF's estão sendo convertidos nesse momento.";
+
+                    Cursor.Current = Cursors.AppStarting;
+                    
+                    btn_Convert.Enabled = false;
+                }
+                else
+                {
+                    prg_pdfConversion.Style = ProgressBarStyle.Continuous;
+                    prg_pdfConversion.Value = 100;
+
+                    lbl_warningTitle.Text = "CONCLUÍDO!";
+                    lbl_warningDesc.Text = "A conversão foi realizada com sucesso!";
+
+                    Cursor.Current = Cursors.Default;
+
+                    btn_Convert.Enabled = true;
+                }
             }
         }
     }
