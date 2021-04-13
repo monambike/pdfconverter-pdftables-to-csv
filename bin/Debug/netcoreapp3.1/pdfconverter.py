@@ -54,7 +54,7 @@ def Main():
 
 					# Converte para .txt no formato de um CSV
 					tableDataFrame.to_csv(
-						"../resultados/texto/"+ fileName + ".txt",
+						"../resultados/txt-lattice/"+ fileName + ".txt",
 						index=False,
 						index_label=False,
 						header=False,
@@ -66,7 +66,47 @@ def Main():
 					print(
 						"______________________________________________________________________\n"
 						"A tabela da página "+ str(indexDataFrame + 1) + " do PDF foi convertida |\n"
-						"___________________________________________/\n",
+						"___________________________________________/\n"
+						"usando lattice\n",
+
+						file=outputFile
+					)
+					# Imprime o DataFrame
+					print(pandas.DataFrame(tableDataFrame), file=outputFile)
+
+					indexDataFrame = indexDataFrame + 1
+				except Exception as err: 
+					showError("Ocorreu um erro, ao tentar converter o arquivo", err)
+					break
+
+			# STREAM
+			# Para cada uma das tabelas 'DataFrames' contidos no arquivo csv completo 'lista de tabelas' será convertido
+			indexDataFrame = 0
+			for tableDataFrame in tableListOfDataFrames_stream:
+				try:
+					turnHeaderInSimpleRow(tableDataFrame)
+
+					# Removendo quebras de linha
+					# O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
+					# O segundo replace remove as que acontecem por conta do ponto e vírgula
+					tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
+
+					# Converte para .txt no formato de um CSV
+					tableDataFrame.to_csv(
+						"../resultados/txt-stream/" + fileName + ".txt",
+						index=False,
+						index_label=False,
+						header=False,
+						line_terminator="\n", # Define a quebra de linha como '\n' para evitar conflito com o terminal que gera \r
+						sep=";",
+						mode="a"
+					)
+
+					print(
+						"______________________________________________________________________\n"
+						"A tabela da página "+ str(indexDataFrame + 1) + " do PDF foi convertida |\n"
+						"___________________________________________/\n"
+						"usando stream\n",
 
 						file=outputFile
 					)
@@ -93,8 +133,8 @@ def makeDirectories():
 	# Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam
 	Path(pathFolderPDFs).mkdir(parents=True, exist_ok=True)
 	Path(pathFolderResultados).mkdir(parents=True, exist_ok=True)
-	Path(pathFolderResultados + "/texto").mkdir(parents=True, exist_ok=True)
-	Path(pathFolderResultados + "/tabelas").mkdir(parents=True, exist_ok=True)
+	Path(pathFolderResultados + "/txt-lattice").mkdir(parents=True, exist_ok=True)
+	Path(pathFolderResultados + "/txt-stream").mkdir(parents=True, exist_ok=True)
 
 def pandaSetConfig():
 	# CONFIGURAÇÕES DO PANDAS
@@ -130,8 +170,9 @@ def showError(errorMessage, errorErr):
 	print(
 		"======================================================================\n"
 		"**********************************************************************\n"
-		"--- ERRO ---\n"
+		"--- MENSAGEM ---\n"
 		"\n"
+		"ERRO\n"
 		"'" + errorMessage + "'",
 		
 		file=outputFile
