@@ -37,7 +37,7 @@ def Main():
 		for pdfFile in glob("*.pdf"):
 			try:
 				# Fazendo leitura do arquivo completo e passando para a variável
-				tableListOfDataFrames = tabula.read_pdf(pdfFile, pages="all", lattice=True)
+				tableListOfDataFrames = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True)
 
 				# Indica que um arquivo completo foi lido com sucesso
 				print("======================================================================\n"
@@ -82,7 +82,7 @@ def Main():
 						)
 
 						excelWriter = pandas.ExcelWriter("../resultados/tabelas/" + fileName + "/" + str(indexDataFrame) + ".xlsx",
-							engine='xlsxwriter'
+							engine="xlsxwriter"
 						)
 						tableDataFrame.to_excel(
 							excelWriter,
