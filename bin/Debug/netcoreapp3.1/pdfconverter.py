@@ -48,20 +48,19 @@ def Main():
             for tableDataFrame in tableListOfDataFrames_lattice:
                 # Passando os parâmetro do Lattice para a função
                 conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_lattice, indexDataFrame, returnedError)
-            else:
-                showError("Não há arquivos de PDF para serem convertidos", "")
-
+            
             # STREAM
             indexDataFrame = 1
             conversionMethod = "stream"
             for tableDataFrame in tableListOfDataFrames_stream:
                 # Passando os parâmetro do Stream para a função
                 conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_stream, indexDataFrame, returnedError)
-            else:
-                showError("Não há arquivos de PDF para serem convertidos", "")
+            
         except Exception as err:
             showError("Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "'.", err)
-            break
+            break 
+    else:
+        showError("Não há arquivos de PDF para serem convertidos", "")
 
 def makeDirectories():
     # Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam
