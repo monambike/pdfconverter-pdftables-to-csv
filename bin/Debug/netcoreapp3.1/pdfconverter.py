@@ -69,6 +69,9 @@ def makeDirectories():
     Path(pathFolderResultados).mkdir(parents=True, exist_ok=True)
     Path(pathFolderResultados + "/lattice").mkdir(parents=True, exist_ok=True)
     Path(pathFolderResultados + "/stream").mkdir(parents=True, exist_ok=True)
+    Path(pathFolderResultados + "/test").mkdir(parents=True, exist_ok=True)
+    Path(pathFolderResultados + "/test/lattice").mkdir(parents=True, exist_ok=True)
+    Path(pathFolderResultados + "/test/stream").mkdir(parents=True, exist_ok=True)
 
 def pandaSetConfig():
     # CONFIGURAÇÕES DO PANDAS
@@ -146,7 +149,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
             mode="a"
         )
 
-        verifyIfAllCharactersSame(currentPath, txtFilePath)
+        verifyIfAllCharactersSame(currentPath, txtFilePath, fileName, conversionMethod)
 
         print(
             "______________________________________________________________________\n"
@@ -167,18 +170,18 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
 
         return returnedError
 
-def verifyIfAllCharactersSame(currentPath, txtFilePath):
+def verifyIfAllCharactersSame(currentPath, txtFilePath, fileName, conversionMethod):
     # Esse loop por toda linha e vai encontrando caracteres iguais, quando ele encontrar algum caractere diferente na mesma linha ele para e retorna falso
     
-    output = open(str(currentPath)[:-37] + "\\resultados\\test.txt", "a", encoding="UTF-8")
+    txtFileRevised = open(str(currentPath)[:-37] + "\\resultados\\test\\" + conversionMethod + "\\" + fileName + ".txt", "a", encoding="UTF-8")
 
     with open(txtFilePath, "r", encoding="UTF-8") as txtDoc:
         # navega por cada linha do documento
         for line in txtDoc:
             if ";" in line:
-                print("sim: " + line, file=output)
+                print("sim: " + line, file=txtFileRevised)
             else:
-                print("não: " + line, file=output)
+                print("não: " + line, file=txtFileRevised)
             # verifica em cada linha, cada letra
             #for letter in line:
             #    return False
