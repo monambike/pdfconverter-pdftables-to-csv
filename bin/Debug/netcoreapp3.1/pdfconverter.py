@@ -149,7 +149,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
             mode="a"
         )
 
-        verifyIfAllCharactersSame(currentPath, txtFilePath, fileName, conversionMethod)
+        removeSemicolon(currentPath, txtFilePath, fileName, conversionMethod)
 
         print(
             "______________________________________________________________________\n"
@@ -170,21 +170,16 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
 
         return returnedError
 
-def verifyIfAllCharactersSame(currentPath, txtFilePath, fileName, conversionMethod):
+def removeSemicolon(currentPath, txtFilePath, fileName, conversionMethod):
     # Esse loop por toda linha e vai encontrando caracteres iguais, quando ele encontrar algum caractere diferente na mesma linha ele para e retorna falso
     
     txtFileRevised = open(str(currentPath)[:-37] + "\\resultados\\test\\" + conversionMethod + "\\" + fileName + ".txt", "a", encoding="UTF-8")
-
+    # Só escreve a linha se ela tiver com pelo menos um ';'
     with open(txtFilePath, "r", encoding="UTF-8") as txtDoc:
         # navega por cada linha do documento
         for line in txtDoc:
             if ";" in line:
-                print("sim: " + line, file=txtFileRevised)
-            else:
-                print("não: " + line, file=txtFileRevised)
-            # verifica em cada linha, cada letra
-            #for letter in line:
-            #    return False
+                txtFileRevised.write(line)
 
     return True
 
