@@ -5,6 +5,7 @@ from glob import glob
 from pathlib import Path
 
 tableDataFrameHeader = []
+returnedError = False
 # Caminhos baseados na onde o executável fonte do projeto está localizado
 # (pdfconverter\bin\Debug\netcoreapp3.1)
 pathFolderPDFs = "../../../../PDFs"
@@ -44,80 +45,17 @@ def Main():
 			# Para cada uma das tabelas 'DataFrames' contidos no arquivo csv completo 'lista de tabelas' será convertido
 			indexDataFrame = 1
 			for tableDataFrame in tableListOfDataFrames_lattice:
-				try:
-					turnHeaderInSimpleRow(tableDataFrame)
-
-					# Removendo quebras de linha
-					# O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
-					# O segundo replace remove as que acontecem por conta do ponto e vírgula
-					tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
-
-					# Converte para .txt no formato de um CSV
-					tableDataFrame.to_csv(
-						"../resultados/txt-lattice/"+ fileName + ".txt",
-						index=False,
-						index_label=False,
-						header=False,
-						line_terminator="\n", # Define a quebra de linha como '\n' para evitar conflito com o terminal que gera \r
-						sep=";",
-						mode="a"
-					)
-
-					print(
-						"______________________________________________________________________\n"
-						"A tabela da página "+ str(indexDataFrame) + " do PDF foi convertida |\n"
-						"___________________________________________/\n" +
-						fileName + " lattice\n",
-
-						file=outputFile
-					)
-					# Imprime o DataFrame
-					print(pandas.DataFrame(tableDataFrame), file=outputFile)
-
-					indexDataFrame = indexDataFrame + 1
-				except Exception as err: 
-					showError("Ocorreu um erro, ao tentar converter o arquivo", err)
-					break
-
-			print("----------------------------------------------------------------------", file=outputFile)
+            else:
+                showError("Não há arquivos de PDF para serem convertidos", "")
 
 			# STREAM
 			# Para cada uma das tabelas 'DataFrames' contidos no arquivo csv completo 'lista de tabelas' será convertido
 			indexDataFrame = 1
 			for tableDataFrame in tableListOfDataFrames_stream:
-				try:
-					turnHeaderInSimpleRow(tableDataFrame)
-
-					# Removendo quebras de linha
-					# O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
-					# O segundo replace remove as que acontecem por conta do ponto e vírgula
-					tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
-
-					# Converte para .txt no formato de um CSV
-					tableDataFrame.to_csv(
-						"../resultados/txt-stream/" + fileName + ".txt",
-						index=False,
-						index_label=False,
-						header=False,
-						line_terminator="\n", # Define a quebra de linha como '\n' para evitar conflito com o terminal que gera \r
-						sep=";",
-						mode="a"
-					)
-
-					print(
-						"______________________________________________________________________\n"
-						"A tabela da página "+ str(indexDataFrame) + " do PDF foi convertida |\n"
-						"___________________________________________/\n" +
-						fileName + " stream\n",
-
-						file=outputFile
-					)
-					# Imprime o DataFrame
-					print(pandas.DataFrame(tableDataFrame), file=outputFile)
-
-					indexDataFrame = indexDataFrame + 1
+            else:
+                showError("Não há arquivos de PDF para serem convertidos", "")
 				except Exception as err: 
-					showError("Ocorreu um erro, ao tentar converter o arquivo", err)
+            showError("Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "'.", err)
 					break
 
 			indexFile = indexFile + 1
@@ -164,21 +102,21 @@ def turnHeaderInSimpleRow(tableDataFrame):
 	# Concatenando à tabela principal
 	pandas.concat([pandas.DataFrame(tableDataFrameHeader), tableDataFrame], ignore_index=True)
 
-def showError(errorMessage, errorErr):
+def showError(errorMessage, err):
 	print(
 		"======================================================================\n"
 		"**********************************************************************\n"
 		"--- MENSAGEM ---\n"
 		"\n"
 		"ERRO\n"
-		"'" + errorMessage + "'",
+        "Descrição: " + errorMessage + "\n",
 		
 		file=outputFile
 	)
 
-	print(str(errorErr), file=outputFile)
-	if errorErr != "":
-		print(str(errorErr), file=outputFile)
+    #print(str(err), file=outputFile)
+    if err != "":
+        print(str(err), file=outputFile)
 
 	print("**********************************************************************", file=outputFile)
 
