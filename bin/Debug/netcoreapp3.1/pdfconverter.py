@@ -24,6 +24,7 @@ def Main():
     indexFile = 1
     # Pega todos os PDFs
     chdir(pathFolderPDFs)
+
     for pdfFile in glob("*.pdf"):
         try:
             # Remove extensão do arquivo, pegando apenas o nome e atribui pra variavel
@@ -46,7 +47,7 @@ def Main():
             conversionMethod = "lattice"
             for tableDataFrame in tableListOfDataFrames_lattice:
                 # Passando os parâmetro do Lattice para a função
-                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_lattice, returnedError)
+                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_lattice, indexDataFrame, returnedError)
             else:
                 showError("Não há arquivos de PDF para serem convertidos", "")
 
@@ -55,7 +56,7 @@ def Main():
             conversionMethod = "stream"
             for tableDataFrame in tableListOfDataFrames_stream:
                 # Passando os parâmetro do Stream para a função
-                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_stream, returnedError)
+                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_stream, indexDataFrame, returnedError)
             else:
                 showError("Não há arquivos de PDF para serem convertidos", "")
         except Exception as err:
@@ -66,8 +67,8 @@ def makeDirectories():
     # Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam
     Path(pathFolderPDFs).mkdir(parents=True, exist_ok=True)
     Path(pathFolderResultados).mkdir(parents=True, exist_ok=True)
-    Path(pathFolderResultados + "/txt-lattice").mkdir(parents=True, exist_ok=True)
-    Path(pathFolderResultados + "/txt-stream").mkdir(parents=True, exist_ok=True)
+    Path(pathFolderResultados + "/lattice").mkdir(parents=True, exist_ok=True)
+    Path(pathFolderResultados + "/stream").mkdir(parents=True, exist_ok=True)
 
 def pandaSetConfig():
     # CONFIGURAÇÕES DO PANDAS
@@ -117,7 +118,9 @@ def showError(errorMessage, err):
 
     print("**********************************************************************", file=outputFile)
 
-def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames, returnedError):
+def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames, indexDataFrame, returnedError):
+    currentPath = Path(__file__).parent.absolute()
+
     try:
         turnHeaderInSimpleRow(tableDataFrame)
 
@@ -128,7 +131,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
 
         # Converte para .txt no formato de um CSV
         tableDataFrame.to_csv(
-            "../resultados/" + conversionMethod + "/"+ fileName + ".txt",
+            str(currentPath)[:-37] + "\\resultados\\" + conversionMethod + "\\" + fileName + ".txt",
             index=False,
             index_label=False,
             header=False,
@@ -149,7 +152,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
         print(pandas.DataFrame(tableDataFrame), file=outputFile)
 
         indexDataFrame = indexDataFrame + 1
-    except Exception as err: 
+    except Exception as err:
         showError("Ocorreu um erro, ao tentar converter o arquivo '" + fileName + ".pdf' usando o método " + conversionMethod + ".", err)
 
         returnedError = True
