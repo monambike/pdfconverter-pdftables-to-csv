@@ -28,10 +28,8 @@ def Main():
 			# Remove extensão do arquivo, pegando apenas o nome e atribui pra variavel
 			fileName = pdfFile[:-4]
 			# Fazendo leitura do arquivo completo e passando para a variável
-			tableListOfDataFrames_stream = tabula.read_pdf(pdfFile, pages="all", stream=True, multiple_tables=True, guess=False)
-			tableListOfDataFrames_lattice = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True, guess=False)
-			tableListOfDataFrames_stream_guess = tabula.read_pdf(pdfFile, pages="all", stream=True, multiple_tables=True, guess=True)
-			tableListOfDataFrames_lattice_guess = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True, guess=True)
+			tableListOfDataFrames_stream = tabula.read_pdf(pdfFile, pages="all", stream=True, multiple_tables=True, guess=True)
+			tableListOfDataFrames_lattice = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True, guess=True)
 
 			# Indica que um arquivo completo foi lido com sucesso
 			print(
@@ -43,7 +41,6 @@ def Main():
 			)
 
 			# LATTICE
-			# guess = False
 			# Para cada uma das tabelas 'DataFrames' contidos no arquivo csv completo 'lista de tabelas' será convertido
 			indexDataFrame = 1
 			for tableDataFrame in tableListOfDataFrames_lattice:
@@ -70,45 +67,7 @@ def Main():
 						"______________________________________________________________________\n"
 						"A tabela da página "+ str(indexDataFrame) + " do PDF foi convertida |\n"
 						"___________________________________________/\n" +
-						pdfFile + " lattice=True guess=False\n",
-
-						file=outputFile
-					)
-					# Imprime o DataFrame
-					print(pandas.DataFrame(tableDataFrame), file=outputFile)
-
-					indexDataFrame = indexDataFrame + 1
-				except Exception as err: 
-					showError("Ocorreu um erro, ao tentar converter o arquivo", err)
-					break
-
-			# guess = True
-			indexDataFrame = 1
-			for tableDataFrame in tableListOfDataFrames_lattice_guess:
-				try:
-					turnHeaderInSimpleRow(tableDataFrame)
-
-					# Removendo quebras de linha
-					# O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
-					# O segundo replace remove as que acontecem por conta do ponto e vírgula
-					tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
-
-					# Converte para .txt no formato de um CSV
-					tableDataFrame.to_csv(
-						"../resultados/txt-lattice/guess-"+ fileName + ".txt",
-						index=False,
-						index_label=False,
-						header=False,
-						line_terminator="\n", # Define a quebra de linha como '\n' para evitar conflito com o terminal que gera \r
-						sep=";",
-						mode="a"
-					)
-
-					print(
-						"______________________________________________________________________\n"
-						"A tabela da página "+ str(indexDataFrame) + " do PDF foi convertida |\n"
-						"___________________________________________/\n" +
-						pdfFile + " lattice=True guess=True\n",
+						fileName + " lattice\n",
 
 						file=outputFile
 					)
@@ -123,7 +82,6 @@ def Main():
 			print("----------------------------------------------------------------------", file=outputFile)
 
 			# STREAM
-			# guess = False
 			# Para cada uma das tabelas 'DataFrames' contidos no arquivo csv completo 'lista de tabelas' será convertido
 			indexDataFrame = 1
 			for tableDataFrame in tableListOfDataFrames_stream:
@@ -150,46 +108,7 @@ def Main():
 						"______________________________________________________________________\n"
 						"A tabela da página "+ str(indexDataFrame) + " do PDF foi convertida |\n"
 						"___________________________________________/\n" +
-						pdfFile + " stream=True guess=False\n",
-
-						file=outputFile
-					)
-					# Imprime o DataFrame
-					print(pandas.DataFrame(tableDataFrame), file=outputFile)
-
-					indexDataFrame = indexDataFrame + 1
-				except Exception as err: 
-					showError("Ocorreu um erro, ao tentar converter o arquivo", err)
-					break
-			print("======================================================================", file=outputFile)
-
-			# guess=True
-			indexDataFrame = 1
-			for tableDataFrame in tableListOfDataFrames_stream_guess:
-				try:
-					turnHeaderInSimpleRow(tableDataFrame)
-
-					# Removendo quebras de linha
-					# O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
-					# O segundo replace remove as que acontecem por conta do ponto e vírgula
-					tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
-
-					# Converte para .txt no formato de um CSV
-					tableDataFrame.to_csv(
-						"../resultados/txt-stream/guess-" + fileName + ".txt",
-						index=False,
-						index_label=False,
-						header=False,
-						line_terminator="\n", # Define a quebra de linha como '\n' para evitar conflito com o terminal que gera \r
-						sep=";",
-						mode="a"
-					)
-
-					print(
-						"______________________________________________________________________\n"
-						"A tabela da página "+ str(indexDataFrame) + " do PDF foi convertida |\n"
-						"___________________________________________/\n" +
-						pdfFile + " stream=True guess=True\n",
+						fileName + " stream\n",
 
 						file=outputFile
 					)
