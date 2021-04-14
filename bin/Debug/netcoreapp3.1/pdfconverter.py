@@ -12,11 +12,11 @@ pathFolderPDFs = "../../../../PDFs"
 pathFolderResultados = "../../../../resultados"
 pathOutputFile = pathFolderResultados + "/output.txt"
 # Arquivo output
-outputFile = open(pathOutputFile, "a")
+outputFile = open(pathOutputFile, "a", encoding="UTF-8")
 
 def Main():
     # Limpa o arquivo de saída do terminal
-    outputClear = open(pathOutputFile,"w")
+    outputClear = open(pathOutputFile,"w", encoding="UTF-8")
     outputClear.close()
 
     makeDirectories()
@@ -30,8 +30,8 @@ def Main():
             # Remove extensão do arquivo, pegando apenas o nome e atribui pra variavel
             fileName = pdfFile[:-4]
             # Fazendo leitura do arquivo completo e passando para a variável
-            tableListOfDataFrames_stream = tabula.read_pdf(pdfFile, pages="all", stream=True, multiple_tables=True, guess=True)
-            tableListOfDataFrames_lattice = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True, guess=True)
+            tableListOfDataFrames_stream = tabula.read_pdf(pdfFile, pages="all", stream=True, multiple_tables=True, guess=False)
+            tableListOfDataFrames_lattice = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True, guess=False)
 
             # Indica que um arquivo completo foi lido com sucesso
             print(
@@ -77,7 +77,7 @@ def pandaSetConfig():
     pandas.options.display.max_colwidth = None
     pandas.options.display.expand_frame_repr = False
     # Define o padrão de codificação para UTF-8 com BOM
-    pandas.options.display.encoding = "utf-8-sig"
+    pandas.options.display.encoding = "UTF-8-sig"
     # Mostra o dia primeiro quando encontrar data
     pandas.options.display.date_dayfirst = True
     # Fazer com que caso tenha um ';' ele não passe os dados pra outra célula
@@ -132,10 +132,12 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
         # O segundo replace remove as que acontecem por conta do ponto e vírgula
         tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
 
+        txtFilePath = str(currentPath)[:-37] + "\\resultados\\" + conversionMethod + "\\" + fileName + ".txt"
+
 
         # Converte para .txt no formato de um CSV
         tableDataFrame.to_csv(
-            str(currentPath)[:-37] + "\\resultados\\" + conversionMethod + "\\" + fileName + ".txt",
+            txtFilePath,
             index=False,
             index_label=False,
             header=False,
@@ -143,6 +145,8 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
             sep=";",
             mode="a"
         )
+
+        verifyIfAllCharactersSame(currentPath, txtFilePath)
 
         print(
             "______________________________________________________________________\n"
@@ -154,7 +158,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
         )
         # Imprime o DataFrame
         print(pandas.DataFrame(tableDataFrame), file=outputFile)
-
+        
         indexDataFrame = indexDataFrame + 1
     except Exception as err:
         showError("Ocorreu um erro, ao tentar converter o arquivo '" + fileName + ".pdf' usando o método " + conversionMethod + ".", err)
@@ -162,6 +166,24 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
         returnedError = True
 
         return returnedError
+
+def verifyIfAllCharactersSame(currentPath, txtFilePath):
+    # Esse loop por toda linha e vai encontrando caracteres iguais, quando ele encontrar algum caractere diferente na mesma linha ele para e retorna falso
+    
+    output = open(str(currentPath)[:-37] + "\\resultados\\test.txt", "a", encoding="UTF-8")
+
+    with open(txtFilePath, "r", encoding="UTF-8") as txtDoc:
+        # navega por cada linha do documento
+        for line in txtDoc:
+            if ";" in line:
+                print("sim: " + line, file=output)
+            else:
+                print("não: " + line, file=output)
+            # verifica em cada linha, cada letra
+            #for letter in line:
+            #    return False
+
+    return True
 
 pandaSetConfig()
 Main()
