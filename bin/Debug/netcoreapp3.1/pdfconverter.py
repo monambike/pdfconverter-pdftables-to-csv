@@ -30,8 +30,8 @@ def Main():
             # Remove extensão do arquivo, pegando apenas o nome e atribui pra variavel
             fileName = pdfFile[:-4]
             # Fazendo leitura do arquivo completo e passando para a variável
-            tableListOfDataFrames_stream = tabula.read_pdf(pdfFile, pages="all", stream=True, multiple_tables=True, guess=False)
-            tableListOfDataFrames_lattice = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True, guess=False)
+            tableListOfDataFrames_stream = tabula.read_pdf(pdfFile, pages="all", stream=True, multiple_tables=True, guess=True)
+            tableListOfDataFrames_lattice = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True, guess=True)
 
             # Indica que um arquivo completo foi lido com sucesso
             print(
