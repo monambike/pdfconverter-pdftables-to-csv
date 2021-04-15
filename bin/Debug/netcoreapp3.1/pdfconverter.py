@@ -51,7 +51,7 @@ def Main():
             for tableDataFrame in tableListOfDataFrames_lattice:
                 # Passando os parâmetro do Lattice para a função
                 conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_lattice, indexDataFrame)
-            removeLinesWithoutSemicolon(fileName, conversionMethod)
+            cleanTextFile(fileName, conversionMethod)
             
             # STREAM
             indexDataFrame = 1
@@ -59,7 +59,7 @@ def Main():
             for tableDataFrame in tableListOfDataFrames_stream:
                 # Passando os parâmetro do Stream para a função
                 conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_stream, indexDataFrame)
-            removeLinesWithoutSemicolon(fileName, conversionMethod)
+            cleanTextFile(fileName, conversionMethod)
             
         except Exception as err:
             showError("Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "'.", err)
@@ -172,18 +172,32 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
 
         return
 
-def removeLinesWithoutSemicolon(fileName, conversionMethod):
-    global txtFilePath
-    # Esse loop por toda linha e vai encontrando caracteres iguais, quando ele encontrar algum caractere diferente na mesma linha ele para e retorna falso
+def cleanTextFile(fileName, conversionMethod):
+    txtFileCleanedPath = str(currentPath)[:-37] + "\\resultados\\test\\" + conversionMethod + "\\" + fileName + ".txt"
     
-    txtFileRevised = open(str(currentPath)[:-37] + "\\resultados\\test\\" + conversionMethod + "\\" + fileName + ".txt", "a", encoding="UTF-8")
-    # Só escreve a linha se ela tiver com pelo menos um ';'
+    global txtFilePath
+    
+    # Esse loop por toda linha e vai encontrando caracteres iguais, quando ele encontrar algum caractere diferente na mesma linha ele para e retorna falso
+    txtFileCleaned = open(txtFileCleanedPath, "a", encoding="UTF-8")
     with open(txtFilePath, "r", encoding="UTF-8") as txtDoc:
-        # navega por cada linha do documento
+        # Navega por cada linha do documento de texto
         for line in txtDoc:
+            # Escreve um novo documento
+            # Só escreve a linha se ela tiver com pelo menos um ';'
             if ";" in line:
-                txtFileRevised.write(line)
+                txtFileCleaned.write(line)
 
+
+    #txtFileCleaned = open(txtFileCleanedPath, "rt")
+
+    #fout = open(str(currentPath)[:-37] + "\\resultados\\" + fileName + ".txt", "wt")
+
+    #for line in txtFileCleaned:
+    #    fout.write(line.replace(r";nan", ""))
+
+    #    for i in range(10):
+    #        fout.write(line.replace(r";Unnamed: " + str(i), ""))
+ 
     return True
 
 pandaSetConfig()
