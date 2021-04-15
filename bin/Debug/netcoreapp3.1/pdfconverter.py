@@ -6,7 +6,6 @@ from pathlib import Path
 
 txtFilePath = ""
 currentPath = ""
-returnedError = False
 # Caminhos baseados na onde o executável fonte do projeto está localizado
 # (pdfconverter\bin\Debug\netcoreapp3.1)
 pathFolderPDFs = "../../../../PDFs"
@@ -34,8 +33,8 @@ def Main():
             # Remove extensão do arquivo, pegando apenas o nome e atribui pra variavel
             fileName = pdfFile[:-4]
             # Fazendo leitura do arquivo completo e passando para a variável
-            tableListOfDataFrames_stream = tabula.read_pdf(pdfFile, pages="all", stream=True, multiple_tables=True, guess=True)
-            tableListOfDataFrames_lattice = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True, guess=True)
+            tableListOfDataFrames_stream = tabula.read_pdf(pdfFile, pages="all", stream=True, multiple_tables=True, guess=True, silent=True)
+            tableListOfDataFrames_lattice = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True, guess=True, silent=True)
 
             # Indica que um arquivo completo foi lido com sucesso
             print(
@@ -133,6 +132,9 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
         tableDataFrame = tableDataFrame.dropna(how="all")
 
         turnHeaderInSimpleRow(tableDataFrame)
+
+        # Transforma todo o conteúdo do DataFrame em string
+        #tableDataFrame = tableDataFrame.astype(str)
 
         # Removendo quebras de linha
         # O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
