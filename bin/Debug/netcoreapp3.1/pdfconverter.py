@@ -130,6 +130,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
     try:
         # Deleta todas as linhas que estão completamente vazias
         tableDataFrame = tableDataFrame.dropna(how="all")
+        tableDataFrame = tableDataFrame.dropna(how="all", axis=1)
 
         turnHeaderInSimpleRow(tableDataFrame)
 
