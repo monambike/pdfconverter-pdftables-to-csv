@@ -142,13 +142,13 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
             txtFilePath,
             index=False,
             index_label=False,
-            header=False,
+            header=True,
             line_terminator="\n", # Define a quebra de linha como '\n' para evitar conflito com o terminal que gera \r
             sep=";",
             mode="a"
         )
 
-        removeSemicolon(currentPath, txtFilePath, fileName, conversionMethod)
+        removeLineWithoutSemicolon(currentPath, txtFilePath, fileName, conversionMethod)
 
         print(
             "______________________________________________________________________\n"
@@ -169,7 +169,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
 
         return returnedError
 
-def removeSemicolon(currentPath, txtFilePath, fileName, conversionMethod):
+def removeLineWithoutSemicolon(currentPath, txtFilePath, fileName, conversionMethod):
     # Esse loop por toda linha e vai encontrando caracteres iguais, quando ele encontrar algum caractere diferente na mesma linha ele para e retorna falso
     
     txtFileRevised = open(str(currentPath)[:-37] + "\\resultados\\test\\" + conversionMethod + "\\" + fileName + ".txt", "a", encoding="UTF-8")
