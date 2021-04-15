@@ -148,7 +148,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
             mode="a"
         )
 
-        removeLineWithoutSemicolon(currentPath, txtFilePath, fileName, conversionMethod)
+        removeLinesWithoutSemicolon(currentPath, txtFilePath, fileName, conversionMethod)
 
         print(
             "______________________________________________________________________\n"
@@ -169,7 +169,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
 
         return returnedError
 
-def removeLineWithoutSemicolon(currentPath, txtFilePath, fileName, conversionMethod):
+def removeLinesWithoutSemicolon(currentPath, txtFilePath, fileName, conversionMethod):
     # Esse loop por toda linha e vai encontrando caracteres iguais, quando ele encontrar algum caractere diferente na mesma linha ele para e retorna falso
     
     txtFileRevised = open(str(currentPath)[:-37] + "\\resultados\\test\\" + conversionMethod + "\\" + fileName + ".txt", "a", encoding="UTF-8")
