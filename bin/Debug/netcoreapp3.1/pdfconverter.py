@@ -5,7 +5,7 @@ from glob import glob
 from pathlib import Path
 
 txtFilePath = ""
-tableDataFrameHeader = []
+currentPath = ""
 returnedError = False
 # Caminhos baseados na onde o executável fonte do projeto está localizado
 # (pdfconverter\bin\Debug\netcoreapp3.1)
@@ -16,6 +16,8 @@ pathOutputFile = pathFolderResultados + "/output.txt"
 outputFile = open(pathOutputFile, "a", encoding="UTF-8")
 
 def Main():
+    global currentPath
+
     currentPath = Path(__file__).parent.absolute()
     # Limpa o arquivo de saída do terminal
     outputClear = open(pathOutputFile,"w", encoding="UTF-8")
@@ -49,16 +51,16 @@ def Main():
             conversionMethod = "lattice"
             for tableDataFrame in tableListOfDataFrames_lattice:
                 # Passando os parâmetro do Lattice para a função
-                conversionStart(currentPath, fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_lattice, indexDataFrame, returnedError)
-            removeLinesWithoutSemicolon(currentPath, fileName, conversionMethod)
+                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_lattice, indexDataFrame)
+            removeLinesWithoutSemicolon(fileName, conversionMethod)
             
             # STREAM
             indexDataFrame = 1
             conversionMethod = "stream"
             for tableDataFrame in tableListOfDataFrames_stream:
                 # Passando os parâmetro do Stream para a função
-                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_stream, indexDataFrame, returnedError)
-            removeLinesWithoutSemicolon(currentPath, fileName, conversionMethod)
+                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_stream, indexDataFrame)
+            removeLinesWithoutSemicolon(fileName, conversionMethod)
             
         except Exception as err:
             showError("Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "'.", err)
@@ -94,7 +96,7 @@ def turnHeaderInSimpleRow(tableDataFrame):
     # Isso é necessário para fazer com que não haja quebra nas linhas onde ele identifica
     # como título caso o conteúdo delas seja muito grande, isso acontece porque o título
     # tem uma formatação gerada pelo dataframe que pelo jeito faz com que isso ocorra.
-    
+
     # Limpa a lista que vai manipular o cabeçalho
     tableDataFrameHeader = []
     # Pegando o cabeçalho da tabela e passando ela como lista para a variável
@@ -124,7 +126,7 @@ def showError(errorMessage, err):
 
     print("**********************************************************************", file=outputFile)
 
-def conversionStart(currentPath, fileName, conversionMethod, tableDataFrame, tableListOfDataFrames, indexDataFrame, returnedError):
+def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames, indexDataFrame):
     global txtFilePath
     try:
         # Deleta todas as linhas que estão completamente vazias
@@ -166,11 +168,9 @@ def conversionStart(currentPath, fileName, conversionMethod, tableDataFrame, tab
     except Exception as err:
         showError("Ocorreu um erro, ao tentar converter o arquivo '" + fileName + ".pdf' usando o método " + conversionMethod + ".", err)
 
-        returnedError = True
+        return
 
-        return returnedError
-
-def removeLinesWithoutSemicolon(currentPath, fileName, conversionMethod):
+def removeLinesWithoutSemicolon(fileName, conversionMethod):
     global txtFilePath
     # Esse loop por toda linha e vai encontrando caracteres iguais, quando ele encontrar algum caractere diferente na mesma linha ele para e retorna falso
     
