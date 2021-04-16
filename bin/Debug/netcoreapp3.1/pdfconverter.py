@@ -19,7 +19,7 @@ def Main():
 
     currentPath = Path(__file__).parent.absolute()
     # Limpa o arquivo de saída do terminal
-    outputClear = open(pathOutputFile,"w", encoding="UTF-8")
+    outputClear = open(pathOutputFile, "w", encoding="UTF-8")
     outputClear.close()
 
     makeDirectories()
