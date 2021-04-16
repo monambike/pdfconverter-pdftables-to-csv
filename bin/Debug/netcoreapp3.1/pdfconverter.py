@@ -14,9 +14,12 @@ pathFolderResultados = "../../../../resultados"
 pathOutputFile = pathFolderResultados + "/output.txt"
 # Arquivo output
 outputFile = open(pathOutputFile, "a", encoding="UTF-8")
+# Índex
+indexDataFrame = 0
 
 def Main():
     global currentPath
+    global indexDataFrame
 
     currentPath = Path(__file__).parent.absolute()
     # Limpa o arquivo de saída do terminal
@@ -51,7 +54,7 @@ def Main():
             conversionMethod = "lattice"
             for tableDataFrame in tableListOfDataFrames_lattice:
                 # Passando os parâmetro do Lattice para a função
-                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_lattice, indexDataFrame)
+                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_lattice)
             cleanTextFile(fileName, conversionMethod)
             
             # STREAM
@@ -59,9 +62,10 @@ def Main():
             conversionMethod = "stream"
             for tableDataFrame in tableListOfDataFrames_stream:
                 # Passando os parâmetro do Stream para a função
-                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_stream, indexDataFrame)
+                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_stream)
             cleanTextFile(fileName, conversionMethod)
             
+            indexFile = indexFile + 1
         except Exception as err:
             showError("Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "'.", err)
             break 
@@ -126,8 +130,10 @@ def showError(errorMessage, err):
 
     print("**********************************************************************", file=outputFile)
 
-def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames, indexDataFrame):
+def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames):
     global txtFilePath
+    global indexDataFrame
+
     try:
         # Deleta todas as linhas que estão completamente vazias
         tableDataFrame = tableDataFrame.dropna(how="all")
@@ -162,7 +168,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
             "______________________________________________________________________\n"
             "A tabela da página "+ str(indexDataFrame) + " do PDF foi convertida |\n"
             "___________________________________________/\n" +
-            fileName + " " + conversionMethod + "\n",
+            fileName + " " + conversionMethod + " pg" + str(indexDataFrame) + "\n",
 
             file=outputFile
         )
