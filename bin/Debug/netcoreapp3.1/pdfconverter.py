@@ -5,15 +5,18 @@ from os import chdir
 from glob import glob
 from pathlib import Path
 
+currentPath = Path(__file__).parent.absolute()
+
+currentPath = str(currentPath)[:-37]
+
+outputFile = ""
 txtFilePath = ""
-currentPath = ""
 # Caminhos baseados na onde o executável fonte do projeto está localizado
 # (pdfconverter\bin\Debug\netcoreapp3.1)
-pathFolderPDFs = "../../../../PDFs"
-pathFolderResultados = "../../../../resultados"
-pathOutputFile = pathFolderResultados + "/output.txt"
+pathFolderPDFs = currentPath + "\\PDFs"
+pathFolderResultados = currentPath + "\\resultados"
+pathOutputFile = currentPath + "\\resultados\\output.txt"
 # Arquivo output
-outputFile = open(pathOutputFile, "a", encoding="UTF-8")
 # Índex
 indexDataFrame = 0
 
@@ -21,7 +24,6 @@ def Main():
     global currentPath
     global indexDataFrame
 
-    currentPath = Path(__file__).parent.absolute()
     # Limpa o arquivo de saída do terminal
     outputClear = open(pathOutputFile, "w", encoding="UTF-8")
     outputClear.close()
@@ -41,6 +43,7 @@ def Main():
             tableListOfDataFrames_lattice = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True, guess=True, silent=True)
 
             # Indica que um arquivo completo foi lido com sucesso
+            setTerminalFile("open")
             print(
                 "======================================================================\n"
                 "LEITURA DE ARQUIVO - NÚMERO " + str(indexFile) + " (" + pdfFile + ")\n"
@@ -48,6 +51,7 @@ def Main():
 
                 file=outputFile
             )
+            setTerminalFile("closed")
 
             # LATTICE
             indexDataFrame = 1
@@ -76,11 +80,11 @@ def makeDirectories():
     # Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam
     Path(pathFolderPDFs).mkdir(parents=True, exist_ok=True)
     Path(pathFolderResultados).mkdir(parents=True, exist_ok=True)
-    Path(pathFolderResultados + "/lattice").mkdir(parents=True, exist_ok=True)
-    Path(pathFolderResultados + "/stream").mkdir(parents=True, exist_ok=True)
-    Path(pathFolderResultados + "/test").mkdir(parents=True, exist_ok=True)
-    Path(pathFolderResultados + "/test/lattice").mkdir(parents=True, exist_ok=True)
-    Path(pathFolderResultados + "/test/stream").mkdir(parents=True, exist_ok=True)
+    Path(pathFolderResultados + "\\lattice").mkdir(parents=True, exist_ok=True)
+    Path(pathFolderResultados + "\\stream").mkdir(parents=True, exist_ok=True)
+    Path(pathFolderResultados + "\\test").mkdir(parents=True, exist_ok=True)
+    Path(pathFolderResultados + "\\test\\lattice").mkdir(parents=True, exist_ok=True)
+    Path(pathFolderResultados + "\\test\\stream").mkdir(parents=True, exist_ok=True)
 
 def pandaSetConfig():
     # CONFIGURAÇÕES DO PANDAS
@@ -113,6 +117,7 @@ def turnHeaderInSimpleRow(tableDataFrame):
     pandas.concat([pandas.DataFrame(tableDataFrameHeader), tableDataFrame], ignore_index=True)
 
 def showError(errorMessage, err):
+    setTerminalFile("open")
     print(
         "======================================================================\n"
         "**********************************************************************\n"
@@ -123,12 +128,11 @@ def showError(errorMessage, err):
         
         file=outputFile
     )
-
     #print(str(err), file=outputFile)
     if err != "":
         print(str(err), file=outputFile)
-
     print("**********************************************************************", file=outputFile)
+    setTerminalFile("closed")
 
 def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames):
     global txtFilePath
@@ -149,7 +153,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
         # O segundo replace remove as que acontecem por conta do ponto e vírgula
         tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
 
-        txtFilePath = str(currentPath)[:-37] + "\\resultados\\" + conversionMethod + "\\" + fileName + ".txt"
+        txtFilePath = pathFolderResultados + "\\" + conversionMethod + "\\" + fileName + ".txt"
 
 
         # Converte para .txt no formato de um CSV
@@ -163,7 +167,8 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
             mode="a",
             quoting=csv.QUOTE_ALL
         )
-
+        
+        setTerminalFile("open")
         print(
             "______________________________________________________________________\n"
             "A tabela da página "+ str(indexDataFrame) + " do PDF foi convertida |\n"
@@ -174,7 +179,8 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
         )
         # Imprime o DataFrame
         print(pandas.DataFrame(tableDataFrame), file=outputFile)
-        
+        setTerminalFile("closed")
+
         indexDataFrame = indexDataFrame + 1
     except Exception as err:
         showError("Ocorreu um erro, ao tentar converter o arquivo '" + fileName + ".pdf' usando o método " + conversionMethod + ".", err)
@@ -182,7 +188,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
         return
 
 def cleanTextFile(fileName, conversionMethod):
-    txtFileCleanedPath = str(currentPath)[:-37] + "\\resultados\\test\\" + conversionMethod + "\\" + fileName + ".txt"
+    txtFileCleanedPath = pathFolderResultados + "\\test\\" + conversionMethod + "\\" + fileName + ".txt"
     
     global txtFilePath
     
@@ -195,6 +201,7 @@ def cleanTextFile(fileName, conversionMethod):
             # Só escreve a linha se ela tiver com pelo menos um ';'
             if ";" in line:
                 txtFileCleaned.write(line)
+    txtFileCleaned.close()
 
 
     #txtFileCleaned = open(txtFileCleanedPath, "rt")
@@ -208,6 +215,16 @@ def cleanTextFile(fileName, conversionMethod):
     #        fout.write(line.replace(r";Unnamed: " + str(i), ""))
  
     return True
+
+def setTerminalFile(setState):
+    global outputFile
+
+    if setState == "open":
+        outputFile = open(pathOutputFile, "a", encoding="UTF-8")
+    elif setState == "closed":
+        outputFile.close()
+    else:
+        showError("O terminal só pode ser aberto ou fechado. Tenha certeza que atribuiu 'open' para aberto ou 'close' para fechado pro método 'terminal'.", "")
 
 pandaSetConfig()
 Main()
