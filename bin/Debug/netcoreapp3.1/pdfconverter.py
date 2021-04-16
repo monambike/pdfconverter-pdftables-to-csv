@@ -153,7 +153,8 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
             header=True,
             line_terminator="\n", # Define a quebra de linha como '\n' para evitar conflito com o terminal que gera \r
             sep=";",
-            mode="a"
+            mode="a",
+            quotechar='|'
         )
 
         print(
