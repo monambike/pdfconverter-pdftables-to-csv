@@ -24,7 +24,7 @@ def Main():
     global currentPath
     global indexDataFrame
 
-    # Limpa o arquivo de saída do terminal
+    # Reseta o arquivo da saída do terminal
     outputClear = open(pathOutputFile, "w", encoding="UTF-8")
     outputClear.close()
 
@@ -147,15 +147,17 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
 
         # Transforma todo o conteúdo do DataFrame em string
         #tableDataFrame = tableDataFrame.astype(str)
-
+        
+        # TESTE
+        verifyCellsValue(tableDataFrame)
+        
         # Removendo quebras de linha
         # O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
         # O segundo replace remove as que acontecem por conta do ponto e vírgula
         tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
 
         txtFilePath = pathFolderResultados + "\\" + conversionMethod + "\\" + fileName + ".txt"
-
-
+        
         # Converte para .txt no formato de um CSV
         tableDataFrame.to_csv(
             txtFilePath,
@@ -225,6 +227,27 @@ def setTerminalFile(setState):
         outputFile.close()
     else:
         showError("O terminal só pode ser aberto ou fechado. Tenha certeza que atribuiu 'open' para aberto ou 'close' para fechado pro método 'terminal'.", "")
+
+def verifyCellsValue(tableDataFrame):
+    cellValueFirstDigit = ""
+    outputTest = open(currentPath + "\\resultados\\funcTest.txt", "a")
+    # Navega por cada linha do DataFrame
+    for rowIndex, row in tableDataFrame.iterrows():
+        
+        for columnIndex, cellValue in row.items():
+
+            # Caso o primeiro caractere comece com letras é o título
+            if str(cellValue)[:1].isdigit():
+                print("")
+                #print("Não pode ser um titulo: " + str(cellValue), file=outputTest)
+            # Caso contrário é o corpo
+            else:
+                print("Pode ser um titulo: " + str(cellValue), file=outputTest)
+            
+            break
+    
+    outputTest.close()
+                
 
 pandaSetConfig()
 Main()
