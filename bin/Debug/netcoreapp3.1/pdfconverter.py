@@ -1,5 +1,6 @@
 import pandas
 import tabula
+import csv
 from os import chdir
 from glob import glob
 from pathlib import Path
@@ -154,7 +155,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
             line_terminator="\n", # Define a quebra de linha como '\n' para evitar conflito com o terminal que gera \r
             sep=";",
             mode="a",
-            quotechar='|'
+            quoting=csv.QUOTE_ALL
         )
 
         print(
