@@ -233,18 +233,18 @@ def verifyCellsValue(tableDataFrame):
     outputTest = open(currentPath + "\\resultados\\funcTest.txt", "a")
     # Navega por cada linha do DataFrame
     for rowIndex, row in tableDataFrame.iterrows():
-        
-        for columnIndex, cellValue in row.items():
+        teste_1 = str(row)
 
-            # Caso o primeiro caractere comece com letras é o título
-            if str(cellValue)[:1].isdigit():
-                print("")
-                #print("Não pode ser um titulo: " + str(cellValue), file=outputTest)
-            # Caso contrário é o corpo
-            else:
-                print("Pode ser um titulo: " + str(cellValue), file=outputTest)
-            
-            break
+        # Caso o primeiro caractere comece com letras
+        # e não tenha "nan" (similar ao "None" porém exibido em strings vazias dentro do corpo do DataFrame)
+        # é o título
+        if str(row)[:1].isdigit():
+            print("")
+        # Caso contrário é o corpo
+        else:
+            print("Pode ser um titulo: " + str(row), file=outputTest)
+        break
+
     
     outputTest.close()
                 
