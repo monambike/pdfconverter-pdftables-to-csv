@@ -204,18 +204,7 @@ def cleanTextFile(fileName, conversionMethod):
             if ";" in line:
                 txtFileCleaned.write(line)
     txtFileCleaned.close()
-
-
-    #txtFileCleaned = open(txtFileCleanedPath, "rt")
-
-    #fout = open(str(currentPath)[:-37] + "\\resultados\\" + fileName + ".txt", "wt")
-
-    #for line in txtFileCleaned:
-    #    fout.write(line.replace(r";nan", ""))
-
-    #    for i in range(10):
-    #        fout.write(line.replace(r";Unnamed: " + str(i), ""))
- 
+    
     return True
 
 def setTerminalFile(setState):
