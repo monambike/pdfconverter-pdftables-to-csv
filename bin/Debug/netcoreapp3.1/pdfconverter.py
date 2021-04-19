@@ -232,18 +232,21 @@ def verifyCellsValue(tableDataFrame):
     cellValueFirstDigit = ""
     outputTest = open(currentPath + "\\resultados\\funcTest.txt", "a")
     # Navega por cada linha do DataFrame
-    for rowIndex, row in tableDataFrame.iterrows():
-        teste_1 = str(row)
+    #pandas.display(tableDataFrame)
+    
+    #print(display.iloc[0])
+    #for rowIndex, row in tableDataFrame.iterrows():
+    #    teste_1 = str(row)
 
         # Caso o primeiro caractere comece com letras
         # e não tenha "nan" (similar ao "None" porém exibido em strings vazias dentro do corpo do DataFrame)
         # é o título
-        if str(row)[:1].isdigit():
-            print("")
+    #    if str(row)[:1].isdigit():
+    #        print("")
         # Caso contrário é o corpo
-        else:
-            print("Pode ser um titulo: " + str(row), file=outputTest)
-        break
+    #    else:
+    #        print("Pode ser um titulo: " + str(row), file=outputTest)
+    #    break
 
     
     outputTest.close()
