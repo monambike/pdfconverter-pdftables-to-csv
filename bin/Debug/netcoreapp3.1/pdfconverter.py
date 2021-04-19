@@ -4,6 +4,7 @@ import csv
 from os import chdir
 from glob import glob
 from pathlib import Path
+from PyPDF2 import PdfFileReader
 
 currentPath = Path(__file__).parent.absolute()
 
@@ -38,6 +39,10 @@ def Main():
         try:
             # Remove extensão do arquivo, pegando apenas o nome e atribui pra variavel
             fileName = pdfFile[:-4]
+
+            pdf = PdfFileReader(open(pdfFile, "rb"))
+            pdfNumberOfPages = pdf.getNumPages()
+            
             # Fazendo leitura do arquivo completo e passando para a variável
             tableListOfDataFrames_stream = tabula.read_pdf(pdfFile, pages="all", stream=True, multiple_tables=True, guess=True, silent=True)
             tableListOfDataFrames_lattice = tabula.read_pdf(pdfFile, pages="all", lattice=True, multiple_tables=True, guess=True, silent=True)
