@@ -235,16 +235,16 @@ def cleanTextFile(fileName, conversionMethod):
     # - GLOBAIS -
     global txtFilePath
 
-    # ---------------------------------------------------------------------- #
-
+    # - CAMINHOS -
     txtFileCleanedPath = pathFolderResultados + "\\test\\" + conversionMethod + "\\" + fileName + ".txt"
+
+    # ---------------------------------------------------------------------- #
     
     # Esse loop por toda linha e vai encontrando caracteres iguais, quando ele encontrar algum caractere diferente na mesma linha ele para e retorna falso
     txtFileCleaned = open(txtFileCleanedPath, "a", encoding="UTF-8")
     with open(txtFilePath, "r", encoding="UTF-8") as txtDoc:
         # Navega por cada linha do documento de texto
         for line in txtDoc:
-            # Escreve um novo documento
             # Só escreve a linha se ela tiver com pelo menos um ';'
             if ";" in line:
                 txtFileCleaned.write(line)
