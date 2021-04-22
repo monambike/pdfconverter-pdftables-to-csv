@@ -67,20 +67,20 @@ def Main():
             # Método de leitura usando Lattice
             tableListOfDataFrames_lattice = tabula.read_pdf(
                 pdfFile,
-                pages="all",
-                lattice=True,
-                multiple_tables=True,
-                guess=True,
-                silent=True
+                guess = True,
+                multiple_tables = True,
+                pages = "all",
+                silent = True,
+                lattice = True
             )
             # Método de leitura usando Stream
             tableListOfDataFrames_stream = tabula.read_pdf(
                 pdfFile,
-                pages="all",
-                stream=True,
-                multiple_tables=True,
-                guess=True,
-                silent=True
+                guess = True,
+                multiple_tables = True,
+                pages = "all",
+                silent = True,
+                stream = True
             )
 
             # Indica ao terminal que um arquivo completo foi lido com sucesso
@@ -118,22 +118,40 @@ def Main():
             showError("Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "'.", err)
             break 
     else:
-        showError("Não há arquivos de PDF para serem convertidos", "")
+        showError("Não há arquivos de PDF para serem convertidos.", "")
 
 # >> DEFINE A ESTRUTURA DO PROJETO <<
+# Desc: Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam
 def setProjectStructure():
+    # ---------------------------------------------------------------------- #
+
+    # >> VARIÁVEIS <<
+    
+    # - CAMINHOS -
+    conversionPaths = [
+        ""
+        "\\lattice"
+        "\\stream"
+        "\\test"
+        "\\test\\lattice"
+        "\\test\\stream"
+    ]
+
+    # ---------------------------------------------------------------------- #
+
     # Limpa o arquivo da saída do terminal
     outputClear = open(pathOutputFile, "w", encoding="UTF-8")
     outputClear.close()
     
-    # Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam
-    Path(pathFolderPDFs).mkdir(parents=True, exist_ok=True)
-    Path(pathFolderResultados).mkdir(parents=True, exist_ok=True)
-    Path(pathFolderResultados + "\\lattice").mkdir(parents=True, exist_ok=True)
-    Path(pathFolderResultados + "\\stream").mkdir(parents=True, exist_ok=True)
-    Path(pathFolderResultados + "\\test").mkdir(parents=True, exist_ok=True)
-    Path(pathFolderResultados + "\\test\\lattice").mkdir(parents=True, exist_ok=True)
-    Path(pathFolderResultados + "\\test\\stream").mkdir(parents=True, exist_ok=True)
+    # Cria pasta para armazenar os PDFs
+    Path(pathFolderPDFs).mkdir(
+        parents = True,
+        exist_ok = True
+    )
+
+    # Cria as pastas armazenadas na temporária 'conversionPaths'
+    for eachPath in conversionPaths:
+        Path(pathFolderResultados + eachPath).mkdir(parents = True, exist_ok = True)
 
 # >> CONFIGURAÇÕES DO PANDAS <<
 # Desc: Configurações do Pandas que afetam o DataFrame e a conversão para texto.
@@ -199,13 +217,13 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
         # Converte para .txt no formato de um CSV
         tableDataFrame.to_csv(
             txtFilePath,
-            index=False,
-            index_label=False,
-            header=True,
-            line_terminator="\n", # Define a quebra de linha como '\n' para evitar conflito com o terminal que gera \r
-            sep=";",
-            mode="a",
-            quoting=csv.QUOTE_ALL
+            index = False,
+            index_label = False,
+            header = True,
+            line_terminator = "\n", # Define a quebra de linha como '\n' para evitar conflito com o terminal que gera \r
+            mode = "a",
+            sep = ";",
+            quoting = csv.QUOTE_ALL
         )
         
         setTerminalFile("open")
@@ -215,10 +233,10 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
             "___________________________________________/\n" +
             fileName + " " + conversionMethod + " pg" + str(indexDataFrame) + "\n",
 
-            file=outputFile
+            file = outputFile
         )
         # Imprime o DataFrame
-        print(pandas.DataFrame(tableDataFrame), file=outputFile)
+        print(pandas.DataFrame(tableDataFrame), file = outputFile)
         setTerminalFile("closed")
 
         indexDataFrame = indexDataFrame + 1
