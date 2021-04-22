@@ -43,23 +43,27 @@ def Main():
             pdf = PdfFileReader(open(pdfFile, "rb"))
             pdfNumberOfPages = pdf.getNumPages()
             
-            # Fazendo leitura do arquivo completo e passando para a variável
-            tableListOfDataFrames_lattice = tabula.read_pdf(
-                pdfFile,
-                pages="all",
-                lattice=True,
-                multiple_tables=True,
-                guess=True,
-                silent=True
-            )
-            tableListOfDataFrames_stream = tabula.read_pdf(
-                pdfFile,
-                pages="all",
-                stream=True,
-                multiple_tables=True,
-                guess=True,
-                silent=True
-            )
+            for i in range(pdfNumberOfPages):
+                i = i + 1
+                print(i)
+
+                # Fazendo leitura do arquivo completo e passando para a variável
+                tableListOfDataFrames_lattice = tabula.read_pdf(
+                    pdfFile,
+                    pages=i,
+                    lattice=True,
+                    multiple_tables=True,
+                    guess=True,
+                    silent=True
+                )
+                tableListOfDataFrames_stream = tabula.read_pdf(
+                    pdfFile,
+                    pages=i,
+                    stream=True,
+                    multiple_tables=True,
+                    guess=True,
+                    silent=True
+                )
 
             # Indica que um arquivo completo foi lido com sucesso
             setTerminalFile("open")
