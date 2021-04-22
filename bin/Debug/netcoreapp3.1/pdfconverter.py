@@ -226,6 +226,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
             quoting = csv.QUOTE_ALL
         )
         
+        # Indica ao terminal que uma tabela foi convertida com sucesso
         setTerminalFile("open")
         print(
             "______________________________________________________________________\n"
@@ -289,6 +290,9 @@ def setTerminalFile(setState):
     else:
         showError("O terminal só pode ser aberto ou fechado. Tenha certeza que atribuiu 'open' para aberto ou 'close' para fechado pro método 'terminal'.", "")
 
+# EXIBE UMA MENSAGEM DE ERRO
+def showError(errorMessage, err):
+    
 # FUNÇÃO PARA VERIFICAR ONDE COMEÇA E ONDE TERMINA AS TABELAS
 #def verifyCellsValue(tableDataFrame):
     #cellValueFirstDigit = ""
@@ -309,9 +313,7 @@ def setTerminalFile(setState):
     #    else:
     #        print("Pode ser um titulo: " + str(row), file=outputTest)
     #    break
-
-# EXIBE UMA MENSAGEM DE ERRO
-def showError(errorMessage, err):
+    # Abre o arquivo de texto e mostra o erro
     setTerminalFile("open")
     print(
         "======================================================================\n"
@@ -329,14 +331,13 @@ def showError(errorMessage, err):
         print("EXCEPTION")
         print(str(err), file=outputFile)
     
+    # Fecha o layout e o arquivo
     print(
         "**********************************************************************",
         
         file=outputFile
     )
     setTerminalFile("closed")
-    
-    outputTest.close()
 
 pandaSetConfig()
 Main()
