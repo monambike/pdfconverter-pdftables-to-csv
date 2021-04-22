@@ -6,7 +6,7 @@ from glob import glob
 from pathlib import Path
 from PyPDF2 import PdfFileReader
 
-
+# ----------------------------------------------------------------------
 # >> VARIÁVEIS <<
 
 # - ARQUIVOS DE SAÍDA -
@@ -26,28 +26,41 @@ pathFolderPDFs = currentPath + "\\PDFs"
 pathFolderResultados = currentPath + "\\resultados"
 pathOutputFile = currentPath + "\\resultados\\output.txt"
 
-# - INDEX -
+# - CONTADORES -
+# Índice do Data Frame
 indexDataFrame = 0
+# ----------------------------------------------------------------------
 
 def Main():
+    # ----------------------------------------------------------------------
+    # >> VARIÁVEIS <<
+    
+    # - GLOBAIS -
     global indexDataFrame
+    
+    # - CONTADORES -
+    # Índice do arquivo
+    indexFile = 1
+    # ----------------------------------------------------------------------
 
     setProjectStructure()
 
-    indexFile = 1
-
-    # Pega todos os PDFs
+    # Pega todos os arquivos
     chdir(pathFolderPDFs)
-
+    # Filtra pelos PDFs
     for pdfFile in glob("*.pdf"):
         try:
-            # Remove extensão do arquivo, pegando apenas o nome e atribui pra variavel
+            # Remove extensão do arquivo, pegando apenas o nome e atribui para a temporária
             fileName = pdfFile[:-4]
 
+            # Pega o número de páginas que o PDF contém
             pdf = PdfFileReader(open(pdfFile, "rb"))
             pdfNumberOfPages = pdf.getNumPages()
 
-            # Fazendo leitura do arquivo completo e passando para a variável
+            # - LEITURA -
+            # Desc: Fazendo leitura do arquivo completo e passando como lista de DataFrames
+            # para a variável
+            # Método de leitura usando Lattice
             tableListOfDataFrames_lattice = tabula.read_pdf(
                 pdfFile,
                 pages="all",
@@ -56,16 +69,17 @@ def Main():
                 guess=True,
                 silent=True
             )
+            # Método de leitura usando Stream
             tableListOfDataFrames_stream = tabula.read_pdf(
                 pdfFile,
                 pages="all",
                 stream=True,
-             multiple_tables=True,
+                multiple_tables=True,
                 guess=True,
                 silent=True
             )
 
-            # Indica que um arquivo completo foi lido com sucesso
+            # Indica ao terminal que um arquivo completo foi lido com sucesso
             setTerminalFile("open")
             print(
                 "======================================================================\n"
@@ -76,15 +90,17 @@ def Main():
             )
             setTerminalFile("closed")
 
-            # LATTICE
+            # - CONVERSÃO -
+            # Lattice
+            # Desc: Realizando a conversão com o que foi dado na leitura com o lattice
             indexDataFrame = 1
             conversionMethod = "lattice"
             for tableDataFrame in tableListOfDataFrames_lattice:
                 # Passando os parâmetro do Lattice para a função
                 conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_lattice)
             cleanTextFile(fileName, conversionMethod)
-            
-            # STREAM
+            # Stream
+            # Desc: Realizando a conversão com o que foi dado na leitura com o stream
             indexDataFrame = 1
             conversionMethod = "stream"
             for tableDataFrame in tableListOfDataFrames_stream:
@@ -92,6 +108,7 @@ def Main():
                 conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_stream)
             cleanTextFile(fileName, conversionMethod)
             
+            # Atribuindo mais um ao índice para indicar que os arquivos foram convertidos
             indexFile = indexFile + 1
         except Exception as err:
             showError("Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "'.", err)
@@ -101,7 +118,7 @@ def Main():
 
 # >> DEFINE A ESTRUTURA DO PROJETO <<
 def setProjectStructure():
-    # Reseta o arquivo da saída do terminal
+    # Limpa o arquivo da saída do terminal
     outputClear = open(pathOutputFile, "w", encoding="UTF-8")
     outputClear.close()
     
@@ -207,9 +224,11 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
         return
 
 def cleanTextFile(fileName, conversionMethod):
-    txtFileCleanedPath = pathFolderResultados + "\\test\\" + conversionMethod + "\\" + fileName + ".txt"
-    
+    # >> VARIÁVEIS <<
+    # - GLOBAIS -
     global txtFilePath
+
+    txtFileCleanedPath = pathFolderResultados + "\\test\\" + conversionMethod + "\\" + fileName + ".txt"
     
     # Esse loop por toda linha e vai encontrando caracteres iguais, quando ele encontrar algum caractere diferente na mesma linha ele para e retorna falso
     txtFileCleaned = open(txtFileCleanedPath, "a", encoding="UTF-8")
