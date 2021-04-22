@@ -6,7 +6,8 @@ from glob import glob
 from pathlib import Path
 from PyPDF2 import PdfFileReader
 
-# ----------------------------------------------------------------------
+# ---------------------------------------------------------------------- #
+
 # >> VARIÁVEIS <<
 
 # - ARQUIVOS DE SAÍDA -
@@ -29,10 +30,12 @@ pathOutputFile = currentPath + "\\resultados\\output.txt"
 # - CONTADORES -
 # Índice do Data Frame
 indexDataFrame = 0
-# ----------------------------------------------------------------------
+
+# ---------------------------------------------------------------------- #
 
 def Main():
-    # ----------------------------------------------------------------------
+    # ---------------------------------------------------------------------- #
+
     # >> VARIÁVEIS <<
     
     # - GLOBAIS -
@@ -41,7 +44,8 @@ def Main():
     # - CONTADORES -
     # Índice do arquivo
     indexFile = 1
-    # ----------------------------------------------------------------------
+
+    # ---------------------------------------------------------------------- #
 
     setProjectStructure()
 
@@ -183,7 +187,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
         #tableDataFrame = tableDataFrame.astype(str)
         
         # TESTE
-        verifyCellsValue(tableDataFrame)
+        #verifyCellsValue(tableDataFrame)
         
         # Removendo quebras de linha
         # O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
@@ -224,9 +228,14 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
         return
 
 def cleanTextFile(fileName, conversionMethod):
+    # ---------------------------------------------------------------------- #
+
     # >> VARIÁVEIS <<
+    
     # - GLOBAIS -
     global txtFilePath
+
+    # ---------------------------------------------------------------------- #
 
     txtFileCleanedPath = pathFolderResultados + "\\test\\" + conversionMethod + "\\" + fileName + ".txt"
     
@@ -246,7 +255,14 @@ def cleanTextFile(fileName, conversionMethod):
 # DEFINE O ESTADO DO TERMINAL
 # Define quando o terminal vai ser aberto ou quando vai ser fechado
 def setTerminalFile(setState):
+    # ---------------------------------------------------------------------- #
+
+    # >> VARIÁVEIS <<
+    
+    # - GLOBAIS -
     global outputFile
+
+    # ---------------------------------------------------------------------- #
 
     if setState == "open":
         outputFile = open(pathOutputFile, "a", encoding="UTF-8")
@@ -256,9 +272,9 @@ def setTerminalFile(setState):
         showError("O terminal só pode ser aberto ou fechado. Tenha certeza que atribuiu 'open' para aberto ou 'close' para fechado pro método 'terminal'.", "")
 
 # FUNÇÃO PARA VERIFICAR ONDE COMEÇA E ONDE TERMINA AS TABELAS
-def verifyCellsValue(tableDataFrame):
-    cellValueFirstDigit = ""
-    outputTest = open(currentPath + "\\resultados\\funcTest.txt", "a")
+#def verifyCellsValue(tableDataFrame):
+    #cellValueFirstDigit = ""
+    #outputTest = open(currentPath + "\\resultados\\funcTest.txt", "a")
     # Navega por cada linha do DataFrame
     #pandas.display(tableDataFrame)
     
@@ -289,8 +305,10 @@ def showError(errorMessage, err):
         
         file=outputFile
     )
+    # Caso tenha uma exception, ele exibe
     if err != "":
         print(str(err), file=outputFile)
+    
     print("**********************************************************************", file=outputFile)
     setTerminalFile("closed")
     
