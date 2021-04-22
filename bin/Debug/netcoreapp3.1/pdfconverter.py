@@ -120,7 +120,9 @@ def Main():
     else:
         showError("Não há arquivos de PDF para serem convertidos.", "")
 
-# >> DEFINE A ESTRUTURA DO PROJETO <<
+#    >>>>>>>>>> CONFIGURAÇÕES INICIAIS - INÍCIO <<<<<<<<<<
+
+# >> DEFINE A ESTRUTURA DE PASTAS DO PROJETO <<
 # Desc:
 # Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam.
 def setProjectStructure():
@@ -168,6 +170,66 @@ def pandaSetConfig():
     
     # Fazer com que caso tenha um ';' ele não passe os dados pra outra célula
     pandas.options.display.latex.multicolumn = False
+
+#    >>>>>>>>>> CONFIGURAÇÕES INICIAIS - FIM <<<<<<<<<<
+
+
+
+#    >>>>>>>>>> SAÍDAS DE AVISOS - INÍCIO <<<<<<<<<<
+
+# >> DEFINE O ESTADO DO TERMINAL <<
+# Desc:
+# Define quando o terminal vai ser aberto ou quando vai ser fechado.
+def setTerminalFile(setState):
+    # ---------------------------------------------------------------------- #
+
+    # >> VARIÁVEIS <<
+    
+    # - GLOBAIS -
+    global outputFile
+
+    # ---------------------------------------------------------------------- #
+
+    if setState == "open":
+        outputFile = open(pathOutputFile, "a", encoding="UTF-8")
+    elif setState == "closed":
+        outputFile.close()
+    else:
+        showError("O terminal só pode ser aberto ou fechado. Tenha certeza que atribuiu 'open' para aberto ou 'close' para fechado pro método 'terminal'.", "")
+
+# >> EXIBE UMA MENSAGEM DE ERRO <<
+# Desc:
+# Função responsável por exibir mensagens de erros disponíveis nas Exceptions.
+def showError(errorMessage, err):
+    setTerminalFile("open")
+    print(
+        "======================================================================\n"
+        "**********************************************************************\n"
+        "--- MENSAGEM ---\n"
+        "\n"
+        "ERRO\n"
+        "Descrição: " + errorMessage + "\n",
+        
+        file = outputFile
+    )
+
+    # Caso tenha uma exception, ele exibe
+    if err != "":
+        print("EXCEPTION", file = outputFile)
+        print(str(err), file = outputFile)
+    
+    # Fecha o layout e o arquivo
+    print(
+        "**********************************************************************",
+        
+        file = outputFile
+    )
+    setTerminalFile("closed")
+
+#    >>>>>>>>>> SAÍDAS DE AVISOS - FIM <<<<<<<<<<
+
+
+#    >>>>>>>>>> CONVERSÃO - INÍCIO <<<<<<<<<<
 
 # >> FAZENDO COM QUE O CABEÇALHO SE TORNE UMA LINHA COMUM <<
 # Desc:
@@ -250,7 +312,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
 
         return
 
-# >> LIMPA O ARQUIVO DE TEXTO <<
+# >> LIMPA O ARQUIVO DE TEXTO CONVERTIDO<<
 # Desc:
 # Limpa o arquivo de texto removendo todas as linhas que não contenham um
 # separador (;), ou seja, linhas que não fazem parte de uma tabela.
@@ -278,55 +340,6 @@ def cleanTextFile(fileName, conversionMethod):
     txtFileCleaned.close()
     
     return True
-
-# >> DEFINE O ESTADO DO TERMINAL <<
-# Desc:
-# Define quando o terminal vai ser aberto ou quando vai ser fechado.
-def setTerminalFile(setState):
-    # ---------------------------------------------------------------------- #
-
-    # >> VARIÁVEIS <<
-    
-    # - GLOBAIS -
-    global outputFile
-
-    # ---------------------------------------------------------------------- #
-
-    if setState == "open":
-        outputFile = open(pathOutputFile, "a", encoding="UTF-8")
-    elif setState == "closed":
-        outputFile.close()
-    else:
-        showError("O terminal só pode ser aberto ou fechado. Tenha certeza que atribuiu 'open' para aberto ou 'close' para fechado pro método 'terminal'.", "")
-
-# >> EXIBE UMA MENSAGEM DE ERRO <<
-# Desc:
-# Função responsável por exibir mensagens de erros disponíveis nas Exceptions.
-def showError(errorMessage, err):
-    setTerminalFile("open")
-    print(
-        "======================================================================\n"
-        "**********************************************************************\n"
-        "--- MENSAGEM ---\n"
-        "\n"
-        "ERRO\n"
-        "Descrição: " + errorMessage + "\n",
-        
-        file = outputFile
-    )
-
-    # Caso tenha uma exception, ele exibe
-    if err != "":
-        print("EXCEPTION", file = outputFile)
-        print(str(err), file = outputFile)
-    
-    # Fecha o layout e o arquivo
-    print(
-        "**********************************************************************",
-        
-        file = outputFile
-    )
-    setTerminalFile("closed")
     
 # >> FUNÇÃO PARA VERIFICAR ONDE COMEÇA E ONDE TERMINA AS TABELAS <<
 # Desc:
@@ -351,5 +364,7 @@ def showError(errorMessage, err):
     #        print("Pode ser um titulo: " + str(row), file=outputTest)
     #    break
     # Abre o arquivo de texto e mostra o erro
+
+#    >>>>>>>>>> CONVERSÃO - FIM <<<<<<<<<<
 
 Main()
