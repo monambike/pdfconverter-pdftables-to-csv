@@ -307,6 +307,7 @@ def showError(errorMessage, err):
     )
     # Caso tenha uma exception, ele exibe
     if err != "":
+        print("EXCEPTION")
         print(str(err), file=outputFile)
     
     print("**********************************************************************", file=outputFile)
