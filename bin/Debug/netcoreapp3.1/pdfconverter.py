@@ -1,6 +1,6 @@
+import csv
 import pandas
 import tabula
-import csv
 from os import chdir
 from glob import glob
 from pathlib import Path
@@ -33,6 +33,7 @@ indexDataFrame = 0
 
 # ---------------------------------------------------------------------- #
 
+# >> FUNÇÃO PRINCIPAL <<
 def Main():
     # ---------------------------------------------------------------------- #
 
@@ -47,9 +48,10 @@ def Main():
 
     # ---------------------------------------------------------------------- #
 
+    pandaSetConfig()
     setProjectStructure()
 
-    # Pega todos os arquivos
+    # Pega todos os arquivos na pasta da variável
     chdir(pathFolderPDFs)
     # Filtra pelos PDFs
     for pdfFile in glob("*.pdf"):
@@ -121,7 +123,8 @@ def Main():
         showError("Não há arquivos de PDF para serem convertidos.", "")
 
 # >> DEFINE A ESTRUTURA DO PROJETO <<
-# Desc: Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam
+# Desc:
+# Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam.
 def setProjectStructure():
     # ---------------------------------------------------------------------- #
 
@@ -154,7 +157,8 @@ def setProjectStructure():
         Path(pathFolderResultados + eachPath).mkdir(parents = True, exist_ok = True)
 
 # >> CONFIGURAÇÕES DO PANDAS <<
-# Desc: Configurações do Pandas que afetam o DataFrame e a conversão para texto.
+# Desc:
+# Configurações do Pandas que afetam o DataFrame e a conversão para texto.
 def pandaSetConfig():
     # Evita com que os dados acabem sendo quebrados na saída do terminal e no arquivo exportado
     pandas.options.display.max_colwidth = None
@@ -170,7 +174,8 @@ def pandaSetConfig():
     pandas.options.display.latex.multicolumn = False
 
 # >> FAZENDO COM QUE O CABEÇALHO SE TORNE UMA LINHA COMUM <<
-# Desc: Isso é necessário para fazer com que não haja quebra de linha onde o DataFrame identifica
+# Desc:
+# Isso é necessário para fazer com que não haja quebra de linha onde o DataFrame identifica
 # como cabeçalho (título) da tabela caso o conteúdo delas seja muito grande.
 # Isso acontece porque o título tem uma formatação gerada pelo DataFrame que difere-se do corpo,
 # o que acaba permitindo que isso ocorra.
@@ -190,6 +195,9 @@ def turnHeaderInSimpleRow(tableDataFrame):
     # Concatenando tabela temporária à tabela principal
     pandas.concat([pandas.DataFrame(tableDataFrameHeader), tableDataFrame], ignore_index=True)
 
+# >> REALIZA A CONVERSÃO DO ARQUIVO <<
+# Desc:
+# Realiza a conversão do arquivo PDF para texto.
 def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames):
     global txtFilePath
     global indexDataFrame
@@ -246,6 +254,10 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
 
         return
 
+# >> LIMPA O ARQUIVO DE TEXTO <<
+# Desc:
+# Limpa o arquivo de texto removendo todas as linhas que não contenham um
+# separador (;), ou seja, linhas que não fazem parte de uma tabela.
 def cleanTextFile(fileName, conversionMethod):
     # ---------------------------------------------------------------------- #
 
@@ -271,8 +283,9 @@ def cleanTextFile(fileName, conversionMethod):
     
     return True
 
-# DEFINE O ESTADO DO TERMINAL
-# Define quando o terminal vai ser aberto ou quando vai ser fechado
+# >> DEFINE O ESTADO DO TERMINAL <<
+# Desc:
+# Define quando o terminal vai ser aberto ou quando vai ser fechado.
 def setTerminalFile(setState):
     # ---------------------------------------------------------------------- #
 
@@ -290,10 +303,14 @@ def setTerminalFile(setState):
     else:
         showError("O terminal só pode ser aberto ou fechado. Tenha certeza que atribuiu 'open' para aberto ou 'close' para fechado pro método 'terminal'.", "")
 
-# EXIBE UMA MENSAGEM DE ERRO
+# >> EXIBE UMA MENSAGEM DE ERRO <<
+# Desc:
+# Função responsável por exibir mensagens de erros disponíveis nas Exceptions.
 def showError(errorMessage, err):
     
-# FUNÇÃO PARA VERIFICAR ONDE COMEÇA E ONDE TERMINA AS TABELAS
+# >> FUNÇÃO PARA VERIFICAR ONDE COMEÇA E ONDE TERMINA AS TABELAS <<
+# Desc:
+# Função ainda em fase de teste e aprimoramento.
 #def verifyCellsValue(tableDataFrame):
     #cellValueFirstDigit = ""
     #outputTest = open(currentPath + "\\resultados\\funcTest.txt", "a")
@@ -339,5 +356,4 @@ def showError(errorMessage, err):
     )
     setTerminalFile("closed")
 
-pandaSetConfig()
 Main()
