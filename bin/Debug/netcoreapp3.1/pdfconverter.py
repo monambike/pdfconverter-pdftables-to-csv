@@ -144,7 +144,7 @@ def setProjectStructure():
     # Cria as pastas armazenadas na temporária 'conversionPaths'
     #for eachPath in conversionPaths:
     #    print(eachPath)
-    #    Path(pathFolderResultados + eachPath).mkdir(parents = True, exist_ok = True)
+    #    Path(currenPath + "\\resultados\\" + eachPath).mkdir(parents = True, exist_ok = True)
     for path in conversionPaths:
         Path(currentPath + path).mkdir(parents = True, exist_ok = True)
 
@@ -216,7 +216,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
         # O segundo replace remove as que acontecem por conta do ponto e vírgula
         tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
 
-        txtFilePath = pathFolderResultados + "\\" + conversionMethod + "\\" + fileName + ".txt"
+        txtFilePath = currentPath + "\\resultados\\" + conversionMethod + "\\" + fileName + ".txt"
         
         # Converte para .txt no formato de um CSV
         tableDataFrame.to_csv(
@@ -263,7 +263,7 @@ def cleanTextFile(fileName, conversionMethod):
     global txtFilePath
 
     # - CAMINHOS -
-    txtFileCleanedPath = pathFolderResultados + "\\test\\" + conversionMethod + "\\" + fileName + ".txt"
+    txtFileCleanedPath = currentPath + "\\resultados\\test\\" + conversionMethod + "\\" + fileName + ".txt"
 
     # ---------------------------------------------------------------------- #
     
