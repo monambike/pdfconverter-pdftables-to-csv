@@ -37,7 +37,7 @@ def Main():
     
     # - GLOBAIS -
     global indexDataFrame
-    
+
     # - CONTADORES -
     # Índice do arquivo
     indexFile = 1
@@ -289,7 +289,6 @@ def showError(errorMessage, err):
         
         file=outputFile
     )
-    #print(str(err), file=outputFile)
     if err != "":
         print(str(err), file=outputFile)
     print("**********************************************************************", file=outputFile)
