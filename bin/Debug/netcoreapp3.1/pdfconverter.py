@@ -23,8 +23,6 @@ currentPath = str(currentPath)[:-37]
 # (pdfconverter\bin\Debug\netcoreapp3.1)
 #    \___[ volta até essa pasta (pdfconverter) ]
 # Caminhos baseados no currentPath
-pathFolderPDFs = currentPath + "\\PDFs"
-pathFolderResultados = currentPath + "\\resultados"
 pathOutputFile = currentPath + "\\resultados\\output.txt"
 
 # - CONTADORES -
@@ -52,7 +50,7 @@ def Main():
     setProjectStructure()
 
     # Pega todos os arquivos na pasta da variável
-    chdir(pathFolderPDFs)
+    chdir(currentPath + "\\PDFs")
     # Filtra pelos PDFs
     for pdfFile in glob("*.pdf"):
         try:
@@ -132,29 +130,27 @@ def setProjectStructure():
     
     # - CAMINHOS -
     conversionPaths = [
-        ""
-        "\\lattice"
-        "\\stream"
-        "\\test"
-        "\\test\\lattice"
-        "\\test\\stream"
+        "\\PDFs",
+        "\\resultados",
+        "\\resultados\\lattice",
+        "\\resultados\\stream",
+        "\\resultados\\test",
+        "\\resultados\\test\\lattice",
+        "\\resultados\\test\\stream"
     ]
 
     # ---------------------------------------------------------------------- #
 
-    # Limpa o arquivo da saída do terminal
+    # Cria as pastas armazenadas na temporária 'conversionPaths'
+    #for eachPath in conversionPaths:
+    #    print(eachPath)
+    #    Path(pathFolderResultados + eachPath).mkdir(parents = True, exist_ok = True)
+    for path in conversionPaths:
+        Path(currentPath + path).mkdir(parents = True, exist_ok = True)
+
+    # Cria arquivo para exibir a saída do terminal, se já tiver limpa
     outputClear = open(pathOutputFile, "w", encoding="UTF-8")
     outputClear.close()
-    
-    # Cria pasta para armazenar os PDFs
-    Path(pathFolderPDFs).mkdir(
-        parents = True,
-        exist_ok = True
-    )
-
-    # Cria as pastas armazenadas na temporária 'conversionPaths'
-    for eachPath in conversionPaths:
-        Path(pathFolderResultados + eachPath).mkdir(parents = True, exist_ok = True)
 
 # >> CONFIGURAÇÕES DO PANDAS <<
 # Desc:
@@ -307,6 +303,30 @@ def setTerminalFile(setState):
 # Desc:
 # Função responsável por exibir mensagens de erros disponíveis nas Exceptions.
 def showError(errorMessage, err):
+    setTerminalFile("open")
+    print(
+        "======================================================================\n"
+        "**********************************************************************\n"
+        "--- MENSAGEM ---\n"
+        "\n"
+        "ERRO\n"
+        "Descrição: " + errorMessage + "\n",
+        
+        file = outputFile
+    )
+
+    # Caso tenha uma exception, ele exibe
+    if err != "":
+        print("EXCEPTION", file = outputFile)
+        print(str(err), file = outputFile)
+    
+    # Fecha o layout e o arquivo
+    print(
+        "**********************************************************************",
+        
+        file = outputFile
+    )
+    setTerminalFile("closed")
     
 # >> FUNÇÃO PARA VERIFICAR ONDE COMEÇA E ONDE TERMINA AS TABELAS <<
 # Desc:
@@ -331,29 +351,5 @@ def showError(errorMessage, err):
     #        print("Pode ser um titulo: " + str(row), file=outputTest)
     #    break
     # Abre o arquivo de texto e mostra o erro
-    setTerminalFile("open")
-    print(
-        "======================================================================\n"
-        "**********************************************************************\n"
-        "--- MENSAGEM ---\n"
-        "\n"
-        "ERRO\n"
-        "Descrição: " + errorMessage + "\n",
-        
-        file=outputFile
-    )
-
-    # Caso tenha uma exception, ele exibe
-    if err != "":
-        print("EXCEPTION")
-        print(str(err), file=outputFile)
-    
-    # Fecha o layout e o arquivo
-    print(
-        "**********************************************************************",
-        
-        file=outputFile
-    )
-    setTerminalFile("closed")
 
 Main()
