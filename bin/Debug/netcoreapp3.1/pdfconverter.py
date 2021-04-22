@@ -258,7 +258,6 @@ def verifyCellsValue(tableDataFrame):
 
     
     outputTest.close()
-                
 
 pandaSetConfig()
 Main()
