@@ -6,32 +6,36 @@ from glob import glob
 from pathlib import Path
 from PyPDF2 import PdfFileReader
 
-currentPath = Path(__file__).parent.absolute()
 
-currentPath = str(currentPath)[:-37]
+# >> VARIÁVEIS <<
 
+# - ARQUIVOS DE SAÍDA -
+# Saída do Terminal
 outputFile = ""
+# Saída do arquivo exportado
 txtFilePath = ""
-# Caminhos baseados na onde o executável fonte do projeto está localizado
+
+# - CAMINHOS -
+# Definindo o caminho do projeto atual e atribuindo para a variável
+currentPath = Path(__file__).parent.absolute()
+currentPath = str(currentPath)[:-37]
 # (pdfconverter\bin\Debug\netcoreapp3.1)
+#    \___[ volta até essa pasta (pdfconverter) ]
+# Caminhos baseados no currentPath
 pathFolderPDFs = currentPath + "\\PDFs"
 pathFolderResultados = currentPath + "\\resultados"
 pathOutputFile = currentPath + "\\resultados\\output.txt"
-# Arquivo output
-# Índex
+
+# - INDEX -
 indexDataFrame = 0
 
 def Main():
-    global currentPath
     global indexDataFrame
 
-    # Reseta o arquivo da saída do terminal
-    outputClear = open(pathOutputFile, "w", encoding="UTF-8")
-    outputClear.close()
-
-    makeDirectories()
+    setProjectStructure()
 
     indexFile = 1
+
     # Pega todos os PDFs
     chdir(pathFolderPDFs)
 
@@ -95,7 +99,12 @@ def Main():
     else:
         showError("Não há arquivos de PDF para serem convertidos", "")
 
-def makeDirectories():
+# >> DEFINE A ESTRUTURA DO PROJETO <<
+def setProjectStructure():
+    # Reseta o arquivo da saída do terminal
+    outputClear = open(pathOutputFile, "w", encoding="UTF-8")
+    outputClear.close()
+    
     # Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam
     Path(pathFolderPDFs).mkdir(parents=True, exist_ok=True)
     Path(pathFolderResultados).mkdir(parents=True, exist_ok=True)
@@ -105,53 +114,42 @@ def makeDirectories():
     Path(pathFolderResultados + "\\test\\lattice").mkdir(parents=True, exist_ok=True)
     Path(pathFolderResultados + "\\test\\stream").mkdir(parents=True, exist_ok=True)
 
+# >> CONFIGURAÇÕES DO PANDAS <<
+# Desc: Configurações do Pandas que afetam o DataFrame e a conversão para texto.
 def pandaSetConfig():
-    # CONFIGURAÇÕES DO PANDAS
-
     # Evita com que os dados acabem sendo quebrados na saída do terminal e no arquivo exportado
     pandas.options.display.max_colwidth = None
     pandas.options.display.expand_frame_repr = False
+
     # Define o padrão de codificação para UTF-8 com BOM
     pandas.options.display.encoding = "UTF-8-sig"
+    
     # Mostra o dia primeiro quando encontrar data
     pandas.options.display.date_dayfirst = True
+    
     # Fazer com que caso tenha um ';' ele não passe os dados pra outra célula
     pandas.options.display.latex.multicolumn = False
 
+# >> FAZENDO COM QUE O CABEÇALHO SE TORNE UMA LINHA COMUM <<
+# Desc: Isso é necessário para fazer com que não haja quebra de linha onde o DataFrame identifica
+# como cabeçalho (título) da tabela caso o conteúdo delas seja muito grande.
+# Isso acontece porque o título tem uma formatação gerada pelo DataFrame que difere-se do corpo,
+# o que acaba permitindo que isso ocorra.
 def turnHeaderInSimpleRow(tableDataFrame):
-    # FAZENDO COM QUE O CABEÇALHO SE TORNE UMA LINHA COMUM
-    # Isso é necessário para fazer com que não haja quebra nas linhas onde ele identifica
-    # como título caso o conteúdo delas seja muito grande, isso acontece porque o título
-    # tem uma formatação gerada pelo dataframe que pelo jeito faz com que isso ocorra.
-
-    # Limpa a lista que vai manipular o cabeçalho
+    # Limpa a lista que vai ser usada para manipular o cabeçalho no DataFrame
     tableDataFrameHeader = []
-    # Pegando o cabeçalho da tabela e passando ela como lista para a variável
-    tableDataFrameHeader = [*tableDataFrame]
-    # Removendo o cabeçalho da tabela atual
-    tableDataFrame = tableDataFrame.T.reset_index().T.reset_index(drop=True)
-    # Adicionando a lista como primeira linha do cabeçalho do DataFrame criado para manipular cabeçalho
-    tableDataFrameHeader.insert(1, tableDataFrameHeader)
-    # Concatenando à tabela principal
-    pandas.concat([pandas.DataFrame(tableDataFrameHeader), tableDataFrame], ignore_index=True)
 
-def showError(errorMessage, err):
-    setTerminalFile("open")
-    print(
-        "======================================================================\n"
-        "**********************************************************************\n"
-        "--- MENSAGEM ---\n"
-        "\n"
-        "ERRO\n"
-        "Descrição: " + errorMessage + "\n",
-        
-        file=outputFile
-    )
-    #print(str(err), file=outputFile)
-    if err != "":
-        print(str(err), file=outputFile)
-    print("**********************************************************************", file=outputFile)
-    setTerminalFile("closed")
+    # Pegando o cabeçalho da tabela e passando ela como lista para a temporária
+    tableDataFrameHeader = [*tableDataFrame]
+
+    # Removendo o cabeçalho do DataFrame atual
+    tableDataFrame = tableDataFrame.T.reset_index().T.reset_index(drop=True)
+
+    # Adicionando a lista como primeira linha do DataFrame temporário
+    tableDataFrameHeader.insert(1, tableDataFrameHeader)
+
+    # Concatenando tabela temporária à tabela principal
+    pandas.concat([pandas.DataFrame(tableDataFrameHeader), tableDataFrame], ignore_index=True)
 
 def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames):
     global txtFilePath
@@ -226,6 +224,8 @@ def cleanTextFile(fileName, conversionMethod):
     
     return True
 
+# DEFINE O ESTADO DO TERMINAL
+# Define quando o terminal vai ser aberto ou quando vai ser fechado
 def setTerminalFile(setState):
     global outputFile
 
@@ -236,6 +236,7 @@ def setTerminalFile(setState):
     else:
         showError("O terminal só pode ser aberto ou fechado. Tenha certeza que atribuiu 'open' para aberto ou 'close' para fechado pro método 'terminal'.", "")
 
+# FUNÇÃO PARA VERIFICAR ONDE COMEÇA E ONDE TERMINA AS TABELAS
 def verifyCellsValue(tableDataFrame):
     cellValueFirstDigit = ""
     outputTest = open(currentPath + "\\resultados\\funcTest.txt", "a")
@@ -256,6 +257,24 @@ def verifyCellsValue(tableDataFrame):
     #        print("Pode ser um titulo: " + str(row), file=outputTest)
     #    break
 
+# EXIBE UMA MENSAGEM DE ERRO
+def showError(errorMessage, err):
+    setTerminalFile("open")
+    print(
+        "======================================================================\n"
+        "**********************************************************************\n"
+        "--- MENSAGEM ---\n"
+        "\n"
+        "ERRO\n"
+        "Descrição: " + errorMessage + "\n",
+        
+        file=outputFile
+    )
+    #print(str(err), file=outputFile)
+    if err != "":
+        print(str(err), file=outputFile)
+    print("**********************************************************************", file=outputFile)
+    setTerminalFile("closed")
     
     outputTest.close()
 
