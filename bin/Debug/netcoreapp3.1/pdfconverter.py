@@ -305,12 +305,17 @@ def showError(errorMessage, err):
         
         file=outputFile
     )
+
     # Caso tenha uma exception, ele exibe
     if err != "":
         print("EXCEPTION")
         print(str(err), file=outputFile)
     
-    print("**********************************************************************", file=outputFile)
+    print(
+        "**********************************************************************",
+        
+        file=outputFile
+    )
     setTerminalFile("closed")
     
     outputTest.close()
