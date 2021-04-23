@@ -327,7 +327,7 @@ def conversionStart(conversionMethod, tableDataFrame, tableListOfDataFrames):
 
         return
 
-# >> LIMPA O ARQUIVO DE TEXTO CONVERTIDO<<
+# >> LIMPA O ARQUIVO DE TEXTO CONVERTIDO <<
 # Desc:
 # Limpa o arquivo de texto removendo todas as linhas que não contenham um
 # separador (;), ou seja, linhas que não fazem parte de uma tabela.
