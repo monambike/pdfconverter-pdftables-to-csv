@@ -10,6 +10,10 @@ from PyPDF2 import PdfFileReader
 
 # >> VARIÁVEIS <<
 
+# - NOMES DE ARQUIVOS -
+# Nome do arquivo em PDF formatado sem a extensão
+fileName = ""
+
 # - ARQUIVOS DE SAÍDA -
 # Saída do Terminal
 outputFile = ""
@@ -43,6 +47,7 @@ def Main():
     # >> VARIÁVEIS <<
     
     # - GLOBAIS -
+    global fileName
     global indexDataFrame
 
     # - CONTADORES -
@@ -106,16 +111,16 @@ def Main():
             conversionMethod = "lattice"
             for tableDataFrame in tableListOfDataFrames_lattice:
                 # Passando os parâmetro do Lattice para a função
-                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_lattice)
-            cleanTextFile(fileName, conversionMethod)
+                conversionStart(conversionMethod, tableDataFrame, tableListOfDataFrames_lattice)
+            cleanTextFile(conversionMethod)
             # Stream
             # Desc: Realizando a conversão com o que foi dado na leitura com o stream
             indexDataFrame = 1
             conversionMethod = "stream"
             for tableDataFrame in tableListOfDataFrames_stream:
                 # Passando os parâmetro do Stream para a função
-                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_stream)
-            cleanTextFile(fileName, conversionMethod)
+                conversionStart(conversionMethod, tableDataFrame, tableListOfDataFrames_stream)
+            cleanTextFile(conversionMethod)
             
             # Atribuindo mais um ao índice para indicar que os arquivos foram convertidos
             indexFile = indexFile + 1
@@ -266,7 +271,7 @@ def turnHeaderInSimpleRow(tableDataFrame):
 # >> REALIZA A CONVERSÃO DO ARQUIVO <<
 # Desc:
 # Realiza a conversão do arquivo PDF para texto.
-def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames):
+def conversionStart(conversionMethod, tableDataFrame, tableListOfDataFrames):
     global txtFilePath
     global indexDataFrame
 
@@ -326,7 +331,7 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
 # Desc:
 # Limpa o arquivo de texto removendo todas as linhas que não contenham um
 # separador (;), ou seja, linhas que não fazem parte de uma tabela.
-def cleanTextFile(fileName, conversionMethod):
+def cleanTextFile(conversionMethod):
     # ---------------------------------------------------------------------- #
 
     # >> VARIÁVEIS <<
