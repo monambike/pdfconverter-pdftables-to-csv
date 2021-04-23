@@ -16,12 +16,14 @@ outputFile = ""
 # Saída do arquivo exportado
 txtFilePath = ""
 
-# - CAMINHOS -
-# Definindo o caminho do projeto atual e atribuindo para a variável
+# - CAMINHO ATUAL -
+# Definindo o caminho do projeto atual e atribuindo para a variável currentPath
 currentPath = Path(__file__).parent.absolute()
 currentPath = str(currentPath)[:-37]
 # (pdfconverter\bin\Debug\netcoreapp3.1)
-#    \___[ volta até essa pasta (pdfconverter) ]
+#    \___[ essa diminuição de caracteres faz voltar até essa pasta (pdfconverter) ]
+
+# - CAMINHOS -
 # Caminhos baseados no currentPath
 pathOutputFile = currentPath + "\\resultados\\output.txt"
 
@@ -31,7 +33,10 @@ indexDataFrame = 0
 
 # ---------------------------------------------------------------------- #
 
-# >> FUNÇÃO PRINCIPAL <<
+
+
+#    >>>>>>>>>> FUNÇÃO PRINCIPAL - INÍCIO <<<<<<<<<<
+
 def Main():
     # ---------------------------------------------------------------------- #
 
@@ -49,7 +54,7 @@ def Main():
     pandaSetConfig()
     setProjectStructure()
 
-    # Pega todos os arquivos na pasta da variável
+    # Muda o diretório para o que foi passado no parâmetro
     chdir(currentPath + "\\PDFs")
     # Filtra pelos PDFs
     for pdfFile in glob("*.pdf"):
@@ -64,7 +69,7 @@ def Main():
             # - LEITURA -
             # Desc: Fazendo leitura do arquivo completo e passando como lista de DataFrames
             # para a variável
-            # Método de leitura usando Lattice
+            # Método de leitura: Lattice
             tableListOfDataFrames_lattice = tabula.read_pdf(
                 pdfFile,
                 guess = True,
@@ -73,7 +78,7 @@ def Main():
                 silent = True,
                 lattice = True
             )
-            # Método de leitura usando Stream
+            # Método de leitura: Stream
             tableListOfDataFrames_stream = tabula.read_pdf(
                 pdfFile,
                 guess = True,
@@ -119,6 +124,10 @@ def Main():
             break 
     else:
         showError("Não há arquivos de PDF para serem convertidos.", "")
+
+#    >>>>>>>>>> FUNÇÃO PRINCIPAL - FIM <<<<<<<<<<
+
+
 
 #    >>>>>>>>>> CONFIGURAÇÕES INICIAIS - INÍCIO <<<<<<<<<<
 
@@ -175,7 +184,7 @@ def pandaSetConfig():
 
 
 
-#    >>>>>>>>>> SAÍDAS DE AVISOS - INÍCIO <<<<<<<<<<
+# >>>>>>>>>> SAÍDAS DE AVISOS - INÍCIO <<<<<<<<<<
 
 # >> DEFINE O ESTADO DO TERMINAL <<
 # Desc:
@@ -226,10 +235,11 @@ def showError(errorMessage, err):
     )
     setTerminalFile("closed")
 
-#    >>>>>>>>>> SAÍDAS DE AVISOS - FIM <<<<<<<<<<
+# >>>>>>>>>> SAÍDAS DE AVISOS - FIM <<<<<<<<<<
 
 
-#    >>>>>>>>>> CONVERSÃO - INÍCIO <<<<<<<<<<
+
+# >>>>>>>>>> CONVERSÃO - INÍCIO <<<<<<<<<<
 
 # >> FAZENDO COM QUE O CABEÇALHO SE TORNE UMA LINHA COMUM <<
 # Desc:
@@ -365,6 +375,8 @@ def cleanTextFile(fileName, conversionMethod):
     #    break
     # Abre o arquivo de texto e mostra o erro
 
-#    >>>>>>>>>> CONVERSÃO - FIM <<<<<<<<<<
+# >>>>>>>>>> CONVERSÃO - FIM <<<<<<<<<<
+
+
 
 Main()
