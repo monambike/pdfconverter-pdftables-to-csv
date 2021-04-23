@@ -10,18 +10,24 @@ from PyPDF2 import PdfFileReader
 
 # >> VARIÁVEIS <<
 
+# - NOMES DE ARQUIVOS -
+# Nome do arquivo em PDF formatado sem a extensão
+fileName = ""
+
 # - ARQUIVOS DE SAÍDA -
 # Saída do Terminal
 outputFile = ""
 # Saída do arquivo exportado
 txtFilePath = ""
 
-# - CAMINHOS -
-# Definindo o caminho do projeto atual e atribuindo para a variável
+# - CAMINHO ATUAL -
+# Definindo o caminho do projeto atual e atribuindo para a variável currentPath
 currentPath = Path(__file__).parent.absolute()
 currentPath = str(currentPath)[:-37]
 # (pdfconverter\bin\Debug\netcoreapp3.1)
-#    \___[ volta até essa pasta (pdfconverter) ]
+#    \___[ essa diminuição de caracteres faz voltar até essa pasta (pdfconverter) ]
+
+# - CAMINHOS -
 # Caminhos baseados no currentPath
 pathOutputFile = currentPath + "\\resultados\\output.txt"
 
@@ -31,13 +37,17 @@ indexDataFrame = 0
 
 # ---------------------------------------------------------------------- #
 
-# >> FUNÇÃO PRINCIPAL <<
+
+
+#    >>>>>>>>>> FUNÇÃO PRINCIPAL - INÍCIO <<<<<<<<<<
+
 def Main():
     # ---------------------------------------------------------------------- #
 
     # >> VARIÁVEIS <<
     
     # - GLOBAIS -
+    global fileName
     global indexDataFrame
 
     # - CONTADORES -
@@ -49,7 +59,7 @@ def Main():
     pandaSetConfig()
     setProjectStructure()
 
-    # Pega todos os arquivos na pasta da variável
+    # Muda o diretório para o que foi passado no parâmetro
     chdir(currentPath + "\\PDFs")
     # Filtra pelos PDFs
     for pdfFile in glob("*.pdf"):
@@ -64,7 +74,7 @@ def Main():
             # - LEITURA -
             # Desc: Fazendo leitura do arquivo completo e passando como lista de DataFrames
             # para a variável
-            # Método de leitura usando Lattice
+            # Método de leitura: Lattice
             tableListOfDataFrames_lattice = tabula.read_pdf(
                 pdfFile,
                 guess = True,
@@ -73,7 +83,7 @@ def Main():
                 silent = True,
                 lattice = True
             )
-            # Método de leitura usando Stream
+            # Método de leitura: Stream
             tableListOfDataFrames_stream = tabula.read_pdf(
                 pdfFile,
                 guess = True,
@@ -101,16 +111,16 @@ def Main():
             conversionMethod = "lattice"
             for tableDataFrame in tableListOfDataFrames_lattice:
                 # Passando os parâmetro do Lattice para a função
-                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_lattice)
-            cleanTextFile(fileName, conversionMethod)
+                conversionStart(conversionMethod, tableDataFrame, tableListOfDataFrames_lattice)
+            cleanTextFile(conversionMethod)
             # Stream
             # Desc: Realizando a conversão com o que foi dado na leitura com o stream
             indexDataFrame = 1
             conversionMethod = "stream"
             for tableDataFrame in tableListOfDataFrames_stream:
                 # Passando os parâmetro do Stream para a função
-                conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames_stream)
-            cleanTextFile(fileName, conversionMethod)
+                conversionStart(conversionMethod, tableDataFrame, tableListOfDataFrames_stream)
+            cleanTextFile(conversionMethod)
             
             # Atribuindo mais um ao índice para indicar que os arquivos foram convertidos
             indexFile = indexFile + 1
@@ -120,7 +130,13 @@ def Main():
     else:
         showError("Não há arquivos de PDF para serem convertidos.", "")
 
-# >> DEFINE A ESTRUTURA DO PROJETO <<
+#    >>>>>>>>>> FUNÇÃO PRINCIPAL - FIM <<<<<<<<<<
+
+
+
+#    >>>>>>>>>> CONFIGURAÇÕES INICIAIS - INÍCIO <<<<<<<<<<
+
+# >> DEFINE A ESTRUTURA DE PASTAS DO PROJETO <<
 # Desc:
 # Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam.
 def setProjectStructure():
@@ -169,6 +185,67 @@ def pandaSetConfig():
     # Fazer com que caso tenha um ';' ele não passe os dados pra outra célula
     pandas.options.display.latex.multicolumn = False
 
+#    >>>>>>>>>> CONFIGURAÇÕES INICIAIS - FIM <<<<<<<<<<
+
+
+
+# >>>>>>>>>> SAÍDAS DE AVISOS - INÍCIO <<<<<<<<<<
+
+# >> DEFINE O ESTADO DO TERMINAL <<
+# Desc:
+# Define quando o terminal vai ser aberto ou quando vai ser fechado.
+def setTerminalFile(setState):
+    # ---------------------------------------------------------------------- #
+
+    # >> VARIÁVEIS <<
+    
+    # - GLOBAIS -
+    global outputFile
+
+    # ---------------------------------------------------------------------- #
+
+    if setState == "open":
+        outputFile = open(pathOutputFile, "a", encoding="UTF-8")
+    elif setState == "closed":
+        outputFile.close()
+    else:
+        showError("O terminal só pode ser aberto ou fechado. Tenha certeza que atribuiu 'open' para aberto ou 'close' para fechado pro método 'terminal'.", "")
+
+# >> EXIBE UMA MENSAGEM DE ERRO <<
+# Desc:
+# Função responsável por exibir mensagens de erros disponíveis nas Exceptions.
+def showError(errorMessage, err):
+    setTerminalFile("open")
+    print(
+        "======================================================================\n"
+        "**********************************************************************\n"
+        "--- MENSAGEM ---\n"
+        "\n"
+        "ERRO\n"
+        "Descrição: " + errorMessage + "\n",
+        
+        file = outputFile
+    )
+
+    # Caso tenha uma exception, ele exibe
+    if err != "":
+        print("EXCEPTION", file = outputFile)
+        print(str(err), file = outputFile)
+    
+    # Fecha o layout e o arquivo
+    print(
+        "**********************************************************************",
+        
+        file = outputFile
+    )
+    setTerminalFile("closed")
+
+# >>>>>>>>>> SAÍDAS DE AVISOS - FIM <<<<<<<<<<
+
+
+
+# >>>>>>>>>> CONVERSÃO - INÍCIO <<<<<<<<<<
+
 # >> FAZENDO COM QUE O CABEÇALHO SE TORNE UMA LINHA COMUM <<
 # Desc:
 # Isso é necessário para fazer com que não haja quebra de linha onde o DataFrame identifica
@@ -194,7 +271,7 @@ def turnHeaderInSimpleRow(tableDataFrame):
 # >> REALIZA A CONVERSÃO DO ARQUIVO <<
 # Desc:
 # Realiza a conversão do arquivo PDF para texto.
-def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataFrames):
+def conversionStart(conversionMethod, tableDataFrame, tableListOfDataFrames):
     global txtFilePath
     global indexDataFrame
 
@@ -250,11 +327,11 @@ def conversionStart(fileName, conversionMethod, tableDataFrame, tableListOfDataF
 
         return
 
-# >> LIMPA O ARQUIVO DE TEXTO <<
+# >> LIMPA O ARQUIVO DE TEXTO CONVERTIDO<<
 # Desc:
 # Limpa o arquivo de texto removendo todas as linhas que não contenham um
 # separador (;), ou seja, linhas que não fazem parte de uma tabela.
-def cleanTextFile(fileName, conversionMethod):
+def cleanTextFile(conversionMethod):
     # ---------------------------------------------------------------------- #
 
     # >> VARIÁVEIS <<
@@ -278,55 +355,6 @@ def cleanTextFile(fileName, conversionMethod):
     txtFileCleaned.close()
     
     return True
-
-# >> DEFINE O ESTADO DO TERMINAL <<
-# Desc:
-# Define quando o terminal vai ser aberto ou quando vai ser fechado.
-def setTerminalFile(setState):
-    # ---------------------------------------------------------------------- #
-
-    # >> VARIÁVEIS <<
-    
-    # - GLOBAIS -
-    global outputFile
-
-    # ---------------------------------------------------------------------- #
-
-    if setState == "open":
-        outputFile = open(pathOutputFile, "a", encoding="UTF-8")
-    elif setState == "closed":
-        outputFile.close()
-    else:
-        showError("O terminal só pode ser aberto ou fechado. Tenha certeza que atribuiu 'open' para aberto ou 'close' para fechado pro método 'terminal'.", "")
-
-# >> EXIBE UMA MENSAGEM DE ERRO <<
-# Desc:
-# Função responsável por exibir mensagens de erros disponíveis nas Exceptions.
-def showError(errorMessage, err):
-    setTerminalFile("open")
-    print(
-        "======================================================================\n"
-        "**********************************************************************\n"
-        "--- MENSAGEM ---\n"
-        "\n"
-        "ERRO\n"
-        "Descrição: " + errorMessage + "\n",
-        
-        file = outputFile
-    )
-
-    # Caso tenha uma exception, ele exibe
-    if err != "":
-        print("EXCEPTION", file = outputFile)
-        print(str(err), file = outputFile)
-    
-    # Fecha o layout e o arquivo
-    print(
-        "**********************************************************************",
-        
-        file = outputFile
-    )
-    setTerminalFile("closed")
     
 # >> FUNÇÃO PARA VERIFICAR ONDE COMEÇA E ONDE TERMINA AS TABELAS <<
 # Desc:
@@ -351,5 +379,9 @@ def showError(errorMessage, err):
     #        print("Pode ser um titulo: " + str(row), file=outputTest)
     #    break
     # Abre o arquivo de texto e mostra o erro
+
+# >>>>>>>>>> CONVERSÃO - FIM <<<<<<<<<<
+
+
 
 Main()
