@@ -71,59 +71,54 @@ def Main():
             pdf = PdfFileReader(open(pdfFile, "rb"))
             pdfNumberOfPages = pdf.getNumPages()
 
-            # - LEITURA -
-            # Desc: Fazendo leitura do arquivo completo e passando como lista de DataFrames
-            # para a variável
-            # Método de leitura: Lattice
-            tableListOfDataFrames_lattice = tabula.read_pdf(
-                pdfFile,
-                guess = True,
-                multiple_tables = True,
-                pages = "all",
-                silent = True,
-                lattice = True
-            )
-            # Método de leitura: Stream
-            tableListOfDataFrames_stream = tabula.read_pdf(
-                pdfFile,
-                guess = True,
-                multiple_tables = True,
-                pages = "all",
-                silent = True,
-                stream = True
-            )
-
-            # Indica ao terminal que um arquivo completo foi lido com sucesso
+            # - TERMINAL -
             setTerminalFile("open")
             print(
                 "======================================================================\n"
-                "LEITURA DE ARQUIVO - NÚMERO " + str(indexFile) + " (" + pdfFile + ")\n"
-                "O arquivo " + fileName + " foi lido e está pronto pra ser convertido\n",
+                "LEITURA DE ARQUIVO - NÚMERO " + str(indexFile) + ", '" + pdfFile + "'\n"
+                "O arquivo '" + fileName + "' foi lido e está pronto pra ser convertido\n",
 
                 file=outputFile
             )
             setTerminalFile("closed")
 
-            # - CONVERSÃO -
-            # Lattice
-            # Desc: Realizando a conversão com o que foi dado na leitura com o lattice
-            indexDataFrame = 1
-            conversionMethod = "lattice"
-            for tableDataFrame in tableListOfDataFrames_lattice:
-                # Passando os parâmetro do Lattice para a função
-                conversionStart(conversionMethod, tableDataFrame, tableListOfDataFrames_lattice)
-            cleanTextFile(conversionMethod)
-            # Stream
-            # Desc: Realizando a conversão com o que foi dado na leitura com o stream
-            indexDataFrame = 1
-            conversionMethod = "stream"
-            for tableDataFrame in tableListOfDataFrames_stream:
-                # Passando os parâmetro do Stream para a função
-                conversionStart(conversionMethod, tableDataFrame, tableListOfDataFrames_stream)
-            cleanTextFile(conversionMethod)
-            
+
+            # - MÉTODOS DE LEITURA E CONVERSÃO -
+            # Desc: Primeiro faz a leitura e conversão pra Lattice e após faz o mesmo para o Stream
+            # boolLattice = True, em outras palavras, 0 é Lattice
+            # boolLattice = False, em outras palavras, 1 é Stream
+            for method in range(2):
+
+                if method == 0:
+                    boolLattice = True
+                    conversionMethod = "lattice"
+                elif method == 1:
+                    boolLattice = False
+                    conversionMethod = "stream"
+
+                # - LEITURA -
+                # Desc: Fazendo leitura do arquivo completo e passando como lista de DataFrames
+                # para a variável
+                tableListOfDataFrames = tabula.read_pdf(
+                    pdfFile,
+                    guess = True,
+                    multiple_tables = True,
+                    pages = "all",
+                    silent = True,
+                    lattice = boolLattice
+                )
+
+                # - CONVERSÃO -
+                # Lattice
+                # Desc: Realizando a conversão com o que foi dado na leitura com o lattice
+                indexDataFrame = 1
+                for tableDataFrame in tableListOfDataFrames:
+                    conversionStart(conversionMethod, tableDataFrame)
+                cleanTextFile(conversionMethod)
+
             # Atribuindo mais um ao índice para indicar que os arquivos foram convertidos
             indexFile = indexFile + 1
+
         except Exception as err:
             showError("Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "'.", err)
             break 
@@ -271,7 +266,7 @@ def turnHeaderInSimpleRow(tableDataFrame):
 # >> REALIZA A CONVERSÃO DO ARQUIVO <<
 # Desc:
 # Realiza a conversão do arquivo PDF para texto.
-def conversionStart(conversionMethod, tableDataFrame, tableListOfDataFrames):
+def conversionStart(conversionMethod, tableDataFrame):
     global txtFilePath
     global indexDataFrame
 
@@ -310,9 +305,9 @@ def conversionStart(conversionMethod, tableDataFrame, tableListOfDataFrames):
         # Indica ao terminal que uma tabela foi convertida com sucesso
         setTerminalFile("open")
         print(
-            "______________________________________________________________________\n"
-            "A tabela da página "+ str(indexDataFrame) + " do PDF foi convertida |\n"
-            "___________________________________________/\n" +
+            "_________________________________________________________________________________\n"
+            "As tabelas da página "+ str(indexDataFrame) + " do '" + fileName + "' foram convertidas |\n"
+            "________________________________________________________________________________/\n" +
             fileName + " " + conversionMethod + " pg" + str(indexDataFrame) + "\n",
 
             file = outputFile
