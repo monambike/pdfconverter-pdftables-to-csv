@@ -114,7 +114,7 @@ def Main():
                 indexDataFrame = 1
                 for tableDataFrame in tableListOfDataFrames:
                     conversionStart(conversionMethod, tableDataFrame)
-                cleanTextFile(conversionMethod)
+                formatTextFile(conversionMethod)
 
             # Atribuindo mais um ao índice para indicar que os arquivos foram convertidos
             indexFile = indexFile + 1
@@ -326,7 +326,7 @@ def conversionStart(conversionMethod, tableDataFrame):
 # Desc:
 # Limpa o arquivo de texto removendo todas as linhas que não contenham um
 # separador (;), ou seja, linhas que não fazem parte de uma tabela.
-def cleanTextFile(conversionMethod):
+def formatTextFile(conversionMethod):
     # ---------------------------------------------------------------------- #
 
     # >> VARIÁVEIS <<
