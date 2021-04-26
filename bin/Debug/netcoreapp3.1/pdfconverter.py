@@ -301,7 +301,7 @@ def conversionStart(conversionMethod, tableDataFrame):
             sep = ";",
             quoting = csv.QUOTE_ALL
         )
-        
+
         # Indica ao terminal que uma tabela foi convertida com sucesso
         setTerminalFile("open")
         print(
