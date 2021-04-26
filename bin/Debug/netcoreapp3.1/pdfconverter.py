@@ -126,7 +126,8 @@ def Main():
             showError("Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "'.", err)
             break 
     else:
-        showError("Não há arquivos de PDF para serem convertidos.", "")
+        if fileName == "":
+            showError("Não há arquivos de PDF para serem convertidos.", "")
 
 #    >>>>>>>>>> FUNÇÃO PRINCIPAL - FIM <<<<<<<<<<
 
@@ -308,9 +309,9 @@ def conversionStart(conversionMethod, tableDataFrame):
         # Indica ao terminal que uma tabela foi convertida com sucesso
         setTerminalFile("open")
         print(
-            "_________________________________________________________________________________\n"
-            "As tabelas da página "+ str(indexDataFrame) + " do '" + fileName + "' foram convertidas |\n"
-            "________________________________________________________________________________/\n" +
+            "_________________________________________\n"
+            "As tabelas da página "+ str(indexDataFrame) + " foram convertidas |\n"
+            "________________________________________/\n" +
             fileName + " " + conversionMethod + " pg" + str(indexDataFrame) + "\n",
 
             file = outputFile
@@ -351,8 +352,6 @@ def formatTextFile(conversionMethod):
             if ";" in line:
                 txtFileCleaned.write(line)
     txtFileCleaned.close()
-    
-    return True
     
 # >> FUNÇÃO PARA VERIFICAR ONDE COMEÇA E ONDE TERMINA AS TABELAS <<
 # Desc:
