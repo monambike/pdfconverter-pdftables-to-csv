@@ -324,7 +324,6 @@ def conversionStart(conversionMethod, tableDataFrame):
     except Exception as err:
         showError("Ocorreu um erro, ao tentar converter o arquivo '" + fileName + ".pdf' usando o método " + conversionMethod + ".", err)
 
-        return
 
 # >> LIMPA O ARQUIVO DE TEXTO CONVERTIDO <<
 # Desc:
