@@ -111,12 +111,6 @@ def Main():
                     lattice = boolLattice
                 )
 
-                index = 0
-                for dataFrame in tableListOfDataFrames:
-                    if tableListOfDataFrames[index].empty:
-                        del tableListOfDataFrames[index]
-                    index = index + 1
-
                 # - CONVERSÃO -
                 # Desc:
                 # Realizando a conversão com o método indicado
