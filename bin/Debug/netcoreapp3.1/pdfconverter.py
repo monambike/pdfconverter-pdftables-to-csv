@@ -84,9 +84,11 @@ def Main():
 
 
             # - MÉTODOS DE LEITURA E CONVERSÃO -
-            # Desc: Primeiro faz a leitura e conversão pra Lattice e após faz o mesmo para o Stream
-            # boolLattice = True, em outras palavras, 0 é Lattice
-            # boolLattice = False, em outras palavras, 1 é Stream
+            # Desc:
+            # Primeiro faz a leitura e conversão pra Lattice e após faz o mesmo para o Stream
+            # Legenda
+            #  - boolLattice = True, em outras palavras, 0 é Lattice
+            #  - boolLattice = False, em outras palavras, 1 é Stream
             for method in range(2):
 
                 if method == 0:
@@ -97,7 +99,8 @@ def Main():
                     conversionMethod = "stream"
 
                 # - LEITURA -
-                # Desc: Fazendo leitura do arquivo completo e passando como lista de DataFrames
+                # Desc:
+                # Fazendo leitura do arquivo completo e passando como lista de DataFrames
                 # para a variável
                 tableListOfDataFrames = tabula.read_pdf(
                     pdfFile,
@@ -108,9 +111,15 @@ def Main():
                     lattice = boolLattice
                 )
 
+                index = 0
+                for dataFrame in tableListOfDataFrames:
+                    if tableListOfDataFrames[index].empty:
+                        del tableListOfDataFrames[index]
+                    index = index + 1
+
                 # - CONVERSÃO -
-                # Lattice
-                # Desc: Realizando a conversão com o que foi dado na leitura com o lattice
+                # Desc:
+                # Realizando a conversão com o método indicado
                 indexDataFrame = 1
                 for tableDataFrame in tableListOfDataFrames:
                     conversionStart(conversionMethod, tableDataFrame)
@@ -152,10 +161,7 @@ def setProjectStructure():
 
     # ---------------------------------------------------------------------- #
 
-    # Cria as pastas armazenadas na temporária 'conversionPaths'
-    #for eachPath in conversionPaths:
-    #    print(eachPath)
-    #    Path(currenPath + "\\resultados\\" + eachPath).mkdir(parents = True, exist_ok = True)
+    # Cria as pastas que estão armazenadas na temporária 'conversionPaths'
     for path in conversionPaths:
         Path(currentPath + path).mkdir(parents = True, exist_ok = True)
 
@@ -254,14 +260,17 @@ def turnHeaderInSimpleRow(tableDataFrame):
     # Pegando o cabeçalho da tabela e passando ela como lista para a temporária
     tableDataFrameHeader = [*tableDataFrame]
 
-    # Removendo o cabeçalho do DataFrame atual
-    tableDataFrame = tableDataFrame.T.reset_index().T.reset_index(drop=True)
+    # Checando se a lista veio vazia ou se o cabeçalho possui campos vazios
+    if tableDataFrameHeader and not "Unnamed" in tableDataFrameHeader[0]:
+        # Removendo o cabeçalho do DataFrame atual
+        tableDataFrame = tableDataFrame.T.reset_index().T.reset_index(drop=True)
 
-    # Adicionando a lista como primeira linha do DataFrame temporário
-    tableDataFrameHeader.insert(1, tableDataFrameHeader)
 
-    # Concatenando tabela temporária à tabela principal
-    pandas.concat([pandas.DataFrame(tableDataFrameHeader), tableDataFrame], ignore_index=True)
+        # Adicionando a lista como primeira linha do DataFrame temporário
+        tableDataFrameHeader.insert(1, tableDataFrameHeader)
+
+        # Concatenando tabela temporária à tabela principal
+        pandas.concat([pandas.DataFrame(tableDataFrameHeader), tableDataFrame], ignore_index=True)
 
 # >> REALIZA A CONVERSÃO DO ARQUIVO <<
 # Desc:
