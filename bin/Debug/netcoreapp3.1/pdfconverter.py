@@ -153,6 +153,9 @@ def setProjectStructure():
         "\\resultados\\tableWithBlankCells",
         "\\resultados\\tableWithBlankCells\\lattice",
         "\\resultados\\tableWithBlankCells\\stream",
+        "\\resultados\\test",
+        "\\resultados\\test\\lattice",
+        "\\resultados\\test\\stream",
         "\\resultados\\withoutFormatting",
         "\\resultados\\withoutFormatting\\lattice",
         "\\resultados\\withoutFormatting\\stream"
@@ -356,7 +359,9 @@ def formatTextFile(conversionMethod):
     txtMainPath = currentPath + "\\resultados\\main\\" + conversionMethod + "\\" + fileName + ".txt"
     # Formatação padrão, porém mantendo campos vazios
     txtReturnBlankCellsPath = currentPath + "\\resultados\\tableWithBlankCells\\" + conversionMethod + "\\" + fileName + ".txt"
-    
+    # Formatação sem a segunda verificação com a condicional IF
+    txtReturnTestPath = currentPath + "\\resultados\\test\\" + conversionMethod + "\\" + fileName + ".txt"
+
     # ---------------------------------------------------------------------- #
     
     # - RESULTADO -
@@ -366,7 +371,9 @@ def formatTextFile(conversionMethod):
     txtMainFile = open(txtMainPath, "a", encoding="UTF-8")
     # Arquivo para caso a tabela tenha itens vazios que precisam ser computados
     txtReturnBlankCellsFile = open(txtReturnBlankCellsPath, "a", encoding="UTF-8")
-    
+    # Arquivo em fase de teste
+    txtReturnTestFile = open(txtReturnTestPath, "a", encoding="UTF-8")
+
     regexSearch = re.compile(
         r"""
 
