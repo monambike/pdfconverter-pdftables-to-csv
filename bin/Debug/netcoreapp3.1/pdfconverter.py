@@ -380,6 +380,7 @@ def formatTextFile(conversionMethod):
         (\s?\"Unnamed:\s\d\d?\";?)| # Remove os Unnamed
         (;\"\")|                    # Remove (;"")
         (\"\";)|                    # Remove ("";)
+        (?<=\d)\.0(?=\")|           # Remove os '.0' indesejados
         ((?<=\");(?!.))|            # Remove pontos e vírgulas que estão no final da linha
         ((?<!\")\n)                 # Remove quebras de linha caso seja no meio dos dados,
                                     # ou seja, caso não possua " atrás da quebra de linha
