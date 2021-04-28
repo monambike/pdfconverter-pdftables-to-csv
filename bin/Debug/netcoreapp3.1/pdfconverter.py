@@ -297,7 +297,7 @@ def conversionStart(conversionMethod, tableDataFrame):
         # Removendo quebras de linha
         # O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
         # O segundo replace remove as que acontecem por conta do ponto e vírgula
-        tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
+        tableDataFrame = tableDataFrame.replace({r"\r": " "}, regex=True).replace({r";": ","}, regex=True)
 
         txtFilePath = currentPath + "\\resultados\\withoutFormatting\\" + conversionMethod + "\\" + fileName + ".txt"
         
