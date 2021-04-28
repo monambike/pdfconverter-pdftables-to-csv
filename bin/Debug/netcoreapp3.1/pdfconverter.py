@@ -342,20 +342,62 @@ def formatTextFile(conversionMethod):
     # - GLOBAIS -
     global txtFilePath
 
-    # - CAMINHOS -
-    txtFileCleanedPath = currentPath + "\\resultados\\test\\" + conversionMethod + "\\" + fileName + ".txt"
+    # - EXPRESSÕES REGULARES -
+    # Procura no geral por similares à 'Unnamed: 1;' e '"";'
+    #reReturnBlankCells = "(\s?\"Unnamed:\s\d\d?\";?)|(;\"\")|(\"\";)|((?<=\");(?!.))|((?<!\")\n)"
+    # Retorna todos os ponto e vírgula que estão no final da linha
+    #reReturnAllLineEndingSemicolon = ""
+    # Procura por quebras de linha inadequadas (quebras que ocorrem no meio dos dados)
+    #reReturnWrongLineBreaks = ""
 
+    # - CAMINHOS -
+    # Formatação padrão, apenas exibindo caso e caso tenha pelo menos um separados (;) na linha
+    # e removendo campos vazios
+    txtMainPath = currentPath + "\\resultados\\main\\" + conversionMethod + "\\" + fileName + ".txt"
+    # Formatação padrão, porém mantendo campos vazios
+    txtReturnBlankCellsPath = currentPath + "\\resultados\\tableWithBlankCells\\" + conversionMethod + "\\" + fileName + ".txt"
+    
     # ---------------------------------------------------------------------- #
     
-    # Esse loop por toda linha e vai encontrando caracteres iguais, quando ele encontrar algum caractere diferente na mesma linha ele para e retorna falso
-    txtFileCleaned = open(txtFileCleanedPath, "a", encoding="UTF-8")
+    # - RESULTADO -
+    # Desc:
+    # Novos arquivos gerados com a limpeza
+    # Arquivo principal, com toda a limpeza definida
+    txtMainFile = open(txtMainPath, "a", encoding="UTF-8")
+    # Arquivo para caso a tabela tenha itens vazios que precisam ser computados
+    txtReturnBlankCellsFile = open(txtReturnBlankCellsPath, "a", encoding="UTF-8")
+    
+    regexSearch = re.compile(
+        r"""
+
+        (\s?\"Unnamed:\s\d\d?\";?)| # Remove os Unnamed
+        (;\"\")|                    # Remove (;"")
+        (\"\";)|                    # Remove ("";)
+        ((?<=\");(?!.))|            # Remove pontos e vírgulas que estão no final da linha
+        ((?<!\")\n)                 # Remove quebras de linha caso seja no meio dos dados,
+                                    # ou seja, caso não possua " atrás da quebra de linha
+
+        """,
+        
+        re.VERBOSE|re.MULTILINE
+    )
+
+    # Abre o arquivo original
     with open(txtFilePath, "r", encoding="UTF-8") as txtDoc:
         # Navega por cada linha do documento de texto
         for line in txtDoc:
-            # Só escreve a linha se ela tiver com pelo menos um ';'
-            if ";" in line:
-                txtFileCleaned.write(line)
-    txtFileCleaned.close()
+            # Se a linha contém um dado, ou seja começa com '"' e
+            # não possui ponto e vírgula, não escreve
+            if line.startswith('"') and ";" or '"' in line:
+                txtReturnBlankCellsFile.write(line)
+
+                # Substitui por nada os itens que ele encontrar com regexSearch
+                line = regexSearch.sub("", line)
+
+                txtMainFile.write(line)
+
+    txtMainFile.close()
+    txtReturnBlankCellsFile.close()
     
 # >> FUNÇÃO PARA VERIFICAR ONDE COMEÇA E ONDE TERMINA AS TABELAS <<
 # Desc:
