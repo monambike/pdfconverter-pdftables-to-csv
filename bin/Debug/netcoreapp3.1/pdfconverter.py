@@ -393,18 +393,25 @@ def formatTextFile(conversionMethod):
     with open(txtFilePath, "r", encoding="UTF-8") as txtDoc:
         # Navega por cada linha do documento de texto
         for line in txtDoc:
-            # Se a linha contém um dado, ou seja começa com '"' e
-            # não possui ponto e vírgula, não escreve
-            if line.startswith('"') and ";" or '"' in line:
+            # Se a linha não começa com '"' (indicando que o dado
+            # foi quebrado na metade) ou caso a linha possua ponto
+            # e vírgula também escreve
+            if not line.startswith('"') or line.startswith('"') and ";" in line or line != "\n":
                 txtReturnBlankCellsFile.write(line)
 
-                # Substitui por nada os itens que ele encontrar com regexSearch
-                line = regexSearch.sub("", line)
-
+                # Repete a limpeza duas vezes para garantir
+                for i in range(2):
+                    # Substitui por nada os itens que ele encontrar com regexSearch
+                    line = regexSearch.sub("", line)
+                
                 txtMainFile.write(line)
+
+                if not line.startswith('"') or line.startswith('"') and ";" in line or line == "\n":
+                    txtReturnTestFile.write(line)
 
     txtMainFile.close()
     txtReturnBlankCellsFile.close()
+    txtReturnTestFile.close()
     
 # >> FUNÇÃO PARA VERIFICAR ONDE COMEÇA E ONDE TERMINA AS TABELAS <<
 # Desc:
