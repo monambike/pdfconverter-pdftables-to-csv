@@ -147,11 +147,15 @@ def setProjectStructure():
     conversionPaths = [
         "\\PDFs",
         "\\resultados",
-        "\\resultados\\lattice",
-        "\\resultados\\stream",
-        "\\resultados\\test",
-        "\\resultados\\test\\lattice",
-        "\\resultados\\test\\stream"
+        "\\resultados\\main",
+        "\\resultados\\main\\lattice",
+        "\\resultados\\main\\stream",
+        "\\resultados\\tableWithBlankCells",
+        "\\resultados\\tableWithBlankCells\\lattice",
+        "\\resultados\\tableWithBlankCells\\stream",
+        "\\resultados\\withoutFormatting",
+        "\\resultados\\withoutFormatting\\lattice",
+        "\\resultados\\withoutFormatting\\stream"
     ]
 
     # ---------------------------------------------------------------------- #
@@ -292,7 +296,7 @@ def conversionStart(conversionMethod, tableDataFrame):
         # O segundo replace remove as que acontecem por conta do ponto e vírgula
         tableDataFrame = tableDataFrame.replace({r"\r": ""}, regex=True).replace({r";": ","}, regex=True)
 
-        txtFilePath = currentPath + "\\resultados\\" + conversionMethod + "\\" + fileName + ".txt"
+        txtFilePath = currentPath + "\\resultados\\withoutFormatting\\" + conversionMethod + "\\" + fileName + ".txt"
         
         # Converte para .txt no formato de um CSV
         tableDataFrame.to_csv(
