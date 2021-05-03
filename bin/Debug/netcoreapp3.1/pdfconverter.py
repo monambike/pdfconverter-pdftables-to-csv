@@ -340,7 +340,7 @@ def conversionStart(conversionMethod, tableDataFrame):
         # O segundo replace remove as que acontecem por conta do ponto e vírgula
         tableDataFrame = tableDataFrame.replace({r"\r": " "}, regex=True).replace({r";": ","}, regex=True)
 
-        txtFilePath = currentPath + "\\resultados\\withoutFormatting\\" + conversionMethod + "\\" + fileName + ".txt"
+        txtFilePath = currentPath + "\\resultados\\" + conversionMethod + "\\withoutFormatting\\" + fileName + ".txt"
         
         # Converte para .txt no formato de um CSV
         tableDataFrame.to_csv(
@@ -397,11 +397,11 @@ def formatTextFile(conversionMethod):
     # - CAMINHOS -
     # Formatação padrão, apenas exibindo caso e caso tenha pelo menos um separados (;) na linha
     # e removendo campos vazios
-    txtMainPath = currentPath + "\\resultados\\main\\" + conversionMethod + "\\" + fileName + ".txt"
+    txtMainPath = currentPath + "\\resultados\\" + conversionMethod + "\\main\\" + fileName + ".txt"
     # Formatação padrão, porém mantendo campos vazios
-    txtReturnBlankCellsPath = currentPath + "\\resultados\\tableWithBlankCells\\" + conversionMethod + "\\" + fileName + ".txt"
+    txtReturnBlankCellsPath = currentPath + "\\resultados\\" + conversionMethod + "\\tableWithBlankCells\\" + fileName + ".txt"
     # Formatação sem a segunda verificação com a condicional IF
-    txtReturnTestPath = currentPath + "\\resultados\\test\\" + conversionMethod + "\\" + fileName + ".txt"
+    txtReturnTestPath = currentPath + "\\resultados\\" + conversionMethod + "\\test\\" + fileName + ".txt"
 
     # ---------------------------------------------------------------------- #
     
