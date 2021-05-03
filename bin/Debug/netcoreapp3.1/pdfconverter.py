@@ -165,28 +165,48 @@ def setProjectStructure():
     # >> VARIÁVEIS <<
     
     # - CAMINHOS -
-    conversionPaths = [
+    # Pastas Raíz
+    rootPaths = [
         "\\PDFs",
-        "\\resultados",
-        "\\resultados\\main",
-        "\\resultados\\main\\lattice",
-        "\\resultados\\main\\stream",
-        "\\resultados\\tableWithBlankCells",
-        "\\resultados\\tableWithBlankCells\\lattice",
-        "\\resultados\\tableWithBlankCells\\stream",
-        "\\resultados\\test",
-        "\\resultados\\test\\lattice",
-        "\\resultados\\test\\stream",
-        "\\resultados\\withoutFormatting",
-        "\\resultados\\withoutFormatting\\lattice",
-        "\\resultados\\withoutFormatting\\stream"
+        "\\resultados"
+    ]
+    # Métodos
+    methodPaths = [
+        "\\lattice",
+        "\\stream"
+    ]
+    # Tipos de Saída
+    outputTypePaths = [
+        "\\main",
+        "\\tableWithBlankCells",
+        "\\test",
+        "\\withoutFormatting"
     ]
 
     # ---------------------------------------------------------------------- #
 
-    # Cria as pastas que estão armazenadas na temporária 'conversionPaths'
-    for path in conversionPaths:
-        Path(currentPath + path).mkdir(parents = True, exist_ok = True)
+    for rootPath in rootPaths:
+        Path(
+            currentPath +
+            rootPath
+        ).mkdir(parents = True, exist_ok = True)
+
+        if rootPath == "\\resultados":
+            for methodPath in methodPaths:
+                Path(
+                    currentPath +
+                    rootPath +
+                    methodPath
+                ).mkdir(parents = True, exist_ok = True)
+
+                for outputTypePath in outputTypePaths:
+                    Path(
+                        currentPath +
+                        rootPath +
+                        methodPath +
+                        outputTypePath
+                    ).mkdir(parents = True, exist_ok = True)
+
 
     # Cria arquivo para exibir a saída do terminal, se já tiver limpa
     outputClear = open(pathOutputFile, "w", encoding="UTF-8")
