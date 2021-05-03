@@ -207,7 +207,6 @@ def setProjectStructure():
     outputTypePaths = [
         "\\main",
         "\\tableWithBlankCells",
-        "\\test",
         "\\withoutFormatting"
     ]
 
@@ -431,8 +430,6 @@ def formatTextFile(conversionMethod):
     txtMainPath = currentPath + "\\resultados\\" + conversionMethod + "\\main\\" + fileName + ".txt"
     # Formatação padrão, porém mantendo campos vazios
     txtReturnBlankCellsPath = currentPath + "\\resultados\\" + conversionMethod + "\\tableWithBlankCells\\" + fileName + ".txt"
-    # Formatação sem a segunda verificação com a condicional IF
-    txtReturnTestPath = currentPath + "\\resultados\\" + conversionMethod + "\\test\\" + fileName + ".txt"
 
     # ---------------------------------------------------------------------- #
     
@@ -443,8 +440,6 @@ def formatTextFile(conversionMethod):
     txtMainFile = open(txtMainPath, "a", encoding="UTF-8")
     # Arquivo para caso a tabela tenha itens vazios que precisam ser computados
     txtReturnBlankCellsFile = open(txtReturnBlankCellsPath, "a", encoding="UTF-8")
-    # Arquivo em fase de teste
-    txtReturnTestFile = open(txtReturnTestPath, "a", encoding="UTF-8")
 
     regexSearch = re.compile(
         r"""
@@ -476,15 +471,12 @@ def formatTextFile(conversionMethod):
                 for i in range(2):
                     # Substitui por nada os itens que ele encontrar com regexSearch
                     line = regexSearch.sub("", line)
-                
-                txtMainFile.write(line)
 
                 if not line.startswith('"') or line.startswith('"') and ";" in line or line == "\n":
-                    txtReturnTestFile.write(line)
+                    txtMainFile.write(line)
 
     txtMainFile.close()
     txtReturnBlankCellsFile.close()
-    txtReturnTestFile.close()
 
 # >>>>>>>>>> CONVERSÃO - FIM <<<<<<<<<<
 
