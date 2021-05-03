@@ -31,6 +31,16 @@ pathOutputFile = ""
 # Índice do Data Frame
 indexDataFrame = 0
 
+strGiantLine = (
+                    "_____________________________________________________________"
+                    "_____________________________________________________________"
+                    "_____________________________________________________________"
+                    "_____________________________________________________________"
+                    "_____________________________________________________________"
+                    "_____________________________________________________________"
+                    "____________________________________"
+               )
+
 # ---------------------------------------------------------------------- #
 
 
@@ -60,6 +70,20 @@ def Main():
     chdir(currentPath + "\\PDFs")
     # Filtra pelos PDFs
     for pdfFile in glob("*.pdf"):
+        # Se já não é mais o primeira arquivo
+        if indexFile > 1:
+            # Fecha o leiaute e pula 5 linhas
+            setTerminalFile("open")
+            print(
+                "\n" +
+                strGiantLine + "\n" +
+                strGiantLine + "\n"
+                "\n\n\n\n\n\n\n\n\n",
+            
+                file = outputFile
+            )
+            setTerminalFile("closed")
+
         try:
             # Remove extensão do arquivo, pegando apenas o nome e atribui para a temporária
             fileName = pdfFile[:-4]
@@ -71,11 +95,14 @@ def Main():
             # - TERMINAL -
             setTerminalFile("open")
             print(
-                "======================================================================\n"
-                "LEITURA DE ARQUIVO - NÚMERO " + str(indexFile) + ", '" + pdfFile + "'\n"
-                "O arquivo '" + fileName + "' foi lido e está pronto pra ser convertido\n",
-
-                file=outputFile
+                pdfFile + strGiantLine + "\n" +
+                strGiantLine + "\n\n\n\n"
+                "                                              										----- + -----\n\n"
+                "                                              								LEITURA DE ARQUIVO - NÚMERO " + str(indexFile) + ", '" + pdfFile + "'\n"
+                "                                              							O arquivo '" + fileName + "' foi lido e está pronto pra ser convertido\n\n"
+                "                                              										----- + -----\n\n\n\n",
+                
+                file = outputFile
             )
             setTerminalFile("closed")
 
@@ -254,14 +281,17 @@ def setTerminalFile(setState):
         outputFile.close()
     else:
         showError("O terminal só pode ser aberto ou fechado. Tenha certeza que atribuiu 'open' para aberto ou 'close' para fechado pro método 'terminal'.", "")
+        exit()
 
 # >> EXIBE UMA MENSAGEM DE ERRO <<
 # Desc:
 # Função responsável por exibir mensagens de erros disponíveis nas Exceptions.
 def showError(errorMessage, err):
-    setTerminalFile("open")
+    # Limpa o terminal para exibir melhor o erro
+    open(pathOutputFile, "w").close()
+
+    outputFile = open(pathOutputFile, "a", encoding="UTF-8")
     print(
-        "======================================================================\n"
         "**********************************************************************\n"
         "--- MENSAGEM ---\n"
         "\n"
@@ -282,7 +312,7 @@ def showError(errorMessage, err):
         
         file = outputFile
     )
-    setTerminalFile("closed")
+    outputFile.close()
 
 # >>>>>>>>>> SAÍDAS DE AVISOS - FIM <<<<<<<<<<
 
@@ -357,10 +387,10 @@ def conversionStart(conversionMethod, tableDataFrame):
         # Indica ao terminal que uma tabela foi convertida com sucesso
         setTerminalFile("open")
         print(
-            "_________________________________________________________________________________\n"
-            "As tabelas da página "+ str(indexDataFrame) + " do '" + fileName + "' foram convertidas |\n"
-            "________________________________________________________________________________/\n" +
-            fileName + " " + conversionMethod + " pg" + str(indexDataFrame) + "\n",
+            "\n\n"
+            "          A tabela nº"+ str(indexDataFrame) + " do '" + fileName + "' foi convertida usando '" + conversionMethod + "'\n"
+            "\________________________________________________________________________________/\n" +
+            "Search this (Ctrl + F): '" + fileName + " " + conversionMethod + " tbl" + str(indexDataFrame) + "'\n",
 
             file = outputFile
         )
