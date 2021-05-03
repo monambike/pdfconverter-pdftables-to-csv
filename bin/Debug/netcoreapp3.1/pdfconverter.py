@@ -21,16 +21,11 @@ outputFile = ""
 # Saída do arquivo exportado
 txtFilePath = ""
 
-# - CAMINHO ATUAL -
-# Definindo o caminho do projeto atual e atribuindo para a variável currentPath
-currentPath = Path(__file__).parent.absolute()
-currentPath = str(currentPath)[:-37]
-# (pdfconverter\bin\Debug\netcoreapp3.1)
-#    \___[ essa diminuição de caracteres faz voltar até essa pasta (pdfconverter) ]
-
 # - CAMINHOS -
+# Caminho atual
+currentPath = ""
 # Caminhos baseados no currentPath
-pathOutputFile = currentPath + "\\resultados\\output.txt"
+pathOutputFile = ""
 
 # - CONTADORES -
 # Índice do Data Frame
@@ -57,10 +52,11 @@ def Main():
 
     # ---------------------------------------------------------------------- #
 
+    # - CONFIGURAÇÕES INICIAIS -
+    setCurrentPath()
     pandaSetConfig()
     setProjectStructure()
 
-    # Muda o diretório para o que foi passado no parâmetro
     chdir(currentPath + "\\PDFs")
     # Filtra pelos PDFs
     for pdfFile in glob("*.pdf"):
@@ -134,6 +130,31 @@ def Main():
 
 
 #    >>>>>>>>>> CONFIGURAÇÕES INICIAIS - INÍCIO <<<<<<<<<<
+
+# >> DEFINE O LOCAL DA RAÍZ DO PROJETO <<
+# Desc:
+# Define o local da raíz do projeto, onde os outros caminhos irão se basear
+def setCurrentPath():
+    try:
+        global currentPath
+        global pathOutputFile
+
+        # Pegando o caminho até o executável ou script atual e atribuindo para a variável currentPath
+        currentPath = Path(__file__).parent.absolute()
+        #                           ____[o script está dentro da pasta 'netcoreapp3.1']
+        #                          /
+        # (pdfconverter\bin\Debug\netcoreapp3.1)
+
+        # Removendo caracteres até voltar para a localização à seguir
+        currentPath = str(currentPath)[:-37]
+        # (pdfconverter\bin\Debug\netcoreapp3.1)
+        #    \___[a diminuição de caracteres faz voltar até a pasta 'pdfconverter']
+
+        pathOutputFile = currentPath + "\\resultados\\output.txt"
+    except Exception as err:
+        showError("Não foi possível achar o diretório atual. Provável problema na hora de encurtar "
+        "o caminho, verifique se o caminho passado na variável 'currentPath' dentro do método "
+        "'setCurrentPath' está correto.", err)
 
 # >> DEFINE A ESTRUTURA DE PASTAS DO PROJETO <<
 # Desc:
