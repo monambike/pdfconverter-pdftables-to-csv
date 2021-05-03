@@ -132,7 +132,8 @@ def Main():
                     multiple_tables = True,
                     pages = "all",
                     silent = True,
-                    lattice = boolLattice
+                    lattice = boolLattice,
+                    pandas_options = {"dtype": "str"}
                 )
 
                 # - CONVERSÃO -
