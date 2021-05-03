@@ -355,6 +355,7 @@ def conversionStart(conversionMethod, tableDataFrame):
     try:
         # Deleta todas as linhas que estão completamente vazias
         tableDataFrame = tableDataFrame.dropna(how="all")
+        # Deleta todas as colunas que estão completamente vazias
         tableDataFrame = tableDataFrame.dropna(how="all", axis=1)
 
         turnHeaderInSimpleRow(tableDataFrame)
@@ -448,9 +449,8 @@ def formatTextFile(conversionMethod):
         (;\"\")|                    # Remove (;"")
         (\"\";)|                    # Remove ("";)
         ((?<=\");(?!.))|            # Remove pontos e vírgulas que estão no final da linha
-        ((?<!\")\n)|                 # Remove quebras de linha caso seja no meio dos dados,
+        ((?<!\")\n)                # Remove quebras de linha caso seja no meio dos dados,
                                     # ou seja, caso não possua " atrás da quebra de linha
-        (?<=\d)\.0(?=\")            # Remove os '0's indesejados à direita
 
         """,
         
