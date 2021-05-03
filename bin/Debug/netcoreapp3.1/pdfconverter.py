@@ -454,30 +454,6 @@ def formatTextFile(conversionMethod):
     txtMainFile.close()
     txtReturnBlankCellsFile.close()
     txtReturnTestFile.close()
-    
-# >> FUNÇÃO PARA VERIFICAR ONDE COMEÇA E ONDE TERMINA AS TABELAS <<
-# Desc:
-# Função ainda em fase de teste e aprimoramento.
-#def verifyCellsValue(tableDataFrame):
-    #cellValueFirstDigit = ""
-    #outputTest = open(currentPath + "\\resultados\\funcTest.txt", "a")
-    # Navega por cada linha do DataFrame
-    #pandas.display(tableDataFrame)
-    
-    #print(display.iloc[0])
-    #for rowIndex, row in tableDataFrame.iterrows():
-    #    teste_1 = str(row)
-
-        # Caso o primeiro caractere comece com letras
-        # e não tenha "nan" (similar ao "None" porém exibido em strings vazias dentro do corpo do DataFrame)
-        # é o título
-    #    if str(row)[:1].isdigit():
-    #        print("")
-        # Caso contrário é o corpo
-    #    else:
-    #        print("Pode ser um titulo: " + str(row), file=outputTest)
-    #    break
-    # Abre o arquivo de texto e mostra o erro
 
 # >>>>>>>>>> CONVERSÃO - FIM <<<<<<<<<<
 
