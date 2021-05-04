@@ -151,7 +151,10 @@ def Main():
             showError("Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "'.", err)
             break 
     else:
-        showError("Não há arquivos de PDF para serem convertidos.", "")
+        # Se algum PDF no fim do 'For' ainda não foi convertido
+        if indexFile <= 1:
+            # Mostra o erro
+            showError("Não há arquivos de PDF para serem convertidos.", "")
 
 #    >>>>>>>>>> FUNÇÃO PRINCIPAL - FIM <<<<<<<<<<
 
