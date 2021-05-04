@@ -70,7 +70,7 @@ def Main():
     chdir(currentPath + "\\PDFs")
     # Filtra pelos PDFs
     for pdfFile in glob("*.pdf"):
-        # Se já não é mais o primeira arquivo
+        # Se já não é mais o primeiro arquivo
         if indexFile > 1:
             # Fecha o leiaute e pula 5 linhas
             setTerminalFile("open")
@@ -97,10 +97,10 @@ def Main():
             print(
                 pdfFile + strGiantLine + "\n" +
                 strGiantLine + "\n\n\n\n"
-                "                                              										----- + -----\n\n"
-                "                                              								LEITURA DE ARQUIVO - NÚMERO " + str(indexFile) + ", '" + pdfFile + "'\n"
-                "                                              							O arquivo '" + fileName + "' foi lido e está pronto pra ser convertido\n\n"
-                "                                              										----- + -----\n\n\n\n",
+                "                                              										                                                                                                    ----- + -----\n\n"
+                "                                              							                                                                                                    	     LEITURA DE ARQUIVO - NÚMERO " + str(indexFile) + ", '" + pdfFile + "'\n"
+                "                                              							                                                                                                    O arquivo '" + fileName + "' foi lido e está pronto pra ser convertido\n\n"
+                "                                              										                                                                                                    ----- + -----\n\n\n\n",
                 
                 file = outputFile
             )
@@ -155,6 +155,19 @@ def Main():
         if indexFile <= 1:
             # Mostra o erro
             showError("Não há arquivos de PDF para serem convertidos.", "")
+        # Caso já tenha
+        else:
+            if indexFile > 1:
+                # Fecha o leiaute e pula 5 linhas
+                setTerminalFile("open")
+                print(
+                    "\n" +
+                    strGiantLine + "\n" +
+                    strGiantLine,
+                
+                    file = outputFile
+                )
+                setTerminalFile("closed")
 
 #    >>>>>>>>>> FUNÇÃO PRINCIPAL - FIM <<<<<<<<<<
 
