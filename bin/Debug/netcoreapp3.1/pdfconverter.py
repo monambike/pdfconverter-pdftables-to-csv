@@ -437,14 +437,7 @@ def formatTextFile(conversionMethod):
 
     # ---------------------------------------------------------------------- #
     
-    # - RESULTADO -
-    # Desc:
-    # Novos arquivos gerados com a limpeza
-    # Arquivo principal, com toda a limpeza definida
-    txtMainFile = open(txtMainPath, "a", encoding="UTF-8")
-    # Arquivo para caso a tabela tenha itens vazios que precisam ser computados
-    txtReturnBlankCellsFile = open(txtReturnBlankCellsPath, "a", encoding="UTF-8")
-
+    # REGEX
     regexSearch = re.compile(
         r"""
 
@@ -459,6 +452,15 @@ def formatTextFile(conversionMethod):
         
         re.VERBOSE|re.MULTILINE
     )
+
+    
+    # - RESULTADO -
+    # Desc:
+    # Novos arquivos gerados com a limpeza
+    # Arquivo principal, com toda a limpeza definida
+    txtMainFile = open(txtMainPath, "a", encoding="UTF-8")
+    # Arquivo para caso a tabela tenha itens vazios que precisam ser computados
+    txtReturnBlankCellsFile = open(txtReturnBlankCellsPath, "a", encoding="UTF-8")
 
     # Abre o arquivo original
     with open(txtFilePath, "r", encoding="UTF-8") as txtDoc:
