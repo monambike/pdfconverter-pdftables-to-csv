@@ -445,7 +445,7 @@ def formatTextFile(conversionMethod):
         (;\"\")|                    # Remove (;"")
         (\"\";)|                    # Remove ("";)
         ((?<=\");(?!.))|            # Remove pontos e vírgulas que estão no final da linha
-        ((?<!\")\n)                # Remove quebras de linha caso seja no meio dos dados,
+        ((?<!\")\n)                 # Remove quebras de linha caso seja no meio dos dados,
                                     # ou seja, caso não possua " atrás da quebra de linha
 
         """,
@@ -472,16 +472,39 @@ def formatTextFile(conversionMethod):
             if not line.startswith('"') or line.startswith('"') and ";" in line or line != "\n":
                 txtReturnBlankCellsFile.write(line)
 
-                # Repete a limpeza duas vezes para garantir
-                for i in range(2):
+                # Repete a formatação do arquivo duas vezes para garantir
+                for formatFile in range(2):
                     # Substitui por nada os itens que ele encontrar com regexSearch
                     line = regexSearch.sub("", line)
+                
+                
+                # Faz uma quebra de linha caso tenha duas aspas duplas uma do lado da outra
+                line = re.sub(r"(?<=\")(?=\")", "\n", line)
+                
+                # Remove a linha caso ela não comece com aspas
+                line = re.sub(r"(^[^\"].*)", "", line)
+
+                # Remove linhas em branco
+                line = re.sub(r"(^\n*$\n)", "", line)
+
 
                 if not line.startswith('"') or line.startswith('"') and ";" in line or line == "\n":
                     txtMainFile.write(line)
 
-    txtMainFile.close()
-    txtReturnBlankCellsFile.close()
+        txtMainFile.close()
+        txtReturnBlankCellsFile.close()
+
+    #with open(txtMainPath, "r", encoding="UTF-8") as txtMainFile:
+
+        #txtMainFileRewrote = txtMainFile.read()
+
+        # Faz uma quebra de linha caso tenha duas aspas duplas uma do lado da outra
+        #aa = re.sub(r"(?<=\")(?=\")", "\n", txtMainFileRewrote, flags = re.M)
+        
+        # Remove uma linha caso ela não comece com aspas e remove linhas em branco
+        #bb = re.sub(r"(^[^\"].*|\n)|(^\n*$\n)", "", aa, flags = re.M)
+
+
 
 # >>>>>>>>>> CONVERSÃO - FIM <<<<<<<<<<
 
