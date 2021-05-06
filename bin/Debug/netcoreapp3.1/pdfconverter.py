@@ -176,7 +176,6 @@ def Main():
         # exibe um erro
         else:
             showError("Não há arquivos de PDF para serem convertidos.", "")
-            break
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNÇÃO PRINCIPAL - FIM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
