@@ -51,7 +51,8 @@ strGiantLine = (
 
 
 
-#    >>>>>>>>>> FUNÇÃO PRINCIPAL - INÍCIO <<<<<<<<<<
+# REGION
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNÇÃO PRINCIPAL - INÍCIO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 def Main():
     # ---------------------------------------------------------------------- #
@@ -177,11 +178,12 @@ def Main():
                 )
                 setTerminalFile("closed")
 
-#    >>>>>>>>>> FUNÇÃO PRINCIPAL - FIM <<<<<<<<<<
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNÇÃO PRINCIPAL - FIM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 
-#    >>>>>>>>>> CONFIGURAÇÕES INICIAIS - INÍCIO <<<<<<<<<<
+# REGION
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CONFIGURAÇÕES INICIAIS - INÍCIO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 # >> DEFINE O LOCAL DA RAÍZ DO PROJETO <<
 # Desc:
@@ -281,11 +283,12 @@ def pandaSetConfig():
     # Fazer com que caso tenha um ';' ele não passe os dados pra outra célula
     pandas.options.display.latex.multicolumn = False
 
-#    >>>>>>>>>> CONFIGURAÇÕES INICIAIS - FIM <<<<<<<<<<
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CONFIGURAÇÕES INICIAIS - FIM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 
-# >>>>>>>>>> SAÍDAS DE AVISOS - INÍCIO <<<<<<<<<<
+# REGION
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SAÍDAS DE AVISOS - INÍCIO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 # >> DEFINE O ESTADO DO TERMINAL <<
 # Desc:
@@ -339,11 +342,12 @@ def showError(errorMessage, err):
     )
     outputFile.close()
 
-# >>>>>>>>>> SAÍDAS DE AVISOS - FIM <<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SAÍDAS DE AVISOS - FIM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 
-# >>>>>>>>>> CONVERSÃO - INÍCIO <<<<<<<<<<
+# REGION
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CONVERSÃO - INÍCIO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 # >> FAZENDO COM QUE O CABEÇALHO SE TORNE UMA LINHA COMUM <<
 # Desc:
@@ -576,9 +580,7 @@ def formatTextFile(conversionMethod):
 
         txtFullClearFile.close()
 
-
-
-# >>>>>>>>>> CONVERSÃO - FIM <<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CONVERSÃO - FIM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 
