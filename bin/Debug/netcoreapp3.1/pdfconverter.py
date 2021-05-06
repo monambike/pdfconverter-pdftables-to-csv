@@ -505,8 +505,8 @@ def formatTextFile(conversionMethod):
                     # txtReturnBlankCellsFile
                     txtReturnBlankCellsFile.write(lineCurrent)
 
-                # Repete a formatação do arquivo duas vezes para garantir
-                for formatFile in range(2):
+                    # Repete a formatação do arquivo duas vezes para garantir
+                    for formatFile in range(2):
                         # Substitui por nada os itens que ele encontrar com regexVerify
                         lineCurrent = regexVerify.sub("", lineCurrent)
                         # Remove quebras de linha caso seja no meio dos dados,
@@ -561,13 +561,13 @@ def formatTextFile(conversionMethod):
             if (lineCurrent == lineRemovedQuotes):
                 # Tá errada e vai ser apagada
                 lineCurrent = ""
-
+            
             # Só escreve a linha se tiver pelo menos mais que 3 colunas
             if (lineCurrent.count("\"") > 6
                 and lineCurrent.count(";") > 2):
 
                 txtFullClearFile.write(lineCurrent)
-        
+
         txtFullClearFile.close()
 
 
