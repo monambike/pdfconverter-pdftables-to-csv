@@ -26,6 +26,12 @@ txtFilePath = ""
 currentPath = ""
 # Caminhos baseados no currentPath
 pathOutputFile = ""
+# Arquivo raíz exportado
+txtFilePath = ""
+
+# - ARQUIVOS DE SAÍDA -
+# Saída do Terminal
+outputFile = ""
 
 # - CONTADORES -
 # Índice do Data Frame
