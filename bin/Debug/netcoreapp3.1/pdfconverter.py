@@ -37,6 +37,8 @@ outputFile = ""
 # Índice do Data Frame
 indexDataFrame = 0
 
+# Linha gigante que vai ficar disposta em
+# alguns lugares como divisão no terminal
 strGiantLine = (
                     "_____________________________________________________________"
                     "_____________________________________________________________"
@@ -462,45 +464,61 @@ def formatTextFile(conversionMethod):
     txtReturnBlankCellsPath = currentPath + "\\resultados\\" + conversionMethod + "\\tableWithBlankCells\\" + fileName + ".txt"
     # Full CLear
     txtFullClearPath = currentPath + "\\resultados\\" + conversionMethod + "\\fullClear\\" + fileName + ".txt"
-
-    # ---------------------------------------------------------------------- #
     
-    # REGEX
-    regexVerify = re.compile(
+
+
+    # <<< EXPRESSÕES REGULARES (REGEX) >>>
+    # Desc: Região contendo a maioria das expressões regulares
+
+    # Detecta dados que estão vazios
+    # Respectivamente detecta:
+    # ;""
+    # "";
+    regexDetectEmptyDataInBody = re.compile(
         r"""
-
-        (\s?\"Unnamed:\s\d\d?\";?)| # Remove os ("Unnamed: X";)
-        (;\"\")|                    # Remove (;"")
-        (\"\";)|                    # Remove ("";)
-        ((?<=\");(?!.))             # Remove pontos e vírgulas que estão no final da linha
-
+        (;\"\")|
+        (\"\";)|
         """,
-        
+
         re.VERBOSE|re.MULTILINE
     )
 
+    # Remove todo ponto e vírgula presente no final da linha
+    # Respectivamente detecta:
+    # ; 
+    detectFinalLineSemicolon = re.compile(r"((?<=\");(?!.))")
     
-    # - ABRINDO ARQUIVOS -
+    # ---------------------------------------------------------------------- #
+
+    # <<< ABRINDO ARQUIVOS >>>
     # Desc:
     # Abrindo os arquivos que serão utilizados depois na hora de realizar a exportação
-    # com a formatação.
+    # com formatação.
+
     # - ARQUIVOS -
-    # Arquivo principal, com toda a limpeza definida
-    txtMainFile = open(txtMainPath, "a", encoding="UTF-8")
-    # Arquivo para caso a tabela tenha itens vazios que precisam ser computados
+    # Arquivo para caso a tabela possua itens vazios que precisam ser computados
+    # (esse arquivo apenas não terá o 'regexDetectEmptyDataInBody' e similares)
     txtReturnBlankCellsFile = open(txtReturnBlankCellsPath, "a", encoding="UTF-8")
-    # Full CLear
+    
+    # Arquivo principal, ainda não totalmente pronto para ser jogado em uma tabela
+    # (possui mais dados, porém estrutura ainda não tão idealizada)
+    txtMainFile = open(txtMainPath, "a", encoding="UTF-8")
+    
+    # O arquivo já pronto e estruturado para ser jogado em uma tabela
+    # (alguns dados podem vir faltando)
     txtFullClearFile = open(txtFullClearPath, "a", encoding="UTF-8")
 
-    # Abre o arquivo original
+    # ---------------------------------------------------------------------- #
+
+    # Abre o arquivo original presente na pasta 'withoutFormatting'
+    # para criar formatações baseadas nele
     with open(txtFilePath, "r", encoding="UTF-8") as txtFile:
         # Navega por cada linha do documento de texto
         for lineCurrent in txtFile:
-
             # <<< REMOVE LINHAS SEM ASPAS DUPLAS >>>
             # Desc:
-            # Linhas que vazias que só possuem quebra de linha '\n' ou
-            # não possuem uma aspas dupla no início OU final, serão excluídas 
+            # Linhas vazias que só possuem quebra de linha '\n' ou não possuem
+            # uma aspas dupla no início OU final, serão excluídas 
             lineRemovedQuotes = ""
             lineRemovedQuotes = re.sub(r"\"", "", lineCurrent)                
             # Se essa permanece igual, ou seja, não teve aspas duplas removidas
@@ -508,23 +526,44 @@ def formatTextFile(conversionMethod):
                 # Tá errada e vai ser apagada
                 lineCurrent = ""
 
-            # Condicional que impede o continuamento do processo caso a variável esteja vazia,
-            # ou seja, caso tenha sido apagada
+            # Condicional que impede o continuamento do processo caso a variável
+            # esteja vazia, ou seja, caso tenha sido apagada pelo processo
+            # anterior de limpeza
             if (lineCurrent != ""):
-                    # Escreve o arquivo presente na variável para o arquivo
-                    # txtReturnBlankCellsFile
-                    txtReturnBlankCellsFile.write(lineCurrent)
+                    # FORMATAÇÃO (tableBlankCells)
+                    # ---------------------------------------------------------------------- #
 
                     # Repete a formatação do arquivo duas vezes para garantir
-                    for formatFile in range(2):
-                        # Substitui por nada os itens que ele encontrar com regexVerify
-                        lineCurrent = regexVerify.sub("", lineCurrent)
-                        # Remove quebras de linha caso seja no meio dos dados,
-                        # ou seja, caso não possua " atrás da quebra de linha
-                        # e as substitui por um espaço para manter o padrão
-                        lineCurrent = re.sub(r"((?<!\")\n)", " ", lineCurrent)
+                    # for formatFile in range(2):
+                    # Detecta os dados vazios que estão presentes no cabeçalho
+                    # "Unnamed: X;"
+                    lineCurrent = re.sub(r"(\s?\"Unnamed:\s\d\d?\";?)", "", lineCurrent)
 
-                    # Faz uma quebra de linha caso tenha duas aspas duplas uma do lado da outra
+                    # Remove quebras de linha caso seja no meio dos dados,
+                    # ou seja, caso não possua " atrás da quebra de linha
+                    # e as substitui por um espaço para manter o padrão
+                    lineCurrent = re.sub(r"((?<!\")\n)", " ", lineCurrent)
+
+                    # Remove ponto e vírgula no final da linha
+                    lineCurrent = detectFinalLineSemicolon.sub("", lineCurrent)
+
+                    # [ EXPORTAÇÃO ]
+                    # Pasta: \\txtReturnBlankCellsFile
+                    txtReturnBlankCellsFile.write(lineCurrent)
+
+                    # ---------------------------------------------------------------------- #
+
+
+                    # FORMATAÇÃO (MAIN)
+                    # ---------------------------------------------------------------------- #
+
+                    # Remove campos vazios no corpo
+                    lineCurrent = regexDetectEmptyDataInBody.sub("", lineCurrent)
+                    # Remove ponto e vírgula no final da linha novamente após tirar campos vazios
+                    lineCurrent = detectFinalLineSemicolon.sub("", lineCurrent)
+
+                    # Faz uma quebra de linha caso tenha duas aspas duplas uma do lado
+                    # da outra
                     lineCurrent = re.sub(r"(?<=\")(?=\")", "\n", lineCurrent)
                     
                     # Remove todos os espaços no início de cada linha
@@ -533,51 +572,65 @@ def formatTextFile(conversionMethod):
                     # Remove os dados caso tenha espaço entre os separadores e aspas
                     lineCurrent = re.sub(r"((.*\"; )(?=\"))", "", lineCurrent)
 
-                    # Remove linhas em branco
-                    #lineCurrent = re.sub(r"(^\n*$\n)", "", lineCurrent)
-
-                    # Pega os dados que possuem espaços entre o separadores e uma aspas dupla e coloca
-                    # uma quebra de linha
+                    # Pega os dados que possuem espaços entre o separadores e uma aspas
+                    # dupla e coloca uma quebra de linha
                     lineCurrent = re.sub(r"(;\ )", "\n", lineCurrent)
 
-                    if not lineCurrent.startswith('"') or lineCurrent.startswith('"') and ";" in lineCurrent or lineCurrent == "\n":
+                    if (not lineCurrent.startswith('"') or
+                        lineCurrent.startswith('"') and
+                        ";" in lineCurrent
+                        or lineCurrent == "\n"):
+                        
+                        
+                        # [ EXPORTAÇÃO ]
+                        # Pasta: \\main
                         txtMainFile.write(lineCurrent)
 
                     # Coloca essa linha no histórico
                     lineLastHistory = lineCurrent
 
+                    # ---------------------------------------------------------------------- #
+
+        # Fecha os arquivos de exportação
         txtMainFile.close()
         txtReturnBlankCellsFile.close()
 
+    # Abre o arquivo principal presente na pasta 'main' para
+    # criar formatações baseadas nele
     with open(txtMainPath, "r", encoding="UTF-8") as txtFile:
-        lineIndex = -1
-        
-        txtFileLines = txtFile.read().splitlines()
-        txtFileLastLine = txtFileLines[lineIndex]
-
-    with open(txtMainPath, "r", encoding="UTF-8") as txtFile:
+        # Navega por cada linha do documento de texto
         for lineCurrent in txtFile:
             # Caso a linha não comece com aspas deleta
             lineCurrent = re.sub(r"((^[^\"]).*)", "", lineCurrent)
             
             # Caso a linha não termine com aspas deleta
-            lineCurrent = re.sub('"(.*([^"\n]$))', "teste", lineCurrent)
+            lineCurrent = re.sub('"(.*([^"\n]$))', "", lineCurrent)
 
-            # Linhas que vazias que só possuem quebra de linha '\n' ou
-            # não possuem uma aspas dupla no início OU final, serão excluídas 
+            # <<< SEGUNDA VERIFICAÇÃO >>>
+            # Desc:
+            # Linhas vazias que só possuem uma quebra de linha '\n' como conteúdo ou
+            # não possuem uma aspas dupla no início ou no final (segunda verificação),
+            # serão excluídas 
+            # - Limpa variável -
             lineRemovedQuotes = ""
-            lineRemovedQuotes = re.sub(r"\"", "", lineCurrent)                
-            # Se essa permanece igual, ou seja, não teve aspas duplas removidas
+            lineRemovedQuotes = re.sub(r"\"", "", lineCurrent)
+                       
+            # Se a temporária permanece igual, ou seja, não teve aspas duplas
+            # removidas pelo regex
             if (lineCurrent == lineRemovedQuotes):
-                # Tá errada e vai ser apagada
+                # Quer dizer que ela ta errada e vai ser apagada
                 lineCurrent = ""
             
             # Só escreve a linha se tiver pelo menos mais que 3 colunas
+            # no arquivo fullClear
             if (lineCurrent.count("\"") > 6
                 and lineCurrent.count(";") > 2):
 
+                # [ EXPORTAÇÃO ]
+                # Pasta: \\fullClear
                 txtFullClearFile.write(lineCurrent)
-
+        
+        # Fecha os arquivos de exportação
         txtFullClearFile.close()
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CONVERSÃO - FIM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
