@@ -15,12 +15,6 @@ from PyPDF2 import PdfFileReader
 # Nome do arquivo em PDF formatado sem a extensão
 fileName = ""
 
-# - ARQUIVOS DE SAÍDA -
-# Saída do Terminal
-outputFile = ""
-# Saída do arquivo exportado
-txtFilePath = ""
-
 # - CAMINHOS -
 # Caminho atual
 currentPath = ""
