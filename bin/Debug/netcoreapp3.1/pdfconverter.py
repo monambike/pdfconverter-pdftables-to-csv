@@ -513,17 +513,17 @@ def formatTextFile(conversionMethod):
                         # ou seja, caso não possua " atrás da quebra de linha
                         # e as substitui por um espaço para manter o padrão
                         lineCurrent = re.sub(r"((?<!\")\n)", " ", lineCurrent)
-                
-                # Faz uma quebra de linha caso tenha duas aspas duplas uma do lado da outra
+
+                    # Faz uma quebra de linha caso tenha duas aspas duplas uma do lado da outra
                     lineCurrent = re.sub(r"(?<=\")(?=\")", "\n", lineCurrent)
                     
                     # Remove todos os espaços no início de cada linha
                     lineCurrent = re.sub(r"(^\ *)", "", lineCurrent)
-                
+
                     # Remove os dados caso tenha espaço entre os separadores e aspas
                     lineCurrent = re.sub(r"((.*\"; )(?=\"))", "", lineCurrent)
 
-                # Remove linhas em branco
+                    # Remove linhas em branco
                     #lineCurrent = re.sub(r"(^\n*$\n)", "", lineCurrent)
 
                     # Pega os dados que possuem espaços entre o separadores e uma aspas dupla e coloca
