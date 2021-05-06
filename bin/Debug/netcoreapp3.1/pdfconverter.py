@@ -470,9 +470,11 @@ def formatTextFile(conversionMethod):
     )
 
     
-    # - RESULTADO -
+    # - ABRINDO ARQUIVOS -
     # Desc:
-    # Novos arquivos gerados com a limpeza
+    # Abrindo os arquivos que serão utilizados depois na hora de realizar a exportação
+    # com a formatação.
+    # - ARQUIVOS -
     # Arquivo principal, com toda a limpeza definida
     txtMainFile = open(txtMainPath, "a", encoding="UTF-8")
     # Arquivo para caso a tabela tenha itens vazios que precisam ser computados
