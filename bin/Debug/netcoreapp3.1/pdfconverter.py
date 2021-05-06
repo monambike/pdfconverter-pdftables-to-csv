@@ -514,15 +514,36 @@ def formatTextFile(conversionMethod):
         txtMainFile.close()
         txtReturnBlankCellsFile.close()
 
-    #with open(txtMainPath, "r", encoding="UTF-8") as txtMainFile:
-
-        #txtMainFileRewrote = txtMainFile.read()
-
-        # Faz uma quebra de linha caso tenha duas aspas duplas uma do lado da outra
-        #aa = re.sub(r"(?<=\")(?=\")", "\n", txtMainFileRewrote, flags = re.M)
+    with open(txtMainPath, "r", encoding="UTF-8") as txtFile:
+        lineIndex = -1
         
-        # Remove uma linha caso ela não comece com aspas e remove linhas em branco
-        #bb = re.sub(r"(^[^\"].*|\n)|(^\n*$\n)", "", aa, flags = re.M)
+        txtFileLines = txtFile.read().splitlines()
+        txtFileLastLine = txtFileLines[lineIndex]
+
+    with open(txtMainPath, "r", encoding="UTF-8") as txtFile:
+        for lineCurrent in txtFile:
+            # Caso a linha não comece com aspas deleta
+            lineCurrent = re.sub(r"((^[^\"]).*)", "", lineCurrent)
+            
+            # Caso a linha não termine com aspas deleta
+            lineCurrent = re.sub('"(.*([^"\n]$))', "teste", lineCurrent)
+
+            # Linhas que vazias que só possuem quebra de linha '\n' ou
+            # não possuem uma aspas dupla no início OU final, serão excluídas 
+            lineRemovedQuotes = ""
+            lineRemovedQuotes = re.sub(r"\"", "", lineCurrent)                
+            # Se essa permanece igual, ou seja, não teve aspas duplas removidas
+            if (lineCurrent == lineRemovedQuotes):
+                # Tá errada e vai ser apagada
+                lineCurrent = ""
+
+            # Só escreve a linha se tiver pelo menos mais que 3 colunas
+            if (lineCurrent.count("\"") > 6
+                and lineCurrent.count(";") > 2):
+
+                txtFullClearFile.write(lineCurrent)
+        
+        txtFullClearFile.close()
 
 
 
