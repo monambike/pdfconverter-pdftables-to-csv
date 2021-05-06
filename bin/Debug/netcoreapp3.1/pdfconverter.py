@@ -436,13 +436,13 @@ def formatTextFile(conversionMethod):
     # - GLOBAIS -
     global txtFilePath
 
-    # - EXPRESSÕES REGULARES -
-    # Procura no geral por similares à 'Unnamed: 1;' e '"";'
-    #reReturnBlankCells = "(\s?\"Unnamed:\s\d\d?\";?)|(;\"\")|(\"\";)|((?<=\");(?!.))|((?<!\")\n)"
-    # Retorna todos os ponto e vírgula que estão no final da linha
-    #reReturnAllLineEndingSemicolon = ""
-    # Procura por quebras de linha inadequadas (quebras que ocorrem no meio dos dados)
-    #reReturnWrongLineBreaks = ""
+    # - MANIPULAÇÃO DE LINHAS -
+    # ÚLTIMA LINHA
+    # A variável recebe esse valor de início para indicar que ainda nenhum
+    # arquivo passou pela verificação ainda
+    # Isso deve ser desse jeito porque quando algum arquivo passa pela verificação
+    # essa variável recebe vazio ("")
+    lineLastHistory = "<thisMeansThatItHasNoValueYet>"
 
     # - CAMINHOS -
     # Formatação padrão, apenas exibindo caso e caso tenha pelo menos um separados (;) na linha
@@ -456,15 +456,13 @@ def formatTextFile(conversionMethod):
     # ---------------------------------------------------------------------- #
     
     # REGEX
-    regexSearch = re.compile(
+    regexVerify = re.compile(
         r"""
 
-        (\s?\"Unnamed:\s\d\d?\";?)| # Remove os Unnamed
+        (\s?\"Unnamed:\s\d\d?\";?)| # Remove os ("Unnamed: X";)
         (;\"\")|                    # Remove (;"")
         (\"\";)|                    # Remove ("";)
-        ((?<=\");(?!.))|            # Remove pontos e vírgulas que estão no final da linha
-        ((?<!\")\n)                 # Remove quebras de linha caso seja no meio dos dados,
-                                    # ou seja, caso não possua " atrás da quebra de linha
+        ((?<=\");(?!.))             # Remove pontos e vírgulas que estão no final da linha
 
         """,
         
@@ -483,33 +481,58 @@ def formatTextFile(conversionMethod):
     txtFullClearFile = open(txtFullClearPath, "a", encoding="UTF-8")
 
     # Abre o arquivo original
-    with open(txtFilePath, "r", encoding="UTF-8") as txtDoc:
+    with open(txtFilePath, "r", encoding="UTF-8") as txtFile:
         # Navega por cada linha do documento de texto
-        for line in txtDoc:
-            # Se a linha não começa com '"' (indicando que o dado
-            # foi quebrado na metade) ou caso a linha possua ponto
-            # e vírgula também escreve
-            if not line.startswith('"') or line.startswith('"') and ";" in line or line != "\n":
-                txtReturnBlankCellsFile.write(line)
+        for lineCurrent in txtFile:
+
+            # <<< REMOVE LINHAS SEM ASPAS DUPLAS >>>
+            # Desc:
+            # Linhas que vazias que só possuem quebra de linha '\n' ou
+            # não possuem uma aspas dupla no início OU final, serão excluídas 
+            lineRemovedQuotes = ""
+            lineRemovedQuotes = re.sub(r"\"", "", lineCurrent)                
+            # Se essa permanece igual, ou seja, não teve aspas duplas removidas
+            if (lineCurrent == lineRemovedQuotes):
+                # Tá errada e vai ser apagada
+                lineCurrent = ""
+
+            # Condicional que impede o continuamento do processo caso a variável esteja vazia,
+            # ou seja, caso tenha sido apagada
+            if (lineCurrent != ""):
+                    # Escreve o arquivo presente na variável para o arquivo
+                    # txtReturnBlankCellsFile
+                    txtReturnBlankCellsFile.write(lineCurrent)
 
                 # Repete a formatação do arquivo duas vezes para garantir
                 for formatFile in range(2):
-                    # Substitui por nada os itens que ele encontrar com regexSearch
-                    line = regexSearch.sub("", line)
-                
+                        # Substitui por nada os itens que ele encontrar com regexVerify
+                        lineCurrent = regexVerify.sub("", lineCurrent)
+                        # Remove quebras de linha caso seja no meio dos dados,
+                        # ou seja, caso não possua " atrás da quebra de linha
+                        # e as substitui por um espaço para manter o padrão
+                        lineCurrent = re.sub(r"((?<!\")\n)", " ", lineCurrent)
                 
                 # Faz uma quebra de linha caso tenha duas aspas duplas uma do lado da outra
-                line = re.sub(r"(?<=\")(?=\")", "\n", line)
+                    lineCurrent = re.sub(r"(?<=\")(?=\")", "\n", lineCurrent)
+                    
+                    # Remove todos os espaços no início de cada linha
+                    lineCurrent = re.sub(r"(^\ *)", "", lineCurrent)
                 
-                # Remove a linha caso ela não comece com aspas
-                line = re.sub(r"(^[^\"].*)", "", line)
+                    # Remove os dados caso tenha espaço entre os separadores e aspas
+                    lineCurrent = re.sub(r"((.*\"; )(?=\"))", "", lineCurrent)
 
                 # Remove linhas em branco
-                line = re.sub(r"(^\n*$\n)", "", line)
+                    #lineCurrent = re.sub(r"(^\n*$\n)", "", lineCurrent)
 
+                    # Pega os dados que possuem espaços entre o separadores e uma aspas dupla e coloca
+                    # uma quebra de linha
+                    lineCurrent = re.sub(r"(;\ )", "\n", lineCurrent)
 
-                if not line.startswith('"') or line.startswith('"') and ";" in line or line == "\n":
-                    txtMainFile.write(line)
+                    if not lineCurrent.startswith('"') or lineCurrent.startswith('"') and ";" in lineCurrent or lineCurrent == "\n":
+                        txtMainFile.write(lineCurrent)
+
+                    # Coloca essa linha no histórico
+                    lineLastHistory = lineCurrent
 
         txtMainFile.close()
         txtReturnBlankCellsFile.close()
