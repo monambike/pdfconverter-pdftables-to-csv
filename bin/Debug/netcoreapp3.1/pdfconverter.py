@@ -141,6 +141,9 @@ def Main():
                 # Realizando a conversão com o método indicado
                 indexDataFrame = 1
                 for tableDataFrame in tableListOfDataFrames:
+                    # Remove as aspas duplas do que estiverem no DataFrame para evitar possíveis erros
+                    tableDataFrame = tableDataFrame.replace("\"", "", regex = True)
+
                     conversionStart(conversionMethod, tableDataFrame)
                 formatTextFile(conversionMethod)
 
