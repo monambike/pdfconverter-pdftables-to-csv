@@ -224,6 +224,7 @@ def setProjectStructure():
     # Tipos de Saída
     outputTypePaths = [
         "\\main",
+        "\\fullClear",
         "\\tableWithBlankCells",
         "\\withoutFormatting"
     ]
@@ -449,6 +450,8 @@ def formatTextFile(conversionMethod):
     txtMainPath = currentPath + "\\resultados\\" + conversionMethod + "\\main\\" + fileName + ".txt"
     # Formatação padrão, porém mantendo campos vazios
     txtReturnBlankCellsPath = currentPath + "\\resultados\\" + conversionMethod + "\\tableWithBlankCells\\" + fileName + ".txt"
+    # Full CLear
+    txtFullClearPath = currentPath + "\\resultados\\" + conversionMethod + "\\fullClear\\" + fileName + ".txt"
 
     # ---------------------------------------------------------------------- #
     
@@ -476,6 +479,8 @@ def formatTextFile(conversionMethod):
     txtMainFile = open(txtMainPath, "a", encoding="UTF-8")
     # Arquivo para caso a tabela tenha itens vazios que precisam ser computados
     txtReturnBlankCellsFile = open(txtReturnBlankCellsPath, "a", encoding="UTF-8")
+    # Full CLear
+    txtFullClearFile = open(txtFullClearPath, "a", encoding="UTF-8")
 
     # Abre o arquivo original
     with open(txtFilePath, "r", encoding="UTF-8") as txtDoc:
