@@ -15,7 +15,7 @@ from PyPDF2 import PdfFileReader
 # Nome do arquivo em PDF formatado sem a extensão
 fileName = ""
 
-# - CAMINHOS -
+# - CAMINHOS
 # Caminho atual
 currentPath = ""
 # Caminhos baseados no currentPath
@@ -23,13 +23,14 @@ pathOutputFile = ""
 # Arquivo raíz exportado
 txtFilePath = ""
 
-# - ARQUIVOS DE SAÍDA -
+# - ARQUIVOS DE SAÍDA
 # Saída do Terminal
 outputFile = ""
 
-# - CONTADORES -
+# - CONTADORES
 # Índice do Data Frame
 indexDataFrame = 0
+
 
 # Linha gigante que vai ficar disposta em
 # alguns lugares como divisão no terminal
@@ -55,26 +56,28 @@ def Main():
 
     # >> VARIÁVEIS <<
     
-    # - GLOBAIS -
+    # - GLOBAIS
     global fileName
     global indexDataFrame
 
-    # - CONTADORES -
+    # - CONTADORES
     # Índice do arquivo
     indexFile = 1
 
     # ---------------------------------------------------------------------- #
 
-    # - CONFIGURAÇÕES INICIAIS -
+    # >> CONFIGURAÇÕES INICIAIS <<
     setCurrentPath()
     pandaSetConfig()
     setProjectStructure()
 
+    # Direciona o sistema para a pasta indicada
     chdir(currentPath + "\\PDFs")
-    # Filtra pelos PDFs
+    # Filtra pelos PDFs na onde foi indicado pro sistema
     for pdfFile in glob("*.pdf"):
-        # Se já não é mais o primeiro arquivo fecha o leiaute e pula 5 linhas
+        # Se já não é mais o primeiro arquivo
         if (indexFile > 1):
+            # Fecha o leiaute
             setTerminalFile("open")
             print(
                 "\n" +
@@ -94,7 +97,7 @@ def Main():
             pdf = PdfFileReader(open(pdfFile, "rb"))
             pdfNumberOfPages = pdf.getNumPages()
 
-            # - TERMINAL -
+            # Abre o leiaute para o terminal
             setTerminalFile("open")
             print(
                 pdfFile + strGiantLine + "\n" +
@@ -109,22 +112,21 @@ def Main():
             setTerminalFile("closed")
 
 
-            # - MÉTODOS DE LEITURA E CONVERSÃO -
+            # >> MÉTODOS DE LEITURA E CONVERSÃO <<
             # Desc:
-            # Primeiro faz a leitura e conversão pra Lattice e após faz o mesmo para o Stream
-            # Legenda
-            #  - boolLattice = True, em outras palavras, 0 é Lattice
-            #  - boolLattice = False, em outras palavras, 1 é Stream
+            # Primeiro faz a leitura e conversão pra Lattice e após faz o mesmo
+            # para o Stream
             for method in range(2):
-
+                # Lattice
                 if (method == 0):
                     boolLattice = True
                     conversionMethod = "lattice"
+                # Stream
                 elif (method == 1):
                     boolLattice = False
                     conversionMethod = "stream"
 
-                # - LEITURA -
+                # >> LEITURA <<
                 # Desc:
                 # Fazendo leitura do arquivo completo e passando como lista de DataFrames
                 # para a variável
@@ -138,12 +140,13 @@ def Main():
                     pandas_options = {"dtype": "str"}
                 )
 
-                # - CONVERSÃO -
+                # >> CONVERSÃO <<
                 # Desc:
                 # Realizando a conversão com o método indicado
                 indexDataFrame = 1
                 for tableDataFrame in tableListOfDataFrames:
-                    # Remove as aspas duplas do que estiverem no DataFrame para evitar possíveis erros
+                    # Remove as aspas duplas do que estiverem no DataFrame para evitar possíveis erros,
+                    # porque os dados normalmente são separados por pontos e vírgula e aspas duplas
                     tableDataFrame = tableDataFrame.replace("\"", "", regex = True)
 
                     conversionStart(conversionMethod, tableDataFrame)
@@ -156,23 +159,24 @@ def Main():
             showError("Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "'.", err)
             break 
     else:
-        # Se algum PDF no fim do 'For' ainda não foi convertido
-        if (indexFile <= 1):
-            # Mostra o erro
-            showError("Não há arquivos de PDF para serem convertidos.", "")
-        # Caso já tenha
+        # Se até o término da operação algum PDF foi convertido, fecha o
+        # leiaute do terminal
+        if (indexFile > 1):
+            # Fecha o leiaute e pula 5 linhas
+            setTerminalFile("open")
+            print(
+                "\n" +
+                strGiantLine + "\n" +
+                strGiantLine,
+            
+                file = outputFile
+            )
+            setTerminalFile("closed")
+        # Se até o término da operação nenhum PDF foi convertido ainda
+        # exibe um erro
         else:
-            if (indexFile > 1):
-                # Fecha o leiaute e pula 5 linhas
-                setTerminalFile("open")
-                print(
-                    "\n" +
-                    strGiantLine + "\n" +
-                    strGiantLine,
-                
-                    file = outputFile
-                )
-                setTerminalFile("closed")
+            showError("Não há arquivos de PDF para serem convertidos.", "")
+            break
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNÇÃO PRINCIPAL - FIM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -186,8 +190,15 @@ def Main():
 # Define o local da raíz do projeto, onde os outros caminhos irão se basear
 def setCurrentPath():
     try:
+        # ---------------------------------------------------------------------- #
+
+        # >> VARIÁVEIS <<
+
+        # - Globais
         global currentPath
         global pathOutputFile
+
+        # ---------------------------------------------------------------------- #
 
         # Pegando o caminho até o executável ou script atual e atribuindo para a variável currentPath
         currentPath = Path(__file__).parent.absolute()
@@ -202,9 +213,12 @@ def setCurrentPath():
 
         pathOutputFile = currentPath + "\\resultados\\output.txt"
     except Exception as err:
-        showError("Não foi possível achar o diretório atual. Provável problema na hora de encurtar "
-        "o caminho, verifique se o caminho passado na variável 'currentPath' dentro do método "
-        "'setCurrentPath' está correto.", err)
+        showError(
+            "Não foi possível achar o diretório atual. Provável problema na hora de encurtar o "
+            "caminho, verifique se o caminho passado na variável 'currentPath' dentro do método "
+            "'setCurrentPath' está correto."
+        
+        , err)
 
 # >> DEFINE A ESTRUTURA DE PASTAS DO PROJETO <<
 # Desc:
@@ -214,18 +228,18 @@ def setProjectStructure():
 
     # >> VARIÁVEIS <<
     
-    # - CAMINHOS -
-    # Pastas Raíz
+    # - CAMINHOS
+    # Raíz
     rootPaths = [
         "\\PDFs",
         "\\resultados"
     ]
-    # Métodos
+    # Métodos de Leitura
     methodPaths = [
         "\\lattice",
         "\\stream"
     ]
-    # Tipos de Saída
+    # Métodos de Formatação
     outputTypePaths = [
         "\\main",
         "\\fullClear",
@@ -235,12 +249,14 @@ def setProjectStructure():
 
     # ---------------------------------------------------------------------- #
 
+    # Criando pastas raíz
     for rootPath in rootPaths:
         Path(
             currentPath +
             rootPath
         ).mkdir(parents = True, exist_ok = True)
 
+        # Criando pastas para métodos de leitura dentro de resultados
         if (rootPath == "\\resultados"):
             for methodPath in methodPaths:
                 Path(
@@ -248,7 +264,7 @@ def setProjectStructure():
                     rootPath +
                     methodPath
                 ).mkdir(parents = True, exist_ok = True)
-
+                # Criando pastas para métodos de formatação
                 for outputTypePath in outputTypePaths:
                     Path(
                         currentPath +
@@ -258,7 +274,8 @@ def setProjectStructure():
                     ).mkdir(parents = True, exist_ok = True)
 
 
-    # Cria arquivo para exibir a saída do terminal, se já tiver limpa
+    # Cria arquivo para exibir a saída do terminal,
+    # se já existir o arquivo, limpa o mesmo
     outputClear = open(pathOutputFile, "w", encoding="UTF-8")
     outputClear.close()
 
@@ -266,16 +283,12 @@ def setProjectStructure():
 # Desc:
 # Configurações do Pandas que afetam o DataFrame e a conversão para texto.
 def pandaSetConfig():
-    # Evita com que os dados acabem sendo quebrados na saída do terminal e no arquivo exportado
+    # Evita com que dados sejam quebrados no arquivo exportado
     pandas.options.display.max_colwidth = None
+    # Evita com que os dados acabem sendo quebrados na saída do terminal
     pandas.options.display.expand_frame_repr = False
-
     # Define o padrão de codificação para UTF-8 com BOM
     pandas.options.display.encoding = "UTF-8-sig"
-    
-    # Mostra o dia primeiro quando encontrar data
-    pandas.options.display.date_dayfirst = True
-    
     # Fazer com que caso tenha um ';' ele não passe os dados pra outra célula
     pandas.options.display.latex.multicolumn = False
 
@@ -294,7 +307,7 @@ def setTerminalFile(setState):
 
     # >> VARIÁVEIS <<
     
-    # - GLOBAIS -
+    # - GLOBAIS
     global outputFile
 
     # ---------------------------------------------------------------------- #
@@ -330,7 +343,7 @@ def showError(errorMessage, err):
         print("EXCEPTION", file = outputFile)
         print(str(err), file = outputFile)
     
-    # Fecha o layout e o arquivo
+    # Fecha o layout
     print(
         "**********************************************************************",
         
@@ -358,11 +371,11 @@ def turnHeaderInSimpleRow(tableDataFrame):
     # Pegando o cabeçalho da tabela e passando ela como lista para a temporária
     tableDataFrameHeader = [*tableDataFrame]
 
-    # Checando se a lista veio vazia ou se o cabeçalho possui campos vazios
+    # Checando se a lista com o cabeçalho veio preenchida ou se o cabeçalho não possui
+    # campos vazios
     if (tableDataFrameHeader and not "Unnamed" in tableDataFrameHeader[0]):
         # Removendo o cabeçalho do DataFrame atual
         tableDataFrame = tableDataFrame.T.reset_index().T.reset_index(drop=True)
-
 
         # Adicionando a lista como primeira linha do DataFrame temporário
         tableDataFrameHeader.insert(1, tableDataFrameHeader)
@@ -374,8 +387,15 @@ def turnHeaderInSimpleRow(tableDataFrame):
 # Desc:
 # Realiza a conversão do arquivo PDF para texto.
 def conversionStart(conversionMethod, tableDataFrame):
+    # ---------------------------------------------------------------------- #
+
+    # >> VARIÁVEIS <<
+    
+    # - GLOBAIS
     global txtFilePath
     global indexDataFrame
+
+    # ---------------------------------------------------------------------- #
 
     try:
         # Deleta todas as linhas que estão completamente vazias
@@ -384,18 +404,13 @@ def conversionStart(conversionMethod, tableDataFrame):
         tableDataFrame = tableDataFrame.dropna(how="all", axis=1)
 
         turnHeaderInSimpleRow(tableDataFrame)
-
-        # Transforma todo o conteúdo do DataFrame em string
-        #tableDataFrame = tableDataFrame.astype(str)
-        
-        # TESTE
-        #verifyCellsValue(tableDataFrame)
         
         # Removendo quebras de linha
         # O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
         # O segundo replace remove as que acontecem por conta do ponto e vírgula
         tableDataFrame = tableDataFrame.replace({r"\r": " "}, regex=True).replace({r";": ","}, regex=True)
 
+        # Define o caminho do arquivo atual para a variável global txtFilePath
         txtFilePath = currentPath + "\\resultados\\" + conversionMethod + "\\withoutFormatting\\" + fileName + ".txt"
         
         # Converte para .txt no formato de um CSV
@@ -427,7 +442,6 @@ def conversionStart(conversionMethod, tableDataFrame):
         indexDataFrame = indexDataFrame + 1
     except Exception as err:
         showError("Ocorreu um erro, ao tentar converter o arquivo '" + fileName + ".pdf' usando o método " + conversionMethod + ".", err)
-
         return
 
 # >> LIMPA O ARQUIVO DE TEXTO CONVERTIDO <<
@@ -439,18 +453,10 @@ def formatTextFile(conversionMethod):
 
     # >> VARIÁVEIS <<
     
-    # - GLOBAIS -
+    # - GLOBAIS
     global txtFilePath
 
-    # - MANIPULAÇÃO DE LINHAS -
-    # ÚLTIMA LINHA
-    # A variável recebe esse valor de início para indicar que ainda nenhum
-    # arquivo passou pela verificação ainda
-    # Isso deve ser desse jeito porque quando algum arquivo passa pela verificação
-    # essa variável recebe vazio ("")
-    lineLastHistory = "<thisMeansThatItHasNoValueYet>"
-
-    # - CAMINHOS -
+    # - CAMINHOS
     # Formatação padrão, apenas exibindo caso e caso tenha pelo menos um separados (;) na linha
     # e removendo campos vazios
     txtMainPath = currentPath + "\\resultados\\" + conversionMethod + "\\main\\" + fileName + ".txt"
@@ -458,12 +464,16 @@ def formatTextFile(conversionMethod):
     txtReturnBlankCellsPath = currentPath + "\\resultados\\" + conversionMethod + "\\tableWithBlankCells\\" + fileName + ".txt"
     # Full CLear
     txtFullClearPath = currentPath + "\\resultados\\" + conversionMethod + "\\fullClear\\" + fileName + ".txt"
-    
 
+    # - MANIPULAÇÃO DE LINHAS
+    # ÚLTIMA LINHA
+    # A variável recebe esse valor de início para indicar que ainda nenhum
+    # arquivo passou pela verificação ainda
+    # Isso deve ser desse jeito porque quando algum arquivo passa pela verificação
+    # essa variável recebe vazio ("")
+    lineLastHistory = "<thisMeansThatItHasNoValueYet>"
 
-    # <<< EXPRESSÕES REGULARES (REGEX) >>>
-    # Desc: Região contendo a maioria das expressões regulares
-
+    # - EXPRESSÕES REGULARES (REGEX)
     # Detecta dados que estão vazios
     # Respectivamente detecta:
     # ;""
@@ -476,7 +486,6 @@ def formatTextFile(conversionMethod):
 
         re.VERBOSE|re.MULTILINE
     )
-
     # Remove todo ponto e vírgula presente no final da linha
     # Respectivamente detecta:
     # ; 
@@ -484,20 +493,18 @@ def formatTextFile(conversionMethod):
     
     # ---------------------------------------------------------------------- #
 
-    # <<< ABRINDO ARQUIVOS >>>
+    # >> ABRINDO ARQUIVOS <<
     # Desc:
     # Abrindo os arquivos que serão utilizados depois na hora de realizar a exportação
     # com formatação.
 
-    # - ARQUIVOS -
+    # - ARQUIVOS
     # Arquivo para caso a tabela possua itens vazios que precisam ser computados
     # (esse arquivo apenas não terá o 'regexDetectEmptyDataInBody' e similares)
     txtReturnBlankCellsFile = open(txtReturnBlankCellsPath, "a", encoding="UTF-8")
-    
     # Arquivo principal, ainda não totalmente pronto para ser jogado em uma tabela
     # (possui mais dados, porém estrutura ainda não tão idealizada)
     txtMainFile = open(txtMainPath, "a", encoding="UTF-8")
-    
     # O arquivo já pronto e estruturado para ser jogado em uma tabela
     # (alguns dados podem vir faltando)
     txtFullClearFile = open(txtFullClearPath, "a", encoding="UTF-8")
@@ -509,7 +516,7 @@ def formatTextFile(conversionMethod):
     with open(txtFilePath, "r", encoding="UTF-8") as txtFile:
         # Navega por cada linha do documento de texto
         for lineCurrent in txtFile:
-            # <<< REMOVE LINHAS SEM ASPAS DUPLAS >>>
+            # >> REMOVE LINHAS SEM ASPAS DUPLAS <<
             # Desc:
             # Linhas vazias que só possuem quebra de linha '\n' ou não possuem
             # uma aspas dupla no início OU final, serão excluídas 
@@ -540,15 +547,19 @@ def formatTextFile(conversionMethod):
 
                     # Remove ponto e vírgula no final da linha
                     lineCurrent = detectFinalLineSemicolon.sub("", lineCurrent)
-
-                    # [ EXPORTAÇÃO ]
-                    # Pasta: \\txtReturnBlankCellsFile
-                    txtReturnBlankCellsFile.write(lineCurrent)
+                  
+                    # Só escreve a linha se tiver pelo menos mais que 2 colunas
+                    # no arquivo fullClear
+                    if (lineCurrent.count("\"") > 4
+                        and lineCurrent.count(";") > 1):
+                        # [ EXPORTAÇÃO ]
+                        # Pasta: \\txtReturnBlankCellsFile  
+                        txtReturnBlankCellsFile.write(lineCurrent)
 
                     # ---------------------------------------------------------------------- #
 
 
-                    # FORMATAÇÃO (MAIN)
+                    # FORMATAÇÃO (main)
                     # ---------------------------------------------------------------------- #
 
                     # Remove campos vazios no corpo
@@ -575,7 +586,6 @@ def formatTextFile(conversionMethod):
                         ";" in lineCurrent
                         or lineCurrent == "\n"):
                         
-                        
                         # [ EXPORTAÇÃO ]
                         # Pasta: \\main
                         txtMainFile.write(lineCurrent)
@@ -589,6 +599,9 @@ def formatTextFile(conversionMethod):
         txtMainFile.close()
         txtReturnBlankCellsFile.close()
 
+    # FORMATAÇÃO (fullCleaned)
+    # ---------------------------------------------------------------------- #
+    
     # Abre o arquivo principal presente na pasta 'main' para
     # criar formatações baseadas nele
     with open(txtMainPath, "r", encoding="UTF-8") as txtFile:
@@ -600,12 +613,12 @@ def formatTextFile(conversionMethod):
             # Caso a linha não termine com aspas deleta
             lineCurrent = re.sub('"(.*([^"\n]$))', "", lineCurrent)
 
-            # <<< SEGUNDA VERIFICAÇÃO >>>
+            # >> SEGUNDA VERIFICAÇÃO <<
             # Desc:
             # Linhas vazias que só possuem uma quebra de linha '\n' como conteúdo ou
             # não possuem uma aspas dupla no início ou no final (segunda verificação),
             # serão excluídas 
-            # - Limpa variável -
+            # - Limpa variável
             lineRemovedQuotes = ""
             lineRemovedQuotes = re.sub(r"\"", "", lineCurrent)
                        
@@ -619,13 +632,14 @@ def formatTextFile(conversionMethod):
             # no arquivo fullClear
             if (lineCurrent.count("\"") > 6
                 and lineCurrent.count(";") > 2):
-
                 # [ EXPORTAÇÃO ]
                 # Pasta: \\fullClear
                 txtFullClearFile.write(lineCurrent)
         
         # Fecha os arquivos de exportação
         txtFullClearFile.close()
+    
+    # ---------------------------------------------------------------------- #
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CONVERSÃO - FIM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
