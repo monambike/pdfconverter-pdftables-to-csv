@@ -70,9 +70,8 @@ def Main():
     chdir(currentPath + "\\PDFs")
     # Filtra pelos PDFs
     for pdfFile in glob("*.pdf"):
-        # Se já não é mais o primeiro arquivo
-        if indexFile > 1:
-            # Fecha o leiaute e pula 5 linhas
+        # Se já não é mais o primeiro arquivo fecha o leiaute e pula 5 linhas
+        if (indexFile > 1):
             setTerminalFile("open")
             print(
                 "\n" +
@@ -115,10 +114,10 @@ def Main():
             #  - boolLattice = False, em outras palavras, 1 é Stream
             for method in range(2):
 
-                if method == 0:
+                if (method == 0):
                     boolLattice = True
                     conversionMethod = "lattice"
-                elif method == 1:
+                elif (method == 1):
                     boolLattice = False
                     conversionMethod = "stream"
 
@@ -155,12 +154,12 @@ def Main():
             break 
     else:
         # Se algum PDF no fim do 'For' ainda não foi convertido
-        if indexFile <= 1:
+        if (indexFile <= 1):
             # Mostra o erro
             showError("Não há arquivos de PDF para serem convertidos.", "")
         # Caso já tenha
         else:
-            if indexFile > 1:
+            if (indexFile > 1):
                 # Fecha o leiaute e pula 5 linhas
                 setTerminalFile("open")
                 print(
@@ -237,7 +236,7 @@ def setProjectStructure():
             rootPath
         ).mkdir(parents = True, exist_ok = True)
 
-        if rootPath == "\\resultados":
+        if (rootPath == "\\resultados"):
             for methodPath in methodPaths:
                 Path(
                     currentPath +
@@ -294,9 +293,9 @@ def setTerminalFile(setState):
 
     # ---------------------------------------------------------------------- #
 
-    if setState == "open":
+    if (setState == "open"):
         outputFile = open(pathOutputFile, "a", encoding="UTF-8")
-    elif setState == "closed":
+    elif (setState == "closed"):
         outputFile.close()
     else:
         showError("O terminal só pode ser aberto ou fechado. Tenha certeza que atribuiu 'open' para aberto ou 'close' para fechado pro método 'terminal'.", "")
@@ -321,7 +320,7 @@ def showError(errorMessage, err):
     )
 
     # Caso tenha uma exception, ele exibe
-    if err != "":
+    if (err != ""):
         print("EXCEPTION", file = outputFile)
         print(str(err), file = outputFile)
     
@@ -353,7 +352,7 @@ def turnHeaderInSimpleRow(tableDataFrame):
     tableDataFrameHeader = [*tableDataFrame]
 
     # Checando se a lista veio vazia ou se o cabeçalho possui campos vazios
-    if tableDataFrameHeader and not "Unnamed" in tableDataFrameHeader[0]:
+    if (tableDataFrameHeader and not "Unnamed" in tableDataFrameHeader[0]):
         # Removendo o cabeçalho do DataFrame atual
         tableDataFrame = tableDataFrame.T.reset_index().T.reset_index(drop=True)
 
