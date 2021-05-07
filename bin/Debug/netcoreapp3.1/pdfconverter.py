@@ -512,9 +512,6 @@ def formatTextFile(conversionMethod):
             # esteja vazia, ou seja, caso tenha sido apagada pelo processo
             # anterior de limpeza
             if (lineCurrent != ""):
-                    # FORMATAÇÃO (tableBlankCells)
-                    # ---------------------------------------------------------------------- #
-
                     # Detecta os dados vazios que estão presentes no cabeçalho
                     # "Unnamed: X;"
                     lineCurrent = re.sub(r"(\s?\"Unnamed:\s\d\d?\";?)", "", lineCurrent)
@@ -534,26 +531,16 @@ def formatTextFile(conversionMethod):
                         # Pasta: \\txtReturnBlankCellsFile  
                         txtReturnBlankCellsFile.write(lineCurrent)
 
-                    # ---------------------------------------------------------------------- #
-
-
-                    # FORMATAÇÃO (main)
-                    # ---------------------------------------------------------------------- #
-
                     # Remove dados que estão vazios
-                    # Respectivamente detecta:
-                    # ;""
-                    # "";
                     lineCurrent = re.sub(r"(;\"\")|(\"\";)", "", lineCurrent)
 
-                    # Faz uma quebra de linha caso tenha duas aspas duplas uma do lado
-                    # da outra
+                    # Faz uma quebra de linha caso tenha aspas duplas adjacentes
                     lineCurrent = re.sub(r"(?<=\")(?=\")", "\n", lineCurrent)
                     
                     # Remove todos os espaços no início de cada linha
                     lineCurrent = re.sub(r"(^\ *)", "", lineCurrent)
 
-                    # Remove os dados caso tenha espaço entre os separadores e aspas
+                    # Faz uma remoção de linha caso tenha aspas duplas adjacentes
                     lineCurrent = re.sub(r"((.*\"; )(?=\"))", "", lineCurrent)
 
                     # Pega os dados que possuem espaços entre o separadores e entre uma aspas
@@ -572,15 +559,10 @@ def formatTextFile(conversionMethod):
                     # Coloca essa linha no histórico
                     lineLastHistory = lineCurrent
 
-                    # ---------------------------------------------------------------------- #
-
         # Fecha os arquivos de exportação
         txtMainFile.close()
         txtReturnBlankCellsFile.close()
-
-    # FORMATAÇÃO (fullCleaned)
-    # ---------------------------------------------------------------------- #
-    
+ 
     # Abre o arquivo principal presente na pasta 'main' para
     # criar formatações baseadas nele
     with open(txtMainPath, "r", encoding="UTF-8") as txtFile:
@@ -614,8 +596,6 @@ def formatTextFile(conversionMethod):
         
         # Fecha os arquivos de exportação
         txtFullClearFile.close()
-    
-    # ---------------------------------------------------------------------- #
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CONVERSÃO - FIM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
