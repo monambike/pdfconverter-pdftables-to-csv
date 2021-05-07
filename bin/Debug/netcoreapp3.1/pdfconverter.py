@@ -471,24 +471,6 @@ def formatTextFile(conversionMethod):
     # Isso deve ser desse jeito porque quando algum arquivo passa pela verificação
     # essa variável recebe vazio ("")
     lineLastHistory = "<thisMeansThatItHasNoValueYet>"
-
-    # - EXPRESSÕES REGULARES (REGEX)
-    # Detecta dados que estão vazios
-    # Respectivamente detecta:
-    # ;""
-    # "";
-    regexDetectEmptyDataInBody = re.compile(
-        r"""
-        (;\"\")|
-        (\"\";)|
-        """,
-
-        re.VERBOSE|re.MULTILINE
-    )
-    # Remove todo ponto e vírgula presente no final da linha
-    # Respectivamente detecta:
-    # ; 
-    detectFinalLineSemicolon = re.compile(r"((?<=\");(?!.))")
     
     # ---------------------------------------------------------------------- #
 
@@ -499,7 +481,7 @@ def formatTextFile(conversionMethod):
 
     # - ARQUIVOS
     # Arquivo para caso a tabela possua itens vazios que precisam ser computados
-    # (esse arquivo apenas não terá o 'regexDetectEmptyDataInBody' e similares)
+    # (esse arquivo apenas não terá o regex que apaga dados vazios e similares)
     txtReturnBlankCellsFile = open(txtReturnBlankCellsPath, "a", encoding="UTF-8")
     # Arquivo principal, ainda não totalmente pronto para ser jogado em uma tabela
     # (possui mais dados, porém estrutura ainda não tão idealizada)
@@ -518,12 +500,12 @@ def formatTextFile(conversionMethod):
             # >> REMOVE LINHAS SEM ASPAS DUPLAS <<
             # Desc:
             # Linhas vazias que só possuem quebra de linha '\n' ou não possuem
-            # uma aspas dupla no início OU final, serão excluídas 
+            # uma aspas dupla em nenhum lugar, serão excluídas 
             lineRemovedQuotes = ""
             lineRemovedQuotes = re.sub(r"\"", "", lineCurrent)                
             # Se essa permanece igual, ou seja, não teve aspas duplas removidas
             if (lineCurrent == lineRemovedQuotes):
-                # Tá errada e vai ser apagada
+                # Significa que está no formato errado e vai ser apagada
                 lineCurrent = ""
 
             # Condicional que impede o continuamento do processo caso a variável
@@ -533,8 +515,6 @@ def formatTextFile(conversionMethod):
                     # FORMATAÇÃO (tableBlankCells)
                     # ---------------------------------------------------------------------- #
 
-                    # Repete a formatação do arquivo duas vezes para garantir
-                    # for formatFile in range(2):
                     # Detecta os dados vazios que estão presentes no cabeçalho
                     # "Unnamed: X;"
                     lineCurrent = re.sub(r"(\s?\"Unnamed:\s\d\d?\";?)", "", lineCurrent)
@@ -545,10 +525,9 @@ def formatTextFile(conversionMethod):
                     lineCurrent = re.sub(r"((?<!\")\n)", " ", lineCurrent)
 
                     # Remove ponto e vírgula no final da linha
-                    lineCurrent = detectFinalLineSemicolon.sub("", lineCurrent)
+                    lineCurrent = re.sub(r"((?<=\");(?!.))", "", lineCurrent)
                   
                     # Só escreve a linha se tiver pelo menos mais que 2 colunas
-                    # no arquivo fullClear
                     if (lineCurrent.count("\"") > 4
                         and lineCurrent.count(";") > 1):
                         # [ EXPORTAÇÃO ]
@@ -561,10 +540,11 @@ def formatTextFile(conversionMethod):
                     # FORMATAÇÃO (main)
                     # ---------------------------------------------------------------------- #
 
-                    # Remove campos vazios no corpo
-                    lineCurrent = regexDetectEmptyDataInBody.sub("", lineCurrent)
-                    # Remove ponto e vírgula no final da linha novamente após tirar campos vazios
-                    lineCurrent = detectFinalLineSemicolon.sub("", lineCurrent)
+                    # Remove dados que estão vazios
+                    # Respectivamente detecta:
+                    # ;""
+                    # "";
+                    lineCurrent = re.sub(r"(;\"\")|(\"\";)", "", lineCurrent)
 
                     # Faz uma quebra de linha caso tenha duas aspas duplas uma do lado
                     # da outra
@@ -576,7 +556,7 @@ def formatTextFile(conversionMethod):
                     # Remove os dados caso tenha espaço entre os separadores e aspas
                     lineCurrent = re.sub(r"((.*\"; )(?=\"))", "", lineCurrent)
 
-                    # Pega os dados que possuem espaços entre o separadores e uma aspas
+                    # Pega os dados que possuem espaços entre o separadores e entre uma aspas
                     # dupla e coloca uma quebra de linha
                     lineCurrent = re.sub(r"(;\ )", "\n", lineCurrent)
 
@@ -612,15 +592,12 @@ def formatTextFile(conversionMethod):
             # Caso a linha não termine com aspas deleta
             lineCurrent = re.sub('"(.*([^"\n]$))', "", lineCurrent)
 
-            # >> SEGUNDA VERIFICAÇÃO <<
+            # >> REMOVE LINHAS SEM ASPAS DUPLAS - SEGUNDA VERIFICAÇÃO <<
             # Desc:
-            # Linhas vazias que só possuem uma quebra de linha '\n' como conteúdo ou
-            # não possuem uma aspas dupla no início ou no final (segunda verificação),
-            # serão excluídas 
-            # - Limpa variável
+            # Linhas vazias que só possuem quebra de linha '\n' ou não possuem
+            # uma aspas dupla em nenhum lugar, serão excluídas 
             lineRemovedQuotes = ""
             lineRemovedQuotes = re.sub(r"\"", "", lineCurrent)
-                       
             # Se a temporária permanece igual, ou seja, não teve aspas duplas
             # removidas pelo regex
             if (lineCurrent == lineRemovedQuotes):
