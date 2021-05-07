@@ -67,6 +67,9 @@ def Main():
     # ---------------------------------------------------------------------- #
 
     # >> CONFIGURAÇÕES INICIAIS <<
+    # Desc:
+    # Realiza as configurações iniciais para o funcionamento
+    # do projeto.
     setCurrentPath()
     pandaSetConfig()
     setProjectStructure()
