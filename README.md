@@ -5,27 +5,27 @@ PDFConverter é um projeto desenvolvido Python que deve ser convertido para exec
 
 ## LINKS
 
-- [Bibliotecas Utilizadas](#bibliotecas)
-- [Formatações](#formatações)
+- [BIBLIOTECAS](#bibliotecas)
+- [FORMATAÇÕES](#formatações)
     - [Dados Vazios no Cabeçalho](#dados-vazios-no-cabeçalho)
     - [Linhas Vazias ou Sem Aspas](#linhas-vazias-ou-sem-aspas)
     - [Dados Vazios no Cabeçalho](#dados-vazios-no-cabeçalho)
     - [Quebras de Linhas no Meio dos Dados](#quebras-de-linhas-no-meio-dos-dados)
     - [Ponto e Vírgula no Final da Linha](#ponto-e-vírgula-no-final-da-linha)
     - [Duas Colunas](#duas-colunas)
-        - [tableWithBlankCells](#tableWithBlankCells)
+        - [Exportar tableWithBlankCells](#exportar-tableWithBlankCells)
     - [Dados Vazios](#dados-vazios)
     - [Aspas Duplas Adjacentes](#aspas-duplas-adjacentes)
     - [Espaço entre Separadores e Aspas Duplas (Quebra)](#espaço-entre-separadores-e-aspas-duplas-(quebra))
     - [Espaço no Início da Linha](#espaço-no-início-da-linha)
     - [Espaço entre Separadores e Aspas Duplas (Remoção)](#espaço-entre-separadores-e-aspas-duplas-(remoção))
     - [Aspas (Início e Final) e Ponto e Vírgula](#aspas-(início-e-final)-e-ponto-e-vírgula)
-        - [main](#main)
+        - [Exportar main](#exportar-main)
     - [Aspas no Início](#aspas-no-início)
     - [Aspas no Final](#aspas-no-final)
     - [Linhas Vazias ou Sem Aspas (Segunda Verificação)](#linhas-vazias-ou-sem-aspas-(segunda-verificação))
     - [Três Colunas](#três-colunas)
-        - [fullClear](#fullClear)
+        - [Exportar fullClear](#exportar-fullClear)
 
 ## BIBLIOTECAS
 ### Python
@@ -118,14 +118,13 @@ Fica como:
 "<data>";"<data>";"<data>";"<data>"
 ```
 
-> **EXPORTAÇÃO**
->
-> #### **tableWithBlankCells**
->
-> [\\\\tableWithBlankCells]
->
->
-> O arquivo 'tableWithBlankCells' é exportado nesse momento com todas as formatações realizadas acima.
+#### **Exportar tableWithBlankCells**
+Começa a realizar a exportação do arquivo para segurar a exeção de quando for convertida uma tabela que possui células vazias.
+| EXPORTAÇÃO |
+| --- |
+| Folder: tableWithBlankCells |
+| Path: \\\\tableWithBlankCells |
+| O arquivo 'tableWithBlankCells' é exportado nesse momento com todas as formatações realizadas acima. |
 
 ### Dados Vazios
 Remove dados que estão vazios `"";` e `;""`.
@@ -217,15 +216,13 @@ Fica como:
 "<data>";"<data>";"<data>"
 ```
 
-> **EXPORTAÇÃO**
->
-> #### **main**
->
-> [\\\\main]
->
->
-> O arquivo 'main' é exportado nesse momento com todas as formatações realizadas acima.
-
+#### **Exportar Main**
+Começa a realizar a exportação do arquivo principal.
+| EXPORTAÇÃO |
+| --- |
+| Folder: main |
+| Path: \\\\main |
+| O arquivo 'main' é exportado nesse momento com todas as formatações realizadas acima. |
 
 ### Aspas no Início
 Caso a linha não comece com aspas deleta.
@@ -298,11 +295,10 @@ Fica como:
 "<data>";"<data>";"<data>";"<data>"
 ```
 
-> **EXPORTAÇÃO**
->
-> #### **fullClear**
->
-> [\\\\fullClear]
->
->
-> O arquivo 'main' é exportado nesse momento com todas as formatações realizadas acima.
+#### **Exportar fullClear**
+Começa a realizar a exportação do arquivo principal com algumas modificações de formatação mais rígidas.
+| EXPORTAÇÃO |
+| --- |
+| Folder: fullClear |
+| Path: \\\\fullClear |
+| O arquivo 'fullClear' é exportado nesse momento com todas as formatações realizadas acima. |
