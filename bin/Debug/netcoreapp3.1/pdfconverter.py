@@ -93,14 +93,15 @@ def Main():
             setTerminalFile("closed")
 
         try:
-            # Remove extensão do arquivo, pegando apenas o nome e atribui para a temporária
+            # Remove extensão do arquivo, pegando apenas o nome e
+            # atribui para a temporária
             fileName = pdfFile[:-4]
 
             # Pega o número de páginas que o PDF contém
             pdf = PdfFileReader(open(pdfFile, "rb"))
             pdfNumberOfPages = pdf.getNumPages()
 
-            # Abre o leiaute para o terminal
+            # Cria o título para leitura do arquivo no terminal
             setTerminalFile("open")
             print(
                 pdfFile + strGiantLine + "\n" +
@@ -131,16 +132,16 @@ def Main():
 
                 # >> LEITURA <<
                 # Desc:
-                # Fazendo leitura do arquivo completo e passando como lista de DataFrames
-                # para a variável
+                # Fazendo leitura do arquivo completo e passando como
+                # lista de DataFrames para a variável
                 tableListOfDataFrames = tabula.read_pdf(
                     pdfFile,
                     guess = True,
+                    lattice = boolLattice,
                     multiple_tables = True,
                     pages = "all",
-                    silent = True,
-                    lattice = boolLattice,
-                    pandas_options = {"dtype": "str"}
+                    pandas_options = {"dtype": "str"},
+                    silent = True
                 )
 
                 # >> CONVERSÃO <<
@@ -155,9 +156,8 @@ def Main():
                     conversionStart(conversionMethod, tableDataFrame)
                 formatTextFile(conversionMethod)
 
-            # Atribuindo mais um ao índice para indicar que os arquivos foram convertidos
+            # Atribuindo mais um ao índice para indicar que o arquivo PDF foi convertido
             indexFile = indexFile + 1
-
         except Exception as err:
             showError("Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "'.", err)
             break 
@@ -175,7 +175,7 @@ def Main():
                 file = txtOutputFile
             )
             setTerminalFile("closed")
-        # Se até o término da operação nenhum PDF foi convertido ainda
+        # Se ainda até o término da operação nenhum PDF foi convertido
         # exibe um erro
         else:
             showError("Não há arquivos de PDF para serem convertidos.", "")
@@ -189,7 +189,8 @@ def Main():
 
 # >> DEFINE O LOCAL DA RAÍZ DO PROJETO <<
 # Desc:
-# Define o local da raíz do projeto, onde os outros caminhos irão se basear
+# Define o local da raíz do projeto, onde os outros caminhos irão
+# se basear
 def setCurrentPath():
     try:
         # ---------------------------------------------------------------------- #
@@ -213,14 +214,16 @@ def setCurrentPath():
         # (pdfconverter\bin\Debug\netcoreapp3.1)
         #    \___[a diminuição de caracteres faz voltar até a pasta 'pdfconverter']
 
+        # Passa para a variável global o caminho do arquivo de texto do terminal
         txtOutputFilePath = currentPath + "\\resultados\\output.txt"
     except Exception as err:
         showError(
             "Não foi possível achar o diretório atual. Provável problema na hora de encurtar o "
-            "caminho, verifique se o caminho passado na variável 'currentPath' dentro do método "
-            "'setCurrentPath' está correto."
+            "caminho, verifique se o caminho passado na variável 'currentPath' dentro do "
+            "método 'setCurrentPath' está correto.",
         
-        , err)
+            err
+        )
 
 # >> DEFINE A ESTRUTURA DE PASTAS DO PROJETO <<
 # Desc:
@@ -276,10 +279,9 @@ def setProjectStructure():
                     ).mkdir(parents = True, exist_ok = True)
 
 
-    # Cria arquivo para exibir a saída do terminal,
-    # se já existir o arquivo, limpa o mesmo
-    outputClear = open(txtOutputFilePath, "w", encoding="UTF-8")
-    outputClear.close()
+    # Cria arquivo para exibir a saída do terminal, se já
+    # existir o arquivo, limpa o mesmo
+    open(txtOutputFilePath, "w").close()
 
 # >> CONFIGURAÇÕES DO PANDAS <<
 # Desc:
@@ -331,8 +333,8 @@ def showError(errorMessage, err):
 
     txtOutputFile = open(txtOutputFilePath, "a", encoding="UTF-8")
     print(
-        "**********************************************************************\n"
-        "--- MENSAGEM ---\n"
+        "======================================================================\n"
+        "[ MENSAGEM ]\n"
         "\n"
         "ERRO\n"
         "Descrição: " + errorMessage + "\n",
@@ -347,7 +349,7 @@ def showError(errorMessage, err):
     
     # Fecha o layout
     print(
-        "**********************************************************************",
+        "======================================================================",
         
         file = txtOutputFile
     )
@@ -365,9 +367,10 @@ def showError(errorMessage, err):
 # Isso é necessário para fazer com que não haja quebra de linha onde o DataFrame identifica
 # como cabeçalho (título) da tabela caso o conteúdo delas seja muito grande.
 # Isso acontece porque o título tem uma formatação gerada pelo DataFrame que difere-se do corpo,
-# o que acaba permitindo que isso ocorra.
+# o que acaba permitindo que isso ocorra. O trabalho dessa função é transformar o cabeçalho em
+# um texto de campo comum.
 def turnHeaderInSimpleRow(tableDataFrame):
-    # Limpa a lista que vai ser usada para manipular o cabeçalho no DataFrame
+    # Cria e limpa a lista que vai ser usada para manipular o cabeçalho no DataFrame
     tableDataFrameHeader = []
 
     # Pegando o cabeçalho da tabela e passando ela como lista para a temporária
@@ -379,7 +382,7 @@ def turnHeaderInSimpleRow(tableDataFrame):
         # Removendo o cabeçalho do DataFrame atual
         tableDataFrame = tableDataFrame.T.reset_index().T.reset_index(drop=True)
 
-        # Adicionando a lista como primeira linha do DataFrame temporário
+        # Adicionando a lista como primeira linha do corpo do DataFrame temporário
         tableDataFrameHeader.insert(1, tableDataFrameHeader)
 
         # Concatenando tabela temporária à tabela principal
@@ -408,9 +411,11 @@ def conversionStart(conversionMethod, tableDataFrame):
         turnHeaderInSimpleRow(tableDataFrame)
         
         # Removendo quebras de linha
-        # O primeiro replace remove as que ocorrem por conta do corpo ser muito grande
-        # O segundo replace remove as que acontecem por conta do ponto e vírgula
-        tableDataFrame = tableDataFrame.replace({r"\r": " "}, regex=True).replace({r";": ","}, regex=True)
+        # Remove quebras de linha do DataFrame que acontecem por conta do corpo ser
+        # muito grande
+        tableDataFrame.replace({r"\r": " "}, inplace=True, regex=True)
+        # Remove ponto e vírgula do DataFrame para evitar conflitos
+        tableDataFrame.replace({r";": ","}, inplace=True, regex=True)
 
         # Define o caminho do arquivo atual para a variável global txtFilePath
         txtFilePath = currentPath + "\\resultados\\" + conversionMethod + "\\withoutFormatting\\" + fileName + ".txt"
