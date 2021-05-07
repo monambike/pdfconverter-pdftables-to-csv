@@ -36,18 +36,6 @@ Lista de bibliotecas utilizadas para que o script em Python fosse desenvolvido:
 ## FORMATAÇÕES
 Tipos de formatações e para quais arquivos foram realizadas. Quando um arquivo for mostrado que foi exportado (nesse documento) todas as formatações acima da exportação serão realizadas.
 
-### Dados Vazios no Cabeçalho
-Remove dados vazios no cabeçalho.
-
-Caso seja:
-```
-"<data>";"Unnamed: 0";"<data>"
-```
-Fica como:
-```
-"<data>";"<data>"
-```
-
 ### Linhas Vazias ou Sem Aspas
 Linhas vazias que só possuem quebra de linha `'\n'` ou não possuem uma aspas dupla em nenhum lugar, serão excluídas.
 
@@ -67,6 +55,18 @@ Fica como:
 ```
 "<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>"
+"<data>";"<data>"
+```
+
+### Dados Vazios no Cabeçalho
+Remove dados vazios no cabeçalho.
+
+Caso seja:
+```
+"<data>";"Unnamed: 0";"<data>"
+```
+Fica como:
+```
 "<data>";"<data>"
 ```
 
