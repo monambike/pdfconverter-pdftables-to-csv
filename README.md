@@ -3,6 +3,27 @@
 
 PDFConverter é um projeto desenvolvido Python que deve ser convertido para executável com o objetivo de converter um grande número de tabelas em PDF rapidamente e sem precisar de muitas ações por parte do usuário. O executável vai ser chamado por um aplicativo desenvolvido em C#.
 
+## LINKS
+
+- [Bibliotecas Utilizadas](#bibliotecas)
+- [Formatações](#formatações)
+    - [Dados Vazios no Cabeçalho](#dados-vazios-no-cabeçalho)
+    - [Linhas Vazias ou Sem Aspas](#linhas-vazias-ou-sem-aspas)
+    - [Quebras de Linhas no Meio dos Dados](#quebras-de-linhas-no-meio-dos-dados)
+    - [Ponto e Vírgula no Final da Linha](#ponto-e-vírgula-no-final-da-linha)
+    - [Duas Colunas](#duas-colunas)
+        - [tableWithBlankCells](#tableWithBlankCells)
+    - [Dados Vazios](#dados-vazios)
+    - [Aspas Duplas Adjacentes](#aspas-duplas-adjacentes)
+    - [Espaço entre Separadores e Aspas Duplas (Remoção)](#espaço-entre-separadores-e-aspas-duplas-(remoção))
+    - [Espaço entre Separadores e Aspas Duplas (Quebra)](#espaço-entre-separadores-e-aspas-duplas-(quebra))
+        - [main](#main)
+    - [Aspas no Início](#aspas-no-início)
+    - [Aspas no Final](#aspas-no-final)
+    - [Linhas Vazias ou Sem Aspas (Segunda Verificação)](#linhas-vazias-ou-sem-aspas-(segunda-verificação))
+    - [Três Colunas](#três-colunas)
+        - [fullClear](#fullClear)
+
 ## BIBLIOTECAS
 ### Python
 Lista de bibliotecas utilizadas para que o script em Python fosse desenvolvido:
