@@ -11,29 +11,29 @@ from PyPDF2 import PdfFileReader
 
 # >> VARIÁVEIS <<
 
-# - NOMES DE ARQUIVOS -
-# Nome do arquivo em PDF formatado sem a extensão
+# - NOMES
+# Nome do arquivo PDF que vai ser convertido (sem a extensão)
 fileName = ""
 
 # - CAMINHOS
-# Caminho atual
+# Caminho atual para a raiz do projeto (outros caminhos vão se
+# basear nele)
 currentPath = ""
-# Caminhos baseados no currentPath
-pathOutputFile = ""
-# Arquivo raíz exportado
+# Caminho para o arquivo do terminal
+txtOutputFilePath = ""
+# Caminho do arquivo PDF que vai ser convertido
 txtFilePath = ""
 
-# - ARQUIVOS DE SAÍDA
-# Saída do Terminal
-outputFile = ""
+# - ARQUIVOS
+# Arquivo de saída do Terminal
+txtOutputFile = ""
 
 # - CONTADORES
 # Índice do Data Frame
 indexDataFrame = 0
 
-
-# Linha gigante que vai ficar disposta em
-# alguns lugares como divisão no terminal
+# Linha gigante que vai ficar disposta em alguns lugares como
+# divisão no terminal
 strGiantLine = (
                     "_____________________________________________________________"
                     "_____________________________________________________________"
@@ -61,7 +61,7 @@ def Main():
     global indexDataFrame
 
     # - CONTADORES
-    # Índice do arquivo
+    # Índice de arquivos
     indexFile = 1
 
     # ---------------------------------------------------------------------- #
@@ -85,7 +85,7 @@ def Main():
                 strGiantLine + "\n"
                 "\n\n\n\n\n\n\n\n\n",
             
-                file = outputFile
+                file = txtOutputFile
             )
             setTerminalFile("closed")
 
@@ -107,7 +107,7 @@ def Main():
                 "                                              							                                                                                                    O arquivo '" + fileName + "' foi lido e está pronto pra ser convertido\n\n"
                 "                                              										                                                                                                    ----- + -----\n\n\n\n",
                 
-                file = outputFile
+                file = txtOutputFile
             )
             setTerminalFile("closed")
 
@@ -169,7 +169,7 @@ def Main():
                 strGiantLine + "\n" +
                 strGiantLine,
             
-                file = outputFile
+                file = txtOutputFile
             )
             setTerminalFile("closed")
         # Se até o término da operação nenhum PDF foi convertido ainda
@@ -195,7 +195,7 @@ def setCurrentPath():
 
         # - Globais
         global currentPath
-        global pathOutputFile
+        global txtOutputFilePath
 
         # ---------------------------------------------------------------------- #
 
@@ -210,7 +210,7 @@ def setCurrentPath():
         # (pdfconverter\bin\Debug\netcoreapp3.1)
         #    \___[a diminuição de caracteres faz voltar até a pasta 'pdfconverter']
 
-        pathOutputFile = currentPath + "\\resultados\\output.txt"
+        txtOutputFilePath = currentPath + "\\resultados\\output.txt"
     except Exception as err:
         showError(
             "Não foi possível achar o diretório atual. Provável problema na hora de encurtar o "
@@ -275,7 +275,7 @@ def setProjectStructure():
 
     # Cria arquivo para exibir a saída do terminal,
     # se já existir o arquivo, limpa o mesmo
-    outputClear = open(pathOutputFile, "w", encoding="UTF-8")
+    outputClear = open(txtOutputFilePath, "w", encoding="UTF-8")
     outputClear.close()
 
 # >> CONFIGURAÇÕES DO PANDAS <<
@@ -307,14 +307,14 @@ def setTerminalFile(setState):
     # >> VARIÁVEIS <<
     
     # - GLOBAIS
-    global outputFile
+    global txtOutputFile
 
     # ---------------------------------------------------------------------- #
 
     if (setState == "open"):
-        outputFile = open(pathOutputFile, "a", encoding="UTF-8")
+        txtOutputFile = open(txtOutputFilePath, "a", encoding="UTF-8")
     elif (setState == "closed"):
-        outputFile.close()
+        txtOutputFile.close()
     else:
         showError("O terminal só pode ser aberto ou fechado. Tenha certeza que atribuiu 'open' para aberto ou 'close' para fechado pro método 'terminal'.", "")
         exit()
@@ -324,9 +324,9 @@ def setTerminalFile(setState):
 # Função responsável por exibir mensagens de erros disponíveis nas Exceptions.
 def showError(errorMessage, err):
     # Limpa o terminal para exibir melhor o erro
-    open(pathOutputFile, "w").close()
+    open(txtOutputFilePath, "w").close()
 
-    outputFile = open(pathOutputFile, "a", encoding="UTF-8")
+    txtOutputFile = open(txtOutputFilePath, "a", encoding="UTF-8")
     print(
         "**********************************************************************\n"
         "--- MENSAGEM ---\n"
@@ -334,21 +334,21 @@ def showError(errorMessage, err):
         "ERRO\n"
         "Descrição: " + errorMessage + "\n",
         
-        file = outputFile
+        file = txtOutputFile
     )
 
     # Caso tenha uma exception, ele exibe
     if (err != ""):
-        print("EXCEPTION", file = outputFile)
-        print(str(err), file = outputFile)
+        print("EXCEPTION", file = txtOutputFile)
+        print(str(err), file = txtOutputFile)
     
     # Fecha o layout
     print(
         "**********************************************************************",
         
-        file = outputFile
+        file = txtOutputFile
     )
-    outputFile.close()
+    txtOutputFile.close()
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>         SAÍDAS DE AVISOS - FIM        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -432,10 +432,10 @@ def conversionStart(conversionMethod, tableDataFrame):
             "\________________________________________________________________________________/\n" +
             "Search this (Ctrl + F): '" + fileName + " " + conversionMethod + " tbl" + str(indexDataFrame) + "'\n",
 
-            file = outputFile
+            file = txtOutputFile
         )
         # Imprime o DataFrame
-        print(pandas.DataFrame(tableDataFrame), file = outputFile)
+        print(pandas.DataFrame(tableDataFrame), file = txtOutputFile)
         setTerminalFile("closed")
 
         indexDataFrame = indexDataFrame + 1
