@@ -49,7 +49,7 @@ strGiantLine = (
 
 
 # REGION
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNÇÃO PRINCIPAL - INÍCIO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>        FUNÇÃO PRINCIPAL - INÍCIO       <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 def Main():
     # ---------------------------------------------------------------------- #
@@ -177,12 +177,12 @@ def Main():
         else:
             showError("Não há arquivos de PDF para serem convertidos.", "")
 
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNÇÃO PRINCIPAL - FIM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>         FUNÇÃO PRINCIPAL - FIM         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 
 # REGION
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CONFIGURAÇÕES INICIAIS - INÍCIO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>     CONFIGURAÇÕES INICIAIS - INÍCIO    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 # >> DEFINE O LOCAL DA RAÍZ DO PROJETO <<
 # Desc:
@@ -291,12 +291,12 @@ def pandaSetConfig():
     # Fazer com que caso tenha um ';' ele não passe os dados pra outra célula
     pandas.options.display.latex.multicolumn = False
 
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CONFIGURAÇÕES INICIAIS - FIM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>      CONFIGURAÇÕES INICIAIS - FIM      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 
 # REGION
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SAÍDAS DE AVISOS - INÍCIO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       SAÍDAS DE AVISOS - INÍCIO       <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 # >> DEFINE O ESTADO DO TERMINAL <<
 # Desc:
@@ -350,12 +350,12 @@ def showError(errorMessage, err):
     )
     outputFile.close()
 
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SAÍDAS DE AVISOS - FIM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>         SAÍDAS DE AVISOS - FIM        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 
 # REGION
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CONVERSÃO - INÍCIO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>           CONVERSÃO - INÍCIO          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 # >> FAZENDO COM QUE O CABEÇALHO SE TORNE UMA LINHA COMUM <<
 # Desc:
@@ -597,7 +597,7 @@ def formatTextFile(conversionMethod):
         # Fecha os arquivos de exportação
         txtFullClearFile.close()
 
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CONVERSÃO - FIM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>            CONVERSÃO - FIM            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 
