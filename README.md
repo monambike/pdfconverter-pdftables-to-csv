@@ -13,19 +13,19 @@ PDFConverter é um projeto desenvolvido Python que deve ser convertido para exec
     - [Quebras de Linhas no Meio dos Dados](#quebras-de-linhas-no-meio-dos-dados)
     - [Ponto e Vírgula no Final da Linha](#ponto-e-vírgula-no-final-da-linha)
     - [Duas Colunas](#duas-colunas)
-        - [Exportar tableWithBlankCells](#exportar-tableWithBlankCells)
+        - [Exportar 'tableWithBlankCells'](#exportar-'tableWithBlankCells')
     - [Dados Vazios](#dados-vazios)
     - [Aspas Duplas Adjacentes](#aspas-duplas-adjacentes)
     - [Espaço entre Separadores e Aspas Duplas (Quebra)](#espaço-entre-separadores-e-aspas-duplas-(quebra))
     - [Espaço no Início da Linha](#espaço-no-início-da-linha)
     - [Espaço entre Separadores e Aspas Duplas (Remoção)](#espaço-entre-separadores-e-aspas-duplas-(remoção))
     - [Aspas (Início e Final) e Ponto e Vírgula](#aspas-(início-e-final)-e-ponto-e-vírgula)
-        - [Exportar main](#exportar-main)
+        - [Exportar 'main'](#exportar-'main')
     - [Aspas no Início](#aspas-no-início)
     - [Aspas no Final](#aspas-no-final)
     - [Linhas Vazias ou Sem Aspas (Segunda Verificação)](#linhas-vazias-ou-sem-aspas-(segunda-verificação))
     - [Três Colunas](#três-colunas)
-        - [Exportar fullClear](#exportar-fullClear)
+        - [Exportar 'fullClear'](#exportar-'fullClear')
 
 ## BIBLIOTECAS
 ### Python
@@ -118,7 +118,7 @@ Fica como:
 "<data>";"<data>";"<data>";"<data>"
 ```
 
-#### **Exportar tableWithBlankCells**
+#### **Exportar 'tableWithBlankCells'**
 Começa a realizar a exportação do arquivo para segurar a exeção de quando for convertida uma tabela que possui células vazias.
 <table>
     <thead>
@@ -236,7 +236,7 @@ Fica como:
 "<data>";"<data>";"<data>"
 ```
 
-#### **Exportar Main**
+#### **Exportar 'main'**
 Começa a realizar a exportação do arquivo principal.
 <table>
     <thead>
@@ -335,7 +335,7 @@ Fica como:
 "<data>";"<data>";"<data>";"<data>"
 ```
 
-#### **Exportar fullClear**
+#### **Exportar 'fullClear'**
 Começa a realizar a exportação do arquivo principal com algumas modificações de formatação mais rígidas.
 <table>
     <thead>
