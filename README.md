@@ -120,11 +120,31 @@ Fica como:
 
 #### **Exportar tableWithBlankCells**
 Começa a realizar a exportação do arquivo para segurar a exeção de quando for convertida uma tabela que possui células vazias.
-| EXPORTAÇÃO |
-| --- |
-| Folder: tableWithBlankCells |
-| Path: \\\\tableWithBlankCells |
-| O arquivo 'tableWithBlankCells' é exportado nesse momento com todas as formatações realizadas acima. |
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">EXPORTAÇÃO</th>
+        </tr>
+    </head>
+    <body>
+        <tr>
+            <td>Folder:</td>
+            <td>tableWithBlankCells</td>
+        </tr>
+        <tr>
+            <td>Path:</td>
+            <td>\\tableWithBlankCells</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Descrição: O arquivo 'tableWithBlankCells' <br>
+                é exportado nesse momento <br>
+                com todas as formatações <br>
+                realizadas acima.
+            </td>
+        </tr>
+    </body>
+</table>
 
 ### Dados Vazios
 Remove dados que estão vazios `"";` e `;""`.
@@ -218,11 +238,31 @@ Fica como:
 
 #### **Exportar Main**
 Começa a realizar a exportação do arquivo principal.
-| EXPORTAÇÃO |
-| --- |
-| Folder: main |
-| Path: \\\\main |
-| O arquivo 'main' é exportado nesse momento com todas as formatações realizadas acima. |
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">EXPORTAÇÃO</th>
+        </tr>
+    </head>
+    <body>
+        <tr>
+            <td>Folder:</td>
+            <td>main</td>
+        </tr>
+        <tr>
+            <td>Path:</td>
+            <td>\\main</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Descrição: O arquivo 'main' <br>
+                é exportado nesse momento <br>
+                com todas as formatações <br>
+                realizadas acima.
+            </td>
+        </tr>
+    </body>
+</table>
 
 ### Aspas no Início
 Caso a linha não comece com aspas deleta.
@@ -297,8 +337,28 @@ Fica como:
 
 #### **Exportar fullClear**
 Começa a realizar a exportação do arquivo principal com algumas modificações de formatação mais rígidas.
-| EXPORTAÇÃO |
-| --- |
-| Folder: fullClear |
-| Path: \\\\fullClear |
-| O arquivo 'fullClear' é exportado nesse momento com todas as formatações realizadas acima. |
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">EXPORTAÇÃO</th>
+        </tr>
+    </head>
+    <body>
+        <tr>
+            <td>Folder:</td>
+            <td>fullClear</td>
+        </tr>
+        <tr>
+            <td>Path:</td>
+            <td>\\fullClear</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Descrição: O arquivo 'fullClear' <br>
+                é exportado nesse momento <br>
+                com todas as formatações <br>
+                realizadas acima.
+            </td>
+        </tr>
+    </body>
+</table>
