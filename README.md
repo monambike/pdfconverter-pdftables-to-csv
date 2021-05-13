@@ -7,23 +7,23 @@ PDFConverter é um projeto desenvolvido Python que deve ser convertido para exec
 
 - [BIBLIOTECAS](#bibliotecas)
 - [FORMATAÇÕES](#formatações)
-    - [EXPORTAÇÃO [withoutFormatting]](#exportação-withoutformatting)
+    - [EXPORTAÇÃO \[withoutFormatting\]](#exportação-withoutformatting)
         - [Linhas Vazias ou Sem Aspas](#linhas-vazias-ou-sem-aspas)
         - [Dados Vazios no Cabeçalho](#dados-vazios-no-cabeçalho)
         - [Quebras de Linhas no Meio dos Dados](#quebras-de-linhas-no-meio-dos-dados)
         - [Ponto e Vírgula no Final da Linha](#ponto-e-vírgula-no-final-da-linha)
         - [Espaço no Início da Linha](#espaço-no-início-da-linha)
         - [Duas Colunas](#duas-colunas)
-    - [EXPORTAÇÃO [tableWithBlankCells]](#exportação-tablewithblankCells)
+    - [EXPORTAÇÃO \[tableWithBlankCells\]](#exportação-tablewithblankcells)
         - [Dados Vazios](#dados-vazios)
         - [Aspas Duplas Adjacentes](#aspas-duplas-adjacentes)
         - [Espaço entre Separadores e Aspas Duplas](#espaço-entre-separadores-e-aspas-duplas)
-    - [EXPORTAÇÃO [main]](#exportação-main)
+    - [EXPORTAÇÃO \[main\]](#exportação-main)
         - [Aspas no Início](#aspas-no-início)
         - [Aspas no Final](#aspas-no-final)
-        - [Linhas Vazias ou Sem Aspas (Segunda Verificação)](#linhas-vazias-ou-sem-aspas-segunda-verificação)
+        - [Linhas Vazias ou Sem Aspas \(Segunda Verificação\)](#linhas-vazias-ou-sem-aspas-segunda-verificação)
         - [Três Colunas](#três-colunas)
-    - [EXPORTAÇÃO [fullClear]](#exportação-fullclear)
+    - [EXPORTAÇÃO \[fullClear\]](#exportação-fullclear)
 
 ## BIBLIOTECAS
 ### Python
@@ -32,14 +32,14 @@ Lista de bibliotecas utilizadas para que o script em Python fosse desenvolvido:
 - **Pandas**, para realizar a conversão pra texto e para realizar a manipulação de DataFrames;
 - **PyPDF2**, para poder pegar o número de páginas do PDF;
 - **Tabula**, para poder fazer a leitura do arquivo PDF;
-- E outras bibliotecas padrão da linguagem (Python) também foram utilizadas.
+- E outras bibliotecas padrão da linguagem \(Python\) também foram utilizadas.
 
 ## FORMATAÇÕES
 Tipos de formatações e para quais arquivos foram realizadas. Quando um arquivo for mostrado que foi exportado (em um formato de tabela) significa que todas as formatações acima da exportação serão realizadas.
 
 <br>
 
-### **EXPORTAÇÃO [withoutFormatting]**
+### **EXPORTAÇÃO \[withoutFormatting\]**
 Começa a realizar a primeira exportação, a exportação do arquivo sem formatação que será formatado posteriormente.
 <table>
     <thead>
@@ -165,7 +165,7 @@ Fica como:
 
 <br>
 
-### **EXPORTAÇÃO [tableWithBlankCells]**
+### **EXPORTAÇÃO \[tableWithBlankCells\]**
 Começa a realizar a exportação do arquivo para segurar a exeção de quando for convertida uma tabela que possui células vazias.
 <table>
     <thead>
@@ -239,7 +239,7 @@ Fica como:
 
 <br>
 
-### **EXPORTAÇÃO [main]**
+### **EXPORTAÇÃO \[main\]**
 Começa a realizar a exportação do arquivo principal.
 <table>
     <thead>
@@ -343,7 +343,7 @@ Fica como:
 
 <br>
 
-### **EXPORTAÇÃO [fullClear]**
+### **EXPORTAÇÃO \[fullClear\]**
 Começa a realizar a exportação do arquivo principal com algumas modificações de formatação mais rígidas.
 <table>
     <thead>
