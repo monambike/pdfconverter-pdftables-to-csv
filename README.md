@@ -38,6 +38,8 @@ Lista de bibliotecas utilizadas para que o script em Python fosse desenvolvido:
 Tipos de formatações e para quais arquivos foram realizadas. Quando um arquivo for mostrado que foi exportado (em um formato de tabela) significa que todas as formatações acima da exportação serão realizadas.
 
 <br>
+<hr>
+<br>
 
 ### **EXPORTAÇÃO \[withoutFormatting\]**
 Começa a realizar a primeira exportação, a exportação do arquivo sem formatação que será formatado posteriormente.
@@ -68,6 +70,8 @@ Começa a realizar a primeira exportação, a exportação do arquivo sem format
 </table>
 
 <br>
+<hr>
+<br>
 
 #### Linhas Vazias ou Sem Aspas
 Linhas vazias que só possuem quebra de linha `'\n'` ou não possuem uma aspas dupla em nenhum lugar, serão excluídas.
@@ -90,6 +94,9 @@ Fica como:
 "<data>";"<data>";"<data>"
 "<data>";"<data>"
 ```
+
+<br>
+
 #### Dados Vazios no Cabeçalho
 Remove dados vazios no cabeçalho.
 
@@ -101,6 +108,8 @@ Fica como:
 ```
 "<data>";"<data>"
 ```
+
+<br>
 
 #### Quebras de Linhas no Meio dos Dados
 Remove quebras de linha caso elas ocorram no meio dos dados.
@@ -116,6 +125,8 @@ Fica como:
 "<data data>"
 ```
 
+<br>
+
 #### Ponto e Vírgula no Final da Linha
 Remove ponto e vírgula `';'` caso seja no final da linha.
     
@@ -128,6 +139,8 @@ Fica como:
 ```
 "<data>";"<data>"
 ```
+
+<br>
 
 #### Espaço no Início da Linha
 Remove espaços no início das linhas.
@@ -144,6 +157,8 @@ Fica como:
 "<data>";"<data>"
 "<data>";"<data>"
 ```
+
+<br>
 
 #### Duas Colunas
 Remove a linha caso ela possua duas colunas ou menos.
@@ -163,6 +178,8 @@ Fica como:
 "<data>";"<data>";"<data>";"<data>"
 ```
 
+<br>
+<hr>
 <br>
 
 ### **EXPORTAÇÃO \[tableWithBlankCells\]**
@@ -195,6 +212,8 @@ Começa a realizar a exportação do arquivo para segurar a exeção de quando f
 </table>
 
 <br>
+<hr>
+<br>
 
 #### Dados Vazios
 Remove dados que estão vazios `"";` e `;""`.
@@ -212,6 +231,8 @@ Fica como:
 "<data>";"<data>";"<data>"
 ```
 
+<br>
+
 #### Aspas Duplas Adjacentes
 Faz uma quebra de linha caso tenha aspas duplas uma do lado da outra.
 
@@ -225,6 +246,8 @@ Fica como:
 "<data>";"<data>"
 ```
 
+<br>
+
 #### Espaço entre Separadores e Aspas Duplas
 Remove o conteúdo anterior caso tenha espaço entre os separadores e as aspas.
 
@@ -237,6 +260,8 @@ Fica como:
 "<data>";"<data>"
 ```
 
+<br>
+<hr>
 <br>
 
 ### **EXPORTAÇÃO \[main\]**
@@ -269,6 +294,8 @@ Começa a realizar a exportação do arquivo principal.
 </table>
 
 <br>
+<hr>
+<br>
 
 #### Aspas no Início
 Caso a linha não comece com aspas deleta.
@@ -285,6 +312,8 @@ Fica como:
 "<data>";"<data>";"<data>"
 ```
 
+<br>
+
 #### Aspas no Final
 Caso a linha não termine com aspas deleta.
 
@@ -299,6 +328,8 @@ Fica como:
 "<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>"
 ```
+
+<br>
 
 #### Linhas Vazias ou Sem Aspas (Segunda Verificação)
 Linhas vazias que só possuem quebra de linha `'\n'` ou não possuem uma aspas dupla em nenhum lugar, serão excluídas.
@@ -322,6 +353,8 @@ Fica como:
 "<data>";"<data>"
 ```
 
+<br>
+
 #### Três Colunas
 Só escreve a linha caso tenha pelo menos mais que três colunas.
 
@@ -341,6 +374,8 @@ Fica como:
 "<data>";"<data>";"<data>";"<data>"
 ```
 
+<br>
+<hr>
 <br>
 
 ### **EXPORTAÇÃO \[fullClear\]**
@@ -371,3 +406,6 @@ Começa a realizar a exportação do arquivo principal com algumas modificaçõe
         </tr>
     </body>
 </table>
+
+<br>
+<hr>
