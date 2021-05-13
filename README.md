@@ -37,6 +37,7 @@ Lista de bibliotecas utilizadas para que o script em Python fosse desenvolvido:
 ## FORMATAÇÕES
 Tipos de formatações e para quais arquivos foram realizadas. Quando um arquivo for mostrado que foi exportado (em um formato de tabela) significa que todas as formatações acima da exportação serão realizadas.
 
+<br>
 
 ### **EXPORTAÇÃO [withoutFormatting]**
 Começa a realizar a primeira exportação, a exportação do arquivo sem formatação que será formatado posteriormente.
@@ -66,6 +67,8 @@ Começa a realizar a primeira exportação, a exportação do arquivo sem format
     </body>
 </table>
 
+<br>
+
 #### Linhas Vazias ou Sem Aspas
 Linhas vazias que só possuem quebra de linha `'\n'` ou não possuem uma aspas dupla em nenhum lugar, serão excluídas.
 
@@ -87,7 +90,6 @@ Fica como:
 "<data>";"<data>";"<data>"
 "<data>";"<data>"
 ```
-
 #### Dados Vazios no Cabeçalho
 Remove dados vazios no cabeçalho.
 
@@ -161,6 +163,8 @@ Fica como:
 "<data>";"<data>";"<data>";"<data>"
 ```
 
+<br>
+
 ### **EXPORTAÇÃO [tableWithBlankCells]**
 Começa a realizar a exportação do arquivo para segurar a exeção de quando for convertida uma tabela que possui células vazias.
 <table>
@@ -189,6 +193,8 @@ Começa a realizar a exportação do arquivo para segurar a exeção de quando f
         </tr>
     </body>
 </table>
+
+<br>
 
 #### Dados Vazios
 Remove dados que estão vazios `"";` e `;""`.
@@ -231,6 +237,8 @@ Fica como:
 "<data>";"<data>"
 ```
 
+<br>
+
 ### **EXPORTAÇÃO [main]**
 Começa a realizar a exportação do arquivo principal.
 <table>
@@ -259,6 +267,8 @@ Começa a realizar a exportação do arquivo principal.
         </tr>
     </body>
 </table>
+
+<br>
 
 #### Aspas no Início
 Caso a linha não comece com aspas deleta.
@@ -330,6 +340,8 @@ Fica como:
 "<data>";"<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>";"<data>"
 ```
+
+<br>
 
 ### **EXPORTAÇÃO [fullClear]**
 Começa a realizar a exportação do arquivo principal com algumas modificações de formatação mais rígidas.
