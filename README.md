@@ -21,7 +21,7 @@ PDFConverter é um projeto desenvolvido Python que deve ser convertido para exec
     - [EXPORTAÇÃO main](#exportação-main)
         - [Aspas no Início](#aspas-no-início)
         - [Aspas no Final](#aspas-no-final)
-        - [Linhas Vazias ou Sem Aspas (Segunda Verificação)](#linhas-vazias-ou-sem-aspas-(segunda-verificação))
+        - [Linhas Vazias ou Sem Aspas (Segunda Verificação)](#linhas-vazias-ou-sem-aspas-segunda-verificação)
         - [Três Colunas](#três-colunas)
     - [EXPORTAÇÃO fullClear](#exportação-fullclear)
 
