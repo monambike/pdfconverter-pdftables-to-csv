@@ -11,7 +11,7 @@ PDFConverter é um projeto desenvolvido Python que deve ser convertido para exec
     - [Dados Vazios no Cabeçalho](#dados-vazios-no-cabeçalho)
     - [Quebras de Linhas no Meio dos Dados](#quebras-de-linhas-no-meio-dos-dados)
     - [Ponto e Vírgula no Final da Linha](#ponto-e-vírgula-no-final-da-linha)
-    - [Espaço no Início da Linha](#espaço-no-inicio-da-linha)
+    - [Espaço no Início da Linha](#espaço-no-início-da-linha)
     - [Duas Colunas](#duas-colunas)
         - [Exportar tableWithBlankCells](#exportar-tablewithblankCells)
     - [Dados Vazios](#dados-vazios)
@@ -35,6 +35,8 @@ Lista de bibliotecas utilizadas para que o script em Python fosse desenvolvido:
 
 ## FORMATAÇÕES
 Tipos de formatações e para quais arquivos foram realizadas. Quando um arquivo for mostrado que foi exportado (nesse documento) todas as formatações acima da exportação serão realizadas.
+
+### TESTE (A) [B]
 
 ### Linhas Vazias ou Sem Aspas
 Linhas vazias que só possuem quebra de linha `'\n'` ou não possuem uma aspas dupla em nenhum lugar, serão excluídas.
