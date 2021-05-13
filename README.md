@@ -52,7 +52,7 @@ Começa a realizar a exportação do arquivo para segurar a exeção de quando f
         </tr>
         <tr>
             <td>Folder Path:</td>
-            <td>(lattice/stream) + "\\withoutFormatting"</td>
+            <td>(lattice/stream) + '\\withoutFormatting'</td>
         </tr>
         <tr>
             <td>Descrição:</td>
