@@ -32,11 +32,10 @@ PDFConverter é um projeto desenvolvido Python que deve ser convertido para exec
 ## BIBLIOTECAS
 ### Python
 Lista de bibliotecas utilizadas para que o script em Python fosse desenvolvido:
-- **Glob**, para poder resgatar apenas arquivos com a extensão de PDF;
 - [**PyPDF2**](https://pypi.org/project/PyPDF2/), para poder pegar o número de páginas do PDF;
 - [**Pandas**](https://pandas.pydata.org/), para realizar a conversão pra texto e para realizar a manipulação de DataFrames;
 - [**Tabula**](https://tabula.technology/), para poder fazer a leitura do arquivo PDF;
-- E outras bibliotecas padrão da linguagem \(Python\) também foram utilizadas.
+- E outras bibliotecas padrão da linguagem \(Python\) também foram utilizadas como o [**Glob**](https://docs.python.org/3/library/glob.html) para poder resgatar apenas arquivos com a extensão de PDF, [**OS**](https://docs.python.org/3/library/os.html) para realizar operações do sistema, entre outros.
 
 <br>
 
