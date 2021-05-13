@@ -534,6 +534,7 @@ def formatTextFile(conversionMethod):
                     lineCurrent = re.sub(r"(^\ *)", "", lineCurrent)
 
                     for exportMethod in range(2):
+                        # Não considera a linha caso ela possua duas colunas ou menos
                         if (
                             (lineCurrent.startswith("\"") and lineCurrent.count("\"") > 4 and lineCurrent.count(";") > 1)
                             or not (lineCurrent.startswith("\""))
