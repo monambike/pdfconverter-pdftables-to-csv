@@ -39,7 +39,7 @@ Tipos de formatações e para quais arquivos foram realizadas. Quando um arquivo
 
 
 #### **EXPORTAÇÃO [withoutFormatting]**
-Começa a realizar a exportação do arquivo para segurar a exeção de quando for convertida uma tabela que possui células vazias.
+Começa a realizar a primeira exportação, a exportação do arquivo sem formatação que será formatado posteriormente.
 <table>
     <thead>
         <tr>
