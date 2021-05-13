@@ -100,6 +100,22 @@ Fica como:
 "<data>";"<data>"
 ```
 
+### Espaço no Início da Linha
+Remove espaços no início das linhas.
+
+Caso seja:
+```
+"<data>";"<data>"
+ "<data>";"<data>"
+"<data>";"<data>"
+```
+Fica como:
+```
+"<data>";"<data>"
+"<data>";"<data>"
+"<data>";"<data>"
+```
+
 ### Duas Colunas
 Remove a linha caso ela possua duas colunas ou menos.
 
@@ -175,65 +191,16 @@ Fica como:
 "<data>";"<data>"
 ```
 
-### Espaço entre Separadores e Aspas Duplas (Quebra)
-Pega os dados que possuem espaços entre o separadores e entre uma aspas dupla e coloca uma quebra de linha no lugar.
+### Espaço entre Separadores e Aspas Duplas
+Remove o conteúdo anterior caso tenha espaço entre os separadores e as aspas.
 
 Caso seja:
 ```
-"<data>";"<data>"; "<data>";"<data>"
+"<Lorem ipsum>";"<Lorem ipsum>"; "<data>";"<data>"
 ```
 Fica como:
 ```
 "<data>";"<data>"
-"<data>";"<data>"
-```
-
-### Espaço no Início da Linha
-Remove espaços no início das linhas.
-
-Caso seja:
-```
-"<data>";"<data>"
- "<data>";"<data>"
-"<data>";"<data>"
-```
-Fica como:
-```
-"<data>";"<data>"
-"<data>";"<data>"
-"<data>";"<data>"
-```
-
-### Espaço entre Separadores e Aspas Duplas (Remoção)
-Remove os dados caso tenha espaço entre os separadores e as aspas.
-
-Caso seja:
-```
-"<data>";"<data>"; "<Lorem ipsum>";"<Lorem ipsum>"
-```
-Fica como:
-```
-"<data>";"<data>"
-```
-
-### Aspas (Início e Final) e Ponto e Vírgula
-Não escreve a linha caso ela não possua aspas duplas no início ou no final e caso ela não possua nenhum ponto e vírgula `';'`.
-
-Caso seja:
-```
-"<data>";"<data>";"<data>"
-<data>";"<data>";"<data>"
-"<data>";"<data>";"<data>"
-"<data>";"<data>";"<data>
-"<data>";"<data>";"<data>"
-"<data>""<data>""<data>"
-"<data>"
-```
-Fica como:
-```
-"<data>";"<data>";"<data>"
-"<data>";"<data>";"<data>"
-"<data>";"<data>";"<data>"
 ```
 
 #### **Exportar main**
