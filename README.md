@@ -35,7 +35,7 @@ Lista de bibliotecas utilizadas para que o script em Python fosse desenvolvido:
 - E outras bibliotecas padrão da linguagem (Python) também foram utilizadas.
 
 ## FORMATAÇÕES
-Tipos de formatações e para quais arquivos foram realizadas. Quando um arquivo for mostrado que foi exportado (nesse documento) todas as formatações acima da exportação serão realizadas.
+Tipos de formatações e para quais arquivos foram realizadas. Quando um arquivo for mostrado que foi exportado (em um formato de tabela) significa que todas as formatações acima da exportação serão realizadas.
 
 
 #### **EXPORTAÇÃO [withoutFormatting]**
