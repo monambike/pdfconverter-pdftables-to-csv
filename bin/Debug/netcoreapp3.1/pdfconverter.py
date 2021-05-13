@@ -490,7 +490,7 @@ def formatTextFile(conversionMethod):
     # - ARQUIVOS
     # Arquivo para caso a tabela possua itens vazios que precisam ser computados
     # (esse arquivo apenas não terá o regex que apaga dados vazios e similares)
-    txtReturnBlankCellsFile = open(txtReturnBlankCellsPath, "a", encoding="UTF-8")
+    txtTableWithBlankCells = open(txtReturnBlankCellsPath, "a", encoding="UTF-8")
     # Arquivo principal, ainda não totalmente pronto para ser jogado em uma tabela
     # (possui mais dados, porém estrutura ainda não tão idealizada)
     txtMainFile = open(txtMainPath, "a", encoding="UTF-8")
@@ -516,60 +516,59 @@ def formatTextFile(conversionMethod):
                 # Significa que está no formato errado e vai ser apagada
                 lineCurrent = ""
 
+            # Detecta os dados vazios que estão presentes no cabeçalho
+            # "Unnamed: X;"
+            lineCurrent = re.sub(r"(\s?\"Unnamed:\s\d\d?\";?)", "", lineCurrent)
+
+            # Remove quebras de linha caso seja no meio dos dados,
+            # ou seja, caso não possua " atrás da quebra de linha
+            # e as substitui por um espaço para manter o padrão
+            lineCurrent = re.sub(r"((?<!\")\n)", " ", lineCurrent)
+
             # Condicional que impede o continuamento do processo caso a variável
             # esteja vazia, ou seja, caso tenha sido apagada pelo processo
             # anterior de limpeza
             if (lineCurrent != ""):
-                    # Detecta os dados vazios que estão presentes no cabeçalho
-                    # "Unnamed: X;"
-                    lineCurrent = re.sub(r"(\s?\"Unnamed:\s\d\d?\";?)", "", lineCurrent)
-
-                    # Remove quebras de linha caso seja no meio dos dados,
-                    # ou seja, caso não possua " atrás da quebra de linha
-                    # e as substitui por um espaço para manter o padrão
-                    lineCurrent = re.sub(r"((?<!\")\n)", " ", lineCurrent)
-
                     # Remove ponto e vírgula no final da linha
                     lineCurrent = re.sub(r"((?<=\");(?!.))", "", lineCurrent)
-                  
-                    # Só escreve a linha se tiver pelo menos mais que 2 colunas
-                    if (lineCurrent.count("\"") > 4
-                        and lineCurrent.count(";") > 1):
-                        # [ EXPORTAÇÃO ]
-                        # Pasta: \\txtReturnBlankCellsFile  
-                        txtReturnBlankCellsFile.write(lineCurrent)
-
-                    # Remove dados que estão vazios
-                    lineCurrent = re.sub(r"(;\"\")|(\"\";)", "", lineCurrent)
-
-                    # Faz uma quebra de linha caso tenha aspas duplas adjacentes
-                    lineCurrent = re.sub(r"(?<=\")(?=\")", "\n", lineCurrent)
                     
                     # Remove todos os espaços no início de cada linha
                     lineCurrent = re.sub(r"(^\ *)", "", lineCurrent)
 
-                    # Faz uma remoção de linha caso tenha aspas duplas adjacentes
-                    lineCurrent = re.sub(r"((.*\"; )(?=\"))", "", lineCurrent)
+                    for exportMethod in range(2):
+                        if (
+                            (lineCurrent.startswith("\"") and lineCurrent.count("\"") > 4 and lineCurrent.count(";") > 1)
+                            or not (lineCurrent.startswith("\""))
+                            ):
 
-                    # Pega os dados que possuem espaços entre o separadores e entre uma aspas
-                    # dupla e coloca uma quebra de linha
-                    lineCurrent = re.sub(r"(;\ )", "\n", lineCurrent)
+                            if exportMethod == 0:
+                                # [ EXPORTAÇÃO ]
+                                # Pasta: \\tableWithBlankCells  
+                                txtTableWithBlankCells.write(lineCurrent)
+                            elif exportMethod == 1:
+                                # Remove dados que estão vazios
+                                lineCurrent = re.sub(r"(;\"\")|(\"\";)", "", lineCurrent)
 
-                    if (not lineCurrent.startswith('"') or
-                        lineCurrent.startswith('"') and
-                        ";" in lineCurrent
-                        or lineCurrent == "\n"):
-                        
-                        # [ EXPORTAÇÃO ]
-                        # Pasta: \\main
-                        txtMainFile.write(lineCurrent)
+                                # Faz uma quebra de linha caso tenha aspas duplas adjacentes
+                                lineCurrent = re.sub(r"(?<=\")(?=\")", "\n", lineCurrent)
 
+                                # Faz uma remoção de linha caso tenha aspas duplas adjacentes
+                                lineCurrent = re.sub(r"((.*\"; )(?=\"))", "", lineCurrent)
+
+                                # Pega os dados que possuem espaços entre o separadores e entre uma aspas
+                                # dupla e coloca uma quebra de linha
+                                lineCurrent = re.sub(r"(;\ )", "\n", lineCurrent)
+
+                                # [ EXPORTAÇÃO ]
+                                # Pasta: \\main
+                                txtMainFile.write(lineCurrent)
+                
                     # Coloca essa linha no histórico
                     lineLastHistory = lineCurrent
 
         # Fecha os arquivos de exportação
         txtMainFile.close()
-        txtReturnBlankCellsFile.close()
+        txtTableWithBlankCells.close()
  
     # Abre o arquivo principal presente na pasta 'main' para
     # criar formatações baseadas nele
