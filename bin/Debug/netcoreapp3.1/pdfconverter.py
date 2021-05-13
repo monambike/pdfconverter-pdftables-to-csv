@@ -482,27 +482,17 @@ def formatTextFile(conversionMethod):
     
     # ---------------------------------------------------------------------- #
 
-    # >> ABRINDO ARQUIVOS <<
-    # Desc:
-    # Abrindo os arquivos que serão utilizados depois na hora de realizar a exportação
-    # com formatação.
-
-    # - ARQUIVOS
-    # Arquivo para caso a tabela possua itens vazios que precisam ser computados
-    # (esse arquivo apenas não terá o regex que apaga dados vazios e similares)
-    txtTableWithBlankCells = open(txtReturnBlankCellsPath, "a", encoding="UTF-8")
-    # Arquivo principal, ainda não totalmente pronto para ser jogado em uma tabela
-    # (possui mais dados, porém estrutura ainda não tão idealizada)
-    txtMainFile = open(txtMainPath, "a", encoding="UTF-8")
-    # O arquivo já pronto e estruturado para ser jogado em uma tabela
-    # (alguns dados podem vir faltando)
-    txtFullClearFile = open(txtFullClearPath, "a", encoding="UTF-8")
-
-    # ---------------------------------------------------------------------- #
-
     # Abre o arquivo original presente na pasta 'withoutFormatting'
     # para criar formatações baseadas nele
     with open(txtFilePath, "r", encoding="UTF-8") as txtFile:
+        # - ARQUIVOS
+        # Arquivo para caso a tabela possua itens vazios que precisam ser computados
+        # (esse arquivo apenas não terá o regex que apaga dados vazios e similares)
+        txtTableWithBlankCells = open(txtReturnBlankCellsPath, "a", encoding="UTF-8")
+        # Arquivo principal, ainda não totalmente pronto para ser jogado em uma tabela
+        # (possui mais dados, porém estrutura ainda não tão idealizada)
+        txtMainFile = open(txtMainPath, "a", encoding="UTF-8")
+
         # Navega por cada linha do documento de texto
         for lineCurrent in txtFile:
             # Linhas vazias que só possuem quebra de linha '\n' ou não possuem
@@ -561,14 +551,15 @@ def formatTextFile(conversionMethod):
                 
                     # Coloca essa linha no histórico
                     lineLastHistory = lineCurrent
-
-        # Fecha os arquivos de exportação
-        txtMainFile.close()
-        txtTableWithBlankCells.close()
  
     # Abre o arquivo principal presente na pasta 'main' para
     # criar formatações baseadas nele
     with open(txtMainPath, "r", encoding="UTF-8") as txtFile:
+        # - ARQUIVOS
+        # O arquivo já pronto e estruturado para ser jogado em uma tabela
+        # (alguns dados podem vir faltando)
+        txtFullClearFile = open(txtFullClearPath, "a", encoding="UTF-8")
+
         # Navega por cada linha do documento de texto
         for lineCurrent in txtFile:
             # Caso a linha não comece com aspas deleta
@@ -596,9 +587,6 @@ def formatTextFile(conversionMethod):
                 # [ EXPORTAÇÃO ]
                 # Pasta: \\fullClear
                 txtFullClearFile.write(lineCurrent)
-        
-        # Fecha os arquivos de exportação
-        txtFullClearFile.close()
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>            CONVERSÃO - FIM            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
