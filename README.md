@@ -44,10 +44,8 @@ Lista de bibliotecas utilizadas para que o script em Python fosse desenvolvido:
 Tipos de formatações e para quais arquivos foram realizadas. Quando um arquivo for mostrado que foi exportado (em um formato de tabela) significa que todas as formatações acima da exportação serão realizadas.
 
 <br>
-<hr>
-<br>
 
-### **EXPORTAÇÃO \[withoutFormatting\]**
+### **Exportação \[withoutFormatting\]**
 Começa a realizar a primeira exportação, a exportação do arquivo sem formatação que será formatado posteriormente.
 <table>
     <thead>
@@ -185,10 +183,8 @@ Fica como:
 ```
 
 <br>
-<hr>
-<br>
 
-### **EXPORTAÇÃO \[tableWithBlankCells\]**
+### **Exportação \[tableWithBlankCells\]**
 Começa a realizar a exportação do arquivo para segurar a exeção de quando for convertida uma tabela que possui células vazias.
 <table>
     <thead>
@@ -267,10 +263,8 @@ Fica como:
 ```
 
 <br>
-<hr>
-<br>
 
-### **EXPORTAÇÃO \[main\]**
+### **Exportação \[main\]**
 Começa a realizar a exportação do arquivo principal.
 <table>
     <thead>
@@ -381,10 +375,8 @@ Fica como:
 ```
 
 <br>
-<hr>
-<br>
 
-### **EXPORTAÇÃO \[fullClear\]**
+### **Exportação \[fullClear\]**
 Começa a realizar a exportação do arquivo principal com algumas modificações de formatação mais rígidas.
 <table>
     <thead>
