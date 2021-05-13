@@ -37,6 +37,34 @@ Lista de bibliotecas utilizadas para que o script em Python fosse desenvolvido:
 Tipos de formatações e para quais arquivos foram realizadas. Quando um arquivo for mostrado que foi exportado (nesse documento) todas as formatações acima da exportação serão realizadas.
 
 
+#### **EXPORTAÇÃO [withoutFormatting]**
+Começa a realizar a exportação do arquivo para segurar a exeção de quando for convertida uma tabela que possui células vazias.
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">EXPORTAÇÃO</th>
+        </tr>
+    </head>
+    <body>
+        <tr>
+            <td>Folder Name:</td>
+            <td>withoutFormatting</td>
+        </tr>
+        <tr>
+            <td>Folder Path:</td>
+            <td>(lattice/stream) + "\\withoutFormatting"</td>
+        </tr>
+        <tr>
+            <td>Descrição:</td>
+            <td>
+                 O arquivo 'withoutFormatting' <br>
+                é exportado nesse momento <br>
+                sem fomatação alguma.
+            </td>
+        </tr>
+    </body>
+</table>
+
 ### Linhas Vazias ou Sem Aspas
 Linhas vazias que só possuem quebra de linha `'\n'` ou não possuem uma aspas dupla em nenhum lugar, serão excluídas.
 
@@ -65,7 +93,7 @@ Remove dados vazios no cabeçalho.
 Caso seja:
 ```
 "<data>";"Unnamed: 0";"<data>"
-```
+```\
 Fica como:
 ```
 "<data>";"<data>"
@@ -132,7 +160,7 @@ Fica como:
 "<data>";"<data>";"<data>";"<data>"
 ```
 
-#### **Exportar [tableWithBlankCells]**
+#### **EXPORTAÇÃO [tableWithBlankCells]**
 Começa a realizar a exportação do arquivo para segurar a exeção de quando for convertida uma tabela que possui células vazias.
 <table>
     <thead>
@@ -142,16 +170,17 @@ Começa a realizar a exportação do arquivo para segurar a exeção de quando f
     </head>
     <body>
         <tr>
-            <td>Folder:</td>
+            <td>Folder Name:</td>
             <td>tableWithBlankCells</td>
         </tr>
         <tr>
-            <td>Path:</td>
-            <td>\\tableWithBlankCells</td>
+            <td>Folder Path:</td>
+            <td>(lattice/stream) + "\\tableWithBlankCells"</td>
         </tr>
         <tr>
-            <td colspan="2">
-                Descrição: O arquivo 'tableWithBlankCells' <br>
+            <td>Descrição:</td>
+            <td>
+                O arquivo 'tableWithBlankCells' <br>
                 é exportado nesse momento <br>
                 com todas as formatações <br>
                 realizadas acima.
@@ -201,7 +230,7 @@ Fica como:
 "<data>";"<data>"
 ```
 
-#### **Exportar [main]**
+#### **EXPORTAÇÃO [main]**
 Começa a realizar a exportação do arquivo principal.
 <table>
     <thead>
@@ -211,16 +240,17 @@ Começa a realizar a exportação do arquivo principal.
     </head>
     <body>
         <tr>
-            <td>Folder:</td>
+            <td>Folder Name:</td>
             <td>main</td>
         </tr>
         <tr>
-            <td>Path:</td>
-            <td>\\main</td>
+            <td>Folder Path:</td>
+            <td>(lattice/stream) + "\\main"</td>
         </tr>
         <tr>
-            <td colspan="2">
-                Descrição: O arquivo 'main' <br>
+            <td>Descrição:</td>
+            <td>
+                O arquivo 'main' <br>
                 é exportado nesse momento <br>
                 com todas as formatações <br>
                 realizadas acima.
@@ -300,7 +330,7 @@ Fica como:
 "<data>";"<data>";"<data>";"<data>"
 ```
 
-#### **Exportar [fullClear]**
+#### **EXPORTAÇÃO [fullClear]**
 Começa a realizar a exportação do arquivo principal com algumas modificações de formatação mais rígidas.
 <table>
     <thead>
@@ -310,16 +340,17 @@ Começa a realizar a exportação do arquivo principal com algumas modificaçõe
     </head>
     <body>
         <tr>
-            <td>Folder:</td>
+            <td>Folder Name:</td>
             <td>fullClear</td>
         </tr>
         <tr>
-            <td>Path:</td>
-            <td>\\fullClear</td>
+            <td>Folder Path:</td>
+            <td>(lattice/stream) + "\\fullClear"</td>
         </tr>
         <tr>
-            <td colspan="2">
-                Descrição: O arquivo 'fullClear' <br>
+            <td>Descrição:</td>
+            <td>
+                O arquivo 'fullClear' <br>
                 é exportado nesse momento <br>
                 com todas as formatações <br>
                 realizadas acima.
