@@ -505,8 +505,6 @@ def formatTextFile(conversionMethod):
     with open(txtFilePath, "r", encoding="UTF-8") as txtFile:
         # Navega por cada linha do documento de texto
         for lineCurrent in txtFile:
-            # >> REMOVE LINHAS SEM ASPAS DUPLAS <<
-            # Desc:
             # Linhas vazias que só possuem quebra de linha '\n' ou não possuem
             # uma aspas dupla em nenhum lugar, serão excluídas 
             lineRemovedQuotes = ""
@@ -552,12 +550,9 @@ def formatTextFile(conversionMethod):
                                 # Faz uma quebra de linha caso tenha aspas duplas adjacentes
                                 lineCurrent = re.sub(r"(?<=\")(?=\")", "\n", lineCurrent)
 
-                                # Faz uma remoção de linha caso tenha aspas duplas adjacentes
-                                lineCurrent = re.sub(r"((.*\"; )(?=\"))", "", lineCurrent)
-
-                                # Pega os dados que possuem espaços entre o separadores e entre uma aspas
-                                # dupla e coloca uma quebra de linha
-                                lineCurrent = re.sub(r"(;\ )", "\n", lineCurrent)
+                                # Caso tenha um espaço entre um separador e uma aspas dupla
+                                # remove o conteúdo que está atrás
+                                lineCurrent = re.sub(r"((.*\";\ )(?=\"))", "", lineCurrent)
 
                                 # [ EXPORTAÇÃO ]
                                 # Pasta: \\main
