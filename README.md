@@ -249,6 +249,21 @@ Fica como:
 
 <br>
 
+#### Espaço Após um Separador
+Caso tenha um ponto e vírgula seguido de um espaço troca por uma quebra de linha
+
+Caso seja:
+```
+"<Lorem ipsum>";"<Lorem ipsum>"; "<Lorem ipsum>";"<Lorem ipsum>"
+```
+Fica como:
+```
+"<Lorem ipsum>";"<Lorem ipsum>"
+"<Lorem ipsum>";"<Lorem ipsum>"
+```
+
+<br>
+
 #### Espaço entre Separadores e Aspas Duplas
 Remove o conteúdo anterior caso tenha espaço entre os separadores e as aspas.
 
