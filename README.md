@@ -132,7 +132,7 @@ Fica como:
 "<data>";"<data>";"<data>";"<data>"
 ```
 
-#### **Exportar tableWithBlankCells**
+#### **Exportar [tableWithBlankCells]**
 Começa a realizar a exportação do arquivo para segurar a exeção de quando for convertida uma tabela que possui células vazias.
 <table>
     <thead>
@@ -201,7 +201,7 @@ Fica como:
 "<data>";"<data>"
 ```
 
-#### **Exportar main**
+#### **Exportar [main]**
 Começa a realizar a exportação do arquivo principal.
 <table>
     <thead>
@@ -300,7 +300,7 @@ Fica como:
 "<data>";"<data>";"<data>";"<data>"
 ```
 
-#### **Exportar fullClear**
+#### **Exportar [fullClear]**
 Começa a realizar a exportação do arquivo principal com algumas modificações de formatação mais rígidas.
 <table>
     <thead>
