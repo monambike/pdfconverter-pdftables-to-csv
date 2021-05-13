@@ -14,16 +14,16 @@ PDFConverter é um projeto desenvolvido Python que deve ser convertido para exec
         - [Ponto e Vírgula no Final da Linha](#ponto-e-vírgula-no-final-da-linha)
         - [Espaço no Início da Linha](#espaço-no-início-da-linha)
         - [Duas Colunas](#duas-colunas)
-    - [EXPORTAÇÃO tableWithBlankCells](#exportação-tablewithblankCells)
+    - [EXPORTAÇÃO [tableWithBlankCells]](#exportação-tablewithblankCells)
         - [Dados Vazios](#dados-vazios)
         - [Aspas Duplas Adjacentes](#aspas-duplas-adjacentes)
         - [Espaço entre Separadores e Aspas Duplas](#espaço-entre-separadores-e-aspas-duplas)
-    - [EXPORTAÇÃO main](#exportação-main)
+    - [EXPORTAÇÃO [main]](#exportação-main)
         - [Aspas no Início](#aspas-no-início)
         - [Aspas no Final](#aspas-no-final)
         - [Linhas Vazias ou Sem Aspas (Segunda Verificação)](#linhas-vazias-ou-sem-aspas-segunda-verificação)
         - [Três Colunas](#três-colunas)
-    - [EXPORTAÇÃO fullClear](#exportação-fullclear)
+    - [EXPORTAÇÃO [fullClear]](#exportação-fullclear)
 
 ## BIBLIOTECAS
 ### Python
