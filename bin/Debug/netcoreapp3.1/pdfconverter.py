@@ -523,14 +523,19 @@ def formatTextFile(conversionMethod):
                     # Remove todos os espaços no início de cada linha
                     lineCurrent = re.sub(r"(^\ *)", "", lineCurrent)
 
-                    for exportMethod in range(2):
-                        # Não considera a linha caso ela possua duas colunas ou menos
+                    # Se a linha começa, ou termina com aspas duplas, ou com uma quebra de linha
+                    if  (lineCurrent.startswith("\"") or lineCurrent.endswith("\"") or lineCurrent.endswith("\n")):
+                        # Se a linha possui menos que duas colunas ancela o código
                         if (
-                            (lineCurrent.startswith("\"") and lineCurrent.count("\"") > 4 and lineCurrent.count(";") > 1)
-                            or not (lineCurrent.startswith("\""))
-                            ):
+                            (lineCurrent.startswith("\"") and lineCurrent.endswith("\"") or lineCurrent.endswith("\n"))
+                            and
+                            (lineCurrent.count("\"") < 5 and lineCurrent.count(";") < 2)
+                        ):
+                            continue
 
-                            if exportMethod == 0:
+                        for exportMethod in range(2):
+
+                            if (exportMethod == 0):
                                 # [ EXPORTAÇÃO ]
                                 # Pasta: \\tableWithBlankCells  
                                 txtTableWithBlankCells.write(lineCurrent)
