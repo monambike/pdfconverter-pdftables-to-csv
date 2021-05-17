@@ -376,9 +376,10 @@ def turnHeaderInSimpleRow(tableDataFrame):
     # Pegando o cabeçalho da tabela e passando ela como lista para a temporária
     tableDataFrameHeader = [*tableDataFrame]
 
-    # Checando se a lista com o cabeçalho veio preenchida ou se o cabeçalho não possui
+    # Checando se a lista com o cabeçalho veio preenchida e se o cabeçalho não possui
     # campos vazios
-    if (tableDataFrameHeader and not "Unnamed" in tableDataFrameHeader[0]):
+    if (tableDataFrameHeader and not
+        "Unnamed" in tableDataFrameHeader[0]):
         # Removendo o cabeçalho do DataFrame atual
         tableDataFrame = tableDataFrame.T.reset_index().T.reset_index(drop=True)
 
@@ -539,7 +540,7 @@ def formatTextFile(conversionMethod):
                                 # [ EXPORTAÇÃO ]
                                 # Pasta: \\tableWithBlankCells  
                                 txtTableWithBlankCells.write(lineCurrent)
-                            elif exportMethod == 1:
+                            elif (exportMethod == 1):
                                 # Remove dados que estão vazios
                                 lineCurrent = re.sub(r"(;\"\")|(\"\";)", "", lineCurrent)
 
@@ -591,8 +592,8 @@ def formatTextFile(conversionMethod):
             
             # Só escreve a linha se tiver pelo menos mais que 3 colunas
             # no arquivo fullClear
-            if (lineCurrent.count("\"") > 6
-                and lineCurrent.count(";") > 2):
+            if (lineCurrent.count("\"") > 6 and
+                lineCurrent.count(";") > 2):
                 # [ EXPORTAÇÃO ]
                 # Pasta: \\fullClear
                 txtFullClearFile.write(lineCurrent)
