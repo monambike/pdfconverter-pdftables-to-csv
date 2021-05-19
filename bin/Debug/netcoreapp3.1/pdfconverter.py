@@ -415,7 +415,7 @@ def conversionStart(conversionMethod, tableDataFrame):
         # Remove quebras de linha do DataFrame que acontecem por conta do corpo ser
         # muito grande
         tableDataFrame.replace({r"\r": " "}, inplace=True, regex=True)
-        # Remove ponto e vírgula do DataFrame para evitar conflitos
+        # Troca ponto e vírgula do DataFrame para evitar conflitos
         tableDataFrame.replace({r";": ","}, inplace=True, regex=True)
 
         # Define o caminho do arquivo atual para a variável global txtFilePath
