@@ -545,30 +545,29 @@ def formatTextFile(conversionMethod):
                         ):
                             continue
 
-                        for exportMethod in range(2):
-
-                            if (exportMethod == 0):
-                                # [ EXPORTAÇÃO ]
+                        # [ EXPORTAÇÃO ]
+                        # Pasta: \\tableWithBlankCells  
                                 # Pasta: \\tableWithBlankCells  
-                                txtTableWithBlankCells.write(lineCurrent)
-                            elif (exportMethod == 1):
-                                # Remove dados que estão vazios
-                                lineCurrent = re.sub(r"(;\"\")|(\"\";)", "", lineCurrent)
+                        # Pasta: \\tableWithBlankCells  
+                        txtTableWithBlankCells.write(lineCurrent)
+                        
+                        # Remove dados que estão vazios
+                        lineCurrent = re.sub(r"(;\"\")|(\"\";)", "", lineCurrent)
 
-                                # Faz uma quebra de linha caso tenha aspas duplas adjacentes
-                                lineCurrent = re.sub(r"(?<=\")(?=\")", "\n", lineCurrent)
+                        # Faz uma quebra de linha caso tenha aspas duplas adjacentes
+                        lineCurrent = re.sub(r"(?<=\")(?=\")", "\n", lineCurrent)
 
-                                # Caso tenha um ponto e vírgula seguido de um espaço troca por
-                                # uma quebra de linha
-                                lineCurrent = re.sub(r"(;\ )", "\n", lineCurrent)
+                        # Caso tenha um ponto e vírgula seguido de um espaço troca por
+                        # uma quebra de linha
+                        lineCurrent = re.sub(r"(;\ )", "\n", lineCurrent)
 
-                                # Caso tenha um espaço entre um separador e uma aspas dupla
-                                # remove o conteúdo que está atrás
-                                lineCurrent = re.sub(r"((.*\";\ )(?=\"))", "", lineCurrent)
+                        # Caso tenha um espaço entre um separador e uma aspas dupla
+                        # remove o conteúdo que está atrás
+                        lineCurrent = re.sub(r"((.*\";\ )(?=\"))", "", lineCurrent)
 
-                                # [ EXPORTAÇÃO ]
-                                # Pasta: \\main
-                                txtMainFile.write(lineCurrent)
+                        # [ EXPORTAÇÃO ]
+                        # Pasta: \\main
+                        txtMainFile.write(lineCurrent)
                 
                     # Coloca essa linha no histórico
                     lineLastHistory = lineCurrent
