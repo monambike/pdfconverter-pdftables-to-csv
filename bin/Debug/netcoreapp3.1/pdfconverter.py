@@ -547,8 +547,6 @@ def formatTextFile(conversionMethod):
 
                         # [ EXPORTAÇÃO ]
                         # Pasta: \\tableWithBlankCells  
-                                # Pasta: \\tableWithBlankCells  
-                        # Pasta: \\tableWithBlankCells  
                         txtTableWithBlankCells.write(lineCurrent)
                         
                         # Remove dados que estão vazios
