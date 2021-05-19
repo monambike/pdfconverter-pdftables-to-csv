@@ -163,8 +163,31 @@ Fica como:
 
 <br>
 
-#### Duas Colunas
-Remove a linha caso ela possua duas colunas ou menos.
+#### Aspas no Início ou Final
+Só permite que a linha seja computada caso a linha possua aspas
+
+Caso seja:
+```
+"<data>";"<data>";"<data>"
+"<data>";"<data>"
+"<data>"
+"<data>
+<data>"
+<data>
+```
+Fica como:
+```
+"<data>";"<data>";"<data>"
+"<data>";"<data>"
+"<data>"
+"<data>
+<data>"
+```
+
+<br>
+
+#### Aspas e Duas Colunas
+Remove a linha caso ela possua aspas no ínicio e no final, e ainda por cima, possua apenas duas colunas ou menos.
 
 Caso seja:
 ```
@@ -173,12 +196,16 @@ Caso seja:
 "<data>";"<data>";"<data>";"<data>"
 "<data>"
 "<data>";"<data>";"<data>";"<data>"
+"<data>
+<data>"
 ```
 Fica como:
 ```
 "<data>";"<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>";"<data>"
+"<data>
+<data>"
 ```
 
 <br>
