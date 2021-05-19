@@ -370,7 +370,7 @@ Fica como:
 <br>
 
 #### Três Colunas
-Só escreve a linha caso tenha pelo menos mais que três colunas.
+Só escreve a linha caso tenha pelo menos três colunas ou mais.
 
 Caso seja:
 ```
@@ -379,13 +379,14 @@ Caso seja:
 "<data>";"<data>";"<data>";"<data>"
 "<data>"
 "<data>";"<data>";"<data>";"<data>"
-"<data>";"<data>";"<data>
+"<data>";"<data>";"<data>"
 ```
 Fica como:
 ```
 "<data>";"<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>";"<data>"
+"<data>";"<data>";"<data>"
 ```
 
 <br>
