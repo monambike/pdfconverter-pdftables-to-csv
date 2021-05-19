@@ -569,7 +569,11 @@ def formatTextFile(conversionMethod):
                 
                     # Coloca essa linha no histórico
                     lineLastHistory = lineCurrent
- 
+    
+    # Closing files
+    txtTableWithBlankCells.close()
+    txtMainFile.close()
+
     # Abre o arquivo principal presente na pasta 'main' para
     # criar formatações baseadas nele
     with open(txtMainPath, "r", encoding="UTF-8") as txtFile:
