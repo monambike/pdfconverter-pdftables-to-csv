@@ -46,6 +46,41 @@ Tipos de formatações e para quais arquivos foram realizadas. Quando um arquivo
 
 <br>
 
+### **Leitura**
+Começa a realizar a leitura do PDF em Laticce ou Stream.
+
+<br>
+
+#### Remover Aspas Duplas PDF
+Remove todas as aspas duplas do DataFrame para evitar problemas futuros.
+
+<br>
+
+#### Deleta Linhas Vazias
+Apaga todas as linhas que estão vazias no DataFrame.
+
+<br>
+
+#### Deleta Colunas Vazias
+Apaga todas as colunas que estão vazias no DataFrame.
+
+<br>
+
+#### Transforma o Cabeçalho em Corpo
+Transforma o cabeçalho em corpo para remover a formatação desnecessária e prejudicial.
+
+<br>
+
+#### Remove Quebras de Linha
+Remove quebras de linha que ocorrem quando o PDF possui uma linha muito grande.
+
+<br>
+
+#### Troca Ponto e Vírgula
+Troca todos os ponto e vírgula do DataFrame por vírgulas para evitar conflitos.
+
+<br>
+
 ### **Exportação \[withoutFormatting\]**
 Começa a realizar a primeira exportação, a exportação do arquivo sem formatação que será formatado posteriormente.
 <table>
