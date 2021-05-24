@@ -472,14 +472,6 @@ def formatTextFile(conversionMethod):
     txtReturnBlankCellsPath = currentPath + "\\resultados\\" + conversionMethod + "\\tableWithBlankCells\\" + fileName + ".txt"
     # Full CLear
     txtFullClearPath = currentPath + "\\resultados\\" + conversionMethod + "\\fullClear\\" + fileName + ".txt"
-
-    # - MANIPULAÇÃO DE LINHAS
-    # ÚLTIMA LINHA
-    # A variável recebe esse valor de início para indicar que ainda nenhum
-    # arquivo passou pela verificação ainda
-    # Isso deve ser desse jeito porque quando algum arquivo passa pela verificação
-    # essa variável recebe vazio ("")
-    lineLastHistory = "<thisMeansThatItHasNoValueYet>"
     
     # ---------------------------------------------------------------------- #
 
@@ -570,9 +562,6 @@ def formatTextFile(conversionMethod):
                     # [ EXPORTAÇÃO ]
                     # Pasta: \\main
                     txtMainFile.write(lineCurrent)
-                
-                    # Coloca essa linha no histórico
-                    lineLastHistory = lineCurrent
     
     # Closing files
     txtTableWithBlankCells.close()
