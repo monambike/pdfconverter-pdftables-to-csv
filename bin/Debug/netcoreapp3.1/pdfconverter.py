@@ -496,15 +496,6 @@ def formatTextFile(conversionMethod):
 
         # Navega por cada linha do documento de texto
         for lineCurrent in txtFile:
-            # Linhas vazias que só possuem quebra de linha '\n' ou não possuem
-            # uma aspas dupla em nenhum lugar, serão excluídas 
-            lineRemovedQuotes = ""
-            lineRemovedQuotes = re.sub(r"\"", "", lineCurrent)                
-            # Se essa permanece igual, ou seja, não teve aspas duplas removidas
-            if (lineCurrent == lineRemovedQuotes):
-                # Significa que está no formato errado e vai ser apagada
-                lineCurrent = ""
-
             # Detecta os dados vazios que estão presentes no cabeçalho
             # "Unnamed: X;"
             lineCurrent = re.sub(r"(\s?\"Unnamed:\s\d\d?\";?)", "", lineCurrent)
@@ -542,8 +533,6 @@ def formatTextFile(conversionMethod):
                         continue
 
                     # [ EXPORTAÇÃO ]
-                    # Pasta: \\tableWithBlankCells  
-                        # Pasta: \\tableWithBlankCells  
                     # Pasta: \\tableWithBlankCells  
                     txtTableWithBlankCells.write(lineCurrent)
                     
