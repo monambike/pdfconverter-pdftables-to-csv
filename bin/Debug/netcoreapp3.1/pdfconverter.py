@@ -541,23 +541,25 @@ def formatTextFile(conversionMethod):
                     ):
                         continue
 
-                        # [ EXPORTAÇÃO ]
+                    # [ EXPORTAÇÃO ]
+                    # Pasta: \\tableWithBlankCells  
                         # Pasta: \\tableWithBlankCells  
-                        txtTableWithBlankCells.write(lineCurrent)
-                        
-                        # Remove dados que estão vazios
-                        lineCurrent = re.sub(r"(;\"\")|(\"\";)", "", lineCurrent)
+                    # Pasta: \\tableWithBlankCells  
+                    txtTableWithBlankCells.write(lineCurrent)
+                    
+                    # Remove dados que estão vazios
+                    lineCurrent = re.sub(r"(;\"\")|(\"\";)", "", lineCurrent)
 
-                        # Faz uma quebra de linha caso tenha aspas duplas adjacentes
-                        lineCurrent = re.sub(r"(?<=\")(?=\")", "\n", lineCurrent)
+                    # Faz uma quebra de linha caso tenha aspas duplas adjacentes
+                    lineCurrent = re.sub(r"(?<=\")(?=\")", "\n", lineCurrent)
 
-                        # Caso tenha um ponto e vírgula seguido de um espaço troca por
-                        # uma quebra de linha
-                        lineCurrent = re.sub(r"(;\ )", "\n", lineCurrent)
+                    # Caso tenha um ponto e vírgula seguido de um espaço troca por
+                    # uma quebra de linha
+                    lineCurrent = re.sub(r"(;\ )", "\n", lineCurrent)
 
-                        # Caso tenha um espaço entre um separador e uma aspas dupla
-                        # remove o conteúdo que está atrás
-                        lineCurrent = re.sub(r"((.*\";\ )(?=\"))", "", lineCurrent)
+                    # Caso tenha um espaço entre um separador e uma aspas dupla
+                    # remove o conteúdo que está atrás
+                    lineCurrent = re.sub(r"((.*\";\ )(?=\"))", "", lineCurrent)
 
                     # Se a linha possui aspas duplas no início e no final e ainda possui
                     # menos que duas colunas cancela o código
@@ -575,9 +577,10 @@ def formatTextFile(conversionMethod):
                         (lineCurrent.count("\"") < 5 and lineCurrent.count(";") < 2)
                     ):
                         continue
-                        # [ EXPORTAÇÃO ]
-                        # Pasta: \\main
-                        txtMainFile.write(lineCurrent)
+
+                    # [ EXPORTAÇÃO ]
+                    # Pasta: \\main
+                    txtMainFile.write(lineCurrent)
                 
                     # Coloca essa linha no histórico
                     lineLastHistory = lineCurrent
