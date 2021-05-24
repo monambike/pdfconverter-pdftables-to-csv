@@ -9,25 +9,33 @@ PDFConverter é um projeto desenvolvido Python que deve ser convertido para exec
 
 - [BIBLIOTECAS](#bibliotecas)
 - [FORMATAÇÕES](#formatações)
-    - [EXPORTAÇÃO \[withoutFormatting\]](#exportação-withoutformatting)
-        - [Linhas Vazias ou Sem Aspas](#linhas-vazias-ou-sem-aspas)
-        - [Dados Vazios no Cabeçalho](#dados-vazios-no-cabeçalho)
-        - [Quebras de Linhas no Meio dos Dados](#quebras-de-linhas-no-meio-dos-dados)
-        - [Ponto e Vírgula no Final da Linha](#ponto-e-vírgula-no-final-da-linha)
-        - [Espaço no Início da Linha](#espaço-no-início-da-linha)
-        - [Aspas no Início ou Final](#aspas-no-início-ou-final)
-        - [Aspas e Duas Colunas](#aspas-e-duas-colunas)
-    - [EXPORTAÇÃO \[tableWithBlankCells\]](#exportação-tablewithblankcells)
-        - [Dados Vazios](#dados-vazios)
-        - [Aspas Duplas Adjacentes](#aspas-duplas-adjacentes)
-        - [Espaço Após um Separador](#espaço-após-um-separador)
-        - [Espaço entre Separadores e Aspas Duplas](#espaço-entre-separadores-e-aspas-duplas)
-    - [EXPORTAÇÃO \[main\]](#exportação-main)
-        - [Aspas no Início](#aspas-no-início)
-        - [Aspas no Final](#aspas-no-final)
-        - [Linhas Vazias ou Sem Aspas \(Segunda Verificação\)](#linhas-vazias-ou-sem-aspas-segunda-verificação)
-        - [Três Colunas](#três-colunas)
-    - [EXPORTAÇÃO \[fullClear\]](#exportação-fullclear)
+    - [Leitura](#leitura)
+        - [Remove Aspas Duplas](#remove-aspas-duplas)
+        - [Deleta Linhas Vazias](#deleta-linhas-vazias)
+        - [Deleta Colunas Vazias](#deleta-colunas-vazias)
+        - [Transforma o Cabeçalho em Corpo](#transforma-o-cabeçalho-em-corpo)
+        - [Remove Quebras de Linha](#remove-quebras-de-linha)
+        - [Troca Ponto e Vírgula](#troca-ponto-e-vírgula)
+    - [Conversão](#conversão)
+        - [EXPORTAÇÃO \[withoutFormatting\]](#exportação-withoutformatting)
+            - [Linhas Vazias ou Sem Aspas](#linhas-vazias-ou-sem-aspas)
+            - [Dados Vazios no Cabeçalho](#dados-vazios-no-cabeçalho)
+            - [Quebras de Linhas no Meio dos Dados](#quebras-de-linhas-no-meio-dos-dados)
+            - [Ponto e Vírgula no Final da Linha](#ponto-e-vírgula-no-final-da-linha)
+            - [Espaço no Início da Linha](#espaço-no-início-da-linha)
+            - [Aspas no Início ou Final](#aspas-no-início-ou-final)
+            - [Aspas e Duas Colunas](#aspas-e-duas-colunas)
+        - [EXPORTAÇÃO \[tableWithBlankCells\]](#exportação-tablewithblankcells)
+            - [Dados Vazios](#dados-vazios)
+            - [Aspas Duplas Adjacentes](#aspas-duplas-adjacentes)
+            - [Espaço Após um Separador](#espaço-após-um-separador)
+            - [Espaço entre Separadores e Aspas Duplas](#espaço-entre-separadores-e-aspas-duplas)
+        - [EXPORTAÇÃO \[main\]](#exportação-main)
+            - [Aspas no Início](#aspas-no-início)
+            - [Aspas no Final](#aspas-no-final)
+            - [Linhas Vazias ou Sem Aspas \(Segunda Verificação\)](#linhas-vazias-ou-sem-aspas-segunda-verificação)
+            - [Três Colunas](#três-colunas)
+        - [EXPORTAÇÃO \[fullClear\]](#exportação-fullclear)
 
 <br>
 
@@ -46,12 +54,12 @@ Tipos de formatações e para quais arquivos foram realizadas. Quando um arquivo
 
 <br>
 
-### **Leitura**
-Começa a realizar a leitura do PDF em Laticce ou Stream.
+## **Leitura**
+Formatações relacionadas à leitura.
 
 <br>
 
-#### Remover Aspas Duplas PDF
+#### Remove Aspas Duplas
 Remove todas as aspas duplas do DataFrame para evitar problemas futuros.
 
 <br>
@@ -80,6 +88,9 @@ Remove quebras de linha que ocorrem quando o PDF possui uma linha muito grande.
 Troca todos os ponto e vírgula do DataFrame por vírgulas para evitar conflitos.
 
 <br>
+
+## **Conversão**
+Formatações relacionadas à conversão.
 
 ### **Exportação \[withoutFormatting\]**
 Começa a realizar a primeira exportação, a exportação do arquivo sem formatação que será formatado posteriormente.
@@ -113,28 +124,6 @@ Começa a realizar a primeira exportação, a exportação do arquivo sem format
 <hr>
 <br>
 
-#### Linhas Vazias ou Sem Aspas
-Linhas vazias que só possuem quebra de linha `'\n'` ou não possuem uma aspas dupla em nenhum lugar, serão excluídas.
-
-Caso seja:
-```
-
-
-
-Lorem
-"<data>";"<data>";"<data>"
-"<data>";"<data>";"<data>"
-Lorem ipsum
-
-"<data>";"<data>"
-```
-Fica como:
-```
-"<data>";"<data>";"<data>"
-"<data>";"<data>";"<data>"
-"<data>";"<data>"
-```
-
 <br>
 
 #### Dados Vazios no Cabeçalho
@@ -156,6 +145,8 @@ Remove quebras de linha caso elas ocorram no meio dos dados.
 
 Caso seja:
 ```
+
+
 "<data
 data>"
 ```
@@ -200,30 +191,7 @@ Fica como:
 
 <br>
 
-#### Aspas no Início ou Final
-Só permite que a linha seja computada caso a linha possua aspas
-
-Caso seja:
-```
-"<data>";"<data>";"<data>"
-"<data>";"<data>"
-"<data>"
-"<data>
-<data>"
-<data>
-```
-Fica como:
-```
-"<data>";"<data>";"<data>"
-"<data>";"<data>"
-"<data>"
-"<data>
-<data>"
-```
-
-<br>
-
-#### Aspas e Duas Colunas
+#### Aspas e Duas Colunas - Primeira Verificação
 Remove a linha caso ela possua aspas no ínicio e no final, e ainda por cima, possua apenas duas colunas ou menos.
 
 Caso seja:
@@ -338,6 +306,30 @@ Caso seja:
 Fica como:
 ```
 "<data>";"<data>"
+```
+
+<br>
+
+#### Aspas e Duas Colunas - Segunda Verificação
+Remove a linha caso ela possua aspas no ínicio e no final, e ainda por cima, possua apenas duas colunas ou menos.
+
+Caso seja:
+```
+"<data>";"<data>";"<data>";"<data>"
+"<data>";"<data>"
+"<data>";"<data>";"<data>";"<data>"
+"<data>"
+"<data>";"<data>";"<data>";"<data>"
+"<data>
+<data>"
+```
+Fica como:
+```
+"<data>";"<data>";"<data>";"<data>"
+"<data>";"<data>";"<data>";"<data>"
+"<data>";"<data>";"<data>";"<data>"
+"<data>
+<data>"
 ```
 
 <br>
