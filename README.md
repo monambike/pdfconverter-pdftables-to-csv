@@ -18,18 +18,17 @@ PDFConverter é um projeto desenvolvido Python que deve ser convertido para exec
         - [Troca Ponto e Vírgula](#troca-ponto-e-vírgula)
     - [Conversão](#conversão)
         - [EXPORTAÇÃO \[withoutFormatting\]](#exportação-withoutformatting)
-            - [Linhas Vazias ou Sem Aspas](#linhas-vazias-ou-sem-aspas)
             - [Dados Vazios no Cabeçalho](#dados-vazios-no-cabeçalho)
             - [Quebras de Linhas no Meio dos Dados](#quebras-de-linhas-no-meio-dos-dados)
             - [Ponto e Vírgula no Final da Linha](#ponto-e-vírgula-no-final-da-linha)
             - [Espaço no Início da Linha](#espaço-no-início-da-linha)
-            - [Aspas no Início ou Final](#aspas-no-início-ou-final)
-            - [Aspas e Duas Colunas](#aspas-e-duas-colunas)
+            - [Aspas e Duas Colunas \(Primeira Verificação\)](#aspas-e-duas-colunas-primeira-verificação)
         - [EXPORTAÇÃO \[tableWithBlankCells\]](#exportação-tablewithblankcells)
             - [Dados Vazios](#dados-vazios)
             - [Aspas Duplas Adjacentes](#aspas-duplas-adjacentes)
             - [Espaço Após um Separador](#espaço-após-um-separador)
             - [Espaço entre Separadores e Aspas Duplas](#espaço-entre-separadores-e-aspas-duplas)
+            - [Aspas e Duas Colunas (Segunda Verificação)](#aspas-e-duas-colunas-segunda-verificação)
         - [EXPORTAÇÃO \[main\]](#exportação-main)
             - [Aspas no Início](#aspas-no-início)
             - [Aspas no Final](#aspas-no-final)
@@ -191,7 +190,7 @@ Fica como:
 
 <br>
 
-#### Aspas e Duas Colunas - Primeira Verificação
+#### Aspas e Duas Colunas (Primeira Verificação)
 Remove a linha caso ela possua aspas no ínicio e no final, e ainda por cima, possua apenas duas colunas ou menos.
 
 Caso seja:
@@ -310,7 +309,7 @@ Fica como:
 
 <br>
 
-#### Aspas e Duas Colunas - Segunda Verificação
+#### Aspas e Duas Colunas (Segunda Verificação)
 Remove a linha caso ela possua aspas no ínicio e no final, e ainda por cima, possua apenas duas colunas ou menos.
 
 Caso seja:
