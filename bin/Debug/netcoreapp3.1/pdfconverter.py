@@ -563,6 +563,22 @@ def formatTextFile(conversionMethod):
                         # remove o conteúdo que está atrás
                         lineCurrent = re.sub(r"((.*\";\ )(?=\"))", "", lineCurrent)
 
+                    # Se a linha possui aspas duplas no início e no final e ainda possui
+                    # menos que duas colunas cancela o código
+                    if (
+                        (
+                            (
+                                lineCurrent.startswith("\"")
+                            )
+                            and 
+                            (
+                                lineCurrent.endswith("\"") or lineCurrent.endswith("\n")
+                            )
+                        )
+                        and
+                        (lineCurrent.count("\"") < 5 and lineCurrent.count(";") < 2)
+                    ):
+                        continue
                         # [ EXPORTAÇÃO ]
                         # Pasta: \\main
                         txtMainFile.write(lineCurrent)
