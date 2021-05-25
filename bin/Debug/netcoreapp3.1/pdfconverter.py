@@ -520,7 +520,7 @@ def formatTextFile(conversionMethod):
                             )
                         )
                         and
-                        (lineCurrent.count("\"") < 5 and lineCurrent.count(";") < 2)
+                        (lineCurrent.count("\"") < 3 and lineCurrent.count(";") < 1)
                     ):
                         continue
 
@@ -555,7 +555,7 @@ def formatTextFile(conversionMethod):
                             )
                         )
                         and
-                        (lineCurrent.count("\"") < 5 and lineCurrent.count(";") < 2)
+                        (lineCurrent.count("\"") < 3 and lineCurrent.count(";") < 1)
                     ):
                         continue
 
