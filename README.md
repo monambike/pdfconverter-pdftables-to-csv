@@ -190,8 +190,8 @@ Fica como:
 
 <br>
 
-#### Aspas e Duas Colunas (Primeira Verificação)
-Remove a linha caso ela possua aspas no ínicio e no final, e ainda por cima, possua apenas duas colunas ou menos.
+#### Aspas e Uma Coluna (Primeira Verificação)
+Remove a linha caso ela possua aspas no ínicio e no final, e ainda por cima, possua apenas uma colunas ou menos.
 
 Caso seja:
 ```
@@ -206,6 +206,7 @@ Caso seja:
 Fica como:
 ```
 "<data>";"<data>";"<data>";"<data>"
+"<data>";"<data>"
 "<data>";"<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>";"<data>"
 "<data>
@@ -309,7 +310,7 @@ Fica como:
 
 <br>
 
-#### Aspas e Duas Colunas (Segunda Verificação)
+#### Aspas e Uma Coluna (Segunda Verificação)
 Remove a linha caso ela possua aspas no ínicio e no final, e ainda por cima, possua apenas duas colunas ou menos.
 
 Caso seja:
@@ -325,6 +326,7 @@ Caso seja:
 Fica como:
 ```
 "<data>";"<data>";"<data>";"<data>"
+"<data>";"<data>"
 "<data>";"<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>";"<data>"
 "<data>
