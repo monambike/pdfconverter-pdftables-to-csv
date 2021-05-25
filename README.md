@@ -63,6 +63,11 @@ Remove todas as aspas duplas do DataFrame para evitar problemas futuros.
 
 <br>
 
+#### Troca Ponto e Vírgula
+Troca todos os ponto e vírgula do DataFrame por vírgulas para evitar conflitos.
+
+<br>
+
 #### Deleta Linhas Vazias
 Apaga todas as linhas que estão vazias no DataFrame.
 
@@ -80,11 +85,6 @@ Transforma o cabeçalho em corpo para remover a formatação desnecessária e pr
 
 #### Remove Quebras de Linha
 Remove quebras de linha que ocorrem quando o PDF possui uma linha muito grande.
-
-<br>
-
-#### Troca Ponto e Vírgula
-Troca todos os ponto e vírgula do DataFrame por vírgulas para evitar conflitos.
 
 <br>
 
