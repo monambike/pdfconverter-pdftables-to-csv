@@ -5,7 +5,6 @@ import tabula
 from os import chdir
 from glob import glob
 from pathlib import Path
-from PyPDF2 import PdfFileReader
 
 # ---------------------------------------------------------------------- #
 
@@ -96,10 +95,6 @@ def Main():
             # Remove extensão do arquivo, pegando apenas o nome e
             # atribui para a temporária
             fileName = pdfFile[:-4]
-
-            # Pega o número de páginas que o PDF contém
-            pdf = PdfFileReader(open(pdfFile, "rb"))
-            pdfNumberOfPages = pdf.getNumPages()
 
             # Cria o título para leitura do arquivo no terminal
             setTerminalFile("open")
