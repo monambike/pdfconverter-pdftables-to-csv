@@ -91,40 +91,40 @@ def Main():
             )
             setTerminalFile("closed")
 
-        try:
-            # Remove extensão do arquivo, pegando apenas o nome e
-            # atribui para a temporária
-            fileName = pdfFile[:-4]
+        # Remove extensão do arquivo, pegando apenas o nome e
+        # atribui para a temporária
+        fileName = pdfFile[:-4]
 
-            # Cria o título para leitura do arquivo no terminal
-            setTerminalFile("open")
-            print(
-                pdfFile + strGiantLine + "\n" +
-                strGiantLine + "\n\n\n\n"
-                "                                              										                                                                                                    ----- + -----\n\n"
-                "                                              							                                                                                                    	     LEITURA DE ARQUIVO - NÚMERO " + str(indexFile) + ", '" + pdfFile + "'\n"
-                "                                              							                                                                                                    O arquivo '" + fileName + "' foi lido e está pronto pra ser convertido\n\n"
-                "                                              										                                                                                                    ----- + -----\n\n\n\n",
-                
-                file = txtOutputFile
-            )
-            setTerminalFile("closed")
+        # Cria o título para leitura do arquivo no terminal
+        setTerminalFile("open")
+        print(
+            pdfFile + strGiantLine + "\n" +
+            strGiantLine + "\n\n\n\n"
+            "                                              										                                                                                                    ----- + -----\n\n"
+            "                                              							                                                                                                    	     LEITURA DE ARQUIVO - NÚMERO " + str(indexFile) + ", '" + pdfFile + "'\n"
+            "                                              							                                                                                                    O arquivo '" + fileName + "' foi lido e está pronto pra ser convertido\n\n"
+            "                                              										                                                                                                    ----- + -----\n\n\n\n"
+            
+            , file = txtOutputFile
+        )
+        setTerminalFile("closed")
 
 
-            # >> MÉTODOS DE LEITURA E CONVERSÃO <<
-            # Desc:
-            # Primeiro faz a leitura e conversão pra Lattice e após faz o mesmo
-            # para o Stream
-            for method in range(2):
-                # Lattice
-                if (method == 0):
-                    boolLattice = True
-                    conversionMethod = "lattice"
-                # Stream
-                elif (method == 1):
-                    boolLattice = False
-                    conversionMethod = "stream"
+        # >> MÉTODOS DE LEITURA E CONVERSÃO <<
+        # Desc:
+        # Primeiro faz a leitura e conversão pra Lattice e após faz o mesmo
+        # para o Stream
+        for method in range(2):
+            # Lattice
+            if (method == 0):
+                boolLattice = True
+                conversionMethod = "lattice"
+            # Stream
+            elif (method == 1):
+                boolLattice = False
+                conversionMethod = "stream"
 
+            try:
                 # >> LEITURA <<
                 # Desc:
                 # Fazendo leitura do arquivo completo e passando como
@@ -138,24 +138,31 @@ def Main():
                     pandas_options = {"dtype": "str"},
                     silent = True
                 )
+            except Exception as err:
+                showError(
+                    "Arquivo: " + pdfFile + "\n"
+                    "Método de Conversão: " + conversionMethod + "\n"
+                    "\n"
+                    "Descrição: Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "' "
+                    "usando o método '" + conversionMethod + "'."
+                
+                    , err
+                )
 
-                # >> CONVERSÃO <<
-                # Desc:
-                # Realizando a conversão com o método indicado
-                indexDataFrame = 1
-                for tableDataFrame in tableListOfDataFrames:
-                    # Remove as aspas duplas do que estiverem no DataFrame para evitar possíveis erros,
-                    # porque os dados normalmente são separados por pontos e vírgula e aspas duplas
-                    tableDataFrame = tableDataFrame.replace("\"", "", regex = True)
+            # >> CONVERSÃO <<
+            # Desc:
+            # Realizando a conversão com o método indicado
+            indexDataFrame = 1
+            for tableDataFrame in tableListOfDataFrames:
+                # Remove as aspas duplas do que estiverem no DataFrame para evitar possíveis erros,
+                # porque os dados normalmente são separados por pontos e vírgula e aspas duplas
+                tableDataFrame = tableDataFrame.replace("\"", "", regex = True)
 
-                    conversionStart(conversionMethod, tableDataFrame)
-                formatTextFile(conversionMethod)
+                conversionStart(conversionMethod, tableDataFrame)
+            formatTextFile(conversionMethod)
 
-            # Atribuindo mais um ao índice para indicar que o arquivo PDF foi convertido
-            indexFile = indexFile + 1
-        except Exception as err:
-            showError("Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "'.", err)
-            break 
+        # Atribuindo mais um ao índice para indicar que o arquivo PDF foi convertido
+        indexFile = indexFile + 1
     else:
         # Se até o término da operação algum PDF foi convertido, fecha o
         # leiaute do terminal
