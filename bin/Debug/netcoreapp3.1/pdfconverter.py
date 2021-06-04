@@ -85,9 +85,9 @@ def Main():
                 "\n" +
                 strGiantLine + "\n" +
                 strGiantLine + "\n"
-                "\n\n\n\n\n\n\n\n\n",
+                "\n\n\n\n\n\n\n\n\n"
             
-                file = txtOutputFile
+                , file = txtOutputFile
             )
             setTerminalFile("closed")
 
@@ -180,7 +180,7 @@ def Main():
         # Se ainda até o término da operação nenhum PDF foi convertido
         # exibe um erro
         else:
-            showError("Não há arquivos de PDF para serem convertidos.", "")
+            showError("Descrição: Não há arquivos de PDF para serem convertidos.", "")
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>         FUNÇÃO PRINCIPAL - FIM         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -220,11 +220,11 @@ def setCurrentPath():
         txtOutputFilePath = currentPath + "\\resultados\\output.txt"
     except Exception as err:
         showError(
-            "Não foi possível achar o diretório atual. Provável problema na hora de encurtar o "
+            "Descrição: Não foi possível achar o diretório atual. Provável problema na hora de encurtar o "
             "caminho, verifique se o caminho passado na variável 'currentPath' dentro do "
-            "método 'setCurrentPath' está correto.",
+            "método 'setCurrentPath' está correto."
         
-            err
+            , err
         )
 
 # >> DEFINE A ESTRUTURA DE PASTAS DO PROJETO <<
@@ -323,34 +323,45 @@ def setTerminalFile(setState):
     elif (setState == "closed"):
         txtOutputFile.close()
     else:
-        showError("O terminal só pode ser aberto ou fechado. Tenha certeza que atribuiu 'open' para aberto ou 'close' para fechado pro método 'terminal'.", "")
+        showError(
+            "O terminal só pode ser aberto ou fechado. Tenha certeza que "
+            "atribuiu 'open' para aberto ou 'close' para fechado pro "
+            "método 'terminal'."
+        
+            , ""
+        )
         exit()
 
 # >> EXIBE UMA MENSAGEM DE ERRO <<
 # Desc:
 # Função responsável por exibir mensagens de erros disponíveis nas Exceptions.
 def showError(errorMessage, err):
-    # Limpa o terminal para exibir melhor o erro
-    open(txtOutputFilePath, "w").close()
-
     txtOutputFile = open(txtOutputFilePath, "a", encoding="UTF-8")
     print(
         "======================================================================\n"
+        "\n"
         "[ MENSAGEM ]\n"
         "\n"
         "ERRO\n"
-        "Descrição: " + errorMessage + "\n",
+        "\n" +
+        errorMessage + "\n",
         
         file = txtOutputFile
     )
 
     # Caso tenha uma exception, ele exibe
     if (err != ""):
-        print("EXCEPTION", file = txtOutputFile)
+        print(
+            "\n"
+            "Exception Log:"
+            
+            , file = txtOutputFile
+        )
         print(str(err), file = txtOutputFile)
     
     # Fecha o layout
     print(
+        "\n"
         "======================================================================",
         
         file = txtOutputFile
@@ -441,9 +452,9 @@ def conversionStart(conversionMethod, tableDataFrame):
             "\n\n"
             "          A tabela nº"+ str(indexDataFrame) + " do '" + fileName + "' foi convertida usando '" + conversionMethod + "'\n"
             "\________________________________________________________________________________/\n" +
-            "Search this (Ctrl + F): '" + fileName + " " + conversionMethod + " tbl" + str(indexDataFrame) + "'\n",
+            "Search this (Ctrl + F): '" + fileName + " " + conversionMethod + " tbl" + str(indexDataFrame) + "'\n"
 
-            file = txtOutputFile
+            , file = txtOutputFile
         )
         # Imprime o DataFrame
         print(pandas.DataFrame(tableDataFrame), file = txtOutputFile)
@@ -451,7 +462,16 @@ def conversionStart(conversionMethod, tableDataFrame):
 
         indexDataFrame = indexDataFrame + 1
     except Exception as err:
-        showError("Ocorreu um erro, ao tentar converter o arquivo '" + fileName + ".pdf' usando o método " + conversionMethod + ".", err)
+        showError(
+            "Arquivo: " + fileName + "\n"
+            "Método de Conversão: " + conversionMethod + "\n"
+            "\n"
+            "Descrição: Ocorreu um erro, ao tentar converter o "
+            "arquivo '" + fileName + ".pdf' usando o "
+            "método " + conversionMethod + "."
+            
+            , err
+        )
         return
 
 # >> LIMPA O ARQUIVO DE TEXTO CONVERTIDO <<
