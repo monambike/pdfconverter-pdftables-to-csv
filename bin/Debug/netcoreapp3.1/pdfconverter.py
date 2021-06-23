@@ -906,8 +906,8 @@ def formatTextFile(conversionMethod):
                 # [>] Remove todos os espaços no início de cada linha
                 lineCurrent = re.sub(r"(^\ *)", "", lineCurrent)
 
-                # [>] Se a linha possui aspas duplas no início e no final e ainda possui
-                # menos que duas colunas cancela o código
+                # [i] Se a linha possui aspas duplas no início  e  no  final  e
+                # ainda possui menos que duas colunas cancela o código
                 if (
                     (
                         (
@@ -921,28 +921,30 @@ def formatTextFile(conversionMethod):
                     and
                     (lineCurrent.count("\"") < 3 and lineCurrent.count(";") < 1)
                 ):
+                    # [>] Não executa o código seguinte
                     continue
 
                 # [ EXPORTAÇÃO ]
                 # Pasta: \\tableWithBlankCells  
                 txtTableWithBlankCells.write(lineCurrent)
                 
-                # Remove dados que estão vazios
+                # [>] Remove dados que estão vazios
                 lineCurrent = re.sub(r"(;\"\")|(\"\";)", "", lineCurrent)
 
-                # Faz uma quebra de linha caso tenha aspas duplas adjacentes
+                # [>] Faz uma quebra de linha caso tenha aspas duplas  adjacen-
+                # tes
                 lineCurrent = re.sub(r"(?<=\")(?=\")", "\n", lineCurrent)
 
-                # Caso tenha um ponto e vírgula seguido de um espaço troca por
-                # uma quebra de linha
+                # [>] Caso tenha um ponto e vírgula seguido de um espaço  troca
+                # por uma quebra de linha
                 lineCurrent = re.sub(r"((?<=\");\ )", "\n", lineCurrent)
 
-                # Caso tenha um espaço entre um separador e uma aspas dupla
+                # [>] Caso tenha um espaço entre um separador e uma aspas dupla
                 # remove o conteúdo que está atrás
                 lineCurrent = re.sub(r"((.*\";\ )(?=\"))", "", lineCurrent)
 
-                # Se a linha possui aspas duplas no início e no final e ainda possui
-                # menos que duas colunas cancela o código
+                # [i] Se a linha possui aspas duplas no início  e  no  final  e
+                # ainda possui menos que duas colunas cancela o código
                 if (
                     (
                         (
@@ -956,45 +958,45 @@ def formatTextFile(conversionMethod):
                     and
                     (lineCurrent.count("\"") < 3 and lineCurrent.count(";") < 1)
                 ):
+                    # [>] Não executa o código seguinte
                     continue
 
                 # [ EXPORTAÇÃO ]
                 # Pasta: \\main
                 txtMainFile.write(lineCurrent)
     
-    # Closing files
+    # [>] Fecha o arquivo 'tableWithBlankCells'
     txtTableWithBlankCells.close()
+    # [>] Fecha o arquivo 'main'
     txtMainFile.close()
 
-    # Abre o arquivo principal presente na pasta 'main' para
+    # [>] Abre o arquivo principal presente na  pasta  'main'  para
     # criar formatações baseadas nele
     with open(txtMainPath, "r", encoding="UTF-8") as txtFile:
-        # - ARQUIVOS
-        # O arquivo já pronto e estruturado para ser jogado em uma tabela
-        # (alguns dados podem vir faltando)
+        # [>] Abre o arquivo de texto para  realizar  a  exportação
+        # fullClear
         txtFullClearFile = open(txtFullClearPath, "a", encoding="UTF-8")
 
-        # Navega por cada linha do documento de texto
+        # [i] Navega por cada linha do documento de texto
         for lineCurrent in txtFile:
-            # Caso a linha não comece com aspas deleta
+            # [>] Caso a linha não comece com aspas deleta
             lineCurrent = re.sub(r"((^[^\"]).*)", "", lineCurrent)
             
-            # Caso a linha não termine com aspas deleta
+            # [>] Caso a linha não termine com aspas deleta
             lineCurrent = re.sub('"(.*([^"\n]$))', "", lineCurrent)
 
-            # >> REMOVE LINHAS SEM ASPAS DUPLAS - SEGUNDA VERIFICAÇÃO <<
-            # Desc:
-            # Linhas vazias que só possuem quebra de linha '\n' ou não possuem
-            # uma aspas dupla em nenhum lugar, serão excluídas 
+            # [>] Remove Linhas vazias que só possuem quebra de linha  '\n'
+            # ou não possuem uma aspas dupla em nenhum lugar, serão excluí-
+            # das 
             lineRemovedQuotes = ""
             lineRemovedQuotes = re.sub(r"\"", "", lineCurrent)
-            # Se a temporária permanece igual, ou seja, não teve aspas duplas
-            # removidas pelo regex
+            # [i] Se a temporária permanece igual, ou seja, não teve  aspas
+            # duplas removidas pelo regex
             if (lineCurrent == lineRemovedQuotes):
                 # Quer dizer que ela ta errada e vai ser apagada
                 lineCurrent = ""
             
-            # Só escreve a linha se tiver pelo menos mais que 3 colunas
+            # [i] Só escreve a linha se tiver pelo menos mais que 3 colunas
             # no arquivo fullClear
             if (lineCurrent.count("\"") > 6 and
                 lineCurrent.count(";") > 2):
