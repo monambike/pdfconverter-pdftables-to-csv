@@ -554,13 +554,17 @@ def setProjectStructure():
 # Configurações do Pandas que afetam o DataFrame e a  conversão
 # para texto.
 def setPandasSettings():
-    # Evita com que dados sejam quebrados no arquivo exportado
+    # [>] Configuração que evita com que dados sejam  quebrados  no
+    # arquivo exportado
     pandas.options.display.max_colwidth = None
-    # Evita com que os dados acabem sendo quebrados na saída do terminal
+    # [>] Configuração que evita com que os dados acabem sendo que-
+    # brados na saída do terminal
     pandas.options.display.expand_frame_repr = False
-    # Define o padrão de codificação para UTF-8 com BOM
+    # [>] Configuração que define  o  padrão  de  codificação  para
+    # UTF-8 com BOM
     pandas.options.display.encoding = "UTF-8-sig"
-    # Fazer com que caso tenha um ';' ele não passe os dados pra outra célula
+    # [>] Configuração que faz com que caso exista um ";"  ele  não
+    # passe os dados pra outra célula
     pandas.options.display.latex.multicolumn = False
 # -------------------------------------------------------------
 
