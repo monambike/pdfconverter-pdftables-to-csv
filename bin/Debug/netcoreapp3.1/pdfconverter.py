@@ -636,10 +636,13 @@ def setTerminalFile(setState):
         exit()
 # -------------------------------------------------------------
 
-# >> EXIBE UMA MENSAGEM DE ERRO <<
-# Desc:
-# Função responsável por exibir mensagens de erros disponíveis nas Exceptions.
+# [F] EXIBE UMA MENSAGEM DE ERRO
+# -------------------------------------------------------------
+# Descrição:
+# Função responsável por exibir mensagens de erros  disponíveis
+# nas Exceptions.
 def showError(errorMessage, err):
+    # [>] Abre o layout com a mensagem e o arquivo
     txtOutputFile = open(txtOutputFilePath, "a", encoding="UTF-8")
     print(
         "======================================================================\n"
@@ -653,8 +656,9 @@ def showError(errorMessage, err):
         file = txtOutputFile
     )
 
-    # Caso tenha uma exception, ele exibe
+    # [i] Caso tenha uma exception ele exibe ela
     if (err != ""):
+        # [>] Exibe a exception
         print(
             "\n"
             "Exception Log:"
@@ -663,7 +667,7 @@ def showError(errorMessage, err):
         )
         print(str(err), file = txtOutputFile)
     
-    # Fecha o layout
+    # [>] Fecha o layout e o arquivo
     print(
         "\n"
         "======================================================================",
@@ -671,6 +675,7 @@ def showError(errorMessage, err):
         file = txtOutputFile
     )
     txtOutputFile.close()
+# -------------------------------------------------------------
 
 #endregion
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
