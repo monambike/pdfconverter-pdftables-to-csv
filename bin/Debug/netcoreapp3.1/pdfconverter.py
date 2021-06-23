@@ -691,32 +691,38 @@ def showError(errorMessage, err):
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 #region
 
-# >> FAZENDO COM QUE O CABEÇALHO SE TORNE UMA LINHA COMUM <<
-# Desc:
-# Isso é necessário para fazer com que não haja quebra de linha onde o DataFrame identifica
-# como cabeçalho (título) da tabela caso o conteúdo delas seja muito grande.
-# Isso acontece porque o título tem uma formatação gerada pelo DataFrame que difere-se do corpo,
-# o que acaba permitindo que isso ocorra. O trabalho dessa função é transformar o cabeçalho em
-# um texto de campo comum.
+# TORNANDO O CABEÇALHO EM UMA LINHA COMUM
+# -------------------------------------------------------------
+# Descrição:
+# Isso é necessário para fazer com que não haja quebra de linha
+# onde o DataFrame identifica como cabeçalho (título) da tabela
+# caso o conteúdo delas seja muito grande.
+# Isso acontece porque o título tem uma formatação gerada  pelo
+# DataFrame que difere-se do corpo, o que acaba permitindo  que
+# isso ocorra. O trabalho dessa função é transformar o  cabeça-
+# lho em um texto de campo comum.
 def turnHeaderInSimpleRow(tableDataFrame):
-    # Cria e limpa a lista que vai ser usada para manipular o cabeçalho no DataFrame
+    # [>] Cria e limpa uma lista que vai ser usada para manipular o
+    # cabeçalho no DataFrame
     tableDataFrameHeader = []
 
-    # Pegando o cabeçalho da tabela e passando ela como lista para a temporária
+    # [>] Pegando o cabeçalho da tabela e passando ela  como  lista
+    # para a temporária
     tableDataFrameHeader = [*tableDataFrame]
 
-    # Checando se a lista com o cabeçalho veio preenchida e se o cabeçalho não possui
-    # campos vazios
-    if (tableDataFrameHeader and not
-        "Unnamed" in tableDataFrameHeader[0]):
-        # Removendo o cabeçalho do DataFrame atual
+    # [i] Checando se a lista com o cabeçalho veio preenchida e  se
+    # o cabeçalho não possui campos vazios
+    if (tableDataFrameHeader and not "Unnamed" in tableDataFrameHeader[0]):
+        # [>] Removendo o cabeçalho do DataFrame atual
         tableDataFrame = tableDataFrame.T.reset_index().T.reset_index(drop=True)
 
-        # Adicionando a lista como primeira linha do corpo do DataFrame temporário
+        # [>] Adicionando a lista como primeira linha do corpo do Data-
+        # Frame temporário
         tableDataFrameHeader.insert(1, tableDataFrameHeader)
 
-        # Concatenando tabela temporária à tabela principal
+        # [>] Concatenando tabela temporária à tabela principal
         pandas.concat([pandas.DataFrame(tableDataFrameHeader), tableDataFrame], ignore_index=True)
+# -------------------------------------------------------------
 
 # >> REALIZA A CONVERSÃO DO ARQUIVO <<
 # Desc:
