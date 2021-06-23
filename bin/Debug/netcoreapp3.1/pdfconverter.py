@@ -241,7 +241,7 @@ def Main():
     # rações iniciais para o funcionamento do Script.
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     setCurrentPath()
-    pandaSetConfig()
+    setPandasSettings()
     setProjectStructure()
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
@@ -508,7 +508,7 @@ def setProjectStructure():
 # Descrição:
 # Configurações do Pandas que afetam o DataFrame e a conversão
 # para texto.
-def pandaSetConfig():
+def setPandasSettings():
     # Evita com que dados sejam quebrados no arquivo exportado
     pandas.options.display.max_colwidth = None
     # Evita com que os dados acabem sendo quebrados na saída do terminal
