@@ -44,8 +44,8 @@ from pathlib import Path
 # "region" ou não)
 
 # Dicas:
-# [i] Informação ampla
-# [>] Execução de uma tarefa ou uma  informação  relacionada  à
+# [i] - Informação ampla
+# [>] - Execução de uma tarefa ou uma informação relacionada  à
 # ela
 
 
