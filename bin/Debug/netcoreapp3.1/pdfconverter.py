@@ -583,24 +583,48 @@ def setPandasSettings():
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 #region
 
-# >> DEFINE O ESTADO DO TERMINAL <<
-# Desc:
-# Define quando o terminal vai ser aberto ou quando vai ser fechado.
+# [F] DEFINE O ESTADO DO TERMINAL
+# -------------------------------------------------------------
+# Descrição:
+# Define quando o terminal vai ser aberto ou quando vai ser fe-
+# chado.
 def setTerminalFile(setState):
-    # ---------------------------------------------------------------------- #
+    # [V] VARIÁVEIS
+    # -------------------------------------------------------------
+    # Descrição:
+    # Grupo contendo variáveis utilizadas na função atual.
 
-    # >> VARIÁVEIS <<
-    
-    # - GLOBAIS
+
+
+    # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
+    # -------------------------------------------------------------
+    # Descrição:
+    # Referenciamento de variáveis globais (suas  descrições  estão
+    # no grupo de variáveis globais localizadas no escopo do início
+    # do Script).
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     global txtOutputFile
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
 
     # ---------------------------------------------------------------------- #
 
+
+
+    # [i] Caso o programador defina a função como "open"
     if (setState == "open"):
+        # [>] Abre o arquivo de saída do terminal com "append"
         txtOutputFile = open(txtOutputFilePath, "a", encoding="UTF-8")
+    # [i] Caso o programador defina a função como "close"
     elif (setState == "closed"):
+        # [>] Fecha o arquivo de saída do terminal
         txtOutputFile.close()
+    #
+    # [i] Caso o programador coloque um texto não tratado, exibe um
+    # erro
     else:
+        # [>] Exibe o erro
         showError(
             "O terminal só pode ser aberto ou fechado. Tenha certeza que "
             "atribuiu 'open' para aberto ou 'close' para fechado pro "
@@ -608,7 +632,9 @@ def setTerminalFile(setState):
         
             , ""
         )
+        # [>] Fecha o aplicativo
         exit()
+# -------------------------------------------------------------
 
 # >> EXIBE UMA MENSAGEM DE ERRO <<
 # Desc:
