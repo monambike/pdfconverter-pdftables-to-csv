@@ -10,6 +10,11 @@ from pathlib import Path
 
 
 
+
+
+
+
+
 # _____________________________________________________________
 
 
@@ -51,6 +56,17 @@ from pathlib import Path
 #endregion
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
+
+
+
+
+
+# _____________________________________________________________
+
+
+
+
+
 
 
 
@@ -172,6 +188,17 @@ tableListOfDataFrames = []
 #endregion
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
+
+
+
+
+
+# _____________________________________________________________
+
+
+
+
+
 
 
 
@@ -724,7 +751,7 @@ def turnHeaderInSimpleRow(tableDataFrame):
         pandas.concat([pandas.DataFrame(tableDataFrameHeader), tableDataFrame], ignore_index=True)
 # -------------------------------------------------------------
 
-# REALIZA A CONVERSÃO DO ARQUIVO
+# [F] REALIZA A CONVERSÃO DO ARQUIVO
 # -------------------------------------------------------------
 # Descrição:
 # Realiza a conversão do arquivo PDF para CSV como  arquivo  de
@@ -821,7 +848,7 @@ def conversionStart(conversionMethod, tableDataFrame):
         return
 # -------------------------------------------------------------
 
-# LIMPA O ARQUIVO DE TEXTO CONVERTIDO
+# [F] LIMPA O ARQUIVO DE TEXTO CONVERTIDO
 # -------------------------------------------------------------
 # Descrição:
 # Limpa o arquivo de texto removendo todas as  linhas  que  não
@@ -1015,6 +1042,11 @@ def formatTextFile(conversionMethod):
 
 
 # _____________________________________________________________
+
+
+
+
+
 
 
 
