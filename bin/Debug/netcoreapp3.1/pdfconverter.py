@@ -287,26 +287,26 @@ def Main():
         setTerminalFile("closed")
 
 
+
         # MÉTODOS DE LEITURA E CONVERSÃO
         # -------------------------------------------------------------
-        # Desc:
-        # Primeiro faz a leitura e conversão pra Lattice e após faz o mesmo
-        # para o Stream
+        # Descrição:
+        # Primeiro faz a leitura e conversão pra Lattice e após  faz  o
+        # mesmo para o Stream
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         for method in range(2):
-            # Lattice
+            # [i] Define o método de leitura Lattice
             if (method == 0):
                 boolLattice = True
                 conversionMethod = "lattice"
-            # Stream
+            # [i] Define o método de leitura Stream
             elif (method == 1):
                 boolLattice = False
                 conversionMethod = "stream"
 
             try:
-                # >> LEITURA <<
-                # Desc:
-                # Fazendo leitura do arquivo completo e passando como
-                # lista de DataFrames para a variável
+                # [>] Realiza a leitura usando  um  método  de  leitura
+                # fornecido pelo "For"
                 tableListOfDataFrames = tabula.read_pdf(
                     pdfFile,
                     guess = True,
@@ -317,6 +317,8 @@ def Main():
                     silent = True
                 )
             except Exception as err:
+                # [>] Exibe um erro quando ocorre um problema  na  hora
+                # de realizar a leitura
                 showError(
                     "Arquivo: " + pdfFile + "\n"
                     "Método de Conversão: " + conversionMethod + "\n"
@@ -326,26 +328,45 @@ def Main():
                 
                     , err
                 )
+            # -------------------------------------------------------------
+            # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-            # >> CONVERSÃO <<
-            # Desc:
-            # Realizando a conversão com o método indicado
+
+
+            # CONVERSÃO
+            # -------------------------------------------------------------
+            # Descrição:
+            # Realizando a conversão com o método indicado.
+            # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            # [>] Reseta a variável
             indexDataFrame = 1
+            # [>] Itera os DataFrames contidos na lista de  DataFrames  gerados
+            # pela leitura do tabula
             for tableDataFrame in tableListOfDataFrames:
-                # Remove as aspas duplas do que estiverem no DataFrame para evitar possíveis erros,
-                # porque os dados normalmente são separados por pontos e vírgula e aspas duplas
+                # [>] Remove as aspas duplas do que estiverem no DataFrame para
+                # evitar possíveis erros pois os dados normalmente são  separa-
+                # dos por pontos e vírgula e aspas duplas
                 tableDataFrame = tableDataFrame.replace("\"", "", regex = True)
 
+                # [>] Inicia a função que realiza a conversão com o método  in-
+                # dicado
                 conversionStart(conversionMethod, tableDataFrame)
+            # [>] Chama a função que formata o arquivo de texto gerado pela
+            # conversão
             formatTextFile(conversionMethod)
+            # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            # -------------------------------------------------------------
+        # -------------------------------------------------------------
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-        # Atribuindo mais um ao índice para indicar que o arquivo PDF foi convertido
+        # [>] Atribuindo mais um ao índice para indicar que  o  arquivo
+        # PDF foi convertido
         indexFile = indexFile + 1
     else:
-        # Se até o término da operação algum PDF foi convertido, fecha o
-        # leiaute do terminal
+        # [i] Se até o término da operação algum  PDF  foi  convertido,
+        # fecha o leiaute do terminal
         if (indexFile > 1):
-            # Fecha o leiaute e pula 5 linhas
+            # [>] Fecha o leiaute e pula 5 linhas
             setTerminalFile("open")
             print(
                 "\n" +
@@ -355,8 +376,8 @@ def Main():
                 file = txtOutputFile
             )
             setTerminalFile("closed")
-        # Se ainda até o término da operação nenhum PDF foi convertido
-        # exibe um erro
+        # [i] Se ainda até o término da operação nenhum PDF foi conver-
+        # tido exibe um erro
         else:
             showError("Descrição: Não há arquivos de PDF para serem convertidos.", "")
 # -------------------------------------------------------------
