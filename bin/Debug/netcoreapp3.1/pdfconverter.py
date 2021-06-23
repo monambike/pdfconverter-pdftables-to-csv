@@ -821,62 +821,92 @@ def conversionStart(conversionMethod, tableDataFrame):
         return
 # -------------------------------------------------------------
 
-# >> LIMPA O ARQUIVO DE TEXTO CONVERTIDO <<
-# Desc:
-# Limpa o arquivo de texto removendo todas as linhas que não contenham um
-# separador (;), ou seja, linhas que não fazem parte de uma tabela.
+# LIMPA O ARQUIVO DE TEXTO CONVERTIDO
+# -------------------------------------------------------------
+# Descrição:
+# Limpa o arquivo de texto removendo todas as  linhas  que  não
+# contenham um separador (;), ou seja,  linhas  que  não  fazem
+# parte de uma tabela.
 def formatTextFile(conversionMethod):
-    # ---------------------------------------------------------------------- #
+    # [V] VARIÁVEIS
+    # -------------------------------------------------------------
+    # Descrição:
+    # Grupo contendo variáveis utilizadas na função atual.
 
-    # >> VARIÁVEIS <<
-    
-    # - GLOBAIS
+
+
+    # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
+    # -------------------------------------------------------------
+    # Descrição:
+    # Referenciamento de variáveis globais (suas  descrições  estão
+    # no grupo de variáveis globais localizadas no escopo do início
+    # do Script).
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     global txtFilePath
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-    # - CAMINHOS
-    # Formatação padrão, apenas exibindo caso e caso tenha pelo menos um separados (;) na linha
-    # e removendo campos vazios
+
+    # [C] CAMINHOS
+    # -------------------------------------------------------------
+    # Descrição:
+    # Variáveis que armazenam caminhos dos tipos de formatação.
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # [i] Formatação padrão, apenas exibindo caso e caso  tenha pe-
+    # lo menos um separador ";" na linha e removendo campos vazios
     txtMainPath = currentPath + "\\resultados\\" + conversionMethod + "\\main\\" + fileName + ".txt"
-    # Formatação padrão, porém mantendo campos vazios
+    # [i] Formatação padrão, porém mantendo campos vazios
     txtReturnBlankCellsPath = currentPath + "\\resultados\\" + conversionMethod + "\\tableWithBlankCells\\" + fileName + ".txt"
-    # Full CLear
+    # [i] Full Clear, formatação mais robusta
     txtFullClearPath = currentPath + "\\resultados\\" + conversionMethod + "\\fullClear\\" + fileName + ".txt"
-    
-    # ---------------------------------------------------------------------- #
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-    # Abre o arquivo original presente na pasta 'withoutFormatting'
-    # para criar formatações baseadas nele
+
+
+    # -------------------------------------------------------------
+
+
+
+    # [i] Abre o arquivo original presente na pasta 'withoutFormat-
+    # ting' para criar formatações baseadas nele
     with open(txtFilePath, "r", encoding="UTF-8") as txtFile:
-        # - ARQUIVOS
-        # Arquivo para caso a tabela possua itens vazios que precisam ser computados
-        # (esse arquivo apenas não terá o regex que apaga dados vazios e similares)
+        # ARQUIVOS
+        # -------------------------------------------------------------
+        # Desc:
+        # Arquivo para caso a tabela possua itens vazios  que  precisam
+        # ser computados (esse arquivo apenas não terá o regex que apa-
+        # ga dados vazios e similares)
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        # [>] Abre o arquivo de texto "tableWithBlankCells"
         txtTableWithBlankCells = open(txtReturnBlankCellsPath, "a", encoding="UTF-8")
-        # Arquivo principal, ainda não totalmente pronto para ser jogado em uma tabela
-        # (possui mais dados, porém estrutura ainda não tão idealizada)
+        # [>] Abre o arquivo principal (ainda não totalmente pronto pa-
+        # ra ser jogado em uma tabela possui mais dados, porém estrutu-
+        # ra ainda não tão idealizada)
         txtMainFile = open(txtMainPath, "a", encoding="UTF-8")
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        # -------------------------------------------------------------
 
-        # Navega por cada linha do documento de texto
+        # [i] Navega por cada linha do documento de texto
         for lineCurrent in txtFile:
-            # Detecta os dados vazios que estão presentes no cabeçalho
+            # [>] Detecta os dados vazios que estão presentes no  cabeçalho
             # "Unnamed: X;"
             lineCurrent = re.sub(r"(\s?\"Unnamed:\s\d\d?\";?)", "", lineCurrent)
 
-            # Remove quebras de linha caso seja no meio dos dados,
-            # ou seja, caso não possua " atrás da quebra de linha
-            # e as substitui por um espaço para manter o padrão
+            # [>] Remove quebras de linha caso seja no meio dos  dados,  ou
+            # seja, caso não possua '"' atrás da quebra de linha e as subs-
+            # titui por um espaço para manter o padrão
             lineCurrent = re.sub(r"((?<!\")\n)", " ", lineCurrent)
 
-            # Condicional que impede o continuamento do processo caso a variável
-            # esteja vazia, ou seja, caso tenha sido apagada pelo processo
-            # anterior de limpeza
+            # Condicional que impede o continuamento do processo caso a va-
+            # riável esteja vazia, ou seja, caso tenha  sido  apagada  pelo
+            # processo anterior de limpeza
             if (lineCurrent != ""):
-                    # Remove ponto e vírgula no final da linha
+                    # [>] Remove ponto e vírgula no final da linha
                     lineCurrent = re.sub(r"((?<=\");(?!.))", "", lineCurrent)
                     
-                    # Remove todos os espaços no início de cada linha
+                    # [>] Remove todos os espaços no início de cada linha
                     lineCurrent = re.sub(r"(^\ *)", "", lineCurrent)
 
-                    # Se a linha possui aspas duplas no início e no final e ainda possui
+                    # [>] Se a linha possui aspas duplas no início e no final e ainda possui
                     # menos que duas colunas cancela o código
                     if (
                         (
@@ -971,6 +1001,7 @@ def formatTextFile(conversionMethod):
                 # [ EXPORTAÇÃO ]
                 # Pasta: \\fullClear
                 txtFullClearFile.write(lineCurrent)
+# -------------------------------------------------------------
 
 #endregion
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
