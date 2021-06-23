@@ -10,8 +10,41 @@ from pathlib import Path
 
 # >> VARIÁVEIS <<
 
-# - NOMES
-# Nome do arquivo PDF que vai ser convertido (sem a extensão)
+# LEGENDA
+# -------------------------------------------------------------
+# Descrição:
+# Legenda que contém informações relacionadas à documentação do
+# Script.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#region
+
+
+
+# -------------------------------------------------------------
+
+
+# Grupos:
+# [C] - Conglomerado pequeno de variáveis 
+# [F] - Função
+# [G] - Grupo de funções (é delimitado por uma "region")
+# [L] - Grupo que contém a legenda (é delimitado por uma "regi-
+# on")
+# [V] - Grupo  de  variáveis  (pode  ser  delimitado  por   uma
+# "region" ou não)
+
+# Dicas:
+# [i] Informação ampla
+# [>] Execução de uma tarefa ou uma  informação  relacionada  à
+# ela
+
+
+# -------------------------------------------------------------
+
+
+
+#endregion
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# -------------------------------------------------------------
 fileName = ""
 
 # - CAMINHOS
