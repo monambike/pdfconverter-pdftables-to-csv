@@ -268,7 +268,7 @@ def Main():
             )
             setTerminalFile("closed")
 
-        # [>] Remove extensão do arquivo (pegando apenas o nome)  e
+        # [>] Remove extensão do arquivo  (pegando  apenas  o  nome)  e
         # atribui para a temporária
         fileName = pdfFile[:-4]
 
@@ -304,9 +304,14 @@ def Main():
                 boolLattice = False
                 conversionMethod = "stream"
 
+            # LEITURA
+            # -------------------------------------------------------------
+            # Descrição:
+            # Realiza a leitura.
+            # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             try:
-                # [>] Realiza a leitura usando  um  método  de  leitura
-                # fornecido pelo "For"
+                # [>] Realiza a leitura usando um método de  leitura  fornecido
+                # pelo "For"
                 tableListOfDataFrames = tabula.read_pdf(
                     pdfFile,
                     guess = True,
@@ -317,8 +322,8 @@ def Main():
                     silent = True
                 )
             except Exception as err:
-                # [>] Exibe um erro quando ocorre um problema  na  hora
-                # de realizar a leitura
+                # [>] Exibe um erro quando ocorre um problema na hora de reali-
+                # zar a leitura
                 showError(
                     "Arquivo: " + pdfFile + "\n"
                     "Método de Conversão: " + conversionMethod + "\n"
@@ -328,9 +333,7 @@ def Main():
                 
                     , err
                 )
-            # -------------------------------------------------------------
             # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
 
 
             # CONVERSÃO
@@ -379,6 +382,7 @@ def Main():
         # [i] Se ainda até o término da operação nenhum PDF foi conver-
         # tido exibe um erro
         else:
+            # [>] Exibe o erro
             showError("Descrição: Não há arquivos de PDF para serem convertidos.", "")
 # -------------------------------------------------------------
 
@@ -504,9 +508,9 @@ def setProjectStructure():
 # -------------------------------------------------------------
 
 # [F] FUNÇÃO QUE DEFINE E EXECUTA CONFIGURAÇÕES DO PANDAS
-# ------------------------------------------------------------
+# -------------------------------------------------------------
 # Descrição:
-# Configurações do Pandas que afetam o DataFrame e a conversão
+# Configurações do Pandas que afetam o DataFrame e a  conversão
 # para texto.
 def setPandasSettings():
     # Evita com que dados sejam quebrados no arquivo exportado
