@@ -31,9 +31,6 @@ from pathlib import Path
 
 
 
-# -------------------------------------------------------------
-
-
 # Grupos:
 # [C] - Conglomerado pequeno de variáveis 
 # [F] - Função
@@ -47,9 +44,6 @@ from pathlib import Path
 # [i] - Informação ampla
 # [>] - Execução de uma tarefa ou uma informação relacionada  à
 # ela
-
-
-# -------------------------------------------------------------
 
 
 
