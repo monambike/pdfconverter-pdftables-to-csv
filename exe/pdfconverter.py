@@ -468,10 +468,21 @@ def setCurrentPath():
         # (pdfconverter\bin\Debug\netcoreapp3.1)
 
         # [i] Removendo caracteres até voltar para a localização à  se-
-        # guir
-        currentPath = str(currentPath)[:-37]
+        # guir, ou seja, até a localização desejada.
+        # O número deve ser alterado com base na localidade do arquivo.
+        currentPath = str(currentPath)[:-34]
+        # DIRETÓRIOS PADRÃO
+        # -------------------------------------------------------------
+        # Descrição:
+        # Caso o arquivo seja um Script, provavelmente deve  estar  me-
+        # lhor localizado em
         # (pdfconverter\bin\Debug\netcoreapp3.1)
-        #    \___[a diminuição de caracteres faz voltar  até  raiz da  pasta "pdfconverter"]
+        #    \___[a remoção de "37" caracteres faz voltar  até  raiz da  pasta "pdfconverter"]
+        #
+        # Caso o arquivo seja um executável, provavelmente  deve  estar
+        # melhor localizado em
+        # (pdfconverter\exe\dist\pdfconverter)
+        #    \___[a remoção de "34" caracteres faz voltar até a pasta "pdfconverter"]
 
         # [>] Passa para a variável global o caminho do arquivo de tex-
         # to do terminal
@@ -1046,5 +1057,5 @@ def formatTextFile(conversionMethod):
 
 
 
-# >>> Executa o Script
+# [>] Executa o Script
 Main()
