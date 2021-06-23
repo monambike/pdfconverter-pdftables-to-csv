@@ -6,9 +6,15 @@ from os import chdir
 from glob import glob
 from pathlib import Path
 
-# ---------------------------------------------------------------------- #
 
-# >> VARIÁVEIS <<
+
+
+
+# _____________________________________________________________
+
+
+
+
 
 # LEGENDA
 # -------------------------------------------------------------
@@ -45,6 +51,17 @@ from pathlib import Path
 #endregion
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
+
+
+
+
+
+# _____________________________________________________________
+
+
+
+
+
 # [V] VARIÁVEIS
 # -------------------------------------------------------------
 # Descrição:
@@ -147,30 +164,76 @@ tableListOfDataFrames = []
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
-def Main():
-    # ---------------------------------------------------------------------- #
 
-    # >> VARIÁVEIS <<
-    
-    # - GLOBAIS
+
+
+
+# _____________________________________________________________
+
+
+
+
+
+# [G] FUNÇÃO PRINCIPAL
+# -------------------------------------------------------------
+# Descrição:
+# Grupo que executa a função principal que faz operações  bási-
+# cas realiza a chamada de outras funções.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#region
+
+# [F] FUNÇÃO PRINCIPAL
+# -------------------------------------------------------------
+# Descrição:
+# Função que executa funcionalidades principal e executa outras
+# funções
+def Main():
+    # [V] VARIÁVEIS
+    # -------------------------------------------------------------
+    # Descrição:
+    # Grupo contendo variáveis utilizadas nessa função.
+
+
+    # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
+    # -------------------------------------------------------------
+    # Descrição:
+    # Referenciamento de variáveis globais (suas  descrições  estão
+    # no grupo de variáveis globais localizadas no escopo do início
+    # do Script).
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     global fileName
     global indexDataFrame
+    global tableListOfDataFrames
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 
-    # - CONTADORES
-    # Índice de arquivos
+
+    # [C] CONTADORES
+    # -------------------------------------------------------------
+    # Descrição:
+    # Variáveis auxiliares que atuam como contadores.
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # [i] Índice do 'For' que manipula os arquivos PDF
     indexFile = 1
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 
-    # ---------------------------------------------------------------------- #
 
-    # >> CONFIGURAÇÕES INICIAIS <<
+
+
+    # CONFIGURAÇÕES INICIAIS
+    # -------------------------------------------------------------
     # Desc:
-    # Realiza as configurações iniciais para o funcionamento
-    # do projeto.
+    # Contém todas as chamadas de funções que realizam as  configu-
+    # rações iniciais para o funcionamento do Script.
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     setCurrentPath()
     pandaSetConfig()
     setProjectStructure()
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 
-    # Direciona o sistema para a pasta indicada
+    # [>] Direciona o sistema para a pasta indicada
     chdir(currentPath + "\\PDFs")
     # Filtra pelos PDFs na onde foi indicado pro sistema
     for pdfFile in glob("*.pdf"):
@@ -278,18 +341,33 @@ def Main():
         # exibe um erro
         else:
             showError("Descrição: Não há arquivos de PDF para serem convertidos.", "")
+# -------------------------------------------------------------
 
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>         FUNÇÃO PRINCIPAL - FIM         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#endregion
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# -------------------------------------------------------------
 
 
 
-# REGION
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>     CONFIGURAÇÕES INICIAIS - INÍCIO    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# [G] CONFIGURAÇÕES INICIAIS
+# -------------------------------------------------------------
+# Descrição:
+# Grupo que executa as configurações iniciais e ao decorrer  do
+# exercício das tarefas do Script.
+# Há funções com diversos objetivos, dentre eles,  encontrar  o
+# caminho do arquivo de onde está sendo executado o Script, de-
+# finir o caminho onde será utilizado para criar a estrutura de
+# pastas, criar a estrutura de pastas onde serão  colocados  os
+# arquivos PDF e onde serão gerados os arquivos  exportados
+# e configurações adicionais da biblioteca Pandas
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#region
 
-# >> DEFINE O LOCAL DA RAÍZ DO PROJETO <<
-# Desc:
-# Define o local da raíz do projeto, onde os outros caminhos irão
-# se basear
+# [F] FUNÇÃO QUE DEFINE O LOCAL DA RAÍZ DO PROJETO
+# -------------------------------------------------------------
+# Descrição:
+# Define o local da raíz do projeto, onde  os  outros  caminhos
+# irão se basear
 def setCurrentPath():
     try:
         # ---------------------------------------------------------------------- #
@@ -323,10 +401,13 @@ def setCurrentPath():
         
             , err
         )
+# -------------------------------------------------------------
 
-# >> DEFINE A ESTRUTURA DE PASTAS DO PROJETO <<
-# Desc:
-# Faz a verificação da existência das pastas a seguir e as cria caso elas ainda não existam.
+# [F] FUNÇÃO QUE DEFINE A ESTRUTURA DE PASTAS DO PROJETO
+# -------------------------------------------------------------
+# Descrição:
+# Faz a verificação da existência das pastas a seguir e as cria
+# caso elas ainda não existam.
 def setProjectStructure():
     # ---------------------------------------------------------------------- #
 
@@ -381,10 +462,13 @@ def setProjectStructure():
     # Cria arquivo para exibir a saída do terminal, se já
     # existir o arquivo, limpa o mesmo
     open(txtOutputFilePath, "w").close()
+# -------------------------------------------------------------
 
-# >> CONFIGURAÇÕES DO PANDAS <<
-# Desc:
-# Configurações do Pandas que afetam o DataFrame e a conversão para texto.
+# [F] FUNÇÃO QUE DEFINE E EXECUTA CONFIGURAÇÕES DO PANDAS
+# ------------------------------------------------------------
+# Descrição:
+# Configurações do Pandas que afetam o DataFrame e a conversão
+# para texto.
 def pandaSetConfig():
     # Evita com que dados sejam quebrados no arquivo exportado
     pandas.options.display.max_colwidth = None
@@ -394,13 +478,21 @@ def pandaSetConfig():
     pandas.options.display.encoding = "UTF-8-sig"
     # Fazer com que caso tenha um ';' ele não passe os dados pra outra célula
     pandas.options.display.latex.multicolumn = False
+# -------------------------------------------------------------
 
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>      CONFIGURAÇÕES INICIAIS - FIM      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#endregion
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# -------------------------------------------------------------
 
 
-
-# REGION
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       SAÍDAS DE AVISOS - INÍCIO       <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# [G] SAÍDAS DE AVISOS
+# -------------------------------------------------------------
+# Descrição:
+# Grupo o que contém funções que executam a exibição de  avisos
+# relacionados ao arquivo que é gerado contendo informações que
+# são mostradas no terminal.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#region
 
 # >> DEFINE O ESTADO DO TERMINAL <<
 # Desc:
@@ -465,12 +557,19 @@ def showError(errorMessage, err):
     )
     txtOutputFile.close()
 
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>         SAÍDAS DE AVISOS - FIM        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#endregion
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# -------------------------------------------------------------
 
 
 
-# REGION
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>           CONVERSÃO - INÍCIO          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# [G] CONVERSÃO
+# -------------------------------------------------------------
+# Descrição:
+# Grupo que contém funções que realizam a conversão dos  arqui-
+# vos PDF e toda a formatação necessária.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#region
 
 # >> FAZENDO COM QUE O CABEÇALHO SE TORNE UMA LINHA COMUM <<
 # Desc:
@@ -722,8 +821,19 @@ def formatTextFile(conversionMethod):
                 # Pasta: \\fullClear
                 txtFullClearFile.write(lineCurrent)
 
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>            CONVERSÃO - FIM            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#endregion
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# -------------------------------------------------------------
 
 
 
+
+
+# _____________________________________________________________
+
+
+
+
+
+# >>> Executa o Script
 Main()
