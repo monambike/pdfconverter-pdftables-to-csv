@@ -724,51 +724,74 @@ def turnHeaderInSimpleRow(tableDataFrame):
         pandas.concat([pandas.DataFrame(tableDataFrameHeader), tableDataFrame], ignore_index=True)
 # -------------------------------------------------------------
 
-# >> REALIZA A CONVERSÃO DO ARQUIVO <<
-# Desc:
-# Realiza a conversão do arquivo PDF para texto.
+# REALIZA A CONVERSÃO DO ARQUIVO
+# -------------------------------------------------------------
+# Descrição:
+# Realiza a conversão do arquivo PDF para CSV como  arquivo  de
+# texto.
 def conversionStart(conversionMethod, tableDataFrame):
-    # ---------------------------------------------------------------------- #
+    # [V] VARIÁVEIS
+    # -------------------------------------------------------------
+    # Descrição:
+    # Grupo contendo variáveis utilizadas na função atual.
 
-    # >> VARIÁVEIS <<
-    
-    # - GLOBAIS
+
+
+    # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
+    # -------------------------------------------------------------
+    # Descrição:
+    # Referenciamento de variáveis globais (suas  descrições  estão
+    # no grupo de variáveis globais localizadas no escopo do início
+    # do Script).
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     global txtFilePath
     global indexDataFrame
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
 
     # ---------------------------------------------------------------------- #
 
+
+
     try:
-        # Deleta todas as linhas que estão completamente vazias
+        # [>] Deleta todas as linhas que estão completamente vazias
         tableDataFrame = tableDataFrame.dropna(how="all")
-        # Deleta todas as colunas que estão completamente vazias
+        
+        # [>] Deleta todas as colunas que estão  completamente  va-
+        # zias
         tableDataFrame = tableDataFrame.dropna(how="all", axis=1)
 
+        # [>] Chama a função que transforma o cabeçalho em  uma li-
+        # nha comum
         turnHeaderInSimpleRow(tableDataFrame)
-        
-        # Removendo quebras de linha
-        # Remove quebras de linha do DataFrame que acontecem por conta do corpo ser
-        # muito grande
+
+        # [>] Remove quebras de linha do  DataFrame  que  acontecem
+        # por conta do corpo ser muito grande
         tableDataFrame.replace({r"\r": " "}, inplace=True, regex=True)
-        # Troca ponto e vírgula do DataFrame para evitar conflitos
+
+        # [>] Troca ponto e vírgula dentro do DataFrame para evitar
+        # conflitos
         tableDataFrame.replace({r";": ","}, inplace=True, regex=True)
 
-        # Define o caminho do arquivo atual para a variável global txtFilePath
+        # [>] Define o caminho do arquivo  atual  para  a  variável
+        # global txtFilePath
         txtFilePath = currentPath + "\\resultados\\" + conversionMethod + "\\withoutFormatting\\" + fileName + ".txt"
-        
-        # Converte para .txt no formato de um CSV
+
+        # [>] Converte o arquivo para .txt no formato de um CSV
         tableDataFrame.to_csv(
             txtFilePath,
             index = False,
             index_label = False,
             header = True,
-            line_terminator = "\n", # Define a quebra de linha como '\n' para evitar conflito com o terminal que gera \r
+            line_terminator = "\n", # [i] Define a quebra de linha como '\n' para evitar conflito com o terminal que gera \r
             mode = "a",
             sep = ";",
             quoting = csv.QUOTE_ALL
         )
 
-        # Indica ao terminal que uma tabela foi convertida com sucesso
+        # [>] Indica ao terminal que uma tabela foi convertida  com
+        # sucesso
         setTerminalFile("open")
         print(
             "\n\n"
@@ -778,7 +801,8 @@ def conversionStart(conversionMethod, tableDataFrame):
 
             , file = txtOutputFile
         )
-        # Imprime o DataFrame
+
+        # [>] Imprime o DataFrame
         print(pandas.DataFrame(tableDataFrame), file = txtOutputFile)
         setTerminalFile("closed")
 
@@ -795,6 +819,7 @@ def conversionStart(conversionMethod, tableDataFrame):
             , err
         )
         return
+# -------------------------------------------------------------
 
 # >> LIMPA O ARQUIVO DE TEXTO CONVERTIDO <<
 # Desc:
