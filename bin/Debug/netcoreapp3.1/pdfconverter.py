@@ -990,6 +990,7 @@ def formatTextFile(conversionMethod):
             # das 
             lineRemovedQuotes = ""
             lineRemovedQuotes = re.sub(r"\"", "", lineCurrent)
+
             # [i] Se a temporária permanece igual, ou seja, não teve  aspas
             # duplas removidas pelo regex
             if (lineCurrent == lineRemovedQuotes):
