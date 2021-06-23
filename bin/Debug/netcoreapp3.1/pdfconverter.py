@@ -194,7 +194,7 @@ tableListOfDataFrames = []
 # [F] FUNÇÃO PRINCIPAL
 # -------------------------------------------------------------
 # Descrição:
-# Função que executa funcionalidades principal e executa outras
+# Função que executa funcionalidades principais e chama  outras
 # funções
 def Main():
     # [V] VARIÁVEIS
@@ -413,34 +413,55 @@ def Main():
 # irão se basear
 def setCurrentPath():
     try:
-        # ---------------------------------------------------------------------- #
+        # [V] VARIÁVEIS
+        # -------------------------------------------------------------
+        # Descrição:
+        # Grupo contendo variáveis utilizadas na função atual.
 
-        # >> VARIÁVEIS <<
 
-        # - Globais
+
+        # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
+        # -------------------------------------------------------------
+        # Descrição:
+        # Referenciamento de variáveis globais (suas  descrições  estão
+        # no grupo de variáveis globais localizadas no escopo do início
+        # do Script).
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         global currentPath
         global txtOutputFilePath
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        # -------------------------------------------------------------
 
-        # ---------------------------------------------------------------------- #
 
-        # Pegando o caminho até o executável ou script atual e atribuindo para a variável currentPath
+
+        # -------------------------------------------------------------
+        
+
+
+        # [i] Pegando o caminho até o executável ou script atual  e  a-
+        # tribuindo para a variável currentPath
         currentPath = Path(__file__).parent.absolute()
         #                           ____[o script está dentro da pasta 'netcoreapp3.1']
         #                          /
         # (pdfconverter\bin\Debug\netcoreapp3.1)
 
-        # Removendo caracteres até voltar para a localização à seguir
+        # [i] Removendo caracteres até voltar para a localização à  se-
+        # guir
         currentPath = str(currentPath)[:-37]
         # (pdfconverter\bin\Debug\netcoreapp3.1)
-        #    \___[a diminuição de caracteres faz voltar até a pasta 'pdfconverter']
+        #    \___[a diminuição de caracteres faz voltar  até  raiz da  pasta "pdfconverter"]
 
-        # Passa para a variável global o caminho do arquivo de texto do terminal
+        # [>] Passa para a variável global o caminho do arquivo de tex-
+        # to do terminal
         txtOutputFilePath = currentPath + "\\resultados\\output.txt"
     except Exception as err:
+        # [>] Exibe um erro quando há problemas em achar o diretório a-
+        # tual
         showError(
-            "Descrição: Não foi possível achar o diretório atual. Provável problema na hora de encurtar o "
-            "caminho, verifique se o caminho passado na variável 'currentPath' dentro do "
-            "método 'setCurrentPath' está correto."
+            "Descrição: Não foi possível achar o diretório atual. Prov"
+            "ável problema na hora de encurtar o caminho, verifique se"
+            " o caminho passado na variável 'currentPath' dentro do mé"
+            "todo 'setCurrentPath' está correto."
         
             , err
         )
