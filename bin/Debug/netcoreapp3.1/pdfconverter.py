@@ -1046,5 +1046,5 @@ def formatTextFile(conversionMethod):
 
 
 
-# >>> Executa o Script
+# [>] Executa o Script
 Main()
