@@ -200,7 +200,8 @@ def Main():
     # [V] VARIÁVEIS
     # -------------------------------------------------------------
     # Descrição:
-    # Grupo contendo variáveis utilizadas nessa função.
+    # Grupo contendo variáveis utilizadas na função atual.
+
 
 
     # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
@@ -229,6 +230,9 @@ def Main():
 
 
 
+    # -------------------------------------------------------------
+
+
 
     # CONFIGURAÇÕES INICIAIS
     # -------------------------------------------------------------
@@ -242,13 +246,17 @@ def Main():
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
+
+
     # [>] Direciona o sistema para a pasta indicada
     chdir(currentPath + "\\PDFs")
-    # Filtra pelos PDFs na onde foi indicado pro sistema
+
+    # [>] Filtra pelos PDFs na pasta onde foi indicada para o  sis-
+    # tema pelo "chdir"
     for pdfFile in glob("*.pdf"):
-        # Se já não é mais o primeiro arquivo
+        # [i] Se já não é mais o primeiro arquivo
         if (indexFile > 1):
-            # Fecha o leiaute
+            # [>] Fecha o leiaute referente ao arquivo anterior
             setTerminalFile("open")
             print(
                 "\n" +
@@ -260,11 +268,11 @@ def Main():
             )
             setTerminalFile("closed")
 
-        # Remove extensão do arquivo, pegando apenas o nome e
+        # [>] Remove extensão do arquivo (pegando apenas o nome)  e
         # atribui para a temporária
         fileName = pdfFile[:-4]
 
-        # Cria o título para leitura do arquivo no terminal
+        # [>] Cria o título para leitura do arquivo no terminal
         setTerminalFile("open")
         print(
             pdfFile + strGiantLine + "\n" +
@@ -279,7 +287,8 @@ def Main():
         setTerminalFile("closed")
 
 
-        # >> MÉTODOS DE LEITURA E CONVERSÃO <<
+        # MÉTODOS DE LEITURA E CONVERSÃO
+        # -------------------------------------------------------------
         # Desc:
         # Primeiro faz a leitura e conversão pra Lattice e após faz o mesmo
         # para o Stream
