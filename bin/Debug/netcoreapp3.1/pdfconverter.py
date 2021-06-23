@@ -472,23 +472,37 @@ def setCurrentPath():
 # Descrição:
 # Faz a verificação da existência das pastas a seguir e as cria
 # caso elas ainda não existam.
-def setProjectStructure():
-    # ---------------------------------------------------------------------- #
+def setProjectStructure():    
+    # [V] VARIÁVEIS
+    # -------------------------------------------------------------
+    # Descrição:
+    # Grupo contendo variáveis utilizadas na função atual.
 
-    # >> VARIÁVEIS <<
-    
-    # - CAMINHOS
-    # Raíz
+
+
+    # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
+    # -------------------------------------------------------------
+    # Descrição:
+    # Listas que possuem os caminhos das pastas que vão  ser  gera-
+    # das.
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+    # [C] CAMINHOS
+    # [i] Caminhos que indicam a localização das  pastas  raíz  que
+    # irão ser geradas futuramente.
     rootPaths = [
         "\\PDFs",
         "\\resultados"
     ]
-    # Métodos de Leitura
+    # [i] Caminhos que indicam a localização das pastas dos métodos
+    # de leitura que vão ser geradas futuramente.
     methodPaths = [
         "\\lattice",
         "\\stream"
     ]
-    # Métodos de Formatação
+    # [i] Caminhos que indicam a localização das pastas dos métodos
+    # de formatação que vão ser geradas futuramente.
     outputTypePaths = [
         "\\main",
         "\\fullClear",
@@ -498,22 +512,27 @@ def setProjectStructure():
 
     # ---------------------------------------------------------------------- #
 
-    # Criando pastas raíz
+
+    # [i] Para cada pasta raíz, presente na lista de pastas raíz
     for rootPath in rootPaths:
+        # [>] Criando pastas raíz
         Path(
             currentPath +
             rootPath
         ).mkdir(parents = True, exist_ok = True)
 
-        # Criando pastas para métodos de leitura dentro de resultados
+        # [>] Dentro da pasta de resultados
         if (rootPath == "\\resultados"):
+            # [i] Para cada método, presente na lista de métodos
             for methodPath in methodPaths:
+                # [>] Cria uma pasta
                 Path(
                     currentPath +
                     rootPath +
                     methodPath
                 ).mkdir(parents = True, exist_ok = True)
-                # Criando pastas para métodos de formatação
+
+                # [>] Criando pastas para métodos de formatação
                 for outputTypePath in outputTypePaths:
                     Path(
                         currentPath +
@@ -523,8 +542,8 @@ def setProjectStructure():
                     ).mkdir(parents = True, exist_ok = True)
 
 
-    # Cria arquivo para exibir a saída do terminal, se já
-    # existir o arquivo, limpa o mesmo
+    # [>] Cria arquivo para exibir a saída do terminal, se já exis-
+    # tir o arquivo, limpa o mesmo
     open(txtOutputFilePath, "w").close()
 # -------------------------------------------------------------
 
