@@ -44,6 +44,7 @@ from pathlib import Path
 # [i] - Informação ampla
 # [>] - Execução de uma tarefa ou uma informação relacionada  à
 # ela
+# [e] - Exportação de um arquivo PDF convertido para CSV
 
 
 
@@ -956,8 +957,7 @@ def formatTextFile(conversionMethod):
                     # [>] Não executa o código seguinte
                     continue
 
-                # [ EXPORTAÇÃO ]
-                # Pasta: \\tableWithBlankCells  
+                # [e] Exportação para a pasta: \\tableWithBlankCells
                 txtTableWithBlankCells.write(lineCurrent)
                 
                 # [>] Remove dados que estão vazios
@@ -993,8 +993,7 @@ def formatTextFile(conversionMethod):
                     # [>] Não executa o código seguinte
                     continue
 
-                # [ EXPORTAÇÃO ]
-                # Pasta: \\main
+                # [e] Exportação para a pasta: \\main
                 txtMainFile.write(lineCurrent)
     
     # [>] Fecha o arquivo 'tableWithBlankCells'
@@ -1033,8 +1032,7 @@ def formatTextFile(conversionMethod):
             # no arquivo fullClear
             if (lineCurrent.count("\"") > 6 and
                 lineCurrent.count(";") > 2):
-                # [ EXPORTAÇÃO ]
-                # Pasta: \\fullClear
+                # [e] Exportação para a pasta: \\fullClear
                 txtFullClearFile.write(lineCurrent)
 # -------------------------------------------------------------
 
