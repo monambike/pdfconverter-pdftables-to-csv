@@ -1,5 +1,5 @@
 # PDFConverter
-***(pdfconverter - v0.9)***
+***(pdfconverter - v1.0)***
 
 <br>
 
