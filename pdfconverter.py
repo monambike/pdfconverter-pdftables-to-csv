@@ -653,7 +653,6 @@ def setTerminalFile(setState):
     elif (setState == "closed"):
         # [>] Fecha o arquivo de saída do terminal
         txtOutputFile.close()
-    #
     # [i] Caso o programador coloque um texto não tratado, exibe um
     # erro
     else:
