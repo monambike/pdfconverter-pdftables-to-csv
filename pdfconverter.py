@@ -1056,7 +1056,8 @@ def createParser():
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
-    # [>] Adiciona os argumentos informados anteriormente na região anterior ao parser
+    # [>] Adiciona os argumentos informados anteriormente na região
+    # anterior ao parser
     args = mainParser.parse_args()
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
