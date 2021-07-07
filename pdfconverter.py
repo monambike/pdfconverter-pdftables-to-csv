@@ -1017,27 +1017,30 @@ def formatTextFile(conversionMethod):
 # necidos pelo usuário.
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def createParser():
-    # Criando parser
+    # [>] Criando parser
     mainParser = argparse.ArgumentParser(allow_abbrev=False)
 
     # ARGUMENTOS UTILIZADOS NO PARSER
     # -------------------------------------------------------------
     # Descrição:
     # Aqui estão dispostos os argumentos que vão ser passados  para
-    # o parser mais tarde
+    # o parser mais tarde.
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    # Argumento que conterá o caminho de importação (Obrigatório)
+    # [i] Argumento   que   conterá   o  caminho   de    importação
+    # (Obrigatório)
     mainParser.add_argument(
         "--importPath",
         required = True,
         type = str
     )
-    # Argumento que conterá o caminho de exportação (Opcional)
+    # [i] Argumento que conterá o caminho de exportação (Opcional)
     mainParser.add_argument(
         "--exportPath",
         required = False,
         type = str
     )
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
