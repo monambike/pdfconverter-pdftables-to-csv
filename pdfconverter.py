@@ -254,13 +254,16 @@ def Main():
     # rio) e  exportação (opcional) providenciadas através de argu-
     # mentos.
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    # [i] [Obrigatório] Caso a pasta de importação exista
-    if(checkIfFolderExists(mainParserArgs.importPath)):
+    # [i] [Obrigatório] Caso a pasta de importação não exista
+    if(not checkIfFolderExists(mainParserArgs.importPath)):
+        # [>] Exibe uma mensagem de erro
         print("")
-    # [i] [Opcional] Caso o usuário tenha fornecido o caminho da pasta de exportação
+    # [i] [Opcional] Caso o usuário tenha fornecido  o  caminho  da
+    # pasta de exportação
     if(mainParserArgs.exportPath != None):
         # [i] E caso a pasta de exportação não exista
         if(checkIfFolderExists(mainParserArgs.exportPath)):
+            # [>] Exibe uma mensagem de erro
             print("")
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
