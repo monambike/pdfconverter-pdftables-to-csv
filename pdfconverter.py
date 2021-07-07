@@ -155,7 +155,7 @@ str150BlankSpaces = (
 mainParser = ""
 # [i] Variável que vai ser responsável por fazer a  manipulação
 # dos argumentos dados.
-args = ""
+mainParserArgs = ""
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
@@ -246,6 +246,24 @@ def Main():
     # -------------------------------------------------------------
 
 
+
+    # VALIDAÇÃO PASTAS DE IMPORTAÇÃO E EXPORTAÇÃO
+    # -------------------------------------------------------------
+    # Descrição:
+    # Faz a validação da existência pastas de importação (obrigató-
+    # rio) e  exportação (opcional) providenciadas através de argu-
+    # mentos.
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # [i] [Obrigatório] Caso a pasta de importação exista
+    if(checkIfFolderExists(mainParserArgs.importPath)):
+        print("")
+    # [i] [Opcional] Caso o usuário tenha fornecido o caminho da pasta de exportação
+    if(mainParserArgs.exportPath != None):
+        # [i] E caso a pasta de exportação não exista
+        if(checkIfFolderExists(mainParserArgs.exportPath)):
+            print("")
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 
     # [>] Direciona o sistema para a pasta indicada
     os.chdir(currentPath + "\\PDFs")
@@ -1031,6 +1049,18 @@ def formatTextFile(conversionMethod):
 # necidos pelo usuário.
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def createParser():
+    # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
+    # -------------------------------------------------------------
+    # Descrição:
+    # Referenciamento de variáveis globais (suas  descrições  estão
+    # no grupo de variáveis globais localizadas no escopo do início
+    # do Script).
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    global mainParser
+    global mainParserArgs
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
+
     # [>] Criando parser
     mainParser = argparse.ArgumentParser(allow_abbrev=False)
 
@@ -1058,37 +1088,25 @@ def createParser():
 
     # [>] Adiciona os argumentos informados anteriormente na região
     # anterior ao parser
-    args = mainParser.parse_args()
+    mainParserArgs = mainParser.parse_args()
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# -------------------------------------------------------------
 
-    # CHECA SE A PASTA PASSADA NO PARÂMETRO EXISTE
-    # -------------------------------------------------------------
-    # Descrição:
-    # Função que faz uma validação de existência de uma pasta  pas-
-    # sada como parâmetro.
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    def checkIfFolderExists(folderThatWillBeChecked):
-        # [>] Instancia a variável como não existente
-        currentFolderExists = False
-        # [i] Se a pasta fornecida existe
-        if (os.path.isdir(folderThatWillBeChecked)):
-            # [>] Define a mesma como existente na variável
-            currentFolderExists = True
-        # [>] Retorna pra função
-        return currentFolderExists
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    # -------------------------------------------------------------
-
-    # [>] Checa se o caminho de importação fornecido  pelo  usuário
-    # existe, essa validação é obrigatória bem como o caminho  deve
-    # ser fornecido pelo usuário obrigatoriamente
-    checkIfFolderExists(mainParser.importPath)
-
-    # [i] Se o usuário forneceu o caminho de exportação
-    if (mainParser.exportPath != None):
-        # [>] Checa se o caminho de  exportação  fornecido  existe,
-        # essa validação não é obrigatória caso o usuário não  for-
-        # neça o caminho de exportação.
-        checkIfFolderExists(mainParser.exportPath)
+# [F] CHECA SE A PASTA PASSADA NO PARÂMETRO EXISTE
+# -------------------------------------------------------------
+# Descrição:
+# Função que faz uma validação de existência de uma pasta  pas-
+# sada como parâmetro.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+def checkIfFolderExists(folderThatWillBeChecked):
+    # [>] Instancia a variável como não existente
+    currentFolderExists = False
+    # [i] Se a pasta fornecida existe
+    if (os.path.isdir(folderThatWillBeChecked)):
+        # [>] Define a mesma como existente na variável
+        currentFolderExists = True
+    # [>] Retorna pra função
+    return currentFolderExists
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
