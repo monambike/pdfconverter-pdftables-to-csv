@@ -291,9 +291,9 @@ def Main():
                 "\n" +
                 strGiantLine + "\n" +
                 strGiantLine + "\n"
-                "\n\n\n\n\n\n\n\n\n"
-            
-                , file = txtOutputFile
+                "\n\n\n\n\n\n\n\n\n",
+                
+                file = txtOutputFile
             )
             setTerminalFile("closed")
 
@@ -309,9 +309,9 @@ def Main():
             + str150BlankSpaces + "                          ----- + -----\n\n"
             + str150BlankSpaces + "         LEITURA DE ARQUIVO - NÚMERO " + str(indexFile) + ", '" + pdfFile + "'\n"
             + str150BlankSpaces + "   O arquivo '" + fileName + "' foi lido e está pronto pra ser convertido\n\n"
-            + str150BlankSpaces + "                          ----- + -----\n\n\n\n"
+            + str150BlankSpaces + "                          ----- + -----\n\n\n\n",
             
-            , file = txtOutputFile
+            file = txtOutputFile
         )
         setTerminalFile("closed")
 
@@ -358,9 +358,9 @@ def Main():
                     "Método de Conversão: " + conversionMethod + "\n"
                     "\n"
                     "Descrição: Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "' "
-                    "usando o método '" + conversionMethod + "'."
-                
-                    , err
+                    "usando o método '" + conversionMethod + "'.",
+                    
+                    err
                 )
             # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             # -------------------------------------------------------------
@@ -659,9 +659,9 @@ def setTerminalFile(setState):
         showError(
             "O terminal só pode ser aberto ou fechado. Tenha certeza que "
             "atribuiu 'open' para aberto ou 'close' para fechado pro "
-            "método 'terminal'."
-        
-            , ""
+            "método 'terminal'.",
+            
+            ""
         )
         # [>] Fecha o aplicativo
         exit()
@@ -694,9 +694,9 @@ def showError(errorMessage, err):
         # [>] Exibe a exception
         print(
             "\n"
-            "Exception Log:"
+            "Exception Log:",
             
-            , file = txtOutputFile
+            file = txtOutputFile
         )
         print(str(err), file = txtOutputFile)
     
@@ -832,9 +832,9 @@ def conversionStart(conversionMethod, tableDataFrame):
             "\n\n"
             "          A tabela nº"+ str(indexDataFrame) + " do '" + fileName + "' foi convertida usando '" + conversionMethod + "'\n"
             "\________________________________________________________________________________/\n" +
-            "Search this (Ctrl + F): '" + fileName + " " + conversionMethod + " tbl" + str(indexDataFrame) + "'\n"
-
-            , file = txtOutputFile
+            "Search this (Ctrl + F): '" + fileName + " " + conversionMethod + " tbl" + str(indexDataFrame) + "'\n",
+            
+            file = txtOutputFile
         )
 
         # [>] Imprime o DataFrame
@@ -849,9 +849,9 @@ def conversionStart(conversionMethod, tableDataFrame):
             "\n"
             "Descrição: Ocorreu um erro, ao tentar converter o "
             "arquivo '" + fileName + ".pdf' usando o "
-            "método " + conversionMethod + "."
+            "método " + conversionMethod + ".",
             
-            , err
+            err
         )
         return
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
