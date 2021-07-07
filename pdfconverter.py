@@ -4,6 +4,7 @@ import re
 import csv
 import pandas
 import tabula
+import argparse
 from os import chdir
 from glob import glob
 from pathlib import Path
@@ -993,6 +994,48 @@ def formatTextFile(conversionMethod):
                 lineCurrent.count(";") > 2):
                 # [e] Exportação para a pasta: \\fullClear
                 txtFullClearFile.write(lineCurrent)
+# -------------------------------------------------------------
+
+#endregion
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# -------------------------------------------------------------
+
+
+# [G] MANIPULAÇÃO DE ARGUMENTOS
+# -------------------------------------------------------------
+# Descrição:
+# Grupo que contém funções que realizam a manipulação da bibli-
+# oteca que manipula argumentos, a 'argparse'.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#region
+
+# [F] CRIA O PARSER
+# -------------------------------------------------------------
+# Descrição:
+# Função que cria o parser que vai manipular os argumentos for-
+# necidos pelo usuário.
+def createParser():
+    # Criando parser
+    mainParser = argparse.ArgumentParser(allow_abbrev=False)
+    
+    # ARGUMENTOS UTILIZADOS NO PARSER
+    # -------------------------------------------------------------
+    # Descrição:
+    # Aqui estão dispostos os argumentos que vão ser passados  para
+    # o parser mais tarde
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # Argumento que conterá o caminho de importação (Obrigatório)
+    mainParser.add_argument(
+        "--importPath",
+        required = True,
+        type = str
+    )
+    # Argumento que conterá o caminho de exportação (Opcional)
+    mainParser.add_argument(
+        "--exportPath",
+        required = False,
+        type = str
+    )
 # -------------------------------------------------------------
 
 #endregion
