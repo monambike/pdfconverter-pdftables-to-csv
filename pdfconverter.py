@@ -1,11 +1,11 @@
 # Bibliotecas
 # _____________________________________________________________
+import os
 import re
 import csv
 import pandas
 import tabula
 import argparse
-from os import chdir
 from glob import glob
 from pathlib import Path
 # _____________________________________________________________
@@ -248,7 +248,7 @@ def Main():
 
 
     # [>] Direciona o sistema para a pasta indicada
-    chdir(currentPath + "\\PDFs")
+    os.chdir(currentPath + "\\PDFs")
 
     # [>] Filtra pelos PDFs na pasta onde foi indicada para o  sis-
     # tema pelo "chdir"
@@ -1059,6 +1059,11 @@ def createParser():
     # [>] Adiciona os argumentos informados anteriormente na região
     # anterior ao parser
     args = mainParser.parse_args()
+
+    def checkIfFolderExists(folderThatWillBeChecked):
+        return False if (not os.path.isdir(folderThatWillBeChecked)) else True
+
+    checkIfFolderExists()
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
