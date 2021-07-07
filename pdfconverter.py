@@ -1060,9 +1060,23 @@ def createParser():
     # anterior ao parser
     args = mainParser.parse_args()
 
-    # [i] Chega se a pasta fornecida existe
+    # CHECA SE A PASTA PASSADA NO PARÂMETRO EXISTE
+    # -------------------------------------------------------------
+    # Descrição:
+    # Função que faz uma validação de existência de uma pasta  pas-
+    # sada como parâmetro.
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     def checkIfFolderExists(folderThatWillBeChecked):
-        return True if (os.path.isdir(folderThatWillBeChecked)) else False
+        # [>] Instancia a variável como não existente
+        currentFolderExists = False
+        # [i] Se a pasta fornecida existe
+        if (os.path.isdir(folderThatWillBeChecked)):
+            # [>] Define a mesma como existente na variável
+            currentFolderExists = True
+        # [>] Retorna pra função
+        return currentFolderExists
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 
     checkIfFolderExists()
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
