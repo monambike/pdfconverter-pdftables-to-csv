@@ -152,10 +152,10 @@ str150BlankSpaces = (
 # argumentos
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # [i] Variável que vai ser responsável por criar o parser.
-mainParser = ""
+mainParser = None
 # [i] Variável que vai ser responsável por fazer a  manipulação
 # dos argumentos dados.
-mainParserArgs = ""
+mainParserArgs = None
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
@@ -245,6 +245,8 @@ def Main():
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
+    # Cria o parser para manipular os argumentos
+    createParser()
 
 
     # VALIDAÇÃO PASTAS DE IMPORTAÇÃO E EXPORTAÇÃO
@@ -254,12 +256,13 @@ def Main():
     # rio) e  exportação (opcional) providenciadas através de argu-
     # mentos.
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    setTerminalFile("open")
     # [i] [Obrigatório] Caso a pasta de importação não exista
     if(not checkIfFolderExists(mainParserArgs.importPath)):
         # [>] Exibe uma mensagem de erro
         print(
             "O caminho de importação informado não existe.",
-            
+
             file = txtOutputFile
         )
         # [>] E para a aplicação
@@ -471,23 +474,8 @@ def setCurrentPath():
         #                           ____[o script está dentro da pasta 'netcoreapp3.1']
         #                          /
         # (pdfconverter\bin\Debug\netcoreapp3.1)
-
-        # [i] Removendo caracteres até voltar para a localização à  se-
-        # guir, ou seja, até a localização desejada.
-        # O número deve ser alterado com base na localidade do arquivo.
-        currentPath = str(currentPath)[:-34]
-        # DIRETÓRIOS PADRÃO
-        # -------------------------------------------------------------
-        # Descrição:
-        # Caso o arquivo seja um Script, provavelmente deve  estar  me-
-        # lhor localizado em
-        # (pdfconverter\bin\Debug\netcoreapp3.1)
-        #    \___[a remoção de "37" caracteres faz voltar  até  raiz da  pasta "pdfconverter"]
-        #
-        # Caso o arquivo seja um executável, provavelmente  deve  estar
-        # melhor localizado em
-        # (pdfconverter\exe\dist\pdfconverter)
-        #    \___[a remoção de "34" caracteres faz voltar até a pasta "pdfconverter"]
+        
+        currentPath = str(currentPath)
 
         # [>] Passa para a variável global o caminho do arquivo de tex-
         # to do terminal
