@@ -257,14 +257,23 @@ def Main():
     # [i] [Obrigatório] Caso a pasta de importação não exista
     if(not checkIfFolderExists(mainParserArgs.importPath)):
         # [>] Exibe uma mensagem de erro
-        print("")
+        print(
+            "O caminho de importação informado não existe.",
+            
+            file = txtOutputFile
+        )
     # [i] [Opcional] Caso o usuário tenha fornecido  o  caminho  da
     # pasta de exportação
     if(mainParserArgs.exportPath != None):
         # [i] E caso a pasta de exportação não exista
         if(checkIfFolderExists(mainParserArgs.exportPath)):
             # [>] Exibe uma mensagem de erro
-            print("")
+            print(
+                "O caminho de exportação informado não existe.",
+                
+                file = txtOutputFile
+            )
+    setTerminalFile("closed")
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
