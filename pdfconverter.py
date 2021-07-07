@@ -1060,6 +1060,7 @@ def createParser():
     # anterior ao parser
     args = mainParser.parse_args()
 
+    # [i] Chega se a pasta fornecida existe
     def checkIfFolderExists(folderThatWillBeChecked):
         return False if (not os.path.isdir(folderThatWillBeChecked)) else True
 
