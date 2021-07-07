@@ -1078,7 +1078,17 @@ def createParser():
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
-    checkIfFolderExists()
+    # [>] Checa se o caminho de importação fornecido  pelo  usuário
+    # existe, essa validação é obrigatória bem como o caminho  deve
+    # ser fornecido pelo usuário obrigatoriamente
+    checkIfFolderExists(mainParser.importPath)
+
+    # [i] Se o usuário forneceu o caminho de exportação
+    if (mainParser.exportPath != None):
+        # [>] Checa se o caminho de  exportação  fornecido  existe,
+        # essa validação não é obrigatória caso o usuário não  for-
+        # neça o caminho de exportação.
+        checkIfFolderExists(mainParser.exportPath)
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
