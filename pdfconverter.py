@@ -14,7 +14,7 @@ from pathlib import Path
 
 
 
-# Início
+# Sumário
 # _____________________________________________________________
 
 # LEGENDA
@@ -25,9 +25,9 @@ from pathlib import Path
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 #region
 
-
-
+# -------------------------------------------------------------
 # Grupos:
+# -------------------------------------------------------------
 # [C] - Conglomerado pequeno de variáveis 
 # [F] - Função
 # [G] - Grupo de funções (é delimitado por uma "region")
@@ -35,19 +35,29 @@ from pathlib import Path
 # on")
 # [V] - Grupo  de  variáveis  (pode  ser  delimitado  por   uma
 # "region" ou não)
-
+# -------------------------------------------------------------
+#
+# -------------------------------------------------------------
 # Dicas:
+# -------------------------------------------------------------
 # [i] - Informação ampla
 # [>] - Execução de uma tarefa ou uma informação relacionada  à
 # ela
 # [e] - Exportação de um arquivo PDF convertido para CSV
-
-
+# -------------------------------------------------------------
 
 #endregion
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
+# _____________________________________________________________
+
+
+
+
+
+# Escopo
+# _____________________________________________________________
 
 # [V] VARIÁVEIS
 # -------------------------------------------------------------
@@ -56,8 +66,6 @@ from pathlib import Path
 # Script.
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 #region
-
-
 
 # [C] NOMES
 # -------------------------------------------------------------
@@ -70,7 +78,6 @@ from pathlib import Path
 fileName = ""
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
-
 
 # [C] CAMINHOS
 # -------------------------------------------------------------
@@ -87,7 +94,6 @@ txtFilePath = ""
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
-
 # [C] ARQUIVOS
 # -------------------------------------------------------------
 # Descrição:
@@ -98,7 +104,6 @@ txtOutputFile = ""
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
-
 # [C] CONTADORES
 # -------------------------------------------------------------
 # Descrição:
@@ -108,7 +113,6 @@ txtOutputFile = ""
 indexDataFrame = 0
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
-
 
 # [C] VISUAL
 # -------------------------------------------------------------
@@ -141,7 +145,6 @@ str150BlankSpaces = (
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
-
 # [C] OUTROS
 # -------------------------------------------------------------
 # Descrição:
@@ -153,8 +156,6 @@ str150BlankSpaces = (
 tableListOfDataFrames = []
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
-
-
 
 #endregion
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -182,13 +183,13 @@ tableListOfDataFrames = []
 # Descrição:
 # Função que executa funcionalidades principais e chama  outras
 # funções
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def Main():
     # [V] VARIÁVEIS
     # -------------------------------------------------------------
     # Descrição:
     # Grupo contendo variáveis utilizadas na função atual.
-
-
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
     # -------------------------------------------------------------
@@ -203,7 +204,6 @@ def Main():
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
-
     # [C] CONTADORES
     # -------------------------------------------------------------
     # Descrição:
@@ -214,8 +214,7 @@ def Main():
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
-
-
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
 
@@ -346,8 +345,8 @@ def Main():
             formatTextFile(conversionMethod)
             # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             # -------------------------------------------------------------
-        # -------------------------------------------------------------
         # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        # -------------------------------------------------------------
 
         # [>] Atribuindo mais um ao índice para indicar que  o  arquivo
         # PDF foi convertido
@@ -371,12 +370,12 @@ def Main():
         else:
             # [>] Exibe o erro
             showError("Descrição: Não há arquivos de PDF para serem convertidos.", "")
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
 #endregion
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
-
 
 # [G] CONFIGURAÇÕES INICIAIS
 # -------------------------------------------------------------
@@ -397,14 +396,13 @@ def Main():
 # Descrição:
 # Define o local da raíz do projeto, onde  os  outros  caminhos
 # irão se basear
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def setCurrentPath():
     try:
         # [V] VARIÁVEIS
         # -------------------------------------------------------------
         # Descrição:
         # Grupo contendo variáveis utilizadas na função atual.
-
-
 
         # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
         # -------------------------------------------------------------
@@ -418,11 +416,8 @@ def setCurrentPath():
         # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         # -------------------------------------------------------------
 
-
-
         # -------------------------------------------------------------
         
-
 
         # [i] Pegando o caminho até o executável ou script atual  e  a-
         # tribuindo para a variável currentPath
@@ -462,20 +457,20 @@ def setCurrentPath():
         
             , err
         )
-# -------------------------------------------------------------
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# # -------------------------------------------------------------
 
 # [F] FUNÇÃO QUE DEFINE A ESTRUTURA DE PASTAS DO PROJETO
 # -------------------------------------------------------------
 # Descrição:
 # Faz a verificação da existência das pastas a seguir e as cria
 # caso elas ainda não existam.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def setProjectStructure():    
     # [V] VARIÁVEIS
     # -------------------------------------------------------------
     # Descrição:
     # Grupo contendo variáveis utilizadas na função atual.
-
-
 
     # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
     # -------------------------------------------------------------
@@ -483,7 +478,6 @@ def setProjectStructure():
     # Listas que possuem os caminhos das pastas que vão  ser  gera-
     # das.
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
 
     # [C] CAMINHOS
     # [i] Caminhos que indicam a localização das  pastas  raíz  que
@@ -507,7 +501,8 @@ def setProjectStructure():
         "\\withoutFormatting"
     ]
 
-    # ---------------------------------------------------------------------- #
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 
 
     # [i] Para cada pasta raíz, presente na lista de pastas raíz
@@ -542,6 +537,7 @@ def setProjectStructure():
     # [>] Cria arquivo para exibir a saída do terminal, se já exis-
     # tir o arquivo, limpa o mesmo
     open(txtOutputFilePath, "w").close()
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
 # [F] FUNÇÃO QUE DEFINE E EXECUTA CONFIGURAÇÕES DO PANDAS
@@ -549,6 +545,7 @@ def setProjectStructure():
 # Descrição:
 # Configurações do Pandas que afetam o DataFrame e a  conversão
 # para texto.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def setPandasSettings():
     # [>] Configuração que evita com que dados sejam  quebrados  no
     # arquivo exportado
@@ -562,12 +559,12 @@ def setPandasSettings():
     # [>] Configuração que faz com que caso exista um ";"  ele  não
     # passe os dados pra outra célula
     pandas.options.display.latex.multicolumn = False
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
 #endregion
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
-
 
 # [G] SAÍDAS DE AVISOS
 # -------------------------------------------------------------
@@ -583,13 +580,12 @@ def setPandasSettings():
 # Descrição:
 # Define quando o terminal vai ser aberto ou quando vai ser fe-
 # chado.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def setTerminalFile(setState):
     # [V] VARIÁVEIS
     # -------------------------------------------------------------
     # Descrição:
     # Grupo contendo variáveis utilizadas na função atual.
-
-
 
     # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
     # -------------------------------------------------------------
@@ -601,10 +597,7 @@ def setTerminalFile(setState):
     global txtOutputFile
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-
-
     # ---------------------------------------------------------------------- #
-
 
 
     # [i] Caso o programador defina a função como "open"
@@ -628,6 +621,7 @@ def setTerminalFile(setState):
         )
         # [>] Fecha o aplicativo
         exit()
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
 # [F] EXIBE UMA MENSAGEM DE ERRO
@@ -635,6 +629,7 @@ def setTerminalFile(setState):
 # Descrição:
 # Função responsável por exibir mensagens de erros  disponíveis
 # nas Exceptions.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def showError(errorMessage, err):
     # [>] Abre o layout com a mensagem e o arquivo
     txtOutputFile = open(txtOutputFilePath, "a", encoding="UTF-8")
@@ -669,12 +664,12 @@ def showError(errorMessage, err):
         file = txtOutputFile
     )
     txtOutputFile.close()
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
 #endregion
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
-
 
 # [G] CONVERSÃO
 # -------------------------------------------------------------
@@ -694,6 +689,7 @@ def showError(errorMessage, err):
 # DataFrame que difere-se do corpo, o que acaba permitindo  que
 # isso ocorra. O trabalho dessa função é transformar o  cabeça-
 # lho em um texto de campo comum.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def turnHeaderInSimpleRow(tableDataFrame):
     # [>] Cria e limpa uma lista que vai ser usada para manipular o
     # cabeçalho no DataFrame
@@ -715,6 +711,7 @@ def turnHeaderInSimpleRow(tableDataFrame):
 
         # [>] Concatenando tabela temporária à tabela principal
         pandas.concat([pandas.DataFrame(tableDataFrameHeader), tableDataFrame], ignore_index=True)
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
 # [F] REALIZA A CONVERSÃO DO ARQUIVO
@@ -722,6 +719,7 @@ def turnHeaderInSimpleRow(tableDataFrame):
 # Descrição:
 # Realiza a conversão do arquivo PDF para CSV como  arquivo  de
 # texto.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def conversionStart(conversionMethod, tableDataFrame):
     # [V] VARIÁVEIS
     # -------------------------------------------------------------
@@ -812,6 +810,7 @@ def conversionStart(conversionMethod, tableDataFrame):
             , err
         )
         return
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
 # [F] LIMPA O ARQUIVO DE TEXTO CONVERTIDO
@@ -820,6 +819,7 @@ def conversionStart(conversionMethod, tableDataFrame):
 # Limpa o arquivo de texto removendo todas as  linhas  que  não
 # contenham um separador (;), ou seja,  linhas  que  não  fazem
 # parte de uma tabela.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def formatTextFile(conversionMethod):
     # [V] VARIÁVEIS
     # -------------------------------------------------------------
@@ -994,6 +994,7 @@ def formatTextFile(conversionMethod):
                 lineCurrent.count(";") > 2):
                 # [e] Exportação para a pasta: \\fullClear
                 txtFullClearFile.write(lineCurrent)
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
 #endregion
@@ -1014,10 +1015,11 @@ def formatTextFile(conversionMethod):
 # Descrição:
 # Função que cria o parser que vai manipular os argumentos for-
 # necidos pelo usuário.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def createParser():
     # Criando parser
     mainParser = argparse.ArgumentParser(allow_abbrev=False)
-    
+
     # ARGUMENTOS UTILIZADOS NO PARSER
     # -------------------------------------------------------------
     # Descrição:
@@ -1036,6 +1038,7 @@ def createParser():
         required = False,
         type = str
     )
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
 #endregion
