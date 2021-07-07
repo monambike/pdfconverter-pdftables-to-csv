@@ -235,7 +235,7 @@ def Main():
 
     # CONFIGURAÇÕES INICIAIS
     # -------------------------------------------------------------
-    # Desc:
+    # Descrição:
     # Contém todas as chamadas de funções que realizam as  configu-
     # rações iniciais para o funcionamento do Script.
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -896,7 +896,7 @@ def formatTextFile(conversionMethod):
     with open(txtFilePath, "r", encoding="UTF-8") as txtFile:
         # ARQUIVOS
         # -------------------------------------------------------------
-        # Desc:
+        # Descrição:
         # Arquivo para caso a tabela possua itens vazios  que  precisam
         # ser computados (esse arquivo apenas não terá o regex que apa-
         # ga dados vazios e similares)
