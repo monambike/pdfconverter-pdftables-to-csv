@@ -67,23 +67,15 @@ from pathlib import Path
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 #region
 
-# [C] NOMES
+# [C] ARQUIVOS
 # -------------------------------------------------------------
 # Descrição:
-# Variáveis que possuem informações relacionadas à nomes de ar-
-# quivos ou pastas.
+# Variáveis que armazenam possuem realações com arquivos direta
+# e indiretamente.
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # [i] Nome do arquivo PDF que vai ser convertido  (sem a exten-
 # são)
 str_fileName = ""
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-# -------------------------------------------------------------
-
-# [C] CAMINHOS
-# -------------------------------------------------------------
-# Descrição:
-# Variáveis que armazenam caminhos.
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # [i] Caminho atual para a raiz do projeto (os outros  caminhos
 # vão se basear nele)
 folderPath_script = ""
@@ -91,14 +83,6 @@ folderPath_script = ""
 filePath_outputTxt = ""
 # [i] Caminho do arquivo PDF que vai ser convertido
 filePath_exportTxt = ""
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-# -------------------------------------------------------------
-
-# [C] ARQUIVOS
-# -------------------------------------------------------------
-# Descrição:
-# Variáveis que manipulam arquivos.
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # [i] Variável que armazena o arquivo de saída do Terminal
 file_outputTxt = ""
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -161,10 +145,10 @@ parserArgs_main = None
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
-# [C] OUTROS
+# [C] LISTAS
 # -------------------------------------------------------------
 # Descrição:
-# Variáveis que não se encaixam em outras categorias.
+# Variáveis que fazem gerenciamento de listas.
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # [i] Variável que vai conter a lista de DataFrames de  um  de-
 # terminado arquivo PDF baseado em um método de leitura,  pode-
@@ -829,6 +813,8 @@ def conversionStart(conversionMethod, tableDataFrame):
 
         index_dataFrame = index_dataFrame + 1
     except Exception as err:
+        # [>] Exibe um erro de conversão caso haja um erro não tra-
+        # tado
         showError(
             "Arquivo: " + str_fileName + "\n"
             "Método de Conversão: " + conversionMethod + "\n"
@@ -1093,6 +1079,7 @@ def createParser():
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
+
     # [>] Adiciona os argumentos informados anteriormente na região
     # anterior ao parser
     parserArgs_main = parser_main.parse_args()
@@ -1103,7 +1090,7 @@ def createParser():
 # -------------------------------------------------------------
 # Descrição:
 # Função que faz uma validação de existência de uma pasta  pas-
-# sada como parâmetro.
+# sada como argumento.
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def checkIfFolderExists(folderThatWillBeChecked):
     # [>] Instancia a variável como não existente
