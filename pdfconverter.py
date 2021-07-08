@@ -471,12 +471,7 @@ def setCurrentPath():
 
         # [i] Pegando o caminho até o executável ou script atual  e  a-
         # tribuindo para a variável folderPath_script
-        folderPath_script = Path(__file__).parent.absolute()
-        #                           ____[o script está dentro da pasta 'netcoreapp3.1']
-        #                          /
-        # (pdfconverter\bin\Debug\netcoreapp3.1)
-        
-        folderPath_script = str(folderPath_script)
+        folderPath_script = str(Path(__file__).parent.absolute())
 
         # [>] Passa para a variável global o caminho do arquivo de tex-
         # to do terminal
