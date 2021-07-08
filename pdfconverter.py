@@ -234,7 +234,6 @@ def Main():
     # -------------------------------------------------------------
 
 
-
     # CONFIGURAÇÕES INICIAIS
     # -------------------------------------------------------------
     # Descrição:
@@ -247,6 +246,7 @@ def Main():
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
+
     # Cria o parser para manipular os argumentos
     createParser()
 
@@ -258,7 +258,7 @@ def Main():
     # rio) e  exportação (opcional) providenciadas através de argu-
     # mentos.
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    setTerminalFile("open")
+    setTerminalFileAsOpen(True)
     # [i] [Obrigatório] Caso a pasta de importação não exista
     if(not checkIfFolderExists(parserArgs_main.importPath)):
         # [>] Exibe uma mensagem de erro
@@ -280,7 +280,7 @@ def Main():
         )
         # [>] E para a aplicação
         return
-    setTerminalFile("closed")
+    setTerminalFileAsOpen(False)
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
@@ -292,7 +292,7 @@ def Main():
         # [i] Se já não é mais o primeiro arquivo
         if (index_file > 1):
             # [>] Fecha o leiaute referente ao arquivo anterior
-            setTerminalFile("open")
+            setTerminalFileAsOpen(True)
             print(
                 "\n" +
                 visual_giantLine + "\n" +
@@ -301,14 +301,14 @@ def Main():
                 
                 file = file_outputTxt
             )
-            setTerminalFile("closed")
+            setTerminalFileAsOpen(False)
 
         # [>] Remove extensão do arquivo  (pegando  apenas  o  nome)  e
         # atribui para a temporária
         str_fileName = pdfFile[:-4]
 
         # [>] Cria o título para leitura do arquivo no terminal
-        setTerminalFile("open")
+        setTerminalFileAsOpen(True)
         print(
             pdfFile + visual_giantLine + "\n" +
             visual_giantLine + "\n\n\n\n" +
@@ -319,7 +319,7 @@ def Main():
             
             file = file_outputTxt
         )
-        setTerminalFile("closed")
+        setTerminalFileAsOpen(False)
 
 
 
@@ -406,7 +406,7 @@ def Main():
         # fecha o leiaute do terminal
         if (index_file > 1):
             # [>] Fecha o leiaute e pula 5 linhas
-            setTerminalFile("open")
+            setTerminalFileAsOpen(True)
             print(
                 "\n" +
                 visual_giantLine + "\n" +
@@ -414,7 +414,7 @@ def Main():
             
                 file = file_outputTxt
             )
-            setTerminalFile("closed")
+            setTerminalFileAsOpen(False)
         # [i] Se ainda até o término da operação nenhum PDF foi conver-
         # tido exibe um erro
         else:
@@ -453,6 +453,7 @@ def setCurrentPath():
         # -------------------------------------------------------------
         # Descrição:
         # Grupo contendo variáveis utilizadas na função atual.
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
         # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
         # -------------------------------------------------------------
@@ -466,6 +467,7 @@ def setCurrentPath():
         # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         # -------------------------------------------------------------
 
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         # -------------------------------------------------------------
         
 
@@ -506,6 +508,7 @@ def setProjectStructure():
     # -------------------------------------------------------------
     # Descrição:
     # Grupo contendo variáveis utilizadas na função atual.
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
     # -------------------------------------------------------------
@@ -513,7 +516,6 @@ def setProjectStructure():
     # Listas que possuem os caminhos das pastas que vão  ser  gera-
     # das.
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
     # [C] CAMINHOS
     # [i] Caminhos que indicam a localização das  pastas  raíz  que
     # irão ser geradas futuramente.
@@ -538,6 +540,8 @@ def setProjectStructure():
         "\\tableWithBlankCells",
         "\\withoutFormatting"
     ]
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
@@ -619,11 +623,12 @@ def setPandasSettings():
 # Define quando o terminal vai ser aberto ou quando vai ser fe-
 # chado.
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-def setTerminalFile(fileOpeningState):
+def setTerminalFileAsOpen(openingState):
     # [V] VARIÁVEIS
     # -------------------------------------------------------------
     # Descrição:
     # Grupo contendo variáveis utilizadas na função atual.
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
     # -------------------------------------------------------------
@@ -634,31 +639,20 @@ def setTerminalFile(fileOpeningState):
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     global file_outputTxt
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 
-    # ---------------------------------------------------------------------- #
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 
 
-    # [i] Caso o programador defina a função como "open"
-    if (fileOpeningState == "open"):
+    # [i] Caso o programador decida abrir o arquivo
+    if (openingState):
         # [>] Abre o arquivo de saída do terminal com "append"
         file_outputTxt = open(filePath_outputTxt, "a", encoding="UTF-8")
-    # [i] Caso o programador defina a função como "close"
-    elif (fileOpeningState == "closed"):
+    # [i] Caso o programador decida fechar o arquivo
+    else:
         # [>] Fecha o arquivo de saída do terminal
         file_outputTxt.close()
-    # [i] Caso o programador coloque um texto não tratado, exibe um
-    # erro
-    else:
-        # [>] Exibe o erro
-        showError(
-            "O terminal só pode ser aberto ou fechado. Tenha certeza que "
-            "atribuiu 'open' para aberto ou 'close' para fechado pro "
-            "método 'terminal'.",
-            
-            ""
-        )
-        # [>] Fecha o aplicativo
-        exit()
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
@@ -763,8 +757,7 @@ def conversionStart(conversionMethod, tableDataFrame):
     # -------------------------------------------------------------
     # Descrição:
     # Grupo contendo variáveis utilizadas na função atual.
-
-
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
     # -------------------------------------------------------------
@@ -776,11 +769,10 @@ def conversionStart(conversionMethod, tableDataFrame):
     global filePath_exportTxt
     global index_dataFrame
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 
-
-
-    # ---------------------------------------------------------------------- #
-
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 
 
     try:
@@ -821,7 +813,7 @@ def conversionStart(conversionMethod, tableDataFrame):
 
         # [>] Indica ao terminal que uma tabela foi convertida  com
         # sucesso
-        setTerminalFile("open")
+        setTerminalFileAsOpen(True)
         print(
             "\n\n"
             "          A tabela nº"+ str(index_dataFrame) + " do '" + str_fileName + "' foi convertida usando '" + conversionMethod + "'\n"
@@ -833,7 +825,7 @@ def conversionStart(conversionMethod, tableDataFrame):
 
         # [>] Imprime o DataFrame
         print(pandas.DataFrame(tableDataFrame), file = file_outputTxt)
-        setTerminalFile("closed")
+        setTerminalFileAsOpen(False)
 
         index_dataFrame = index_dataFrame + 1
     except Exception as err:
@@ -863,8 +855,7 @@ def formatTextFile(conversionMethod):
     # -------------------------------------------------------------
     # Descrição:
     # Grupo contendo variáveis utilizadas na função atual.
-
-
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
     # -------------------------------------------------------------
@@ -875,7 +866,7 @@ def formatTextFile(conversionMethod):
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     global filePath_exportTxt
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
+    # -------------------------------------------------------------
 
     # [C] CAMINHOS
     # -------------------------------------------------------------
@@ -890,11 +881,10 @@ def formatTextFile(conversionMethod):
     # [i] Full Clear, formatação mais robusta
     txtFullClearPath = folderPath_script + "\\resultados\\" + conversionMethod + "\\fullClear\\" + str_fileName + ".txt"
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
-
     # -------------------------------------------------------------
 
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 
 
     # [i] Abre o arquivo original presente na pasta 'withoutFormat-
@@ -1055,6 +1045,12 @@ def formatTextFile(conversionMethod):
 # necidos pelo usuário.
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def createParser():
+    # [V] VARIÁVEIS
+    # -------------------------------------------------------------
+    # Descrição:
+    # Grupo contendo variáveis utilizadas na função atual.
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
     # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
     # -------------------------------------------------------------
     # Descrição:
@@ -1067,8 +1063,13 @@ def createParser():
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
+
+
     # [>] Criando parser
     parser_main = argparse.ArgumentParser(allow_abbrev=False)
+
 
     # ARGUMENTOS UTILIZADOS NO PARSER
     # -------------------------------------------------------------
