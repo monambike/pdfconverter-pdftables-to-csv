@@ -239,7 +239,6 @@ def Main():
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     setCurrentPath()
     setPandasSettings()
-    setProjectStructure()
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
@@ -329,6 +328,9 @@ def Main():
 
 
     if (folderPath_import != "" and exportFolderDoesntExist is False):
+        # [>] Define a estrutura inicial do projeto
+        setProjectStructure()
+
         # [>] Direciona o sistema para a pasta indicada
         os.chdir(folderPath_import)
         # [>] Filtra pelos PDFs na pasta onde foi indicada para o  sis-
@@ -509,8 +511,9 @@ def setCurrentPath():
         # no grupo de variáveis globais localizadas no escopo do início
         # do Script).
         # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        global folderPath_script
         global filePath_outputTxt
+        global folderPath_script
+        global file_outputTxt
         # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         # -------------------------------------------------------------
 
@@ -525,6 +528,9 @@ def setCurrentPath():
         # [>] Passa para a variável global o caminho do arquivo de tex-
         # to do terminal
         filePath_outputTxt = folderPath_script + "\\output.txt"
+        # [>] Cria e/ou limpa o arquivo de texto contendo  a  saída  do
+        # terminal
+        file_outputTxt = open(filePath_outputTxt, "w", encoding="UTF-8")
     except Exception as exceptionError:
         # [>] Exibe um erro quando há problemas em achar o diretório a-
         # tual
@@ -562,7 +568,6 @@ def setProjectStructure():
     # [i] Caminhos que indicam a localização das  pastas  raíz  que
     # irão ser geradas futuramente.
     list_rootPaths = [
-        "\\PDFs",
         "\\resultados"
     ]
     # [i] Caminhos que indicam a localização das pastas dos métodos
@@ -922,11 +927,11 @@ def formatTextFile(conversionMethod):
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # [i] Formatação padrão, apenas exibindo caso e caso  tenha pe-
     # lo menos um separador ";" na linha e removendo campos vazios
-    txtMainPath = folderPath_script + "\\resultados\\" + conversionMethod + "\\main\\" + fileName + ".txt"
+    txtMainPath = folderPath_export + "\\resultados\\" + conversionMethod + "\\main\\" + fileName + ".txt"
     # [i] Formatação padrão, porém mantendo campos vazios
-    txtReturnBlankCellsPath = folderPath_script + "\\resultados\\" + conversionMethod + "\\tableWithBlankCells\\" + fileName + ".txt"
+    txtReturnBlankCellsPath = folderPath_export + "\\resultados\\" + conversionMethod + "\\tableWithBlankCells\\" + fileName + ".txt"
     # [i] Full Clear, formatação mais robusta
-    txtFullClearPath = folderPath_script + "\\resultados\\" + conversionMethod + "\\fullClear\\" + fileName + ".txt"
+    txtFullClearPath = folderPath_export + "\\resultados\\" + conversionMethod + "\\fullClear\\" + fileName + ".txt"
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
