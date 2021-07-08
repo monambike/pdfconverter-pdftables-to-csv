@@ -75,7 +75,7 @@ from pathlib import Path
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # [i] Nome do arquivo PDF que vai ser convertido  (sem a exten-
 # são)
-str_fileName = ""
+fileName = ""
 # [i] Caminho atual para a raiz do projeto (os outros  caminhos
 # vão se basear nele)
 folderPath_script = ""
@@ -198,7 +198,7 @@ def Main():
     # no grupo de variáveis globais localizadas no escopo do início
     # do Script).
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    global str_fileName
+    global fileName
     global index_dataFrame
     global list_dataFrames
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -289,7 +289,7 @@ def Main():
 
         # [>] Remove extensão do arquivo  (pegando  apenas  o  nome)  e
         # atribui para a temporária
-        str_fileName = pdfFile[:-4]
+        fileName = pdfFile[:-4]
 
         # [>] Cria o título para leitura do arquivo no terminal
         setTerminalFileAsOpen(True)
@@ -298,7 +298,7 @@ def Main():
             visual_giantLine + "\n\n\n\n" +
             visual_blankSpaces + "                          ----- + -----\n\n" +
             visual_blankSpaces + "         LEITURA DE ARQUIVO - NÚMERO " + str(index_file) + ", '" + pdfFile + "'\n" +
-            visual_blankSpaces + "   O arquivo '" + str_fileName + "' foi lido e está pronto pra ser convertido\n\n" +
+            visual_blankSpaces + "   O arquivo '" + fileName + "' foi lido e está pronto pra ser convertido\n\n" +
             visual_blankSpaces + "                          ----- + -----\n\n\n\n",
             
             file = file_outputTxt
@@ -781,7 +781,7 @@ def conversionStart(conversionMethod, tableDataFrame):
 
         # [>] Define o caminho do arquivo  atual  para  a  variável
         # global filePath_exportTxt
-        filePath_exportTxt = folderPath_script + "\\resultados\\" + conversionMethod + "\\withoutFormatting\\" + str_fileName + ".txt"
+        filePath_exportTxt = folderPath_script + "\\resultados\\" + conversionMethod + "\\withoutFormatting\\" + fileName + ".txt"
 
         # [>] Converte o arquivo para .txt no formato de um CSV
         tableDataFrame.to_csv(
@@ -800,9 +800,9 @@ def conversionStart(conversionMethod, tableDataFrame):
         setTerminalFileAsOpen(True)
         print(
             "\n\n"
-            "          A tabela nº"+ str(index_dataFrame) + " do '" + str_fileName + "' foi convertida usando '" + conversionMethod + "'\n"
+            "          A tabela nº"+ str(index_dataFrame) + " do '" + fileName + "' foi convertida usando '" + conversionMethod + "'\n"
             "\________________________________________________________________________________/\n" +
-            "Search this (Ctrl + F): '" + str_fileName + " " + conversionMethod + " tbl" + str(index_dataFrame) + "'\n",
+            "Search this (Ctrl + F): '" + fileName + " " + conversionMethod + " tbl" + str(index_dataFrame) + "'\n",
             
             file = file_outputTxt
         )
@@ -816,11 +816,11 @@ def conversionStart(conversionMethod, tableDataFrame):
         # [>] Exibe um erro de conversão caso haja um erro não tra-
         # tado
         showError(
-            "Arquivo: " + str_fileName + "\n"
+            "Arquivo: " + fileName + "\n"
             "Método de Conversão: " + conversionMethod + "\n"
             "\n"
             "Descrição: Ocorreu um erro, ao tentar converter o "
-            "arquivo '" + str_fileName + ".pdf' usando o "
+            "arquivo '" + fileName + ".pdf' usando o "
             "método " + conversionMethod + ".",
             
             err
@@ -861,11 +861,11 @@ def formatTextFile(conversionMethod):
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # [i] Formatação padrão, apenas exibindo caso e caso  tenha pe-
     # lo menos um separador ";" na linha e removendo campos vazios
-    txtMainPath = folderPath_script + "\\resultados\\" + conversionMethod + "\\main\\" + str_fileName + ".txt"
+    txtMainPath = folderPath_script + "\\resultados\\" + conversionMethod + "\\main\\" + fileName + ".txt"
     # [i] Formatação padrão, porém mantendo campos vazios
-    txtReturnBlankCellsPath = folderPath_script + "\\resultados\\" + conversionMethod + "\\tableWithBlankCells\\" + str_fileName + ".txt"
+    txtReturnBlankCellsPath = folderPath_script + "\\resultados\\" + conversionMethod + "\\tableWithBlankCells\\" + fileName + ".txt"
     # [i] Full Clear, formatação mais robusta
-    txtFullClearPath = folderPath_script + "\\resultados\\" + conversionMethod + "\\fullClear\\" + str_fileName + ".txt"
+    txtFullClearPath = folderPath_script + "\\resultados\\" + conversionMethod + "\\fullClear\\" + fileName + ".txt"
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
