@@ -247,177 +247,226 @@ def Main():
     # Cria o parser para manipular os argumentos
     createParser()
 
-
-    # VALIDAÇÃO PASTAS DE IMPORTAÇÃO E EXPORTAÇÃO
+    
+    # Abre o arquivo de saída do terminal
+    setTerminalFileAsOpen(True)
+    # VALIDAÇÃO DO CAMINHO DA PASTA DE IMPORTAÇÃO
     # -------------------------------------------------------------
     # Descrição:
-    # Faz a validação da existência pastas de importação (obrigató-
-    # rio) e  exportação (opcional) providenciadas através de argu-
-    # mentos.
+    # Faz a validação da existência do caminho que leva  as  pastas
+    # de importação. É obrigatória a inserção desse campo pelo usu-
+    # ário.
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    setTerminalFileAsOpen(True)
-    # [i] [Obrigatório] Caso a pasta de importação não exista
-    if(not checkIfFolderExists(parserArgs_main.importPath)):
+    # [IMPORTAÇÃO - Obrigatório]
+    try:
+        # [i] Caso a pasta de importação exista
+        if (checkIfFolderExists(parserArgs_main.importPath)):
+            # [>] Leva o caminho para a variável que segura os caminhos  de
+            # importação
+            folderPath_import = parserArgs_main.importPath
+        # [i] Caso o usuário não tenha informado o caminho da pasta  de
+        # importação
+        elif (parserArgs_main.importPath == None):
+            # [>] Exibe uma mensagem de erro
+            showError("É necessário informar um caminho de importação com '--importPath <caminho>'.")
+            # [>] Encerra a operação
+            return
+        # [i] Caso a pasta de importação não exista
+        elif (checkIfFolderExists(parserArgs_main.importPath) == False):
+            # [>] Exibe uma mensagem de erro
+            showError("O caminho de importação informado não existe.")
+            return
+        # [i] Caso apareça um erro não tratado
+        else:
+            # [>] Exibe uma mensagem de erro
+            showError("Ocorreu um erro desconhecido na hora de receber o caminho de importação.")
+    except:
         # [>] Exibe uma mensagem de erro
-        print(
-            "O caminho de importação informado não existe.",
-
-            file = file_outputTxt
-        )
-        # [>] E para a aplicação
-        return
-    # [i] [Opcional] Caso o usuário tenha fornecido  o  caminho  da
-    # pasta de exportação e caso a pasta de exportação não exista
-    if((parserArgs_main.exportPath != None) and (checkIfFolderExists(parserArgs_main.exportPath))):
-        # [>] Exibe uma mensagem de erro
-        print(
-            "O caminho de exportação informado não existe.",
-            
-            file = file_outputTxt
-        )
-        # [>] E para a aplicação
-        return
-    setTerminalFileAsOpen(False)
+        showError("O caminho de importação não pode ficar vazio.")
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
+    # VALIDAÇÃO DO CAMINHO DA PASTA DE EXPORTAÇÃO
+    # -------------------------------------------------------------
+    # Descrição:
+    # Faz a validação da existência do caminho que leva  as  pastas
+    # de exportação. A inserção desse caminho não é obrigatória,  e
+    # caso não seja preenchida, escolhe a mesma pasta na qual  está
+    # localizada o Script atual.
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    try:
+        # [i] Caso o usuário tenha fornecido  o  caminho  da  pasta  de
+        # exportação faz a verificação.
+        if (checkIfFolderExists(parserArgs_main.exportPath)):
+            # [i] Caso a verificação seja um sucesso, ou seja, e caso o ca-
+            # minho exista, atribui o caminho para a variável.
+            folderPath_export = parserArgs_main.exportPath
+        # [i] Caso o usuário não tenha fornecido o caminho da pasta  de
+        # exportação, escolhe a pasta do Script como local para  alocar
+        # a pasta
+        elif (parserArgs_main.exportPath == None):
+            folderPath_export = folderPath_script
+        # [i] Caso o caminho não exista
+        elif (checkIfFolderExists(parserArgs_main.exportPath) == False):
+            # [>] Exibe uma mensagem de erro
+            showError("O caminho de exportação informado não existe.")
+            # [>] Informa que o caminho de exportação não existe
+            exportFolderDoesntExist = True
+            return
+        # [i] Caso apareça um erro não tratado
+        else:
+            # [>] Exibe uma mensagem de erro
+            showError("Ocorreu um erro desconhecido na hora de receber o caminho de importação.")
+    except:
+        # [i] Caso o usuário não tenha fornecido o caminho da pasta  de
+        # exportação, escolhe a pasta do Script como local para  alocar
+        # a pasta
+        folderPath_export = folderPath_script
+        
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
+    # Fecha o arquivo de saída do terminal
+    setTerminalFileAsOpen(False)
+
 
     if (folderPath_import != "" and exportFolderDoesntExist is False):
-    # [>] Direciona o sistema para a pasta indicada
-    os.chdir(folderPath_script + "\\PDFs")
-    # [>] Filtra pelos PDFs na pasta onde foi indicada para o  sis-
-    # tema pelo "chdir"
-    for pdfFile in glob("*.pdf"):
-        # [i] Se já não é mais o primeiro arquivo
-        if (index_file > 1):
-            # [>] Fecha o leiaute referente ao arquivo anterior
+        # [>] Direciona o sistema para a pasta indicada
+        os.chdir(folderPath_import)
+        # [>] Filtra pelos PDFs na pasta onde foi indicada para o  sis-
+        # tema pelo "chdir"
+        for pdfFile in glob("*.pdf"):
+            # [i] Se já não é mais o primeiro arquivo
+            if (index_file > 1):
+                # [>] Fecha o leiaute referente ao arquivo anterior
+                setTerminalFileAsOpen(True)
+                print(
+                    "\n" +
+                    visual_giantLine + "\n" +
+                    visual_giantLine + "\n"
+                    "\n\n\n\n\n\n\n\n\n",
+                    
+                    file = file_outputTxt
+                )
+                setTerminalFileAsOpen(False)
+
+            # [>] Remove extensão do arquivo  (pegando  apenas  o  nome)  e
+            # atribui para a temporária
+            fileName = pdfFile[:-4]
+
+            # [>] Cria o título para leitura do arquivo no terminal
             setTerminalFileAsOpen(True)
             print(
-                "\n" +
-                visual_giantLine + "\n" +
-                visual_giantLine + "\n"
-                "\n\n\n\n\n\n\n\n\n",
+                pdfFile + visual_giantLine + "\n" +
+                visual_giantLine + "\n\n\n\n" +
+                visual_blankSpaces + "                          ----- + -----\n\n" +
+                visual_blankSpaces + "         LEITURA DE ARQUIVO - NÚMERO " + str(index_file) + ", '" + pdfFile + "'\n" +
+                visual_blankSpaces + "   O arquivo '" + fileName + "' foi lido e está pronto pra ser convertido\n\n" +
+                visual_blankSpaces + "                          ----- + -----\n\n\n\n",
                 
                 file = file_outputTxt
             )
             setTerminalFileAsOpen(False)
 
-        # [>] Remove extensão do arquivo  (pegando  apenas  o  nome)  e
-        # atribui para a temporária
-        fileName = pdfFile[:-4]
-
-        # [>] Cria o título para leitura do arquivo no terminal
-        setTerminalFileAsOpen(True)
-        print(
-            pdfFile + visual_giantLine + "\n" +
-            visual_giantLine + "\n\n\n\n" +
-            visual_blankSpaces + "                          ----- + -----\n\n" +
-            visual_blankSpaces + "         LEITURA DE ARQUIVO - NÚMERO " + str(index_file) + ", '" + pdfFile + "'\n" +
-            visual_blankSpaces + "   O arquivo '" + fileName + "' foi lido e está pronto pra ser convertido\n\n" +
-            visual_blankSpaces + "                          ----- + -----\n\n\n\n",
-            
-            file = file_outputTxt
-        )
-        setTerminalFileAsOpen(False)
 
 
-
-        # MÉTODOS DE LEITURA E CONVERSÃO
-        # -------------------------------------------------------------
-        # Descrição:
-        # Primeiro faz a leitura e conversão pra Lattice e após  faz  o
-        # mesmo para o Stream
-        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        for method in range(2):
-            # [i] Define o método de leitura Lattice
-            if (method == 0):
-                boolLattice = True
-                conversionMethod = "lattice"
-            # [i] Define o método de leitura Stream
-            elif (method == 1):
-                boolLattice = False
-                conversionMethod = "stream"
-
-            # LEITURA
+            # MÉTODOS DE LEITURA E CONVERSÃO
             # -------------------------------------------------------------
             # Descrição:
-            # Realiza a leitura.
+            # Primeiro faz a leitura e conversão pra Lattice e após  faz  o
+            # mesmo para o Stream
             # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            try:
-                # [>] Realiza a leitura usando um método de  leitura  fornecido
-                # pelo "For"
-                list_dataFrames = tabula.read_pdf(
-                    pdfFile,
-                    guess = True,
-                    lattice = boolLattice,
-                    multiple_tables = True,
-                    pages = "all",
-                    pandas_options = {"dtype": "str"},
-                    silent = True
-                )
-            except Exception as err:
-                # [>] Exibe um erro quando ocorre um problema na hora de reali-
-                # zar a leitura
-                showError(
-                    "Arquivo: " + pdfFile + "\n"
-                    "Método de Conversão: " + conversionMethod + "\n"
-                    "\n"
-                    "Descrição: Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "' "
-                    "usando o método '" + conversionMethod + "'.",
-                    
-                    err
-                )
+            for method in range(2):
+                # [i] Define o método de leitura Lattice
+                if (method == 0):
+                    boolLattice = True
+                    conversionMethod = "lattice"
+                # [i] Define o método de leitura Stream
+                elif (method == 1):
+                    boolLattice = False
+                    conversionMethod = "stream"
+
+                # LEITURA
+                # -------------------------------------------------------------
+                # Descrição:
+                # Realiza a leitura.
+                # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                try:
+                    # [>] Realiza a leitura usando um método de  leitura  fornecido
+                    # pelo "For"
+                    list_dataFrames = tabula.read_pdf(
+                        pdfFile,
+                        guess = True,
+                        lattice = boolLattice,
+                        multiple_tables = True,
+                        pages = "all",
+                        pandas_options = {"dtype": "str"},
+                        silent = True
+                    )
+                except Exception as exceptionError:
+                    # [>] Exibe um erro quando ocorre um problema na hora de reali-
+                    # zar a leitura
+                    showError(
+                        "Arquivo: " + pdfFile + "\n"
+                        "Método de Conversão: " + conversionMethod + "\n"
+                        "\n"
+                        "Ocorreu um erro ao tentar realizar a leitura do arquivo '" + pdfFile +  "' "
+                        "usando o método '" + conversionMethod + "'.",
+                        
+                        exceptionError
+                    )
+                # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                # -------------------------------------------------------------
+
+
+                # CONVERSÃO
+                # -------------------------------------------------------------
+                # Descrição:
+                # Realizando a conversão com o método indicado.
+                # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                # [>] Reseta a variável
+                index_dataFrame = 1
+                # [>] Itera os DataFrames contidos na lista de  DataFrames  gerados
+                # pela leitura do tabula
+                for tableDataFrame in list_dataFrames:
+                    # [>] Remove as aspas duplas do que estiverem no DataFrame para
+                    # evitar possíveis erros pois os dados normalmente são  separa-
+                    # dos por pontos e vírgula e aspas duplas
+                    tableDataFrame = tableDataFrame.replace("\"", "", regex = True)
+
+                    # [>] Inicia a função que realiza a conversão com o método  in-
+                    # dicado
+                    conversionStart(conversionMethod, tableDataFrame)
+                # [>] Chama a função que formata o arquivo de texto gerado pela
+                # conversão
+                formatTextFile(conversionMethod)
+                # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                # -------------------------------------------------------------
             # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             # -------------------------------------------------------------
 
-
-            # CONVERSÃO
-            # -------------------------------------------------------------
-            # Descrição:
-            # Realizando a conversão com o método indicado.
-            # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            # [>] Reseta a variável
-            index_dataFrame = 1
-            # [>] Itera os DataFrames contidos na lista de  DataFrames  gerados
-            # pela leitura do tabula
-            for tableDataFrame in list_dataFrames:
-                # [>] Remove as aspas duplas do que estiverem no DataFrame para
-                # evitar possíveis erros pois os dados normalmente são  separa-
-                # dos por pontos e vírgula e aspas duplas
-                tableDataFrame = tableDataFrame.replace("\"", "", regex = True)
-
-                # [>] Inicia a função que realiza a conversão com o método  in-
-                # dicado
-                conversionStart(conversionMethod, tableDataFrame)
-            # [>] Chama a função que formata o arquivo de texto gerado pela
-            # conversão
-            formatTextFile(conversionMethod)
-            # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            # -------------------------------------------------------------
-        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        # -------------------------------------------------------------
-
-        # [>] Atribuindo mais um ao índice para indicar que  o  arquivo
-        # PDF foi convertido
-        index_file = index_file + 1
-    else:
-        # [i] Se até o término da operação algum  PDF  foi  convertido,
-        # fecha o leiaute do terminal
-        if (index_file > 1):
-            # [>] Fecha o leiaute e pula 5 linhas
-            setTerminalFileAsOpen(True)
-            print(
-                "\n" +
-                visual_giantLine + "\n" +
-                visual_giantLine,
-            
-                file = file_outputTxt
-            )
-            setTerminalFileAsOpen(False)
-        # [i] Se ainda até o término da operação nenhum PDF foi conver-
-        # tido exibe um erro
+            # [>] Atribuindo mais um ao índice para indicar que  o  arquivo
+            # PDF foi convertido
+            index_file = index_file + 1
         else:
-            # [>] Exibe o erro
-            showError("Descrição: Não há arquivos de PDF para serem convertidos.", "")
+            # [i] Se até o término da operação algum  PDF  foi  convertido,
+            # fecha o leiaute do terminal
+            if (index_file > 1):
+                # [>] Fecha o leiaute e pula 5 linhas
+                setTerminalFileAsOpen(True)
+                print(
+                    "\n" +
+                    visual_giantLine + "\n" +
+                    visual_giantLine,
+                
+                    file = file_outputTxt
+                )
+                setTerminalFileAsOpen(False)
+            # [i] Se ainda até o término da operação nenhum PDF foi conver-
+            # tido exibe um erro
+            else:
+                # [>] Exibe o erro
+                showError("Não há arquivos de PDF para serem convertidos.")
+    else:
+        showError("É necessário indicar um caminho de importação")
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
@@ -475,17 +524,17 @@ def setCurrentPath():
 
         # [>] Passa para a variável global o caminho do arquivo de tex-
         # to do terminal
-        filePath_outputTxt = folderPath_script + "\\resultados\\output.txt"
-    except Exception as err:
+        filePath_outputTxt = folderPath_script + "\\output.txt"
+    except Exception as exceptionError:
         # [>] Exibe um erro quando há problemas em achar o diretório a-
         # tual
         showError(
-            "Descrição: Não foi possível achar o diretório atual. Prov"
-            "ável problema na hora de encurtar o caminho, verifique se"
-            " o caminho passado na variável 'folderPath_script' dentro do mé"
-            "todo 'setCurrentPath' está correto."
+            "Não foi possível achar o diretório atual. Provável proble"
+            "ma na hora de encurtar o caminho, verifique se o caminho "
+            "passado na variável 'folderPath_script' dentro do método "
+            "'setCurrentPath' está correto.",
         
-            , err
+            exceptionError
         )
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # # -------------------------------------------------------------
@@ -824,18 +873,18 @@ def conversionStart(conversionMethod, tableDataFrame):
         setTerminalFileAsOpen(False)
 
         index_dataFrame = index_dataFrame + 1
-    except Exception as err:
+    except Exception as exceptionError:
         # [>] Exibe um erro de conversão caso haja um erro não tra-
         # tado
         showError(
             "Arquivo: " + fileName + "\n"
             "Método de Conversão: " + conversionMethod + "\n"
             "\n"
-            "Descrição: Ocorreu um erro, ao tentar converter o "
+            "Ocorreu um erro, ao tentar converter o "
             "arquivo '" + fileName + ".pdf' usando o "
             "método " + conversionMethod + ".",
             
-            err
+            exceptionError
         )
         return
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -1065,7 +1114,7 @@ def createParser():
     # -------------------------------------------------------------
 
 
-    # [>] Criando parser
+    # [>] Criando parser sem permitir abreviação
     parser_main = argparse.ArgumentParser(allow_abbrev=False)
 
 
@@ -1079,7 +1128,7 @@ def createParser():
     # (Obrigatório)
     parser_main.add_argument(
         "--importPath",
-        required = True,
+        required = False,
         type = str
     )
     # [i] Argumento que conterá o caminho de exportação (Opcional)
@@ -1092,9 +1141,14 @@ def createParser():
     # -------------------------------------------------------------
 
 
-    # [>] Adiciona os argumentos informados anteriormente na região
-    # anterior ao parser
-    parserArgs_main = parser_main.parse_args()
+    try:
+        # [>] Adiciona os argumentos informados anteriormente na região
+        # anterior ao parser
+        parserArgs_main = parser_main.parse_args()
+    except:
+        # [>] Exibe mensagem de erro caso não tenha sido informado  um
+        # caminho de importação
+        showError("É necessário informar um caminho de importação.")
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
@@ -1104,11 +1158,11 @@ def createParser():
 # Função que faz uma validação de existência de uma pasta  pas-
 # sada como argumento.
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-def checkIfFolderExists(folderThatWillBeChecked):
+def checkIfFolderExists(folderThatWillBeChecked = ""):
     # [>] Instancia a variável como não existente
     currentFolderExists = False
     # [i] Se a pasta fornecida existe
-    if (os.path.isdir(folderThatWillBeChecked)):
+    if (os.path.isdir(str(folderThatWillBeChecked))):
         # [>] Define a mesma como existente na variável
         currentFolderExists = True
     # [>] Retorna pra função
