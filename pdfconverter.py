@@ -79,12 +79,22 @@ fileName = ""
 # [i] Caminho atual para a raiz do projeto (os outros  caminhos
 # vão se basear nele)
 folderPath_script = ""
+# [i] Caminho da pasta de importação onde os arquivos  PDF  vão
+# ser alocados
+folderPath_import = ""
+# [i] Caminho da pasta onde os arquivos exportação vão ser alo-
+# cados
+folderPath_export = ""
 # [i] Caminho para o arquivo do terminal
 filePath_outputTxt = ""
-# [i] Caminho do arquivo PDF que vai ser convertido
+# [i] Caminho do arquivo de texto que vai ser gerado  pelo  PDF
+# que vai ser convertido
 filePath_exportTxt = ""
 # [i] Variável que armazena o arquivo de saída do Terminal
 file_outputTxt = ""
+# [i] Variável que informa se a pasta de exportação não  existe
+# para dar continuidade inicial na função Main
+exportFolderDoesntExist = False
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
@@ -201,6 +211,9 @@ def Main():
     global fileName
     global index_dataFrame
     global list_dataFrames
+    global exportFolderDoesntExist
+    global folderPath_import
+    global folderPath_export
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
@@ -268,6 +281,7 @@ def Main():
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
+    if (folderPath_import != "" and exportFolderDoesntExist is False):
     # [>] Direciona o sistema para a pasta indicada
     os.chdir(folderPath_script + "\\PDFs")
     # [>] Filtra pelos PDFs na pasta onde foi indicada para o  sis-
