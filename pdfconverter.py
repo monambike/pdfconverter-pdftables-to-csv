@@ -660,36 +660,39 @@ def setTerminalFileAsOpen(openingState):
 # Função responsável por exibir mensagens de erros  disponíveis
 # nas Exceptions.
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-def showError(errorMessage, err):
+def showError(errorMessage, exceptionError = ""):
     # [>] Abre o layout com a mensagem e o arquivo
     file_outputTxt = open(filePath_outputTxt, "a", encoding="UTF-8")
     print(
-        "======================================================================\n"
+        "=============================================================\n"
         "\n"
-        "[ MENSAGEM ]\n"
         "\n"
-        "ERRO\n"
-        "\n" +
-        errorMessage + "\n",
-        
+        "MENSAGEM DE RETORNO\n"
+        "-------------------------------------------------------------\n"
+        "Descrição:\n" +
+        errorMessage + "\n"
+        ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<",
+
         file = file_outputTxt
     )
 
     # [i] Caso tenha uma exception ele exibe ela
-    if (err != ""):
+    if (exceptionError != ""):
         # [>] Exibe a exception
         print(
-            "\n"
-            "Exception Log:",
+            "Exception:\n"
+            "\n" +
+            str(exceptionError),
             
             file = file_outputTxt
         )
-        print(str(err), file = file_outputTxt)
-    
     # [>] Fecha o layout e o arquivo
     print(
+        ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n"
+        "-------------------------------------------------------------\n"
         "\n"
-        "======================================================================",
+        "\n"
+        "=============================================================",
         
         file = file_outputTxt
     )
