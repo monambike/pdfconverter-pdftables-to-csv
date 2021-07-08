@@ -535,7 +535,7 @@ def setProjectStructure():
     for rootPath in list_rootPaths:
         # [>] Criando pastas raíz
         Path(
-            folderPath_script +
+            folderPath_export +
             rootPath
         ).mkdir(parents = True, exist_ok = True)
 
@@ -545,7 +545,7 @@ def setProjectStructure():
             for methodPath in list_readingPaths:
                 # [>] Cria uma pasta
                 Path(
-                    folderPath_script +
+                    folderPath_export +
                     rootPath +
                     methodPath
                 ).mkdir(parents = True, exist_ok = True)
@@ -553,7 +553,7 @@ def setProjectStructure():
                 # [>] Criando pastas para métodos de formatação
                 for outputTypePath in list_formattingPaths:
                     Path(
-                        folderPath_script +
+                        folderPath_export +
                         rootPath +
                         methodPath +
                         outputTypePath
@@ -781,7 +781,7 @@ def conversionStart(conversionMethod, tableDataFrame):
 
         # [>] Define o caminho do arquivo  atual  para  a  variável
         # global filePath_exportTxt
-        filePath_exportTxt = folderPath_script + "\\resultados\\" + conversionMethod + "\\withoutFormatting\\" + fileName + ".txt"
+        filePath_exportTxt = folderPath_export + "\\resultados\\" + conversionMethod + "\\withoutFormatting\\" + fileName + ".txt"
 
         # [>] Converte o arquivo para .txt no formato de um CSV
         tableDataFrame.to_csv(
