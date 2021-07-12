@@ -696,7 +696,12 @@ def setTerminalFileAsOpen(openingState):
 # Função responsável por exibir mensagens de erros  disponíveis
 # nas Exceptions.
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-def showError(errorMessage, exceptionError = ""):    
+def showError(errorMessage, exceptionError = ""):
+    # [>] Justifica o conteúdo da mensagem corretamente
+    errorMessage = '\n'.join(re.findall('.{1,%i}' % 61, errorMessage))
+    # [>] Justifica a Exception corretamente
+    exceptionError = '\n'.join(re.findall('.{1,%i}' % 61, str(exceptionError)))
+
     # [>] Abre o layout com a mensagem e o arquivo
     file_outputTxt = open(filePath_outputTxt, "a", encoding="UTF-8")
     print(
@@ -718,7 +723,7 @@ def showError(errorMessage, exceptionError = ""):
         print(
             "Exception:\n"
             "\n" +
-            str(exceptionError),
+            exceptionError,
             
             file = file_outputTxt
         )
@@ -1201,6 +1206,7 @@ try:
     import tabula
     import argparse
     from glob import glob
+    from pathlib import Path
 # [i] Caso haja algum erro relacionado à importação
 except ImportError as exceptionError:
     # [>] Exibe uma mensagem de erro
