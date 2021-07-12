@@ -696,7 +696,7 @@ def setTerminalFileAsOpen(openingState):
 # Função responsável por exibir mensagens de erros  disponíveis
 # nas Exceptions.
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-def showError(errorMessage, exceptionError = ""):
+def showError(errorMessage, exceptionError = ""):    
     # [>] Abre o layout com a mensagem e o arquivo
     file_outputTxt = open(filePath_outputTxt, "a", encoding="UTF-8")
     print(
@@ -1204,7 +1204,14 @@ try:
 # [i] Caso haja algum erro relacionado à importação
 except ImportError as exceptionError:
     # [>] Exibe uma mensagem de erro
-    showError("Ocorreu um erro ao tentar importar alguma biblioteca, você esqueceu de fazer referência à biblioteca ou de adicionar a mesma às variáveis ambiente?", exceptionError)
+    showError(
+        "Ocorreu um erro ao tentar importar alguma biblioteca, você es"
+        "queceu de fazer referência à biblioteca ou de adicionar a mes"
+        "ma às variáveis ambiente?",
+        
+        exceptionError
+    )
+    # [>] Sai do programa
     exit()
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
