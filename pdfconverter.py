@@ -1,19 +1,3 @@
-# Bibliotecas
-# _____________________________________________________________
-import os
-import re
-import csv
-import pandas
-import tabula
-import argparse
-from glob import glob
-from pathlib import Path
-# _____________________________________________________________
-
-
-
-
-
 # Sumário
 # _____________________________________________________________
 
@@ -28,13 +12,16 @@ from pathlib import Path
 # -------------------------------------------------------------
 # Grupos:
 # -------------------------------------------------------------
-# [C] - Conglomerado pequeno de variáveis 
-# [F] - Função
+# - REGIONS -
 # [G] - Grupo de funções (é delimitado por uma "region")
 # [L] - Grupo que contém a legenda (é delimitado por uma "regi-
 # on")
 # [V] - Grupo  de  variáveis  (pode  ser  delimitado  por   uma
 # "region" ou não)
+# - NÃO REGIONS -
+# [B] - Importação de bibliotecas
+# [C] - Conglomerado pequeno de variáveis 
+# [F] - Função
 # -------------------------------------------------------------
 #
 # -------------------------------------------------------------
@@ -237,7 +224,6 @@ def Main():
     # Contém todas as chamadas de funções que realizam as  configu-
     # rações iniciais para o funcionamento do Script.
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    setCurrentPath()
     setPandasSettings()
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
@@ -498,6 +484,18 @@ def Main():
 # irão se basear
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def setCurrentPath():
+    # [B] CHAMADA DA BIBLIOTECA PATHLIB
+    # -------------------------------------------------------------
+    # Descrição:
+    # Chamada da biblioteca PathLib para que ela possa achar o  di-
+    # retório atual e gerar o arquivo de saída do terminal.
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # Chama a biblioteca responsável por puxar o caminho atual
+    from pathlib import Path
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
+
+
     # [V] VARIÁVEIS
     # -------------------------------------------------------------
     # Descrição:
@@ -1175,6 +1173,47 @@ def checkIfFolderExists(folderThatWillBeChecked = ""):
 
 
 
-# [>] Executa o Script
 # _____________________________________________________________
+
+# [G] INÍCIO DA APLICAÇÃO
+# -------------------------------------------------------------
+# Descrição:
+# Início da aplicação.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#region
+
+# [>] Pega o caminho do Script atual e define o caminho do  ar-
+# quivo de saída do terminal
+setCurrentPath()
+
+# [B] CHAMADA DE BIBLIOTECAS
+# -------------------------------------------------------------
+# Descrição:
+# Chamada de todas as bibliotecas do Script que não sejam refe-
+# rentes à pathlib
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+try:
+    # [>] Importando bibliotecas
+    import os
+    import re
+    import csv
+    import pandas
+    import tabula
+    import argparse
+    from glob import glob
+# [i] Caso haja algum erro relacionado à importação
+except ImportError as exceptionError:
+    # [>] Exibe uma mensagem de erro
+    showError("Ocorreu um erro ao tentar importar alguma biblioteca, você esqueceu de fazer referência à biblioteca ou de adicionar a mesma às variáveis ambiente?", exceptionError)
+    exit()
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# -------------------------------------------------------------
+
+# [>] Executa o Script
 Main()
+
+#endregion
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# -------------------------------------------------------------
+
+# _____________________________________________________________
