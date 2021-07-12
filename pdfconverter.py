@@ -403,9 +403,9 @@ def Main():
                         pandas_options = {"dtype": "str"},
                         silent = True
                     )
+                # [i] Quando ocorre um problema na hora de realizar a leitura
                 except Exception as exceptionError:
-                    # [>] Exibe um erro quando ocorre um problema na hora de reali-
-                    # zar a leitura
+                    # [>] Exibe a mensagem de erro
                     showError(
                         "Arquivo: " + pdfFile + "\n"
                         "Método de Conversão: " + conversionMethod + "\n"
