@@ -403,7 +403,8 @@ def Main():
                         pandas_options = {"dtype": "str"},
                         silent = True
                     )
-                # [i] Quando ocorre um problema na hora de realizar a leitura
+                # [i] Quando ocorre um problema desconhecido na hora de  reali-
+                # zar a leitura
                 except Exception as exceptionError:
                     # [>] Exibe a mensagem de erro
                     showError(
@@ -497,51 +498,39 @@ def Main():
 # irão se basear
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def setCurrentPath():
-    try:
-        # [V] VARIÁVEIS
-        # -------------------------------------------------------------
-        # Descrição:
-        # Grupo contendo variáveis utilizadas na função atual.
-        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # [V] VARIÁVEIS
+    # -------------------------------------------------------------
+    # Descrição:
+    # Grupo contendo variáveis utilizadas na função atual.
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-        # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
-        # -------------------------------------------------------------
-        # Descrição:
-        # Referenciamento de variáveis globais (suas  descrições  estão
-        # no grupo de variáveis globais localizadas no escopo do início
-        # do Script).
-        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        global filePath_outputTxt
-        global folderPath_script
-        global file_outputTxt
-        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        # -------------------------------------------------------------
+    # [C] REFERENCIAMENTO DE VARIÁVEIS GLOBAIS    
+    # -------------------------------------------------------------
+    # Descrição:
+    # Referenciamento de variáveis globais (suas  descrições  estão
+    # no grupo de variáveis globais localizadas no escopo do início
+    # do Script).
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    global filePath_outputTxt
+    global folderPath_script
+    global file_outputTxt
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 
-        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        # -------------------------------------------------------------
-        
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
+    
 
-        # [i] Pegando o caminho até o executável ou script atual  e  a-
-        # tribuindo para a variável folderPath_script
-        folderPath_script = str(Path(__file__).parent.absolute())
+    # [i] Pegando o caminho até o executável ou script atual  e  a-
+    # tribuindo para a variável folderPath_script
+    folderPath_script = str(Path(__file__).parent.absolute())
 
-        # [>] Passa para a variável global o caminho do arquivo de tex-
-        # to do terminal
-        filePath_outputTxt = folderPath_script + "\\output.txt"
-        # [>] Cria e/ou limpa o arquivo de texto contendo  a  saída  do
-        # terminal
-        file_outputTxt = open(filePath_outputTxt, "w", encoding="UTF-8")
-    except Exception as exceptionError:
-        # [>] Exibe um erro quando há problemas em achar o diretório a-
-        # tual
-        showError(
-            "Não foi possível achar o diretório atual. Provável proble"
-            "ma na hora de encurtar o caminho, verifique se o caminho "
-            "passado na variável 'folderPath_script' dentro do método "
-            "'setCurrentPath' está correto.",
-        
-            exceptionError
-        )
+    # [>] Passa para a variável global o caminho do arquivo de tex-
+    # to do terminal
+    filePath_outputTxt = folderPath_script + "\\output.txt"
+    # [>] Cria e/ou limpa o arquivo de texto contendo  a  saída  do
+    # terminal
+    file_outputTxt = open(filePath_outputTxt, "w", encoding="UTF-8")
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # # -------------------------------------------------------------
 
@@ -878,9 +867,10 @@ def conversionStart(conversionMethod, tableDataFrame):
         setTerminalFileAsOpen(False)
 
         index_dataFrame = index_dataFrame + 1
+    # [>] Caso haja um erro desconhecido na hora de realizar a con-
+    # versão
     except Exception as exceptionError:
-        # [>] Exibe um erro de conversão caso haja um erro não tra-
-        # tado
+        # [>] Exibe uma mensagem de erro
         showError(
             "Arquivo: " + fileName + "\n"
             "Método de Conversão: " + conversionMethod + "\n"
