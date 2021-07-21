@@ -710,10 +710,7 @@ def showError(errorMessage, exceptionError = ""):
         "\n"
         "MENSAGEM DE RETORNO\n"
         "-------------------------------------------------------------\n"
-        "<d>\n"
-        "Descrição:\n" +
-        errorMessage + "\n"
-        "</d>\n"
+        "<d>" + errorMessage + "</d>\n"
         ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n"
         "<e>",
 
@@ -724,8 +721,6 @@ def showError(errorMessage, exceptionError = ""):
     if (exceptionError != ""):
         # [>] Exibe a exception
         print(
-            "Exception:\n"
-            "\n" +
             exceptionError,
             
             file = file_outputTxt
