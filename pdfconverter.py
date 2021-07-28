@@ -1194,8 +1194,7 @@ setCurrentPath()
 # [B] CHAMADA DE BIBLIOTECAS
 # -------------------------------------------------------------
 # Descrição:
-# Chamada de todas as bibliotecas do Script que não sejam refe-
-# rentes à pathlib
+# Chamada de todas as bibliotecas do Script.
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 try:
     # [>] Importando bibliotecas
