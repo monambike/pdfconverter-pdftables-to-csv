@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['pdfconverter.py'],
-             pathex=['C:\\Users\\dvp10\\Desktop\\Desktop\\pdfconverter\\pdfconverter_script\\exe'],
+             pathex=['P:\\pdfconverter_script'],
              binaries=[],
              datas=[],
              hiddenimports=[],
