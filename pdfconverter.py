@@ -312,11 +312,7 @@ def Main():
     # Fecha o arquivo de saída do terminal
     setTerminalFileAsOpen(False)
 
-
     if (folderPath_import != "" and exportFolderDoesntExist is False):
-        # [>] Define a estrutura inicial do projeto
-        setProjectStructure()
-
         # [>] Direciona o sistema para a pasta indicada
         os.chdir(folderPath_import)
         # [>] Filtra pelos PDFs na pasta onde foi indicada para o  sis-
@@ -335,6 +331,11 @@ def Main():
                     file = file_outputTxt
                 )
                 setTerminalFileAsOpen(False)
+            # [>] Se é o primeiro arquivo ainda
+            else:
+                # [>] Define a estrutura inicial do projeto
+                setProjectStructure()
+                
 
             # [>] Remove extensão do arquivo  (pegando  apenas  o  nome)  e
             # atribui para a temporária
