@@ -229,7 +229,7 @@ def Main():
     # -------------------------------------------------------------
 
 
-    # Cria o parser para manipular os argumentos
+    # [>] Cria o parser para manipular os argumentos
     createParser()
 
     
