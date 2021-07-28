@@ -1,5 +1,5 @@
-# PDFConverter
-***(pdfconverter - v1.0)***
+# PDFConverter - Script
+***(pdfconverter_script - v1.2)***
 
 <br>
 
