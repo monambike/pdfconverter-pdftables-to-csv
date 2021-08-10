@@ -1,7 +1,7 @@
 # Sumário
 # _____________________________________________________________
 
-# LEGENDA
+# [L] LEGENDA
 # -------------------------------------------------------------
 # Descrição:
 # Legenda que contém informações relacionadas à documentação do
@@ -27,7 +27,7 @@
 # -------------------------------------------------------------
 # Dicas:
 # -------------------------------------------------------------
-# [i] - Informação ampla
+# [i] - Informação ou descrição abrangente
 # [>] - Execução de uma tarefa ou uma informação relacionada  à
 # ela
 # [e] - Exportação de um arquivo PDF convertido para CSV
@@ -224,13 +224,12 @@ def Main():
     # Contém todas as chamadas de funções que realizam as  configu-
     # rações iniciais para o funcionamento do Script.
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # [>] Realiza as configurações da biblioteca Pandas
     setPandasSettings()
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    # -------------------------------------------------------------
-
-
     # [>] Cria o parser para manipular os argumentos
     createParser()
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # -------------------------------------------------------------
 
     
     # Abre o arquivo de saída do terminal
@@ -699,9 +698,9 @@ def setTerminalFile(asOpen = True):
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 def showError(errorMessage, exceptionError = ""):
     # [>] Justifica o conteúdo da mensagem corretamente
-    errorMessage = '\n'.join(re.findall('.{1,%i}' % 61, errorMessage))
+    errorMessage = '\n'.join(re.findall('.{1,%i}' % 58, errorMessage))
     # [>] Justifica a Exception corretamente
-    exceptionError = '\n'.join(re.findall('.{1,%i}' % 61, str(exceptionError)))
+    exceptionError = '\n'.join(re.findall('.{1,%i}' % 58, str(exceptionError)))
 
     setTerminalFile(asOpen = True)
     print(
@@ -711,23 +710,20 @@ def showError(errorMessage, exceptionError = ""):
         "MENSAGEM DE RETORNO\n"
         "-------------------------------------------------------------\n"
         "<d>" + errorMessage + "</d>\n"
-        ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n"
-        "<e>",
+        ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<",
 
         file = file_outputTxt
     )
 
-    # [i] Caso tenha uma exception ele exibe ela
-    if (exceptionError != ""):
-        # [>] Exibe a exception
-        print(
-            exceptionError,
-            
-            file = file_outputTxt
-        )
+    # [>] Exibe a exception
+    print(
+        "<e>" + str(exceptionError) + "</e>",
+        
+        file = file_outputTxt
+    )
+
     # [>] Fecha o layout e o arquivo
     print(
-        "</e>\n"
         ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n"
         "-------------------------------------------------------------\n"
         "\n"
@@ -1177,9 +1173,10 @@ def checkIfFolderExists(folderThatWillBeChecked = ""):
 
 
 
+# Início do Script
 # _____________________________________________________________
 
-# [G] INÍCIO DA APLICAÇÃO
+# [G] INÍCIO DO SCRIPT
 # -------------------------------------------------------------
 # Descrição:
 # Início da aplicação.
