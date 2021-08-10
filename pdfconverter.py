@@ -234,7 +234,7 @@ def Main():
 
     
     # Abre o arquivo de saída do terminal
-    setTerminalFileAsOpen(True)
+    setTerminalFile(True)
     # VALIDAÇÃO DO CAMINHO DA PASTA DE IMPORTAÇÃO
     # -------------------------------------------------------------
     # Descrição:
@@ -310,7 +310,7 @@ def Main():
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
     # Fecha o arquivo de saída do terminal
-    setTerminalFileAsOpen(False)
+    setTerminalFile(False)
 
     if (folderPath_import != "" and exportFolderDoesntExist is False):
         # [>] Direciona o sistema para a pasta indicada
@@ -321,7 +321,7 @@ def Main():
             # [i] Se já não é mais o primeiro arquivo
             if (index_file > 1):
                 # [>] Fecha o leiaute referente ao arquivo anterior
-                setTerminalFileAsOpen(True)
+                setTerminalFile(True)
                 print(
                     "\n" +
                     visual_giantLine + "\n" +
@@ -330,7 +330,7 @@ def Main():
                     
                     file = file_outputTxt
                 )
-                setTerminalFileAsOpen(False)
+                setTerminalFile(False)
             # [>] Se é o primeiro arquivo ainda
             else:
                 # [>] Define a estrutura inicial do projeto
@@ -342,7 +342,7 @@ def Main():
             fileName = pdfFile[:-4]
 
             # [>] Cria o título para leitura do arquivo no terminal
-            setTerminalFileAsOpen(True)
+            setTerminalFile(True)
             print(
                 pdfFile + visual_giantLine + "\n" +
                 visual_giantLine + "\n\n\n\n" +
@@ -353,7 +353,7 @@ def Main():
                 
                 file = file_outputTxt
             )
-            setTerminalFileAsOpen(False)
+            setTerminalFile(False)
 
 
 
@@ -441,7 +441,7 @@ def Main():
             # fecha o leiaute do terminal
             if (index_file > 1):
                 # [>] Fecha o leiaute e pula 5 linhas
-                setTerminalFileAsOpen(True)
+                setTerminalFile(True)
                 print(
                     "\n" +
                     visual_giantLine + "\n" +
@@ -449,7 +449,7 @@ def Main():
                 
                     file = file_outputTxt
                 )
-                setTerminalFileAsOpen(False)
+                setTerminalFile(False)
             # [i] Se ainda até o término da operação nenhum PDF foi conver-
             # tido exibe um erro
             else:
@@ -658,7 +658,7 @@ def setPandasSettings():
 # Define quando o terminal vai ser aberto ou quando vai ser fe-
 # chado.
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-def setTerminalFileAsOpen(openingState):
+def setTerminalFile(asOpen = True):
     # [V] VARIÁVEIS
     # -------------------------------------------------------------
     # Descrição:
@@ -681,7 +681,7 @@ def setTerminalFileAsOpen(openingState):
 
 
     # [i] Caso o programador decida abrir o arquivo
-    if (openingState):
+    if (asOpen):
         # [>] Abre o arquivo de saída do terminal com "append"
         file_outputTxt = open(filePath_outputTxt, "a", encoding="UTF-8")
     # [i] Caso o programador decida fechar o arquivo
@@ -703,8 +703,7 @@ def showError(errorMessage, exceptionError = ""):
     # [>] Justifica a Exception corretamente
     exceptionError = '\n'.join(re.findall('.{1,%i}' % 61, str(exceptionError)))
 
-    # [>] Abre o layout com a mensagem e o arquivo
-    file_outputTxt = open(filePath_outputTxt, "a", encoding="UTF-8")
+    setTerminalFile(asOpen = True)
     print(
         "=============================================================\n"
         "\n"
@@ -737,7 +736,7 @@ def showError(errorMessage, exceptionError = ""):
         
         file = file_outputTxt
     )
-    file_outputTxt.close()
+    setTerminalFile(asOpen = False)
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # -------------------------------------------------------------
 
@@ -855,7 +854,7 @@ def conversionStart(conversionMethod, tableDataFrame):
 
         # [>] Indica ao terminal que uma tabela foi convertida  com
         # sucesso
-        setTerminalFileAsOpen(True)
+        setTerminalFile(True)
         print(
             "\n\n"
             "          A tabela nº"+ str(index_dataFrame) + " do '" + fileName + "' foi convertida usando '" + conversionMethod + "'\n"
@@ -867,7 +866,7 @@ def conversionStart(conversionMethod, tableDataFrame):
 
         # [>] Imprime o DataFrame
         print(pandas.DataFrame(tableDataFrame), file = file_outputTxt)
-        setTerminalFileAsOpen(False)
+        setTerminalFile(False)
 
         index_dataFrame = index_dataFrame + 1
     # [>] Caso haja um erro desconhecido na hora de realizar a con-
