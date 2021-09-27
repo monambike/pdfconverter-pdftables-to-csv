@@ -1,3 +1,0 @@
-fast run pdfconverter and open terminal file
-
-python pdfconverter.py --importPath  C:\Users\dvp10\Desktop\PDFs --exportPath C:\Users\dvp10\Desktop\resultados

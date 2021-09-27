@@ -1,0 +1,16 @@
+{
+    "recommendations": [
+        "alefragnani.bookmarks",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-keymap",
+        "kiteco.kite",
+        "magicstack.magicpython",
+        "pkief.material-icon-theme",
+        "dawhite.mustache",
+        "ms-ceintl.vscode-language-pack-pt-br",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "njpwerner.autodocstring",
+        "ms-vscode.vs-keybindings"
+    ]
+}

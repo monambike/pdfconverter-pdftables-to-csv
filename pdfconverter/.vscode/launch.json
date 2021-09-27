@@ -1,0 +1,10 @@
+{
+    "configurations": [
+      {
+        "type": "python",
+        "request": "launch",
+        "name": "Launch Program",
+        "program": "${workspaceFolder}\\pdfconverter.py"
+      }
+    ]
+  }

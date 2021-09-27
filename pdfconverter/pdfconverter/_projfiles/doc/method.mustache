@@ -1,0 +1,38 @@
+
+---
+---
+---
+
+## {{name}} (Public/Private)
+---
+---
+Método..{{descriptionPlaceholder}}
+{{! Parameters }}
+{{#parametersExist}}
+
+### Args
+---
+{{/parametersExist}}
+{{! Args }}
+{{#args}}
+- {{var}} ({{typePlaceholder}}, [optional], default = {{&default}}):
+    - {{descriptionPlaceholder}}
+{{/args}}
+{{! KWArgs }}
+{{#kwargs}}
+- {{var}} ({{typePlaceholder}}, [optional], default = {{&default}}):
+    - {{descriptionPlaceholder}}
+{{/kwargs}}
+{{! Returns }}
+{{#returnsExist}}
+{{#returns}}
+
+### Returns
+---
+    {{typePlaceholder}}: {{descriptionPlaceholder}}
+{{/returns}}
+{{/returnsExist}}
+
+---
+---
+---
