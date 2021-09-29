@@ -19,14 +19,18 @@ Regulares consigo.
 ---
 """
 
+
 # [>] Geral
 import re
 
 
-#region PUBLIC METHODS
+#region STRING FORMAT
 
-class ManipulateString:
+class stringformat:
     """Classe que manipula uma string."""
+
+    #region CONSTRUCTOR
+
     def __init__(self, String):
         self.String = String
         """Alterar Depois"""
@@ -40,6 +44,10 @@ class ManipulateString:
         )
         """Configurações padrão de flag de Regex."""
     
+    #endregion
+
+    #region PUBLIC METHODS
+
     #region RETURN
 
     def ReturnString(self):
@@ -50,29 +58,9 @@ class ManipulateString:
     
     #endregion
 
-    #region <RENAMELATER>
+    #region REGEX
 
     def RegexMatch(self, RegexPattern):
-        """
-        ---
-        ---
-        ---
-
-        ### DoRegex (Private)
-        ---
-        Faz o REGEX com as configurações padrão.
-
-        Args:
-            Regex ([str]): Regex recebido a partir do método pai.
-            Value ([str]): Valor recebido a partir do método pai.
-
-        Returns:
-            [bool]: Retorna se foi encontrado alguma ocorrência ou não.
-        
-        ---
-        ---
-        ---
-        """
         return re.match(RegexPattern, self.String, flags = self.FlagConfig)
 
     def RegexSub(self, RegexPattern, NewStringValue = ""):
@@ -83,7 +71,7 @@ class ManipulateString:
 
     #endregion
 
-    #region VALIDATE
+    #region VALIDATION
 
     def ValidatePageNumber(self):
         """
@@ -160,10 +148,19 @@ class ManipulateString:
 
     #endregion
 
-    #region <RENAMELATER>
+    #region REPLACEMENT
 
-    #[!!!!!]
-    # TABLEWITHBLANKCELLS
+    # General
+    def Has3ColumnsOrMore(self):
+        """
+            Só escreve a linha se tiver pelo menos mais que 3 colunas
+            no arquivo fullClear
+        """
+        if (self.String.count("\"") > 6 and
+            self.String.count(";") > 2):
+            return True
+
+    # TableWithBlankCells
     def EmptyHeader(self, NewStringValue = ""):
         """Detecta os dados vazios que estão presentes no  cabeçalho "Unnamed: X;"."""
 
@@ -186,7 +183,7 @@ class ManipulateString:
         """Remove todos os espaços no início de cada linha."""
         self.String = self.RegexSub(r"(^\ *)", NewStringValue)
 
-    #  MAIN
+    #  Main
     def EmptyBody(self, NewStringValue = ""):
         """Remove dados que estão vazios."""
         self.String = self.RegexSub(r"(;\"\")|(\"\";)", NewStringValue)
@@ -209,7 +206,7 @@ class ManipulateString:
         """
         self.String = self.RegexSub(r"((.*\";\ )(?=\"))")
     
-    # REPLACE FULLCLEAR
+    # FullClear
     def LineNotStartsWithDoubleQuotes(self):
         """Caso a linha não comece com aspas deleta"""
         self.String = self.RegexSub(r"((^[^\"]).*)")
@@ -231,15 +228,7 @@ class ManipulateString:
             # Quer dizer que ela ta errada e vai ser apagada
             self.String = ""
 
-
-    def Has3ColumnsOrMore(self):
-        """
-            Só escreve a linha se tiver pelo menos mais que 3 colunas
-            no arquivo fullClear
-        """
-        if (self.String.count("\"") > 6 and
-            self.String.count(";") > 2):
-            return True
+    #endregion
 
     #endregion
 

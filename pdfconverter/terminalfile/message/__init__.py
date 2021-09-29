@@ -18,6 +18,7 @@ Pacote e módulo responsável pelo envio de mensagens ao terminal.
 ---
 """
 
+
 # [>] PDFConverter
 # [i] Variáveis
 from pdfconverter.__variables__ import fvar
@@ -27,7 +28,6 @@ from pdfconverter import terminalfile
 
 #region PUBLIC METHODS
 
-# [>] Joga a mensagem para o arquivo de saída do terminal
 def Show(Message):
     # [>] Abre o arquivo de saída do terminal
     terminalfile.Open()

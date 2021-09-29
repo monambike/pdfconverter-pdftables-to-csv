@@ -1,3 +1,24 @@
+"""
+---
+---
+---
+
+## Package: pdfconverter >> terminalfile >> message
+---
+---
+### Module Name: design
+---
+### path: "pdfconverter\\\\\\\\terminalfile\\\\\\\\message\\\\\\\\design.py"
+---
+---
+Módulo responsável por armazenar alguns  itens  relacionados  à
+montagem de design do arquivo do terminal.
+
+---
+---
+---
+"""
+
 # [>] Geral
 import pandas
 # [>] PDFConverter

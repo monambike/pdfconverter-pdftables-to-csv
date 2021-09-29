@@ -3,21 +3,22 @@
 ---
 ---
 
-## Package: pdfconverter >> program
+## Package: pdfconverter >> program >> utilities
 ---
 ---
-### Module Name: utilities
+### Module Name: utilities (Constructor, __init__)
 ---
-### path: "pdfconverter\\\\\\\\program\\\\\\\\utilities.py"
+### path: "pdfconverter\\\\\\\\program\\\\\\\\utilities\\\\\\\\__init__.py"
 ---
 ---
-Módulo que possui algumas funções  utilitárias  feitas  para  o
-projeto.
+Pacote e módulo que possui algumas funções  utilitárias  feitas
+para o projeto.
 
 ---
 ---
 ---
 """
+
 
 # [>] Geral
 import re
@@ -26,38 +27,34 @@ import os.path
 
 #region PUBLIC METHODS
 
-# [>] Checa se a pasta passada no parâmetro existe
-def CheckIfFolderExists(Folder = ""):
+def IsPDF(File):
     """
     ---
     ---
     ---
     
-    ## CheckIfFolderExists (Public)
+    ## IsPDF (Public)
     ---
     ---
-    Checa se a pasta passada no parâmetro existe.
+    Método que valida se o arquivo indicado é um arquivo PDF.
     
     ### Args
     ---
-    - FolderThatWillBeChecked (str, [optional], default = ""):
-        - Pasta que vai ter sua existência checada pelo método.
+    - File ([bool]):
+        - Arquivo que será conferido no método.
     
     ### Returns
     ---
-        [bool]: Retorna 'True' se a pasta informada existe e  caso  não
-        exista retorna 'False'.
+        [bool]: Se o item indicado na variável for um arquivo e tiver a
+        extensão ".pdf" retorna True, caso contrário retorna False
     
     ---
     ---
     ---
     """
 
-    # return True 
-    # [>] Retorna pra função
-    return True if (os.path.isdir(str(Folder))) else False
+    return True if(os.path.isfile(File) and (str(File[-4:]).lower() == ".pdf")) else False
 
-# [>] Justifica o texto
 def JustifyText(Text, CharQuantity):
     """
     ### JustifyText (Public)

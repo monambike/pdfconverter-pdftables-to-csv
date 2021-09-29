@@ -19,6 +19,7 @@ relacionadas a montagem e execução do projeto.
 ---
 """
 
+
 # [>] Geral
 import os
 import pathlib
@@ -35,7 +36,7 @@ def SetFolderStructure():
     int_indexFolderCreation = 0
     folderSufix = ""
     # [i] Enquanto houver uma pasta de resultados existente
-    while (os.path.isdir(fvar.folderpath_Export + fvar.rootPath + folderSufix)):
+    while (os.path.isdir(fvar.path_Export + fvar.rootPath + folderSufix)):
         # [>] Adiciona +1 ao contador
         int_indexFolderCreation += 1
         # [>] Arruma o nome do arquivo com o valor do contador
@@ -46,7 +47,7 @@ def SetFolderStructure():
 
     # [>] Criando pasta raíz
     pathlib.Path(
-        fvar.folderpath_Export +
+        fvar.path_Export +
         fvar.rootPath
     ).mkdir(parents = True, exist_ok = True)
 
@@ -54,7 +55,7 @@ def SetFolderStructure():
     for methodPath in fvar.list_readingPaths:
         # [>] Cria uma pasta
         pathlib.Path(
-            fvar.folderpath_Export +
+            fvar.path_Export +
             fvar.rootPath +
             methodPath
         ).mkdir(parents = True, exist_ok = True)
@@ -62,7 +63,7 @@ def SetFolderStructure():
         # [>] Criando pastas para métodos de formatação
         for outputTypePath in fvar.list_formattingPaths:
             pathlib.Path(
-                fvar.folderpath_Export +
+                fvar.path_Export +
                 fvar.rootPath +
                 methodPath +
                 outputTypePath

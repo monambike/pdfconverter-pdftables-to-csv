@@ -1,3 +1,24 @@
+"""
+---
+---
+---
+
+## Package: pdfconverter >> conversion
+---
+---
+### Module Name: withoutformatting
+---
+### path: "pdfconverter\\\\\\\\conversion\\\\\\\\withoutformatting.py"
+---
+---
+Módulo com itens relacionados à geração do arquivo sem formatação.
+
+---
+---
+---
+"""
+
+
 # [>] Geral
 import csv
 import pandas
@@ -7,9 +28,10 @@ from pdfconverter.__variables__ import fvar
 # [i] Arquivo do Terminal
 from pdfconverter.terminalfile.message import design, error
 
+
 #region PUBLIC METHODS
 
-def MakeFile(ReadingMethod, TableDataFrame):    
+def AppendToFile(ReadingMethod, TableDataFrame):    
     """
     ---
     ---
@@ -35,7 +57,7 @@ def MakeFile(ReadingMethod, TableDataFrame):
 
         # [>] Define o caminho do arquivo  atual  para  a  variável
         # global filepath_ExportTxt
-        fvar.filepath_ExportTxt = fvar.folderpath_Export + fvar.rootPath + "\\" +  ReadingMethod + "\\withoutFormatting\\" + fvar.filename_PDF + ".txt"
+        fvar.filepath_ExportTxt = fvar.path_Export + fvar.rootPath + "\\" +  ReadingMethod + "\\withoutFormatting\\" + fvar.filename_PDF + ".txt"
 
         # [>] Converte o arquivo para .txt no formato de um CSV
         TableDataFrame.to_csv(
@@ -73,10 +95,8 @@ def FormatDataFrame(TableDataFrame):
     # evitar possíveis erros pois os dados normalmente são  separa-
     # dos por pontos e vírgula e aspas duplas
     TableDataFrame = TableDataFrame.replace("\"", "", regex = True)
-
     # [>] Deleta todas as linhas que estão completamente vazias
-    TableDataFrame = TableDataFrame.dropna(how="all")
-    
+    TableDataFrame = TableDataFrame.dropna(how="all")  
     # [>] Deleta todas as colunas que estão  completamente  va-
     # zias
     TableDataFrame = TableDataFrame.dropna(how="all", axis=1)
@@ -87,7 +107,6 @@ def FormatDataFrame(TableDataFrame):
     # [>] Remove quebras de linha do  DataFrame  que  acontecem
     # por conta do corpo ser muito grande
     TableDataFrame.replace({r"\r": " "}, inplace=True, regex=True)
-
     # [>] Troca ponto e vírgula dentro do DataFrame para evitar
     # conflitos
     TableDataFrame.replace({r";": ","}, inplace=True, regex=True)

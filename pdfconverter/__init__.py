@@ -11,7 +11,7 @@
 ### path: "pdfconverter\\\\\\\\__init__.py"
 ---
 ---
-Pacote e módulo do projeto PDFConverter.
+Pacote e módulo que representa o projeto PDFConverter.
 
 ---
 ---

@@ -11,7 +11,7 @@
 ### path: "pdfconverter\\\\\\\\settings\\\\\\\\__init__.py"
 ---
 ---
-Pacote contendo configurações para o projeto.
+Pacote e módulo contendo algumas configurações para o projeto.
 
 ---
 ---

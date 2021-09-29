@@ -12,12 +12,13 @@
 ---
 ---
 Pacote e módulo responsável por realizar ações relacionadas  ao
-terminal.
+arquivo do terminal.
 
 ---
 ---
 ---
 """
+
 
 # [>] Geral
 import os
@@ -80,8 +81,8 @@ def Recreate():
         # terminal
         fvar.file_TerminalFile = open(
             fvar.filepath_TerminalFile, # [i] Caminho do arquivo de saída do terminal
-            "w",                       # [i] Realiza uma sobrescrita de texto
-            encoding="UTF-8"           # [i] Codificação UTF-8
+            "w",                        # [i] Realiza uma sobrescrita de texto
+            encoding="UTF-8"            # [i] Codificação UTF-8
         )
     except Exception as ExceptionError:
         # [>] Retorna o erro

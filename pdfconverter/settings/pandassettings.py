@@ -19,11 +19,12 @@ da biblioteca Pandas.
 ---
 """
 
+
 # [>] Geral
 import pandas
 
 
-#region PRIVATE METHODS
+#region PUBLIC METHODS
 
 def Set(MaxColumnWidth=None, ExpandFrameRepresentation=False, Encoding="UTF-8-sig", MultiColumn=False):
     """

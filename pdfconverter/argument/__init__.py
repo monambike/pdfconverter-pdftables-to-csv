@@ -19,17 +19,21 @@ argumentos no projeto
 ---
 """
 
+
 # [>] Geral
+import os.path
 import argparse
 # [>] PDFConverter
 # [i] Variáveis
-from pdfconverter.__variables__ import avar, fvar, pvar
+from pdfconverter.__variables__ import mvar, avar, fvar, pvar
 # [i] Arquivo do Terminal
 from pdfconverter.terminalfile.message import error
-# [i] Program
-from pdfconverter.program import utilities
+# [i] Conversão
+from pdfconverter import conversion
 # [i] Formatação de String
-from pdfconverter import stringformat
+from pdfconverter.stringformat import stringformat
+# [i] Programa
+from pdfconverter.program import utilities
 
 
 #region PUBLIC METHODS
@@ -161,28 +165,6 @@ def __AddArgs(*args):
         )
     
     try:
-        # [>] Adiciona os argumentos informados anteriormente na região
-        # anterior ao parse args
-        # teste = [
-        #     '--ImportPath',
-        #     'C:\\users\\dvp10\\desktop',
-        #     '--ExportPath',
-        #     'C:\\users\\dvp10\\desktop',
-        #     '--PageNumber',
-        #     'all',
-
-        #     '--Ordem',
-        #     'Item',
-        #     'Lote',
-            
-        #     '--Produto',
-        #     'Medicamento',
-        #     'Descrição do Item'
-            
-        #     '--ValorMedio',
-        #     'Prev. Custo Unit. (R$)'
-        # ]
-        # avar.parser_ArgsMain = avar.parser_Main.parse_args(teste)
         avar.parser_ArgsMain = avar.parser_Main.parse_args()
     except Exception as ExceptionError:
         # [>] Exibe mensagem de erro caso não tenha sido informado  um
@@ -254,8 +236,7 @@ def __StoreArgs():
                 for value in argValue:
                     # [>] Adiciona o valor do argumento
                     pvar.list_columnFieldsToChange[listCounter].append(value)
-            else:
-                pvar.list_columnFieldsToChange[listCounter].append(argValue)
+            else: pvar.list_columnFieldsToChange[listCounter].append(argValue)
 
 
             # [>] Adiciona +1 ao contador da lista
@@ -282,80 +263,79 @@ def __ValidateArgs():
     ---
     """
 
-    __ValidateImpExpPathsArgs()
+    __ValidateImportPath()
+    __ValidateExportPath()
     __ValidatePageNumberArg()
 
-def __ValidateImpExpPathsArgs():
-    """
-    ---
-    ---
-    ---
-    
-    ## __ValidateImpExpPathsArgs (Private)
-    ---
-    ---
-    Método que valida os caminhos de importação e exportação passa-
-    dos nos argumentos.
-    
-    ---
-    ---
-    ---
-    """
+#region SPECIFIC VALIDATIONS
 
-    # [>] Valida os caminhos de importação e exportação fornecidos
-    for pathType in ("import", "export"):
-        try:
-            # [>] Chama a variável de argumento de acordo com a ação reali-
-            # zada
-            # [i] Deve ser feito desse jeito pois a variável é uma variável
-            # de argumento
-            pathArgValue = getattr(avar.parser_ArgsMain, pathType.capitalize() + "Path")
-        except Exception as ExceptionError:
+def __ValidateImportPath():
+    try:
+        # [>] Pega dos argumentos o caminho de importação
+        ImportPath = avar.parser_ArgsMain.ImportPath
+
+        if (ImportPath == None):
+            # [i] Exibe uma mensagem de erro mostrando que é obrigatório  a
+            # inserção do caminho de importação
             error.Show(
-                "Ocorreu um erro desconhecido relacionado ao referenciamento de"
-                "variáveis através de Strings no método de validação de argumen"
-                "tos.",
-
-                ExceptionError = ExceptionError,
+                "É necessário colocar um valor para o caminho  de  importação,"
+                "'--ImportPath <caminho_de_exportação>'.",
+                
                 ExitProgram = True
             )
-
-        try:
-            # [i] Caso a pasta de acordo com a ação realizada exista
-            if (utilities.CheckIfFolderExists(pathArgValue)):
-                # [>] Passa para as variáveis globais de acordo com a ação rea-
-                # lizada
-                setattr(fvar, "folderpath_" + pathType.capitalize(), pathArgValue)
-            # [i] Caso não foram passados valores nos argumentos..
-            elif (pathArgValue == None):
-                # [>] ..de importação
-                if (pathType == "import"):
-                    # [i] Exibe uma mensagem de erro mostrando que é obrigatório  a
-                    # inserção do caminho de importação
-                    error.Show(
-                        "É necessário colocar um valor para o caminho  de  importação,"
-                        "'--ImportPath <caminho_de_exportação>'.",
-                        
-                        ExitProgram = True
-                    )
-                # [>] ..de exportação
-                else:
-                    # [i] Recebe o caminho da pasta de importação  como  referência
-                    # para o caminho de exportação
-                    fvar.folderpath_Export = fvar.folderpath_Import
-            # Caso a pasta de acordo com a ação realizada não exista
+        elif (os.path.isfile(ImportPath)):
+            if (utilities.IsPDF(ImportPath)):
+                fvar.path_Import = ImportPath
+                # [>] Lá na frente, vai executar a função que realizará a  con-
+                # versão do arquivo individual que foi indicado
+                functionName = "IndividualConversion"
             else:
-                error.Show("A pasta de " + pathType + "ação ('" + pathArgValue + "') informada não existe.", ExitProgram = True)
-        # [>] Quando ocorre erro desconhecido
-        except Exception as ExceptionError:
-            # [>] Exibe uma mensagem de erro
-            error.Show(
-                "Ocorreu um erro desconhecido ao tentar receber os  argumentos"
-                "dos caminhos de importação e exportação.",
+                error.Show("O arquivo informado no argumento de importação, precisa ser uma pasta ou um arquivo PDF.", ExitProgram = True)
+        elif (os.path.isdir(ImportPath)):
+            fvar.path_Import = ImportPath
+            # [>] Lá na frente, vai executar a função que realizará  a  con-
+            # versão de todos os PDFs indicados na pasta de importação
+            functionName = "MultipleConversion"
+        else:
+            error.Show("O argumento ('" + ImportPath + "') passado como caminho de importação não é válido.", ExitProgram = True)
 
-                ExceptionError = ExceptionError,
-                ExitProgram = True
-            )
+        # [>] Atribui o objeto que referencia a função com  o  nome  da
+        # função passada nas validações acima
+        mvar.ConversionStart = getattr(conversion, functionName)
+    except Exception as ExceptionError:
+        # [>] Exibe uma mensagem de erro
+        error.Show(
+            "Ocorreu um erro desconhecido ao tentar receber os  argumentos"
+            "dos caminhos de importação.",
+
+            ExceptionError = ExceptionError,
+            ExitProgram = True
+        )
+
+def __ValidateExportPath():
+    try:
+        # [>] Pega dos argumentos o caminho de importação
+        ExportPath = avar.parser_ArgsMain.ExportPath
+
+        if (ExportPath == None):
+            # [i] Recebe o caminho da pasta de importação  como  referência
+            # para o caminho de exportação
+            fvar.path_Export = fvar.path_Import
+        # [>] Se o caminho fornecido for um diretório,  passa  para  as
+        # variáveis globais de acordo com a ação realizada
+        elif (os.path.isdir(ExportPath)): fvar.path_Export = ExportPath
+        # [>] Usuário não informou valor para o caminho de exportação
+        # Caso a pasta de acordo com a ação realizada não exista
+        else: error.Show("A pasta de exportação ('" + ExportPath + "') informada não existe.", ExitProgram = True)
+    except Exception as ExceptionError:
+        # [>] Exibe uma mensagem de erro
+        error.Show(
+            "Ocorreu um erro desconhecido ao tentar receber os  argumentos"
+            "dos caminhos de exportação.",
+
+            ExceptionError = ExceptionError,
+            ExitProgram = True
+        )
 
 def __ValidatePageNumberArg():
     """
@@ -376,7 +356,7 @@ def __ValidatePageNumberArg():
 
     try:
         # [>] Recebe o número de página passado no argumento
-        argPageNumber = stringformat.ManipulateString(avar.parser_ArgsMain.PageNumber)
+        argPageNumber = stringformat(avar.parser_ArgsMain.PageNumber)
         # [>] Se o valor digitado como número de página é valido
         if (argPageNumber.ValidatePageNumber()):
             # [>] Passa o valor para uma variável
@@ -401,6 +381,8 @@ def __ValidatePageNumberArg():
             ExceptionError = ExceptionError,
             ExitProgram = True
         )
+
+#endregion
 
 #endregion
 

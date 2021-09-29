@@ -6,24 +6,29 @@
 ## Package: pdfconverter >> patterncolumns
 ---
 ---
-### Module Name: patterncolumns
+### Module Name: patterncolumns (Constructor, __init__)
 ---
 ### path: "pdfconverter\\\\\\\\patterncolumns\\\\\\\\__init__.py"
 ---
 ---
-Módulo  comportando  funções  relacionadas  à  padronização  de
-arquivos resultantes da conversão.
+Pacote e módulo comportando funções relacionadas à padronização
+de arquivos resultantes da conversão.
 
 ---
 ---
 ---
 """
 
+
 # [>] Geral
 import re
+import json
 # [>] PDFConverter
-# [>] Variables
-from pdfconverter.__variables__ import pvar
+# [i] Variáveis
+from pdfconverter.__variables__ import fvar, pvar
+# [i] Programa
+from pdfconverter.program.utilities.temporaryfile import temporaryfile
+
 
 #region GLOBAL VARIABLES
 
@@ -132,5 +137,62 @@ def SetHeaderToPattern(String):
         newString = String
 
     return newString
+
+def RecognizePattern(FileToReadPath):
+    patterncolumnspath = fvar.path_Export + fvar.rootPath + "\pattercolumns.txt"
+    LogDict = {
+        'info': {
+            'export_path': FileToReadPath,
+            'pattern_path': patterncolumnspath 
+        }
+    }
+
+    with open(FileToReadPath, "r", encoding = "UTF-8") as FileToRead:
+        for line in FileToRead:
+            # [i] Regex que faz a verificação se o conteúdo da  li-
+            # nha é um cabeçalho
+            headerMatch = re.match(r"(^\"[a-zA-Z].*)", line)
+
+            # [>] Se a linha for um cabeçalho
+            if headerMatch is not None:
+                # [>] Enxerga cada item do cabeçalho de cada tabela utilizando-
+                # se de  uma  expressão regular e passa para uma lista
+                TextFile_CSVColumns = re.findall(
+                    r"""
+                    (?<=\")
+                    ([^\;]*?)
+                    (?=\")
+                    """,
+                    line,
+                    flags = re.MULTILINE | re.VERBOSE
+                )
+
+
+                # [>] Para cada coluna da linha vinda do  cabeçalho  encontrado
+                # no arquivo CSV
+                for column in TextFile_CSVColumns:
+                    # [>] Dentro da variável que armazena todas  as  recomendações,
+                    # de todas as colunas, olha cada container (um container repre-
+                    # senta o nome padrão e recomendações de uma colnua)
+                    for container in pvar.StoredColumns:
+                        # [>] Verifica se a coluna foi encontrada como recomendação  no
+                        # container atual
+                        if str(column).lower() in container:
+                            LogDict[str(container[0]).replace("--","")] = column
+                        # [>] Se não foi
+                        else:
+                            # [>] Passa para o próximo container
+                            continue
+                # [>] Para a operação
+                break
+            else:
+                continue
+
+        # [>] O arquivo com as colunas padrão está sendo atualmente ge-
+        # rado na pasta de resultados
+        with open(patterncolumnspath, mode = "w", encoding = "UTF-8") as TextFile:
+            # [>] Transforma o dicionário de log em um JSON e escreve  den-
+            # tro do arquivo
+            TextFile.write(json.dumps(LogDict, indent = 4))
 
 #endregion

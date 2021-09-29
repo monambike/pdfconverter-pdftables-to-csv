@@ -31,6 +31,41 @@
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include=".vscode\extensions.json" />
+    <Content Include=".vscode\launch.json" />
+    <Content Include="LICENSE" />
+    <Content Include="pdfconverter\argument\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\format\__pycache__\fullclear.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\format\__pycache__\main.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\format\__pycache__\tablewithblankcells.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\format\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\__pycache__\format.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\__pycache__\withoutformatting.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\__pycache__\__init__.cpython-39.pyc.2330617629136" />
+    <Content Include="pdfconverter\patterncolumns\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\program\utilities\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\program\__pycache__\utilities.cpython-39.pyc" />
+    <Content Include="pdfconverter\program\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\settings\__pycache__\pandassettings.cpython-39.pyc" />
+    <Content Include="pdfconverter\settings\__pycache__\project.cpython-39.pyc" />
+    <Content Include="pdfconverter\settings\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\stringformat\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\terminalfile\message\__pycache__\design.cpython-39.pyc" />
+    <Content Include="pdfconverter\terminalfile\message\__pycache__\error.cpython-39.pyc" />
+    <Content Include="pdfconverter\terminalfile\message\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\terminalfile\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\_projfiles\doc\exception.mustache" />
+    <Content Include="pdfconverter\_projfiles\doc\method.mustache" />
+    <Content Include="pdfconverter\_projfiles\doc\module.mustache" />
+    <Content Include="pdfconverter\_projfiles\doc\variable.mustache" />
+    <Content Include="pdfconverter\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\__pycache__\__main__.cpython-39.pyc" />
+    <Content Include="pdfconverter\__pycache__\__variables__.cpython-39.pyc" />
+    <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include=".vscode\" />
     <Folder Include="pdfconverter\" />
     <Folder Include="pdfconverter\argument\" />
@@ -42,6 +77,8 @@
     <Folder Include="pdfconverter\patterncolumns\" />
     <Folder Include="pdfconverter\patterncolumns\__pycache__\" />
     <Folder Include="pdfconverter\program\" />
+    <Folder Include="pdfconverter\program\utilities\" />
+    <Folder Include="pdfconverter\program\utilities\__pycache__\" />
     <Folder Include="pdfconverter\program\__pycache__\" />
     <Folder Include="pdfconverter\settings\" />
     <Folder Include="pdfconverter\settings\__pycache__\" />
@@ -57,38 +94,6 @@
     <Folder Include="pdfconverter\__pycache__\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".gitignore" />
-    <Content Include=".vscode\extensions.json" />
-    <Content Include=".vscode\launch.json" />
-    <Content Include="LICENSE" />
-    <Content Include="pdfconverter\argument\__pycache__\__init__.cpython-39.pyc" />
-    <Content Include="pdfconverter\conversion\format\__pycache__\fullclear.cpython-39.pyc" />
-    <Content Include="pdfconverter\conversion\format\__pycache__\main.cpython-39.pyc" />
-    <Content Include="pdfconverter\conversion\format\__pycache__\tablewithblankcells.cpython-39.pyc" />
-    <Content Include="pdfconverter\conversion\format\__pycache__\__init__.cpython-39.pyc" />
-    <Content Include="pdfconverter\conversion\__pycache__\format.cpython-39.pyc" />
-    <Content Include="pdfconverter\conversion\__pycache__\withoutformatting.cpython-39.pyc" />
-    <Content Include="pdfconverter\conversion\__pycache__\__init__.cpython-39.pyc" />
-    <Content Include="pdfconverter\conversion\__pycache__\__init__.cpython-39.pyc.2330617629136" />
-    <Content Include="pdfconverter\patterncolumns\__pycache__\__init__.cpython-39.pyc" />
-    <Content Include="pdfconverter\program\__pycache__\utilities.cpython-39.pyc" />
-    <Content Include="pdfconverter\program\__pycache__\__init__.cpython-39.pyc" />
-    <Content Include="pdfconverter\settings\__pycache__\pandassettings.cpython-39.pyc" />
-    <Content Include="pdfconverter\settings\__pycache__\project.cpython-39.pyc" />
-    <Content Include="pdfconverter\settings\__pycache__\__init__.cpython-39.pyc" />
-    <Content Include="pdfconverter\stringformat\__pycache__\__init__.cpython-39.pyc" />
-    <Content Include="pdfconverter\terminalfile\message\__pycache__\design.cpython-39.pyc" />
-    <Content Include="pdfconverter\terminalfile\message\__pycache__\error.cpython-39.pyc" />
-    <Content Include="pdfconverter\terminalfile\message\__pycache__\__init__.cpython-39.pyc" />
-    <Content Include="pdfconverter\terminalfile\__pycache__\__init__.cpython-39.pyc" />
-    <Content Include="pdfconverter\_projfiles\doc\method.mustache" />
-    <Content Include="pdfconverter\_projfiles\doc\module.mustache" />
-    <Content Include="pdfconverter\__pycache__\__init__.cpython-39.pyc" />
-    <Content Include="pdfconverter\__pycache__\__main__.cpython-39.pyc" />
-    <Content Include="pdfconverter\__pycache__\__variables__.cpython-39.pyc" />
-    <Content Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="pdfconverter\argument\__init__.py" />
     <Compile Include="pdfconverter\conversion\format\fullclear.py" />
     <Compile Include="pdfconverter\conversion\format\main.py" />
@@ -97,7 +102,10 @@
     <Compile Include="pdfconverter\conversion\withoutformatting.py" />
     <Compile Include="pdfconverter\conversion\__init__.py" />
     <Compile Include="pdfconverter\patterncolumns\__init__.py" />
-    <Compile Include="pdfconverter\program\utilities.py" />
+    <Compile Include="pdfconverter\program\exceptions.py" />
+    <Compile Include="pdfconverter\program\utilities\temporaryfile.py" />
+    <Compile Include="pdfconverter\program\utilities\time.py" />
+    <Compile Include="pdfconverter\program\utilities\__init__.py" />
     <Compile Include="pdfconverter\program\__init__.py" />
     <Compile Include="pdfconverter\settings\pandassettings.py" />
     <Compile Include="pdfconverter\settings\project.py" />
@@ -107,6 +115,7 @@
     <Compile Include="pdfconverter\terminalfile\message\error.py" />
     <Compile Include="pdfconverter\terminalfile\message\__init__.py" />
     <Compile Include="pdfconverter\terminalfile\__init__.py" />
+    <Compile Include="pdfconverter\_backup\argument.py" />
     <Compile Include="pdfconverter\_backup\code.py" />
     <Compile Include="pdfconverter\_backup\format.py" />
     <Compile Include="pdfconverter\_backup\pdfconverter.py" />
