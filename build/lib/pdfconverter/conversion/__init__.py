@@ -33,6 +33,8 @@ from pdfconverter.settings import project
 # [i] Conversão
 from pdfconverter.conversion import withoutformatting
 from pdfconverter.conversion.format import tablewithblankcells, main, fullclear
+# [i] Colunas Padrão
+from pdfconverter import patterncolumns
 # [i] Programa
 from pdfconverter.program.exceptions import InvalidFormattingType, RepeatedFormattingType
 
@@ -40,31 +42,17 @@ from pdfconverter.program.exceptions import InvalidFormattingType, RepeatedForma
 #region PUBLIC METHODS
 
 def IndividualConversion():
-    # [>] Como a modalidade de conversão será  individual,  informa
-    # que apenas um PDF será convertido
-    fvar.quantity_ImportedFiles = 1
-
     # [>] Inicia a conversão
     ConversionStart(avar.path_ImportArg)
-    
-    # [>] Fecha o layout do terminal quando a conversão é finaliza-
-    # da
     design.CloseLayout(LastLayout = True)
+    LastLatticeMainConvertedFile = fvar.filepath_Main.replace("stream", "lattice", 1)
+
+    patterncolumns.RecognizePattern(LastLatticeMainConvertedFile)
 
 def MultipleConversion():
-    # [>] Recebe um caminho que à frente será usado para obter  in-
-    # formação referente à todos os arquivos PDFs presentes na pas-
-    # ta de importação
-    referencepath_AllPDFFiles = fvar.folderpath_Import + "\\*.pdf"
-
-    # [>] Recebe a quantidade de arquivos que serão importados
-    fvar.quantity_ImportedFiles = len(glob(referencepath_AllPDFFiles))
-
     # [>] Filtra pelos PDFs na pasta onde foi indicada para o  sis-
     # tema pelo "chdir"
-    for PDF in glob(referencepath_AllPDFFiles):
-        # [>] Inicia a conversão
-        ConversionStart(PDF)
+    for PDF in glob(fvar.folderpath_Import + "\\*.pdf"): ConversionStart(PDF)
     else:
         # [i] Se até o término da operação algum  PDF  foi  convertido,
         # fecha o layout do terminal
@@ -74,7 +62,7 @@ def MultipleConversion():
         # convertidos
         else: error.Show("Não há arquivos de PDF para serem convertidos.")
 
-def ConversionStart(fullfilepath_PDF):
+def ConversionStart(fullfilepath_PDF, Formatting = "MFT"):
     """
     ---
     ---
@@ -117,36 +105,7 @@ def ConversionStart(fullfilepath_PDF):
     if (fvar.counter_PdfFile >= 1): design.CloseLayout(LastLayout = False)
     # [i] Se é o primeiro arquivo ainda define a estrutura  inicial
     # do projeto
-    else:
-        project.SetFolderStructure()
-        def MakeRelatoryFile():
-            import json
-            from pdfconverter.terminalfile import error
-
-
-            # [>] Configura o caminho para o relatório
-            fvar.filepath_RelatoryFile = fvar.folderpath_Result + "\\startreport.txt"
-
-
-            try:
-                with open(fvar.filepath_RelatoryFile, mode = "w", encoding = "UTF-8") as TextFile:
-                    TextFile.write(
-                        json.dumps(
-                        {
-                            "resultsFolder": {
-                                "nameResultsFolder": fvar.foldername_Result,
-                                "pathResultsFolder": fvar.folderpath_Result
-                            },
-                            "quantityImportedFiles": fvar.quantity_ImportedFiles,
-                            "quantityExportedFiles": fvar.quantity_ExportedFiles
-                        },
-                        
-                        indent = 4
-                        )
-                    )
-            except Exception as ExceptionError:
-                error.Show("Ocorreu um erro desconhecido ao tentar gerar o arquivo com as informações preliminares da conversão.", ExceptionError)
-        MakeRelatoryFile()
+    else: project.SetFolderStructure()
     # [>] Atribuindo mais um ao índice para indicar  que  um  certo
     # arquivo PDF está sendo convertido
     fvar.counter_PdfFile += 1
@@ -192,11 +151,11 @@ def ConversionStart(fullfilepath_PDF):
             # [>] Avança o contador de DataFrames em um
             fvar.counter_DataFrame += 1
         # [>]
-        __MakeFormattedFiles(ReadingMethod, avar.FormattingMethodArg)
+        __MakeFormattedFiles(ReadingMethod, Formatting)
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     # -------------------------------------------------------------
 
-def ReadPDF(ReadingMethod, filefullname_PDF):
+def ReadPDF(ReadingMethod, filefullname_PDF):    
     """
     ---
     ---

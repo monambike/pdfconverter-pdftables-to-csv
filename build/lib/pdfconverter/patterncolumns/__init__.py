@@ -120,8 +120,13 @@ def SetHeaderToPattern(String):
     return newString
 
 def RecognizePattern(FileToReadPath):
-    fvar.filepath_PatternColumns = fvar.folderpath_Result + "\\pattercolumns.txt"
-    LogDict = { }
+    patterncolumnspath = fvar.folderpath_Result + "\pattercolumns.txt"
+    LogDict = {
+        'info': {
+            'export_path': FileToReadPath,
+            'pattern_path': patterncolumnspath 
+        }
+    }
 
     with open(FileToReadPath, "r", encoding = "UTF-8") as FileToRead:
         for line in FileToRead:
@@ -166,7 +171,7 @@ def RecognizePattern(FileToReadPath):
 
         # [>] O arquivo com as colunas padrão está sendo atualmente ge-
         # rado na pasta de resultados
-        with open(fvar.filepath_PatternColumns, mode = "w", encoding = "UTF-8") as TextFile:
+        with open(patterncolumnspath, mode = "w", encoding = "UTF-8") as TextFile:
             # [>] Transforma o dicionário de log em um JSON e escreve  den-
             # tro do arquivo
             TextFile.write(json.dumps(LogDict, indent = 4))

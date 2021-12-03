@@ -11,7 +11,6 @@
         "ms-python.vscode-pylance",
         "ms-python.python",
         "njpwerner.autodocstring",
-        "ms-vscode.vs-keybindings",
-        "argutec.argutec-azure-repos"
+        "ms-vscode.vs-keybindings"
     ]
 }

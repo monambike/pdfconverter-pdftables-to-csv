@@ -61,10 +61,10 @@ def Set():
     __AddArgs(
         # ARGUMENTOS DE CONFIGURAÇÕES INICIAIS
         "ImportPath", # [i] Argumento   que   conterá   o  caminho   de    importação
-                      # (Obrigatório)
+                        # (Obrigatório)
         "ExportPath", # [i] Argumento que conterá o caminho de exportação (Opcional)
         "PageNumber", # [i] Argumento que recebe o número de páginas para realizar  a
-                      # leitura do arquivo PDF
+                        # leitura do arquivo PDF
         # ARGUMENTOS REFERENTES AS COLUNAS
         "Lote",       # [i] Lote
         "Ordem",      # [i] Ordem
@@ -72,9 +72,7 @@ def Set():
         "Produto",    # [i] Produto
         "Unidade",    # [i] Unidade
         "Quantidade", # [i] Quantidade
-        "ValorMedio", # [i] Valor Médio
-        # ARGUMENTOS ADICIONAIS DE CONFIGURAÇÃO
-        "FormattingMethod"
+        "ValorMedio"  # [i] Valor Médio
     )
 
     # [>] Valida os argumentos adicionados
@@ -139,9 +137,8 @@ def __AddArgs(*args):
         # Descrição: Aqui dentro da condicional, podem ser alterados os
         # valores padrão caso necessário.
         # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        if (avar.argName == "--PageNumber"): avar.defaultValue = "all"
-        elif (avar.argName in avar.patternColumnArgs): avar.nargsValue = '*'
-        elif (avar.argName == "--FormattingMethod"): avar.defaultValue = "MFT"
+        if (arg in "--PageNumber"): avar.defaultValue = "all"
+        if ("Path" not in arg and "PageNumber" != arg): avar.nargsValue = '*'
         # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         # -------------------------------------------------------------
 
@@ -159,9 +156,7 @@ def __AddArgs(*args):
         )
     
     try:
-        # [>] Passa os argumentos depois de interpretados para uma nova
-        # variável
-        avar.parser_ArgsMain = avar.parser_Main.parse_args(_ParseArgsProgramatically())
+        avar.parser_ArgsMain = avar.parser_Main.parse_args()
     except Exception as ExceptionError:
         # [>] Exibe mensagem de erro caso não tenha sido informado  um
         # caminho de importação
@@ -217,9 +212,7 @@ def __GetUserGivenPatternColumnsArgs():
 
 #endregion
 
-#region METHODS FOR TESTING
-
-def _ParseArgsProgramatically():
+def ParseArgsProgramatically():
     """
     ---
     ---
@@ -228,7 +221,7 @@ def _ParseArgsProgramatically():
     ## ParseArgsProgramatically Public
     ---
     ---
-    Método que passa os argumentos que normalmente são passados pe-
+    Método que passa os argumentso que normalmente são passados pe-
     lo terminal programaticamente. O método deve ser colocado  den-
     tro da variável avar.parser_Main.parse_args.
     
@@ -243,8 +236,4 @@ def _ParseArgsProgramatically():
     
     ArgsList = ["--ImportPath", "C:\\users\\dvp10\\desktop\\EDITAL (2).pdf"]
     ArgsList = [""]
-    ArgsList = ["--ImportPath", "C:\\users\\dvp10\\desktop\\", "--ExportPath", "C:\\users\\dvp10\\desktop"]
-    ArgsList = ["--ImportPath", "C:\\users\\dvp10\\desktop\\EDITAL (2).pdf", "--ExportPath", "C:\\users\\dvp10\\desktop", "--FormattingMethod", "F"]
     return ArgsList
-
-#endregion

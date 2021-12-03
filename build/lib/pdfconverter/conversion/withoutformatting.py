@@ -31,7 +31,7 @@ from pdfconverter.terminalfile.message import design, error
 
 #region PUBLIC METHODS
 
-def AppendToFile(ReadingMethod, TableDataFrame):
+def AppendToFile(ReadingMethod, TableDataFrame):    
     """
     ---
     ---

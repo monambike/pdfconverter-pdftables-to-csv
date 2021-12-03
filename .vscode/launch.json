@@ -1,11 +1,17 @@
 {
     "version": "1.0",
     "configurations": [
-      {
-        "type": "python",
-        "request": "launch",
-        "name": "Launch Program",
-        "program": "${workspaceFolder}\\pdfconverter.py"
-      }
+        {
+            "type": "python",
+            "request": "launch",
+            "name": "Módulo Principal",
+            "program": "${workspaceFolder}\\pdfconverter.py"
+        },
+        {
+            "type": "python",
+            "request": "launch",
+            "name": "Rodar Setup",
+            "program": "${workspaceFolder}\\setup.py"
+        }
     ]
-  }
+}

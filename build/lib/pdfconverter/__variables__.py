@@ -22,6 +22,8 @@ projeto.
 
 #region VARIABLES
 
+#region MANAGEMENT
+
 class mvar:
     """
     ---
@@ -51,6 +53,10 @@ class mvar:
     argumentos "argument"
     """
 
+#endregion
+
+#region GENERAL
+
 class avar:
     """
     ---
@@ -68,6 +74,8 @@ class avar:
     ---
     """
 
+    # [>] Todos os argumentos que são  relacionados  à  alterar  as
+    # colunas padrão dentro de uma array.
     patternColumnArgs = [
         "Lote",
         "Ordem",
@@ -77,10 +85,6 @@ class avar:
         "Quantidade",
         "ValorMedio"
     ]
-    """
-    Todos os argumentos que são relacionados à alterar  as  colunas
-    padrão dentro de uma array.
-    """
 
     #region PARSER
     parser_Main = None
@@ -93,6 +97,7 @@ class avar:
     #endregion
 
     #region USER ARGS
+    # [!] path_Import
     path_ImportArg = ""
     """
     Caminho de importação com o valor fornecido pelo usuário.
@@ -104,8 +109,6 @@ class avar:
     """
     readPDFPagesArg = "all"
     """Páginas que vão ser lidas para realizar a conversão."""
-    FormattingMethodArg = ""
-    """Tipos de formatação escolhidos."""
     #endregion
 
     #region ARGS DEFAULT VALUES
@@ -167,26 +170,28 @@ class fvar:
     ---
     """
 
-    #region CONFIG
+    #region PROJECT
+
+    #region GENERAL
     folderpath_Script = ""
-    """Caminho da pasta do arquivo de script que está sendo executado."""
-    
+    """
+    Caminho do arquivo de script que está sendo executado.
+    """
+    #endregion
+
+    #region TERMINAL FILE
     file_TerminalFile = ""
     """Variável que armazena o arquivo de saída do terminal em si."""
     filepath_TerminalFile = ""
     """Caminho para o arquivo do terminal."""
-
-    filepath_RelatoryFile = ""
-    """Caminho para o arquivo que mostrará o relatório preliminar."""
-    filepath_PatternColumns = ""
-    """Caminho para o arquivo que mostrará as colunas no padrão."""
     #endregion
 
-    #region CONVERSION
+    #endregion
 
-    #region START
+    #region CONVERSION RUNTIME
 
-    #region FOLDER AND FILES INFO
+    #region GENERAL
+    # [!] path_FolderImport
     folderpath_Import = ""
     """
     Caminho da pasta de importação onde os  arquivos  PDF  vão  ser
@@ -198,25 +203,9 @@ class fvar:
     ser alocados.
     """
     folderpath_Result = ""
-    """Caminho da pasta de resultados."""
-
-    quantity_ImportedFiles = ""
-    """
-    Variável  que  armazena  a  contagem  de  arquivos  que   serão
-    importados.
-    """
-    quantity_ExportedFiles = ""
-    """
-    Variável  que  armazena  a  contagem  de  arquivos  que   serão
-    exportados.
-    """
-    #endregion
-    
     #endregion
 
-    #region RUNTIME
-
-    #region CURRENT PDF INFO
+    #region PDF INFO
     filename_PDF = ""
     """
     Nome do arquivo PDF que vai ser convertido  (sem a extensão).
@@ -228,7 +217,8 @@ class fvar:
     """
     #endregion
 
-    #region WITHOUT FORMATTING INFO
+    #region CONVERSION FILE GENERATION INFO
+    # [!] filepath_ExportTxt
     filepath_WithoutFormatting = ""
     """
     Caminho do arquivo de texto que vai ser gerado pelo PDF que vai
@@ -241,23 +231,28 @@ class fvar:
     """
     #endregion
 
-    #region FILE PATHS FORMATTING TYPES
+    #region FORMATTING TYPES FILE PATH
+    # [!] tableWithBlankCells_OutputTxt
     filepath_TableWithBlankCells = ""
-    """Formatação TableWithBlankCells."""
+    """"""
+    # [!] main_OutputTxt
     filepath_Main = ""
-    """Formatação Main."""
+    """"""
+    # [!] fullclear_OutputTxt
     filepath_FullClear = ""
-    """Formatação FullClear."""
+    """"""
     #endregion
 
     #endregion
 
     #region FOLDER STRUCTURE
-    foldername_Result = "resultados"
+    # [i] rootPath
+    foldername_Results = "resultados"
     """
     Caminhos que indicam a localização das pastas raíz que irão ser
     geradas futuramente.
     """
+    # [i] list_readingPaths
     list_ReadingPaths = [
         "lattice",
         "stream"
@@ -267,6 +262,7 @@ class fvar:
     leitura que vão ser geradas  futuramente  dentro  da  pasta  de
     exportação.
     """
+    # [!] list_formattingPaths
     list_FormattingPaths = [
         "main",
         "fullClear",
@@ -278,8 +274,6 @@ class fvar:
     formatação que vão ser geradas futuramente  dentro  das  pastas
     de métodos de leitura, que estão dentro da pasta de exportação.
     """
-    #endregion
-
     #endregion
 
 class pvar:
@@ -297,7 +291,8 @@ class pvar:
     ---
     ---
     """
-
+    
+    # [!] list_columnFieldsToChange
     list_UserGivenColumnToChange = []
     """
     Variável que vai segurar e possuir todos os argumentos
@@ -456,5 +451,7 @@ class vvar:
     
     Existem 168 espaços.
     """
+
+#endregion
 
 #endregion
