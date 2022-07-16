@@ -54,7 +54,7 @@ setup(
         "Topic :: Utilities"
     ],
     install_requires = [
-        "numpy==1.20.2",
+        "numpy==1.22.0",
         "pandas==1.2.3",
         "pdfminer.six==20201018",
         "tabula-py==2.3.0"
