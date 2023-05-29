@@ -1,0 +1,20 @@
+# ARQUIVOS DE EDIÇÃO DO WORD
+# -------------------------------------------------------------
+# Descrição:
+# Arquivos temporários que aparecem somente no momento em  que
+# você está editando um arquivo do word.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+~$Relatório.docx
+*.tmp
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# -------------------------------------------------------------
+
+# ARQUIVOS DE EDIÇÃO DO POWERPOINT
+# -------------------------------------------------------------
+# Descrição:
+# Arquivos temporários que aparecem somente no momento em  que
+# você está editando um arquivo do powerpoint.
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+~$Apresentação.pptx
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# -------------------------------------------------------------

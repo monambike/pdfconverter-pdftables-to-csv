@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>dc326973-60bd-40f4-b047-3843b9b9dc14</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>
+    </StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>pdfconverter_docs</Name>
+    <RootNamespace>pdfconverter_docs</RootNamespace>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Arquivos\" />
+    <Folder Include="Arquivos\Treinamentos do Projeto\" />
+    <Folder Include="PDFs %28Teste de Conversão%29\" />
+    <Folder Include="PDFs %28Teste de Conversão%29\primeiraLeva\" />
+    <Folder Include="PDFs %28Teste de Conversão%29\segundaLeva\" />
+    <Folder Include="PDFs %28Teste de Conversão%29\terceiraLeva\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="Arquivos\Divisão de Tarefas.docx" />
+    <Content Include="Arquivos\Relatório.docx" />
+    <Content Include="Arquivos\Relatório.pdf" />
+    <Content Include="Arquivos\Treinamentos do Projeto\LEMBRE-SE.txt" />
+    <Content Include="Arquivos\Treinamentos do Projeto\Treinamento PDFConverter - Ferramentas Necessárias.pptx" />
+    <Content Include="Arquivos\Treinamentos do Projeto\Treinamento PDFConverter - Projeto.pptx" />
+    <Content Include="LICENSE" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\EDITAL %281%29.PDF" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\EDITAL %282%29.PDF" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\EDITAL %283%29.PDF" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\EDITAL.PDF" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS.PDF" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS1.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS10.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS11.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS12.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS13.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS14.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS15.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS2.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS3.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS4.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS5.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS6.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS7.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS8.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\primeiraLeva\ITENS9.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL1.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL10.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL11.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL12.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL13.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL14.PDF" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL15.PDF" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL16.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL17.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL18.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL19.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL2.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL20.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL21.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL22.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL23.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL24.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL25.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL26.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL27.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL28.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL3.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL30.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL4.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL5.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL6.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL7.PDF" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL8.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\segundaLeva\EDITAL9.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2810%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2811%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2812%29.PDF" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2813%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2814%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2815%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2816%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2817%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2818%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2819%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %282%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2820%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2821%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2822%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2823%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2824%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2825%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2826%29.PDF" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2827%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2828%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2829%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %283%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2830%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2831%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2832%29.PDF" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2833%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2834%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2835%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2836%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2837%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2838%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2839%29.PDF" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %284%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2840%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2841%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2842%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2843%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2844%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2845%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2846%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2847%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2848%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2849%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %285%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2850%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2851%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2852%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2853%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2854%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2855%29.PDF" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\edital %2856%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2857%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2858%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2859%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %286%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2860%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2861%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2862%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2863%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2864%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2865%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2866%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2867%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2868%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2869%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %287%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2870%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2871%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2872%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2873%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2874%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2875%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2876%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2877%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %2878%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %288%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL %289%29.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL NOVO.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\edital retificado.pdf" />
+    <Content Include="PDFs %28Teste de Conversão%29\terceiraLeva\EDITAL.pdf" />
+    <Content Include="README.md" />
+  </ItemGroup>
+  <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
+  <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>

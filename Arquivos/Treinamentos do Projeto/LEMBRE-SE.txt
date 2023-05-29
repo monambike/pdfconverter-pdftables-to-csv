@@ -1,0 +1,9 @@
+>> Apresentar PowerPoint
+
+>> Apresentar a Documentação
+
+>> Apresentar a Solução Desktop
+
+>> Apresentar o Script
+  >> Explicar sobre o Pandas
+  >> Falar sobre o Tabula
