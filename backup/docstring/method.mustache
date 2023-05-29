@@ -1,0 +1,51 @@
+
+---
+---
+---
+
+{{!
+O valor que vai na frente  do  método  muda  dependendo  da
+condição do método ou função, caso seja:
+público, fica com (Public)
+privado, fica com (Private)
+construtor, fica com (Constructor, __init__)
+}}
+## {{name}} ({{#placeholder}}[Public/Private/Constructor, __init__]{{/placeholder}})
+---
+---
+{{!
+O início da descrição deve sempre começar com "Função"
+ou "Método"
+Além disso, se for um construtor, recebe "construtor"
+na frente d
+}}
+{{#placeholder}}[Função/Método]{{/placeholder}} {{descriptionPlaceholder}}
+{{! Parameters }}
+{{#parametersExist}}
+
+### Args
+---
+{{/parametersExist}}
+{{! Args }}
+{{#args}}
+- {{var}} ({{type}}{{#default}}, optional, default = {{&default}}{{/default}}):
+    - {{descriptionPlaceholder}}
+{{/args}}
+{{! KWArgs }}
+{{#kwargs}}
+- {{var}} ({{type}}{{#default}}, optional, default = {{&default}}{{/default}}):
+    - {{descriptionPlaceholder}}
+{{/kwargs}}
+{{! Returns }}
+{{#returnsExist}}
+{{#returns}}
+
+### Returns
+---
+    {{type}}: {{descriptionPlaceholder}}
+{{/returns}}
+{{/returnsExist}}
+
+---
+---
+---

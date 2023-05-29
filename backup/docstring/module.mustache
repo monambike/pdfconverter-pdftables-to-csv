@@ -1,0 +1,25 @@
+
+---
+---
+---
+
+{{! Nome do pacote e o direcionamento até ele }}
+## Package: pdfconverter >> {{#placeholder}}[packagename]{{/placeholder}}
+---
+---
+{{! Caso o módulo seja um construtor do pacote usa  o  nome  do
+módulo, caso contrário usa o nome do último pacote}}
+### Module Name: {{#placeholder}}{ifnotconstructor{[modulename]}{OR}ifconstructor{[uselastpackagename]}}{{/placeholder}} {{#placeholder}}ifconstructor{(Constructor, __init__)}{{/placeholder}}
+---
+{{! Caminho até o pacote }}
+### path: "pdfconverter\\\\\\\\\\\\\\\\{{#placeholder}}[packagename]{{/placeholder}}\\\\\\\\\\\\\\\\{{#placeholder}}[packagename/modulename.py]{{/placeholder}}"
+---
+---
+{{! Descrição do módulo e caso seja um construtor, descrição do
+pacote  do  pacote. Caso  seja  um  construtor,   deve   também
+apresentar a string 'Pacote e' }}
+{{#placeholder}}[Pacote e m]{{/placeholder}}ódulo {{descriptionPlaceholder}}
+
+---
+---
+---

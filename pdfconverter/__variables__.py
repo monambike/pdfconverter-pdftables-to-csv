@@ -1,460 +1,290 @@
-"""
----
----
----
+import os
+import pathlib
 
-## Package: pdfconverter
----
----
-### Module Name: __variables__
----
-### path: "pdfconverter\\\\\\\\__variables__.py
----
----
-Módulo  que  comporta  classes  com  variáveis  utilizadas   no
-projeto.
-
----
----
----
-"""
+from pandas.core.frame import DataFrame
 
 
-#region VARIABLES
+# region Classes
 
-class mvar:
-    """
-    ---
-    ---
-    ---
-    
-    ## Management Variables (mvar)
-    ---
-    ---
-    Classe  que   possui   variável   que   são   relacionadas   ao
-    gerenciamento de ações do projeto.
-    
-    ---
-    ---
-    ---
-    """
+class Var:
 
-    ConversionStart = ""
-    """
-    Variável que segura a função que vai ser executada  no  arquivo
-    principal em  __main__.  A  função  que  vai  ser  executada  é
-    atribuida  no  momento  em  que  o  argumento  de  caminho   de
-    importação é validado.
-    
-    Atualmente o  arquivo  de  importção  está  sendo  validado  na
-    função   "__ValidateImportPath()"   presente   no   pacote   de
-    argumentos "argument"
-    """
+    # region Constructors
 
-class avar:
-    """
-    ---
-    ---
-    ---
-    
-    ## Argument Variables (avar)
-    ---
-    ---
-    Classe que possui  variáveis  relacionadas  à  alguma  ação  ou
-    função relacionada à argumentos.
-    
-    ---
-    ---
-    ---
-    """
+    def __init__(self) -> None:
+        pass
 
-    patternColumnArgs = [
-        "Lote",
-        "Ordem",
-        "Codigo",
-        "Produto",
-        "Unidade",
-        "Quantidade",
-        "ValorMedio"
-    ]
-    """
-    Todos os argumentos que são relacionados à alterar  as  colunas
-    padrão dentro de uma array.
-    """
+    # endregion
 
-    #region PARSER
-    parser_Main = None
-    """Variável que vai ser responsável por criar o parser."""
-    parser_ArgsMain = None
-    """
-    Variável que vai ser responsável por fazer  a  manipulação  dos
-    argumentos dados.
-    """
-    #endregion
+    # region Fields
 
-    #region USER ARGS
-    path_ImportArg = ""
-    """
-    Caminho de importação com o valor fornecido pelo usuário.
-    """
-    path_ExportArg = ""
-    """
-    Caminho de exportação  com  o  valor  fornecido  pelo  usuário.
-    Atualmente esse valor apenas pode ser uma referência de pasta
-    """
-    readPDFPagesArg = "all"
-    """Páginas que vão ser lidas para realizar a conversão."""
-    FormattingMethodArg = ""
-    """Tipos de formatação escolhidos."""
-    #endregion
+    class Main:
+        FOLDER_PATH_PROJECT: str = str(pathlib.Path(__file__).parent.absolute())
+        """Usa o Script atual para pegar o caminho da pasta do projeto."""
 
-    #region ARGS DEFAULT VALUES
-    argName = ""
-    """Nome do argumento."""
-    defaultValue = None
-    """Valor que vem por padrão no argumento."""
-    nargsValue = '?'
-    """
-    Variável  que  define  o  número  de  valores  suportado   pelo
-    argumento, além de poder definir um  número  que  representa  a
-    quantidade em si, também é possível definir:
-    - '+' == 1 ou mais;
-    - '*' == 0 ou mais;
-    - '?' == 0 or 1.
-    """
-    contentType = str
-    """Tipo de valor do argumento."""
-    #endregion
+        FOLDER_NAME_EXPORT: str = "resultados"
 
-class cvar:
-    """
-    ---
-    ---
-    ---
-    
-    ## Conversion Variables (cvar)
-    ---
-    ---
-    Variáveis relacionadas à conversão.
-    
-    ---
-    ---
-    ---
-    """
-    
-    list_DataFrames = []
-    """
-    Variável que vai conter a lista de DataFrames de um determinado
-    arquivo PDF baseado  em  um  método  de  leitura,  podendo  ser
-    lattice ou stream.
-    """
+        FOLDER_PATH_INFO_FILES: str = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
 
-class fvar:
-    """
-    ---
-    ---
-    ---
-    
-    ## File Variables (fvar)
-    ---
-    ---
-    Variáveis  relacionadas  à  arquivos  como  nome  de  arquivos,
-    caminhos de importação e exportção, pasta do Script, número  de
-    páginas de arquivos PDF e estrutura de pastas.
-    
-    ---
-    ---
-    ---
-    """
+    class Arguments:
+        # region Parser
+        
+        parser_editable_main = None
+        """
+        Variável que vai ser responsável por  armazenar  o  objeto  que
+        representará o parser.
+        É possível configurar completamente um setup de argumentos  com
+        ele.
+        """
+        parser_main = None
+        """
+        Variável que representa o objeto do parser com  os  valores  já
+        interpretados, sejam eles recebidos  diretamente  da  linha  de
+        comando (pegos pelo  de  "sys.argv"  no  terminal)  ou  passado
+        através do método em "parse_args()".
+        """
 
-    #region CONFIG
-    folderpath_Script = ""
-    """Caminho da pasta do arquivo de script que está sendo executado."""
-    
-    file_TerminalFile = ""
-    """Variável que armazena o arquivo de saída do terminal em si."""
-    filepath_TerminalFile = ""
-    """Caminho para o arquivo do terminal."""
+        # endregion
 
-    filepath_RelatoryFile = ""
-    """Caminho para o arquivo que mostrará o relatório preliminar."""
-    filepath_PatternColumns = ""
-    """Caminho para o arquivo que mostrará as colunas no padrão."""
-    #endregion
+        # region Args
 
-    #region CONVERSION
+        # region Main
 
-    #region START
+        path_import: str = ""
+        """
+        Caminho de importação fornecido como argumento pelo usuário.\n
+        (str)
+        """
+        path_export: str = ""
+        """
+        Caminho de importação fornecido como argumento pelo usuário.
+        (str, optional, default = [Same from ImportPath])
+        """
+        page_numbers: str = ""
+        """
+        Número  de  página  (ou  intervalo  de  páginas)  que  irá  ser
+        utilizado como base para realizar a conversão.\n
+        (str, optional, default = "all")
+        """
 
-    #region FOLDER AND FILES INFO
-    folderpath_Import = ""
-    """
-    Caminho da pasta de importação onde os  arquivos  PDF  vão  ser
-    alocados.
-    """
-    folderpath_Export = ""
-    """
-    Caminho da pasta de exportação onde os arquivos  de  saída  vão
-    ser alocados.
-    """
-    folderpath_Result = ""
-    """Caminho da pasta de resultados."""
+        # endregion
 
-    quantity_ImportedFiles = ""
-    """
-    Variável  que  armazena  a  contagem  de  arquivos  que   serão
-    importados.
-    """
-    quantity_ExportedFiles = ""
-    """
-    Variável  que  armazena  a  contagem  de  arquivos  que   serão
-    exportados.
-    """
-    #endregion
-    
-    #endregion
+        # region Column Mapping
 
-    #region RUNTIME
+        mapping_lote: str = ""
+        """
+        Variável que armazena o valor para encontrar o lote no  arquivo
+        CSV quando feito o mapeamento.
+        """
+        mapping_ordem: str = ""
+        """
+        Variável que armazena o valor para encontrar a ordem no arquivo
+        CSV quando feito o mapeamento.
+        """
+        mapping_codigo: str = ""
+        """
+        Variável que armazena  o  valor  para  encontrar  o  código  no
+        arquivo CSV quando feito o mapeamento.
+        """
+        mapping_produto: str = ""
+        """
+        Variável que armazena o  valor  para  encontrar  o  produto  no
+        arquivo CSV quando feito o mapeamento.
+        """
+        mapping_unidade: str = ""
+        """
+        Variável que armazena o  valor  para  encontrar  a  unidade  no
+        arquivo CSV quando feito o mapeamento.    
+        """
+        mapping_quantidade: str = ""
+        """
+        Variável que armazena o valor para encontrar  a  quantidade  no
+        arquivo CSV quando feito o mapeamento.
+        """
+        mapping_valor_medio: str = ""
+        """
+        Variável que armazena o valor para encontrar o valor  médio  no
+        arquivo CSV quando feito o mapeamento.
+        """
 
-    #region CURRENT PDF INFO
-    filename_PDF = ""
-    """
-    Nome do arquivo PDF que vai ser convertido  (sem a extensão).
-    """
-    counter_PdfFile = 0
-    """
-    Contador do 'For' que manipula a conversão  dos  arquivos  PDF.
-    Conta os arquivos PDFs convertidos.
-    """
-    #endregion
+        # endregion
 
-    #region WITHOUT FORMATTING INFO
-    filepath_WithoutFormatting = ""
-    """
-    Caminho do arquivo de texto que vai ser gerado pelo PDF que vai
-    ser convertido.
-    """
-    counter_DataFrame = 0
-    """
-    Contador do 'For' que manipula o DataFrame que vai ser  passado
-    para o arquivo sem formatação.
-    """
-    #endregion
+        # region Settings
 
-    #region FILE PATHS FORMATTING TYPES
-    filepath_TableWithBlankCells = ""
-    """Formatação TableWithBlankCells."""
-    filepath_Main = ""
-    """Formatação Main."""
-    filepath_FullClear = ""
-    """Formatação FullClear."""
-    #endregion
+        folder_path_output_info: str = ""
+        """
+        Configuração utilizada  para  definir  o  caminho  na  onde  os
+        arquivos de saída com informações relevantes serão gerados.
+        """
+        make_mapping_columns_file: bool = False
+        """
+        Configuração que caso habilitada faz com que seja  realizado  o
+        mapeamento de  colunas  e  gerado  o  arquivo  com  as  colunas
+        mapeadas.
+        """
+        make_conversion_details_file: bool = False
+        """
+        Configuração que caso habilitada, faz com  que  seja  gerada  o
+        arquivo contendo detalhes da conversão.
+        """
+        make_output_info_file: bool = False
+        """
+        Configuração que caso habilitada, faz cm que o arquivo contendo
+        algumas informações à respeito da conversão  seja  gerado,  bem
+        como número de arquivos que foram pegos  para  a  conversão,  e
+        número de arquivos que serão exportados.
+        """
 
-    #endregion
+        # endregion
 
-    #region FOLDER STRUCTURE
-    foldername_Result = "resultados"
-    """
-    Caminhos que indicam a localização das pastas raíz que irão ser
-    geradas futuramente.
-    """
-    list_ReadingPaths = [
-        "lattice",
-        "stream"
-    ]
-    """
-    Caminhos que indicam a localização das pastas  dos  métodos  de
-    leitura que vão ser geradas  futuramente  dentro  da  pasta  de
-    exportação.
-    """
-    list_FormattingPaths = [
-        "main",
-        "fullClear",
-        "tableWithBlankCells",
-        "withoutFormatting"
-    ]
-    """
-    Caminhos que indicam a localização das pastas  dos  métodos  de
-    formatação que vão ser geradas futuramente  dentro  das  pastas
-    de métodos de leitura, que estão dentro da pasta de exportação.
-    """
-    #endregion
+        # endregion
 
-    #endregion
+    class CurrentConvertedFileInfo:
+        index_pdf: int = 0
 
-class pvar:
-    """
-    ---
-    ---
-    ---
-    
-    ## Pattern Variables (pvar)
-    ---
-    ---
-    Variáveis relacionadas à padronização de colunas.
-    
-    ---
-    ---
-    ---
-    """
+        file_name_pdf: str = ""
+        file_full_name_pdf: str = ""
+        file_path_pdf: str = ""
+        
+        current_file_reading_library: str = ""
+        current_file_reading_type: str = ""
+        current_file_export_type: str = ""
 
-    list_UserGivenColumnToChange = []
-    """
-    Variável que vai segurar e possuir todos os argumentos
-    que o usuário quer que altere nas colunas.
-    """
+        list_dataframe: list[DataFrame] = None
 
-    #region COLUMN MAPPING
+    class ConversionInfo:
 
-    #region SORTED BY COLUMN
-    lote =\
-        [
-        '--Lote',
-        'lote'
+        conversion_type: classmethod = None
+
+        folder_path_import: str = ""
+        folder_path_export: str = ""
+
+        page_numbers_to_read: str = ""
+        
+        folder_name_export: str = ""
+
+        quantity_files_import: int = 0
+        
+        quantity_files_export: int = 0
+
+    class ColumnMapping:
+        MAPPING_LOTE: list[str] = [
+            '--Lote',
+            'lote'
         ]
-    """Lote."""
-    ordem =\
-        [
-        '--Ordem',
-        'ordem',
-        'item',
-        'nº item'
+        """Lote."""
+        MAPPING_ORDEM: list[str] = [
+            '--Ordem',
+            'ordem',
+            'item',
+            'nº item'
         ]
-    """Ordem (Sequencial)."""
-    codigo =\
-        [
-        '--Codigo',
-        'codigo',
-        'código',
-        'cód',
-        'cod. produto'
+        """Ordem (Sequencial)."""
+        MAPPING_CODIGO: list[str] = [
+            '--Codigo',
+            'codigo',
+            'código',
+            'cód',
+            'cod. produto'
         ]
-    """Código."""
-    descricao = [
-        '--Produto',
-        'produto',
-        'descricao',
-        'descriçao',
-        'descricão',
-        'descrição',
-        'descrição do item',
-        'descrição do produto',
-        'descrição do material',
-        'descrição dos materiais',
-        'descrição dos medicamentos',
-        'descrição do material/serviço',
-        'especificações dos medicamentos',
-        'objeto',
-        'medicamento',
-        'objeto/medicamento',
-        'produto - especificação',
-        'especificações técnicas']
-    """Descrição."""
-    unidade =\
-        [
-        '--Unidade',
-        'unidade',
-        'un',
-        'und',
-        'unid',
-        'unid.',
-        'emb',
-        'u/m',
-        'apresentação',
-        'especificação'
+        """Código."""
+        MAPPING_DESCRICAO: list[str] = [
+            '--Produto',
+            'produto',
+            'descricao',
+            'descriçao',
+            'descricão',
+            'descrição',
+            'descrição do item',
+            'descrição do produto',
+            'descrição do material',
+            'descrição dos materiais',
+            'descrição dos medicamentos',
+            'descrição do material/serviço',
+            'especificações dos medicamentos',
+            'objeto',
+            'medicamento',
+            'objeto/medicamento',
+            'produto - especificação',
+            'especificações técnicas'
         ]
-    """Unidade."""
-    quantidade =\
-        [
-        '--Quantidade',
-        'quantidade',
-        'qtd',
-        'qte',
-        'qtd.',
-        'qde.',
-        'qtde',
-        'qntd',
-        'qntd.',
-        'quant.'
+        """Descrição."""
+        MAPPING_UNIDADE: list[str] = [
+            '--Unidade',
+            'unidade',
+            'un',
+            'und',
+            'unid',
+            'unid.',
+            'emb',
+            'u/m',
+            'apresentação',
+            'especificação'
         ]
-    """Quantidade."""
-    valormedio =\
-        [
-        '--ValorMedio',
-        'valormedio',
-        'prev. custo unit. (r$)',
-        'valor unit',
-        'v. unit',
-        'val. unitário',
-        'valor unitário',
-        'valor médio',
-        'valor médio unitário r$',
-        'estimado unitário'
+        """Unidade."""
+        MAPPING_QUANTIDADE: list[str] = [
+            '--Quantidade',
+            'quantidade',
+            'qtd',
+            'qte',
+            'qtd.',
+            'qde.',
+            'qtde',
+            'qntd',
+            'qntd.',
+            'quant.'
         ]
-    """Valor Médio."""
-    #endregion
+        """Quantidade."""
+        MAPPING_VALORMEDIO: list[str] = [
+            '--ValorMedio',
+            'valormedio',
+            'prev. custo unit. (r$)',
+            'valor unit',
+            'v. unit',
+            'val. unitário',
+            'valor unitário',
+            'valor médio',
+            'valor médio unitário r$',
+            'estimado unitário'
+        ]
+        """Valor Médio."""
 
-    #region ALL
-    StoredColumns = []
-    """Todas as recomendações de colunas agrupadas."""
-    StoredColumns.extend((
-        lote,
-        ordem,
-        codigo,
-        descricao,
-        unidade,
-        quantidade,
-        valormedio
-    ))
-    #endregion
+    class ConversionInCodeSettings:
+        #  Suportadas: tabula, camelot
+        READING_LIBRARIES: tuple = (
+            "tabula",
+            "camelot"
+        )
 
-    #endregion
+        # Suportadas: lattice, stream
+        TABULA_READING_TYPES: tuple = (
+            "lattice",
+            "stream"
+        )
 
-class vvar:
-    """
-    ---
-    ---
-    ---
-    
-    ## Visual Variables (vvar)
-    ---
-    ---
-    Variáveis relacionadas ao visual da aplicação.
-    
-    ---
-    ---
-    ---
-    """
+        # Suportadas: "withoutformatting", "tablewithblankcells", "main", "fullclear"
+        TABULA_OUTPUT_TYPES: tuple = (
+            "withoutformatting",
+            "tablewithblankcells",
+            "main",
+            "fullclear"
+        )
 
-    GiantLine = (
-        "_________________________________________"
-        "_________________________________________"
-        "_________________________________________"
-        "_________________________________________"
-        "_________________________________________"
-        "_________________________________________"
-        "_________________________________________"
-        "_________________________________________"
-        "_________________________________________"
-        "_________________________________"
-    )
-    """
-    Linha gigante que vai ficar disposta  em  alguns  lugares  como
-    divisão no terminal.
+        # Suportadas: withoutformatting, main
+        CAMELOT_OUTPUT_TYPES: tuple = (
+            "withoutformatting",
+            "main"
+        )
+        # Suportadas: lattice
+        CAMELOT_READING_TYPES: tuple = ("lattice",)
 
-    Existem 402 linhas.
-    """
-    BlankSpaces = (
-        "                                         "
-        "                                         "
-        "                                         "
-        "                                         "
-        "    "
-    )
-    """
-    Variável que contém um espaço gigante usado em alguns layouts.
-    
-    Existem 168 espaços.
-    """
+    class OutputInfo:
+        dictionary_prior_info: dict = {}
 
-#endregion
+        dictionary_conversion_info: dict = {}
+
+        index_error: int = 0
+        dictionary_errors: dict = {}
+
+    # endregion
+
+# endregion

@@ -1,0 +1,5 @@
+camelot-py[cv]~=0.9.0
+pandas~=1.3.5
+pdfminer.six~=20211012
+setuptools~=57.0.0
+tabula-py~=2.3.0

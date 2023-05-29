@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net" modified="2022-01-24T13:56:19.699Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 OPR/82.0.4227.50" etag="Xnr5J3AnI--qinS6bY-n" version="16.4.5" type="github" pages="3">
+  <diagram id="WvkQ5et1a_Zy15WxrUuq" name="Fluxo 1">
+    <mxGraphModel dx="942" dy="584" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="G2BBFLp37IOC7s9_-jVF-3" value="Caminho de Importação e Exportação" style="html=1;strokeWidth=2;shape=manualInput;whiteSpace=wrap;rounded=1;size=26;arcSize=11;" parent="1" vertex="1">
+          <mxGeometry x="130" y="43.13" width="100" height="73.75" as="geometry" />
+        </mxCell>
+        <mxCell id="X2SuicVylPpx4De8zk1o-1" value="Início" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="10" y="45.00999999999999" width="70" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="gJXTa6RzRxWyE8OfMOOK-1" value="Clica em converter" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="280" y="55.00999999999999" width="110" height="50" as="geometry" />
+        </mxCell>
+        <UserObject label="" link="data:page/id,LNDDmOAuZDWnM73pkWW8" id="gJXTa6RzRxWyE8OfMOOK-2">
+          <mxCell style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=offPageConnector;rounded=0;size=0.5;" parent="1" vertex="1">
+            <mxGeometry x="440" y="46.89" width="69.99" height="69.99" as="geometry" />
+          </mxCell>
+        </UserObject>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="LNDDmOAuZDWnM73pkWW8" name="Fluxo 2">
+    <mxGraphModel dx="942" dy="5260" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="24KtUXbinWdmSVlW-MfN-0" />
+        <mxCell id="24KtUXbinWdmSVlW-MfN-1" parent="24KtUXbinWdmSVlW-MfN-0" />
+        <mxCell id="s8_TunTDkyJddNCfwp4d-0" value="Início" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;" parent="24KtUXbinWdmSVlW-MfN-1" vertex="1">
+          <mxGeometry x="10" y="-4620" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="3CvRPhAZhXRlhHbtn_xo-2" value="Caminhos de importação, &lt;br&gt;exportação e número de páginas" style="html=1;strokeWidth=2;shape=manualInput;whiteSpace=wrap;rounded=1;size=26;arcSize=11;" parent="24KtUXbinWdmSVlW-MfN-1" vertex="1">
+          <mxGeometry x="120" y="-4650" width="100" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="i2ob2r2O2lKemCqviMBL-1" value="output_info" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.stored_data;whiteSpace=wrap;" parent="24KtUXbinWdmSVlW-MfN-1" vertex="1">
+          <mxGeometry x="640" y="-4430" width="91.67" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="LvhzFlen3qc1S-WYaZ7a-0" value="Os dados são disponibilizados na Grid para alteração" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.display;whiteSpace=wrap;" parent="24KtUXbinWdmSVlW-MfN-1" vertex="1">
+          <mxGeometry x="475" y="-4252.5" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LvhzFlen3qc1S-WYaZ7a-1" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.flowchart.collate;" parent="24KtUXbinWdmSVlW-MfN-1" vertex="1">
+          <mxGeometry x="79.99999999999994" y="-4280" width="65" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="LvhzFlen3qc1S-WYaZ7a-2" value="Fim" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" parent="24KtUXbinWdmSVlW-MfN-1" vertex="1">
+          <mxGeometry x="650.84" y="-4247.5" width="83.33" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="LvhzFlen3qc1S-WYaZ7a-3" value="Os arquivos são colocados no padrão" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="24KtUXbinWdmSVlW-MfN-1" vertex="1">
+          <mxGeometry x="500" y="-4637.5" width="85" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="LvhzFlen3qc1S-WYaZ7a-5" value="É criada a estrutura de pastas" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="24KtUXbinWdmSVlW-MfN-1" vertex="1">
+          <mxGeometry x="379" y="-4630" width="70" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="LvhzFlen3qc1S-WYaZ7a-12" value="Receptação e interpretação dos argumentos" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="24KtUXbinWdmSVlW-MfN-1" vertex="1">
+          <mxGeometry x="260" y="-4630" width="70" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="527cZqwzz0L1zYPdaZP7" name="Fluxo 3">
+    <mxGraphModel dx="942" dy="584" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="D7-13KCtyvsSgtUS6clQ-0" />
+        <mxCell id="D7-13KCtyvsSgtUS6clQ-1" parent="D7-13KCtyvsSgtUS6clQ-0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

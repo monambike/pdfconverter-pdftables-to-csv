@@ -4,14 +4,26 @@
         {
             "type": "python",
             "request": "launch",
-            "name": "Módulo Principal",
+            "name": "Start",
             "program": "${workspaceFolder}\\pdfconverter.py"
         },
         {
             "type": "python",
             "request": "launch",
-            "name": "Rodar Setup",
+            "name": "Setup",
             "program": "${workspaceFolder}\\setup.py"
+        },
+        {
+            "type": "python",
+            "request": "launch",
+            "name": "Start At Desktop",
+            "program": "${workspaceFolder}\\pdfconverter.py",
+            "args": [
+                "--ImportPath",
+                "C:\\users\\dvp10\\desktop\\EDITAL (2).pdf",
+                "--ExportPath",
+                "C:\\users\\dvp10\\desktop"
+            ]
         }
     ]
 }

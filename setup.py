@@ -1,46 +1,22 @@
-import os
-from setuptools import setup, find_packages
+from setuptools import setup
+from setuptools import find_packages
 
-def read(FileName):
-    """
-    ---
-    ---
-    ---
-    
-    ## read (Public)
-    ---
-    ---
-    Método que retorna a leitura de um arquivo.
-    
-    ### Args
-    ---
-    - FileName (str):
-        - Nome do arquivo que irá ser lido.
-    
-    ### Returns
-    ---
-        [type]: [description]
-    
-    ---
-    ---
-    ---
-    """
-    return open(os.path.join(os.path.dirname(__file__), FileName)).read()
+# region Public Methods
 
 setup(
-    #region DESCRIÇÃO
+    # region Descrição
     name = "pdfconverter",
     description = "Projeto que tem como objetivo realizar a leitura (utilizando-"
                   "se de bibliotecas externas) de arquivos PDF, identificar tabe"
                   "las e realizar a conversão para um arquivo CSV formatado.",
-    #endregion
-    #region AUTORIA
+    # endregion
+    # region Autoria
     author = "Vinícius Gabriel Marques de Melo",
     author_email = "vinicius_gabriel258@hotmail.com",
     url = "https://github.com/monambike",
     
-    #endregion
-    #region DESCRIÇÃO TÉCNICA E REQUERIMENTOS
+    # endregion
+    # region Descrição Técnica e Detalhes
     version = "1.0",
     license = "CC0",
     packages = find_packages(include=["pdfconverter", "pdfconverter.*"]),
@@ -54,10 +30,14 @@ setup(
         "Topic :: Utilities"
     ],
     install_requires = [
-        "numpy==1.20.2",
-        "pandas==1.2.3",
-        "pdfminer.six==20201018",
-        "tabula-py==2.3.0"
+        "camelot-py~=0.9.0",
+        "numpy~=1.20.2",
+        "pandas~=1.2.3",
+        "pdfminer.six~=20211012",
+        "tabula-py~=2.3.0"
     ]
-    #endregion
+
+    # endregion
 )
+
+# endregion

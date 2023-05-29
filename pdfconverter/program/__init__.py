@@ -1,47 +1,19 @@
-"""
----
----
----
-
-## Package: pdfconverter >> program
----
----
-### Module Name: program (Constructor, __init__)
----
-### path: "pdfconverter\\\\\\\\program\\\\\\\\__init__.py"
----
----
-Pacote e módulo contendo funções relacionadas à ações diretas à
-PDFConverter.
-
----
----
----
-"""
-
-
-# [>] Geral
 import sys
 
+from pdfconverter import output_info
+from pdfconverter.output_info import errors
 
-#region PUBLIC METHODS
 
-def Exit():
-    """
-    ---
-    ---
-    ---
+# region Public Methods
 
-    ### Exit (Public)
-    ---
-    Fecha e para a execução do PDFConverter.
-    
-    ---
-    ---
-    ---
-    """
 
-    # [>] Fecha e para o programa
-    sys.exit()
+def finish() -> None:
+    try:
+        output_info.make_file()
 
-#endregion
+        sys.exit()
+    except Exception as exception:
+        errors.add_error_method_unknown_exception(error_exception = exception)
+
+
+# endregion
