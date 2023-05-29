@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{f39ef143-fe7f-449d-8ef8-354c2b1c8c71}</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>
+    </StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>pdfconverter_script</Name>
+    <RootNamespace>pdfconverter_script</RootNamespace>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include=".vscode\extensions.json" />
+    <Content Include=".vscode\launch.json" />
+    <Content Include="LICENSE" />
+    <Content Include="pdfconverter\argument\__pycache__\validateargs.cpython-39.pyc" />
+    <Content Include="pdfconverter\argument\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\format\__pycache__\fullclear.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\format\__pycache__\main.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\format\__pycache__\tablewithblankcells.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\format\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\__pycache__\format.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\__pycache__\withoutformatting.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\conversion\__pycache__\__init__.cpython-39.pyc.2330617629136" />
+    <Content Include="pdfconverter\patterncolumns\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\program\utilities\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\program\__pycache__\exceptions.cpython-39.pyc" />
+    <Content Include="pdfconverter\program\__pycache__\utilities.cpython-39.pyc" />
+    <Content Include="pdfconverter\program\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\settings\__pycache__\pandassettings.cpython-39.pyc" />
+    <Content Include="pdfconverter\settings\__pycache__\project.cpython-39.pyc" />
+    <Content Include="pdfconverter\settings\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\stringformat\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\terminalfile\message\__pycache__\design.cpython-39.pyc" />
+    <Content Include="pdfconverter\terminalfile\message\__pycache__\error.cpython-39.pyc" />
+    <Content Include="pdfconverter\terminalfile\message\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\terminalfile\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\_projfiles\doc\exception.mustache" />
+    <Content Include="pdfconverter\_projfiles\doc\method.mustache" />
+    <Content Include="pdfconverter\_projfiles\doc\module.mustache" />
+    <Content Include="pdfconverter\_projfiles\doc\variable.mustache" />
+    <Content Include="pdfconverter\__pycache__\pdfconverter.cpython-39.pyc" />
+    <Content Include="pdfconverter\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="pdfconverter\__pycache__\__main__.cpython-39.pyc" />
+    <Content Include="pdfconverter\__pycache__\__variables__.cpython-39.pyc" />
+    <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".vscode\" />
+    <Folder Include="build\" />
+    <Folder Include="build\lib\" />
+    <Folder Include="build\lib\pdfconverter\" />
+    <Folder Include="build\lib\pdfconverter\argument\" />
+    <Folder Include="build\lib\pdfconverter\conversion\" />
+    <Folder Include="build\lib\pdfconverter\conversion\format\" />
+    <Folder Include="build\lib\pdfconverter\patterncolumns\" />
+    <Folder Include="build\lib\pdfconverter\program\" />
+    <Folder Include="build\lib\pdfconverter\program\utilities\" />
+    <Folder Include="build\lib\pdfconverter\settings\" />
+    <Folder Include="build\lib\pdfconverter\stringformat\" />
+    <Folder Include="build\lib\pdfconverter\terminalfile\" />
+    <Folder Include="build\lib\pdfconverter\terminalfile\message\" />
+    <Folder Include="pdfconverter\" />
+    <Folder Include="pdfconverter\argument\" />
+    <Folder Include="pdfconverter\argument\__pycache__\" />
+    <Folder Include="pdfconverter\conversion\" />
+    <Folder Include="pdfconverter\conversion\format\" />
+    <Folder Include="pdfconverter\conversion\format\__pycache__\" />
+    <Folder Include="pdfconverter\conversion\__pycache__\" />
+    <Folder Include="pdfconverter\patterncolumns\" />
+    <Folder Include="pdfconverter\patterncolumns\__pycache__\" />
+    <Folder Include="pdfconverter\program\" />
+    <Folder Include="pdfconverter\program\utilities\" />
+    <Folder Include="pdfconverter\program\utilities\__pycache__\" />
+    <Folder Include="pdfconverter\program\__pycache__\" />
+    <Folder Include="pdfconverter\settings\" />
+    <Folder Include="pdfconverter\settings\__pycache__\" />
+    <Folder Include="pdfconverter\stringformat\" />
+    <Folder Include="pdfconverter\stringformat\__pycache__\" />
+    <Folder Include="pdfconverter\terminalfile\" />
+    <Folder Include="pdfconverter\terminalfile\message\" />
+    <Folder Include="pdfconverter\terminalfile\message\__pycache__\" />
+    <Folder Include="pdfconverter\terminalfile\__pycache__\" />
+    <Folder Include="pdfconverter\_backup\" />
+    <Folder Include="pdfconverter\_projfiles\" />
+    <Folder Include="pdfconverter\_projfiles\doc\" />
+    <Folder Include="pdfconverter\__pycache__\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="build\lib\pdfconverter\argument\validateargs.py" />
+    <Compile Include="build\lib\pdfconverter\argument\__init__.py" />
+    <Compile Include="build\lib\pdfconverter\conversion\format\fullclear.py" />
+    <Compile Include="build\lib\pdfconverter\conversion\format\main.py" />
+    <Compile Include="build\lib\pdfconverter\conversion\format\tablewithblankcells.py" />
+    <Compile Include="build\lib\pdfconverter\conversion\format\__init__.py" />
+    <Compile Include="build\lib\pdfconverter\conversion\withoutformatting.py" />
+    <Compile Include="build\lib\pdfconverter\conversion\__init__.py" />
+    <Compile Include="build\lib\pdfconverter\patterncolumns\__init__.py" />
+    <Compile Include="build\lib\pdfconverter\program\exceptions.py" />
+    <Compile Include="build\lib\pdfconverter\program\utilities\temporaryfile.py" />
+    <Compile Include="build\lib\pdfconverter\program\utilities\time.py" />
+    <Compile Include="build\lib\pdfconverter\program\utilities\__init__.py" />
+    <Compile Include="build\lib\pdfconverter\program\__init__.py" />
+    <Compile Include="build\lib\pdfconverter\settings\pandassettings.py" />
+    <Compile Include="build\lib\pdfconverter\settings\project.py" />
+    <Compile Include="build\lib\pdfconverter\settings\__init__.py" />
+    <Compile Include="build\lib\pdfconverter\stringformat\__init__.py" />
+    <Compile Include="build\lib\pdfconverter\terminalfile\message\design.py" />
+    <Compile Include="build\lib\pdfconverter\terminalfile\message\error.py" />
+    <Compile Include="build\lib\pdfconverter\terminalfile\message\__init__.py" />
+    <Compile Include="build\lib\pdfconverter\terminalfile\__init__.py" />
+    <Compile Include="build\lib\pdfconverter\__init__.py" />
+    <Compile Include="build\lib\pdfconverter\__main__.py" />
+    <Compile Include="build\lib\pdfconverter\__variables__.py" />
+    <Compile Include="pdfconverter.py" />
+    <Compile Include="pdfconverter\argument\validateargs.py" />
+    <Compile Include="pdfconverter\argument\__init__.py" />
+    <Compile Include="pdfconverter\conversion\format\fullclear.py" />
+    <Compile Include="pdfconverter\conversion\format\main.py" />
+    <Compile Include="pdfconverter\conversion\format\tablewithblankcells.py" />
+    <Compile Include="pdfconverter\conversion\format\__init__.py" />
+    <Compile Include="pdfconverter\conversion\withoutformatting.py" />
+    <Compile Include="pdfconverter\conversion\__init__.py" />
+    <Compile Include="pdfconverter\patterncolumns\__init__.py" />
+    <Compile Include="pdfconverter\program\exceptions.py" />
+    <Compile Include="pdfconverter\program\utilities\temporaryfile.py" />
+    <Compile Include="pdfconverter\program\utilities\time.py" />
+    <Compile Include="pdfconverter\program\utilities\__init__.py" />
+    <Compile Include="pdfconverter\program\__init__.py" />
+    <Compile Include="pdfconverter\settings\pandassettings.py" />
+    <Compile Include="pdfconverter\settings\project.py" />
+    <Compile Include="pdfconverter\settings\__init__.py" />
+    <Compile Include="pdfconverter\stringformat\__init__.py" />
+    <Compile Include="pdfconverter\terminalfile\message\design.py" />
+    <Compile Include="pdfconverter\terminalfile\message\error.py" />
+    <Compile Include="pdfconverter\terminalfile\message\__init__.py" />
+    <Compile Include="pdfconverter\terminalfile\__init__.py" />
+    <Compile Include="pdfconverter\_backup\argument.py" />
+    <Compile Include="pdfconverter\_backup\code.py" />
+    <Compile Include="pdfconverter\_backup\format.py" />
+    <Compile Include="pdfconverter\_backup\pdfconverter.py" />
+    <Compile Include="pdfconverter\__init__.py" />
+    <Compile Include="pdfconverter\__main__.py" />
+    <Compile Include="pdfconverter\__variables__.py" />
+    <Compile Include="setup.py" />
+  </ItemGroup>
+  <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
+  <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
