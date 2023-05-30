@@ -5,6 +5,8 @@
 PDFConverter é um projeto desenvolvido Python que deve ser convertido para executável com o objetivo de converter um grande número de tabelas em PDF rapidamente e sem precisar de muitas ações por parte do usuário. O executável vai ser chamado por um aplicativo desenvolvido em C#.
 O projeto era chamado de PDFConverter, mas teve seu nome alterado para OuroWebPDFConverter. Esse repositório se refere à versão 1.0 do TFS da empresa.
 
+![image](https://github.com/monambike/pdfconverter-pdftables-to-csv/assets/35270174/1a8dd06c-4d8b-4334-91ed-6e5098336138)
+
 ## SUMÁRIO
 
 - [BIBLIOTECAS](#bibliotecas)
