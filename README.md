@@ -1,6 +1,4 @@
-# PDFConverter - Documentação
+# PDFConverter Documentation
 ***(pdfconverter_docs - v1.0)***
 
-<br>
-
-Repositório contendo PDFs utilizados para realizar testes de conversão e exportação de PDF e documentos Word com relatório de sucesso.
+Repository containing PDFs used for testing PDF conversion and export, as well as Word documents with success and fail reports.
