@@ -2,6 +2,10 @@
 
 PDFConverter is a Python project that needs to be converted into an executable file in order to quickly interpret and convert a large number of tables into PDF format without requiring extensive user interaction.
 
+You can also check the branchs [docs](https://github.com/monambike/pdfconverter-pdftables-to-csv/tree/docs) or the [desktop application](https://github.com/monambike/pdfconverter-pdftables-to-csv/tree/desktop) used for testing the call of this Script.
+
+## Project Structure
+
 ![image](https://github.com/monambike/pdfconverter-pdftables-to-csv/assets/35270174/c14e73d1-4143-4134-b3da-29f57bbd6680)
 
 ## TABLE OF CONTENTS
