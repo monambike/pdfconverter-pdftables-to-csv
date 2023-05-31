@@ -1,11 +1,9 @@
 # PDFConverter - Script
 
-<br>
-
 PDFConverter é um projeto desenvolvido Python que deve ser convertido para executável com o objetivo de converter um grande número de tabelas em PDF rapidamente e sem precisar de muitas ações por parte do usuário. O executável vai ser chamado por um aplicativo desenvolvido em C#.
 O projeto era chamado de PDFConverter, mas teve seu nome alterado para OuroWebPDFConverter. Esse repositório se refere à versão 1.0 do TFS da empresa.
 
-![image](https://github.com/monambike/pdfconverter-pdftables-to-csv/assets/35270174/1a8dd06c-4d8b-4334-91ed-6e5098336138)
+![image](https://github.com/monambike/pdfconverter-pdftables-to-csv/assets/35270174/c14e73d1-4143-4134-b3da-29f57bbd6680)
 
 ## SUMÁRIO
 
@@ -38,8 +36,6 @@ O projeto era chamado de PDFConverter, mas teve seu nome alterado para OuroWebPD
             - [Três Colunas](#três-colunas)
         - [EXPORTAÇÃO \[fullClear\]](#exportação-fullclear)
 
-<br>
-
 ## BIBLIOTECAS
 ### Python
 Lista de bibliotecas utilizadas para que o script em Python fosse desenvolvido:
@@ -47,47 +43,29 @@ Lista de bibliotecas utilizadas para que o script em Python fosse desenvolvido:
 - [**Tabula**](https://tabula.technology/), para poder fazer a leitura do arquivo PDF;
 - E outras bibliotecas padrão da linguagem \(Python\) também foram utilizadas como o [**Glob**](https://docs.python.org/3/library/glob.html) para poder resgatar apenas arquivos com a extensão de PDF, [**OS**](https://docs.python.org/3/library/os.html) para realizar operações do sistema, [**argparse**](https://docs.python.org/3/library/argparse.html) para realizar o recebimento e manipulação de argumentos, entre outras.
 
-<br>
-
 ## FORMATAÇÕES
 Tipos de formatações e para quais arquivos foram realizadas. Quando um arquivo for mostrado que foi exportado (em um formato de tabela) significa que todas as formatações acima da exportação serão realizadas.
-
-<br>
 
 ## **Leitura**
 Formatações relacionadas à leitura.
 
-<br>
-
 #### Remove Aspas Duplas
 Remove todas as aspas duplas do DataFrame para evitar problemas futuros.
-
-<br>
 
 #### Troca Ponto e Vírgula
 Troca todos os ponto e vírgula do DataFrame por vírgulas para evitar conflitos.
 
-<br>
-
 #### Deleta Linhas Vazias
 Apaga todas as linhas que estão vazias no DataFrame.
-
-<br>
 
 #### Deleta Colunas Vazias
 Apaga todas as colunas que estão vazias no DataFrame.
 
-<br>
-
 #### Transforma o Cabeçalho em Corpo
 Transforma o cabeçalho em corpo para remover a formatação desnecessária e prejudicial.
 
-<br>
-
 #### Remove Quebras de Linha
 Remove quebras de linha que ocorrem quando o PDF possui uma linha muito grande.
-
-<br>
 
 ## **Conversão**
 Formatações relacionadas à conversão.
