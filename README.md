@@ -25,7 +25,7 @@ PDFConverter is a Python project that needs to be converted into an executable f
         - [EXPORT \[tableWithBlankCells\]](#export-tablewithblankcells)
             - [Empty Data](#empty-data)
             - [Adjacent Double Quotes](#adjacent-double-quotes)
-            - [Space after Separator](#space-after-separator)
+            - [Space After a Separator](#space-after-a-separator)
             - [Space between Separators and Double Quotes](#space-between-separators-and-double-quotes)
             - [Quotes and One Column (Second Check)](#quotes-and-one-column-second-check)
         - [EXPORT \[main\]](#export-main)
