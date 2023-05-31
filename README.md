@@ -146,7 +146,7 @@ It becomes:
 
 <br>
 
-#### Leading Space in the Line
+#### Space at the Beginning of the Line
 Removes leading spaces in the lines.
 
 If it is:
