@@ -7,7 +7,7 @@ PDFConverter is a Python project that needs to be converted into an executable f
 ## TABLE OF CONTENTS
 
 - [LIBRARIES](#libraries)
-- [FORMATS](#formats)
+- [FORMATTING](#formatting)
     - [Reading](#reading)
         - [Remove Double Quotes](#remove-double-quotes)
         - [Delete Empty Lines](#delete-empty-lines)
