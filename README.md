@@ -4,7 +4,8 @@ PDFConverter is a Python project that needs to be converted into an executable f
 
 You can also check the branchs [docs](https://github.com/monambike/pdfconverter-pdftables-to-csv/tree/docs) or the [desktop application](https://github.com/monambike/pdfconverter-pdftables-to-csv/tree/desktop) used for testing the call of this Script.
 
-Example of Script call:
+**Example of Script call:**
+
 ```
 python pdfconverter.py "--ImportPath" "C:\\users\\dvp10\\desktop\\EDITAL (2).pdf" "--ExportPath" "C:\\users\\dvp10\\desktop" "--PageNumber" "all"
 ```
