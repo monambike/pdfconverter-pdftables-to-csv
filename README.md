@@ -18,7 +18,7 @@ PDFConverter is a Python project that needs to be converted into an executable f
     - [Conversion](#conversion)
         - [EXPORT \[withoutFormatting\]](#export-withoutformatting)
             - [Empty Data in Header](#empty-data-in-header)
-            - [Line Breaks within Data](#line-breaks-within-data)
+            - [Line Breaks in the Middle of Data](#line-breaks-in-the-middle-of-data)
             - [Semicolon at the End of the Line](#semicolon-at-the-end-of-the-line)
             - [Space at the Beginning of the Line](#space-at-the-beginning-of-the-line)
             - [Quotes and One Column \(First Check\)](#quotes-and-one-column-first-check)
