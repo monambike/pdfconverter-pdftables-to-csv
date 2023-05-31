@@ -1,81 +1,80 @@
 # PDFConverter - Script
 
-PDFConverter é um projeto desenvolvido Python que deve ser convertido para executável com o objetivo de converter um grande número de tabelas em PDF rapidamente e sem precisar de muitas ações por parte do usuário. O executável vai ser chamado por um aplicativo desenvolvido em C#.
-O projeto era chamado de PDFConverter, mas teve seu nome alterado para OuroWebPDFConverter. Esse repositório se refere à versão 1.0 do TFS da empresa.
+PDFConverter is a Python project that needs to be converted into an executable file in order to quickly interpret and convert a large number of tables into PDF format without requiring extensive user interaction.
 
 ![image](https://github.com/monambike/pdfconverter-pdftables-to-csv/assets/35270174/c14e73d1-4143-4134-b3da-29f57bbd6680)
 
-## SUMÁRIO
+## TABLE OF CONTENTS
 
-- [BIBLIOTECAS](#bibliotecas)
-- [FORMATAÇÕES](#formatações)
-    - [Leitura](#leitura)
-        - [Remove Aspas Duplas](#remove-aspas-duplas)
-        - [Deleta Linhas Vazias](#deleta-linhas-vazias)
-        - [Deleta Colunas Vazias](#deleta-colunas-vazias)
-        - [Transforma o Cabeçalho em Corpo](#transforma-o-cabeçalho-em-corpo)
-        - [Remove Quebras de Linha](#remove-quebras-de-linha)
-        - [Troca Ponto e Vírgula](#troca-ponto-e-vírgula)
-    - [Conversão](#conversão)
-        - [EXPORTAÇÃO \[withoutFormatting\]](#exportação-withoutformatting)
-            - [Dados Vazios no Cabeçalho](#dados-vazios-no-cabeçalho)
-            - [Quebras de Linhas no Meio dos Dados](#quebras-de-linhas-no-meio-dos-dados)
-            - [Ponto e Vírgula no Final da Linha](#ponto-e-vírgula-no-final-da-linha)
-            - [Espaço no Início da Linha](#espaço-no-início-da-linha)
-            - [Aspas e Uma Coluna \(Primeira Verificação\)](#aspas-e-uma-coluna-primeira-verificação)
-        - [EXPORTAÇÃO \[tableWithBlankCells\]](#exportação-tablewithblankcells)
-            - [Dados Vazios](#dados-vazios)
-            - [Aspas Duplas Adjacentes](#aspas-duplas-adjacentes)
-            - [Espaço Após um Separador](#espaço-após-um-separador)
-            - [Espaço entre Separadores e Aspas Duplas](#espaço-entre-separadores-e-aspas-duplas)
-            - [Aspas e Uma Coluna (Segunda Verificação)](#aspas-e-uma-coluna-segunda-verificação)
-        - [EXPORTAÇÃO \[main\]](#exportação-main)
-            - [Aspas no Início](#aspas-no-início)
-            - [Aspas no Final](#aspas-no-final)
-            - [Linhas Vazias ou Sem Aspas \(Segunda Verificação\)](#linhas-vazias-ou-sem-aspas-segunda-verificação)
-            - [Três Colunas](#três-colunas)
-        - [EXPORTAÇÃO \[fullClear\]](#exportação-fullclear)
+- [LIBRARIES](#libraries)
+- [FORMATS](#formats)
+    - [Reading](#reading)
+        - [Remove Double Quotes](#remove-double-quotes)
+        - [Delete Empty Lines](#delete-empty-lines)
+        - [Delete Empty Columns](#delete-empty-columns)
+        - [Convert Header to Body](#convert-header-to-body)
+        - [Remove Line Breaks](#remove-line-breaks)
+        - [Replace Semicolon](#replace-semicolon)
+    - [Conversion](#conversion)
+        - [EXPORT \[withoutFormatting\]](#export-withoutformatting)
+            - [Empty Data in Header](#empty-data-in-header)
+            - [Line Breaks within Data](#line-breaks-within-data)
+            - [Semicolon at the End of the Line](#semicolon-at-the-end-of-the-line)
+            - [Space at the Beginning of the Line](#space-at-the-beginning-of-the-line)
+            - [Quotes and One Column \(First Check\)](#quotes-and-one-column-first-check)
+        - [EXPORT \[tableWithBlankCells\]](#export-tablewithblankcells)
+            - [Empty Data](#empty-data)
+            - [Adjacent Double Quotes](#adjacent-double-quotes)
+            - [Space after Separator](#space-after-separator)
+            - [Space between Separators and Double Quotes](#space-between-separators-and-double-quotes)
+            - [Quotes and One Column (Second Check)](#quotes-and-one-column-second-check)
+        - [EXPORT \[main\]](#export-main)
+            - [Quotes at the Beginning](#quotes-at-the-beginning)
+            - [Quotes at the End](#quotes-at-the-end)
+            - [Empty Lines or Without Quotes (Second Check)](#empty-lines-or-without-quotes-second-check)
+            - [Three Columns](#three-columns)
+        - [EXPORT \[fullClear\]](#export-fullclear)
 
-## BIBLIOTECAS
+## LIBRARIES
 ### Python
-Lista de bibliotecas utilizadas para que o script em Python fosse desenvolvido:
-- [**Pandas**](https://pandas.pydata.org/), para realizar a conversão pra texto e para realizar a manipulação de DataFrames;
-- [**Tabula**](https://tabula.technology/), para poder fazer a leitura do arquivo PDF;
-- E outras bibliotecas padrão da linguagem \(Python\) também foram utilizadas como o [**Glob**](https://docs.python.org/3/library/glob.html) para poder resgatar apenas arquivos com a extensão de PDF, [**OS**](https://docs.python.org/3/library/os.html) para realizar operações do sistema, [**argparse**](https://docs.python.org/3/library/argparse.html) para realizar o recebimento e manipulação de argumentos, entre outras.
+List of libraries used for the development of the Python script:
+- [**Pandas**](https://pandas.pydata.org/), for text conversion and DataFrame manipulation;
+- [**Tabula**](https://tabula.technology/), for reading PDF files;
+- Other standard libraries of the Python language were also used, such as [**Glob**](https://docs.python.org/3/library/glob.html) for retrieving only PDF files, [**OS**](https://docs.python.org/3/library/os.html) for system operations, [**argparse**](https://docs.python.org/3/library/argparse.html) for receiving and manipulating command-line arguments, among others.
 
-## FORMATAÇÕES
-Tipos de formatações e para quais arquivos foram realizadas. Quando um arquivo for mostrado que foi exportado (em um formato de tabela) significa que todas as formatações acima da exportação serão realizadas.
+## FORMATTING
+Types of formatting and the files to which they were applied. When a file is shown to be exported (in table format), it means that all the formatting above the export will be applied.
 
-## **Leitura**
-Formatações relacionadas à leitura.
+## **Reading**
+Formatting related to reading.
 
-#### Remove Aspas Duplas
-Remove todas as aspas duplas do DataFrame para evitar problemas futuros.
+#### Remove Double Quotes
+Removes all double quotes from the DataFrame to avoid future issues.
 
-#### Troca Ponto e Vírgula
-Troca todos os ponto e vírgula do DataFrame por vírgulas para evitar conflitos.
+#### Replace Semicolon
+Replaces all semicolons in the DataFrame with commas to avoid conflicts.
 
-#### Deleta Linhas Vazias
-Apaga todas as linhas que estão vazias no DataFrame.
+#### Delete Empty Lines
+Deletes all empty rows in the DataFrame.
 
-#### Deleta Colunas Vazias
-Apaga todas as colunas que estão vazias no DataFrame.
+#### Delete Empty Columns
+Deletes all empty columns in the DataFrame.
 
-#### Transforma o Cabeçalho em Corpo
-Transforma o cabeçalho em corpo para remover a formatação desnecessária e prejudicial.
+#### Convert Header to Body
+Converts the header to body to remove unnecessary and detrimental formatting.
 
-#### Remove Quebras de Linha
-Remove quebras de linha que ocorrem quando o PDF possui uma linha muito grande.
+#### Remove Line Breaks
+Removes line breaks that occur when the PDF has a very long line.
 
-## **Conversão**
-Formatações relacionadas à conversão.
+## **Conversion**
+Formatting related to conversion.
 
-### **Exportação \[withoutFormatting\]**
-Começa a realizar a primeira exportação, a exportação do arquivo sem formatação que será formatado posteriormente.
+### **Export \[withoutFormatting\]**
+Starts the first export, which is the export of the unformatted file that will be formatted later.
 <table>
     <thead>
         <tr>
-            <th colspan="2">EXPORTAÇÃO</th>
+            <th colspan="2">EXPORT</th>
         </tr>
     </head>
     <body>
@@ -88,11 +87,11 @@ Começa a realizar a primeira exportação, a exportação do arquivo sem format
             <td>(lattice/stream) + "\\withoutFormatting"</td>
         </tr>
         <tr>
-            <td>Descrição:</td>
+            <td>Description:</td>
             <td>
-                 O arquivo 'withoutFormatting' <br>
-                é exportado nesse momento <br>
-                sem fomatação alguma.
+                 The 'withoutFormatting' file <br>
+                is exported at this moment <br>
+                without any formatting.
             </td>
         </tr>
     </body>
@@ -104,8 +103,8 @@ Começa a realizar a primeira exportação, a exportação do arquivo sem format
 
 <br>
 
-#### Dados Vazios no Cabeçalho
-Remove dados vazios no cabeçalho.
+#### Empty Data in Header
+Removes empty data in the header.
 
 Caso seja:
 ```
