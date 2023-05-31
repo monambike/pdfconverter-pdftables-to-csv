@@ -344,16 +344,16 @@ Starts the export of the main file.
 <hr>
 <br>
 
-#### Aspas no Início
-Caso a linha não comece com aspas deleta.
+#### Quotes at the Beginning
+Deletes the line if it doesn't start with quotes.
 
-Caso seja:
+If it is:
 ```
 "<data>";"<data>";"<data>"
 <data>";"<data>";"<data>"
 "<data>";"<data>";"<data>"
 ```
-Fica como:
+It becomes:
 ```
 "<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>"
@@ -361,16 +361,16 @@ Fica como:
 
 <br>
 
-#### Aspas no Final
-Caso a linha não termine com aspas deleta.
+#### Quotes at the End
+Deletes the line if it doesn't end with quotes.
 
-Caso seja:
+If it is:
 ```
 "<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>
 "<data>";"<data>";"<data>"
 ```
-Fica como:
+It becomes:
 ```
 "<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>"
@@ -378,10 +378,10 @@ Fica como:
 
 <br>
 
-#### Linhas Vazias ou Sem Aspas (Segunda Verificação)
-Linhas vazias que só possuem quebra de linha `'\n'` ou não possuem uma aspas dupla em nenhum lugar, serão excluídas.
+#### Empty Lines or No Quotes (Second Check)
+Empty lines that only have line breaks `'\n'` or don't have a double quote anywhere will be deleted.
 
-Caso seja:
+If it is:
 ```
 
 
@@ -393,7 +393,7 @@ Lorem ipsum
 
 "<data>";"<data>"
 ```
-Fica como:
+It becomes:
 ```
 "<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>"
@@ -402,10 +402,10 @@ Fica como:
 
 <br>
 
-#### Três Colunas
-Só escreve a linha caso tenha pelo menos três colunas ou mais.
+#### Three Columns
+Only writes the line if it has at least three columns or more.
 
-Caso seja:
+If it is:
 ```
 "<data>";"<data>";"<data>";"<data>"
 "<data>";"<data>"
@@ -414,7 +414,7 @@ Caso seja:
 "<data>";"<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>"
 ```
-Fica como:
+It becomes:
 ```
 "<data>";"<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>";"<data>"
@@ -424,15 +424,15 @@ Fica como:
 
 <br>
 
-### **Exportação \[fullClear\]**
-Começa a realizar a exportação do arquivo principal com algumas modificações de formatação mais rígidas.
+### **Export \[fullClear\]**
+Starts the export of the main file with some stricter formatting modifications.
 <table>
     <thead>
         <tr>
-            <th colspan="2">EXPORTAÇÃO</th>
+            <th colspan="2">EXPORT</th>
         </tr>
-    </head>
-    <body>
+    </thead>
+    <tbody>
         <tr>
             <td>Folder Name:</td>
             <td>fullClear</td>
@@ -442,15 +442,15 @@ Começa a realizar a exportação do arquivo principal com algumas modificaçõe
             <td>(lattice/stream) + "\\fullClear"</td>
         </tr>
         <tr>
-            <td>Descrição:</td>
+            <td>Description:</td>
             <td>
-                O arquivo 'fullClear' <br>
-                é exportado nesse momento <br>
-                com todas as formatações <br>
-                realizadas acima.
+                The file 'fullClear' <br>
+                is exported at this moment <br>
+                with all the formatting <br>
+                applied above.
             </td>
         </tr>
-    </body>
+    </tbody>
 </table>
 
 <br>
