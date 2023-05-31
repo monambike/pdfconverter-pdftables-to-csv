@@ -378,7 +378,7 @@ It becomes:
 
 <br>
 
-#### Empty Lines or No Quotes (Second Check)
+#### Empty Lines or Without Quotes (Second Check)
 Empty lines that only have line breaks `'\n'` or don't have a double quote anywhere will be deleted.
 
 If it is:
