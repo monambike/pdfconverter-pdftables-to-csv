@@ -7,7 +7,7 @@ You can also check the branchs [docs](https://github.com/monambike/pdfconverter-
 **Example of Script call:**
 
 ```
-python pdfconverter.py "--ImportPath" "C:\\users\\dvp10\\desktop\\EDITAL (2).pdf" "--ExportPath" "C:\\users\\dvp10\\desktop" "--PageNumber" "all"
+python pdfconverter.py --ImportPath "C:\\users\\dvp10\\desktop\\EDITAL (2).pdf" --ExportPath "C:\\users\\dvp10\\desktop" --PageNumber "all"
 ```
 
 ## Project Structure
