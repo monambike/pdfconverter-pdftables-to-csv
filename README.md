@@ -106,60 +106,56 @@ Starts the first export, which is the export of the unformatted file that will b
 #### Empty Data in Header
 Removes empty data in the header.
 
-Caso seja:
+#### If it is:
 ```
 "<data>";"Unnamed: 0";"<data>"
 ```
-Fica como:
+It becomes:
 ```
 "<data>";"<data>"
 ```
 
 <br>
 
-#### Quebras de Linhas no Meio dos Dados
-Remove quebras de linha caso elas ocorram no meio dos dados.
+#### Line Breaks in the Middle of Data
+Removes line breaks if they occur in the middle of the data.
 
-Caso seja:
+If it is:
 ```
-
-
 "<data
 data>"
 ```
-
-Fica como:
+It becomes:
 ```
 "<data data>"
 ```
 
 <br>
 
-#### Ponto e Vírgula no Final da Linha
-Remove ponto e vírgula `';'` caso seja no final da linha.
-    
-Caso seja:
+#### Semicolon at the End of the Line
+Removes semicolon `';'` if it is at the end of the line.
+
+If it is:
 ```
 "<data>";"<data>";
 ```
-
-Fica como:
+It becomes:
 ```
 "<data>";"<data>"
 ```
 
 <br>
 
-#### Espaço no Início da Linha
-Remove espaços no início das linhas.
+#### Leading Space in the Line
+Removes leading spaces in the lines.
 
-Caso seja:
+If it is:
 ```
 "<data>";"<data>"
  "<data>";"<data>"
 "<data>";"<data>"
 ```
-Fica como:
+It becomes:
 ```
 "<data>";"<data>"
 "<data>";"<data>"
@@ -168,10 +164,10 @@ Fica como:
 
 <br>
 
-#### Aspas e Uma Coluna (Primeira Verificação)
-Remove a linha caso ela possua aspas no ínicio e no final, e ainda por cima, possua apenas uma coluna ou menos.
+#### Quotes and One Column (First Check)
+Removes the line if it has quotes at the beginning and end, and on top of that, it has only one column or less.
 
-Caso seja:
+If it is:
 ```
 "<data>";"<data>";"<data>";"<data>"
 "<data>";"<data>"
@@ -181,7 +177,7 @@ Caso seja:
 "<data>
 <data>"
 ```
-Fica como:
+It remains the same:
 ```
 "<data>";"<data>";"<data>";"<data>"
 "<data>";"<data>"
@@ -193,15 +189,15 @@ Fica como:
 
 <br>
 
-### **Exportação \[tableWithBlankCells\]**
-Começa a realizar a exportação do arquivo para segurar a exeção de quando for convertida uma tabela que possui células vazias.
+### **Export \[tableWithBlankCells\]**
+Starts the export of the file to handle the exception when converting a table that has empty cells.
 <table>
     <thead>
         <tr>
-            <th colspan="2">EXPORTAÇÃO</th>
+            <th colspan="2">EXPORT</th>
         </tr>
-    </head>
-    <body>
+    </thead>
+    <tbody>
         <tr>
             <td>Folder Name:</td>
             <td>tableWithBlankCells</td>
@@ -211,31 +207,31 @@ Começa a realizar a exportação do arquivo para segurar a exeção de quando f
             <td>(lattice/stream) + "\\tableWithBlankCells"</td>
         </tr>
         <tr>
-            <td>Descrição:</td>
+            <td>Description:</td>
             <td>
-                O arquivo 'tableWithBlankCells' <br>
-                é exportado nesse momento <br>
-                com todas as formatações <br>
-                realizadas acima.
+                The file 'tableWithBlankCells' <br>
+                is exported at this moment <br>
+                with all the formatting <br>
+                applied above.
             </td>
         </tr>
-    </body>
+    </tbody>
 </table>
 
 <br>
 <hr>
 <br>
 
-#### Dados Vazios
-Remove dados que estão vazios `"";` e `;""`.
+#### Empty Data
+Removes data that is empty `"";` and `;""`.
 
-Caso seja:
+If it is:
 ```
 "";"<data>";"<data>";"<data>"
 "<data>";"<data>";"";"<data>"
 "<data>";"<data>";"<data>";""
 ```
-Fica como:
+It becomes:
 ```
 "<data>";"<data>";"<data>"
 "<data>";"<data>";"<data>"
@@ -244,14 +240,14 @@ Fica como:
 
 <br>
 
-#### Aspas Duplas Adjacentes
-Faz uma quebra de linha caso tenha aspas duplas uma do lado da outra.
+#### Adjacent Double Quotes
+Inserts a line break if there are double quotes side by side.
 
-Caso seja:
+If it is:
 ```
 "<data>";"<data>""<data>";"<data>"
 ```
-Fica como:
+It becomes:
 ```
 "<data>";"<data>"
 "<data>";"<data>"
@@ -259,14 +255,16 @@ Fica como:
 
 <br>
 
-#### Espaço Após um Separador
-Caso tenha um ponto e vírgula seguido de um espaço troca por uma quebra de linha
+#### Space After a Separator
+If there is a semicolon followed by a space, it is replaced by a line break.
 
-Caso seja:
+If it is:
 ```
 "<Lorem ipsum>";"<Lorem ipsum>"; "<Lorem ipsum>";"<Lorem ipsum>"
 ```
-Fica como:
+
+
+It becomes:
 ```
 "<Lorem ipsum>";"<Lorem ipsum>"
 "<Lorem ipsum>";"<Lorem ipsum>"
@@ -274,24 +272,24 @@ Fica como:
 
 <br>
 
-#### Espaço entre Separadores e Aspas Duplas
-Remove o conteúdo anterior caso tenha espaço entre os separadores e as aspas.
+#### Space Between Separators and Double Quotes
+Removes the preceding content if there is a space between the separators and the quotes.
 
-Caso seja:
+If it is:
 ```
 "<Lorem ipsum>";"<Lorem ipsum>"; "<data>";"<data>"
 ```
-Fica como:
+It becomes:
 ```
 "<data>";"<data>"
 ```
 
 <br>
 
-#### Aspas e Uma Coluna (Segunda Verificação)
-Remove a linha caso ela possua aspas no ínicio e no final, e ainda por cima, possua apenas uma coluna ou menos.
+#### Quotes and One Column (Second Check)
+Removes the line if it has quotes at the beginning and end, and on top of that, it has only one column or less.
 
-Caso seja:
+If it is:
 ```
 "<data>";"<data>";"<data>";"<data>"
 "<data>";"<data>"
@@ -301,7 +299,7 @@ Caso seja:
 "<data>
 <data>"
 ```
-Fica como:
+It remains the same:
 ```
 "<data>";"<data>";"<data>";"<data>"
 "<data>";"<data>"
@@ -313,15 +311,15 @@ Fica como:
 
 <br>
 
-### **Exportação \[main\]**
-Começa a realizar a exportação do arquivo principal.
+### **Export \[main\]**
+Starts the export of the main file.
 <table>
     <thead>
         <tr>
-            <th colspan="2">EXPORTAÇÃO</th>
+            <th colspan="2">EXPORT</th>
         </tr>
-    </head>
-    <body>
+    </thead>
+    <tbody>
         <tr>
             <td>Folder Name:</td>
             <td>main</td>
@@ -331,15 +329,15 @@ Começa a realizar a exportação do arquivo principal.
             <td>(lattice/stream) + "\\main"</td>
         </tr>
         <tr>
-            <td>Descrição:</td>
+            <td>Description:</td>
             <td>
-                O arquivo 'main' <br>
-                é exportado nesse momento <br>
-                com todas as formatações <br>
-                realizadas acima.
+                The file 'main' <br>
+                is exported at this moment <br>
+                with all the formatting <br>
+                applied above.
             </td>
         </tr>
-    </body>
+    </tbody>
 </table>
 
 <br>
