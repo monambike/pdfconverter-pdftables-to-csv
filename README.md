@@ -14,18 +14,18 @@ python pdfconverter.py --ImportPath "C:\\users\\dvp10\\desktop\\EDITAL (2).pdf" 
 
 ![image](https://github.com/monambike/pdfconverter-pdftables-to-csv/assets/35270174/c14e73d1-4143-4134-b3da-29f57bbd6680)
 
-## TABLE OF CONTENTS
+## Table of Contents
 
 - [LIBRARIES](#libraries)
 - [FORMATTING](#formatting)
-    - [Reading](#reading)
+    - [File Read Handling](#file-read-handling)
         - [Remove Double Quotes](#remove-double-quotes)
         - [Delete Empty Lines](#delete-empty-lines)
         - [Delete Empty Columns](#delete-empty-columns)
         - [Convert Header to Body](#convert-header-to-body)
         - [Remove Line Breaks](#remove-line-breaks)
         - [Replace Semicolon](#replace-semicolon)
-    - [Conversion](#conversion)
+    - [Conversion File Handling](#conversion-file-handling)
         - [EXPORT \[withoutFormatting\]](#export-withoutformatting)
             - [Empty Data in Header](#empty-data-in-header)
             - [Line Breaks in the Middle of Data](#line-breaks-in-the-middle-of-data)
@@ -45,17 +45,17 @@ python pdfconverter.py --ImportPath "C:\\users\\dvp10\\desktop\\EDITAL (2).pdf" 
             - [Three Columns](#three-columns)
         - [EXPORT \[fullClear\]](#export-fullclear)
 
-## LIBRARIES
-### Python
+## Libraries
+
 List of libraries used for the development of the Python script:
 - [**Pandas**](https://pandas.pydata.org/), for text conversion and DataFrame manipulation;
 - [**Tabula**](https://tabula.technology/), for reading PDF files;
 - Other standard libraries of the Python language were also used, such as [**Glob**](https://docs.python.org/3/library/glob.html) for retrieving only PDF files, [**OS**](https://docs.python.org/3/library/os.html) for system operations, [**argparse**](https://docs.python.org/3/library/argparse.html) for receiving and manipulating command-line arguments, among others.
 
-## FORMATTING
+## Formatting
 Types of formatting and the files to which they were applied. When a file is shown to be exported (in table format), it means that all the formatting above the export will be applied.
 
-## **Reading**
+## **File Read Handling**
 Formatting related to reading.
 
 #### Remove Double Quotes
@@ -76,7 +76,7 @@ Converts the header to body to remove unnecessary and detrimental formatting.
 #### Remove Line Breaks
 Removes line breaks that occur when the PDF has a very long line.
 
-## **Conversion**
+## **Conversion File Handling**
 Formatting related to conversion.
 
 ### **Export \[withoutFormatting\]**
