@@ -55,7 +55,7 @@ List of libraries used for the development of the Python script:
 ## Formatting
 Types of formatting and the files to which they were applied. When a file is shown to be exported (in table format), it means that all the formatting above the export will be applied.
 
-## File Read Handling
+### File Read Handling
 Formatting related to reading.
 
 #### Remove Double Quotes
@@ -76,10 +76,10 @@ Converts the header to body to remove unnecessary and detrimental formatting.
 #### Remove Line Breaks
 Removes line breaks that occur when the PDF has a very long line.
 
-## Conversion File Handling
+### Conversion File Handling
 Formatting related to conversion.
 
-### Export \[withoutFormatting\]
+#### Export \[withoutFormatting\]
 Starts the first export, which is the export of the unformatted file that will be formatted later.
 <table>
     <thead>
@@ -113,10 +113,10 @@ Starts the first export, which is the export of the unformatted file that will b
 
 <br>
 
-#### Empty Data in Header
+##### Empty Data in Header
 Removes empty data in the header.
 
-#### If it is:
+##### If it is:
 ```
 "<data>";"Unnamed: 0";"<data>"
 ```
@@ -127,7 +127,7 @@ It becomes:
 
 <br>
 
-#### Line Breaks in the Middle of Data
+##### Line Breaks in the Middle of Data
 Removes line breaks if they occur in the middle of the data.
 
 If it is:
@@ -142,7 +142,7 @@ It becomes:
 
 <br>
 
-#### Semicolon at the End of the Line
+##### Semicolon at the End of the Line
 Removes semicolon `';'` if it is at the end of the line.
 
 If it is:
@@ -156,7 +156,7 @@ It becomes:
 
 <br>
 
-#### Space at the Beginning of the Line
+##### Space at the Beginning of the Line
 Removes leading spaces in the lines.
 
 If it is:
@@ -174,7 +174,7 @@ It becomes:
 
 <br>
 
-#### Quotes and One Column (First Check)
+##### Quotes and One Column (First Check)
 Removes the line if it has quotes at the beginning and end, and on top of that, it has only one column or less.
 
 If it is:
@@ -199,7 +199,7 @@ It remains the same:
 
 <br>
 
-### Export \[tableWithBlankCells\]
+#### Export \[tableWithBlankCells\]
 Starts the export of the file to handle the exception when converting a table that has empty cells.
 <table>
     <thead>
@@ -232,7 +232,7 @@ Starts the export of the file to handle the exception when converting a table th
 <hr>
 <br>
 
-#### Empty Data
+##### Empty Data
 Removes data that is empty `"";` and `;""`.
 
 If it is:
@@ -250,7 +250,7 @@ It becomes:
 
 <br>
 
-#### Adjacent Double Quotes
+##### Adjacent Double Quotes
 Inserts a line break if there are double quotes side by side.
 
 If it is:
@@ -265,7 +265,7 @@ It becomes:
 
 <br>
 
-#### Space After a Separator
+##### Space After a Separator
 If there is a semicolon followed by a space, it is replaced by a line break.
 
 If it is:
@@ -282,7 +282,7 @@ It becomes:
 
 <br>
 
-#### Space Between Separators and Double Quotes
+##### Space Between Separators and Double Quotes
 Removes the preceding content if there is a space between the separators and the quotes.
 
 If it is:
@@ -296,7 +296,7 @@ It becomes:
 
 <br>
 
-#### Quotes and One Column (Second Check)
+##### Quotes and One Column (Second Check)
 Removes the line if it has quotes at the beginning and end, and on top of that, it has only one column or less.
 
 If it is:
@@ -321,7 +321,7 @@ It remains the same:
 
 <br>
 
-### Export \[main\]
+#### Export \[main\]
 Starts the export of the main file.
 <table>
     <thead>
@@ -354,7 +354,7 @@ Starts the export of the main file.
 <hr>
 <br>
 
-#### Quotes at the Beginning
+##### Quotes at the Beginning
 Deletes the line if it doesn't start with quotes.
 
 If it is:
@@ -371,7 +371,7 @@ It becomes:
 
 <br>
 
-#### Quotes at the End
+##### Quotes at the End
 Deletes the line if it doesn't end with quotes.
 
 If it is:
@@ -388,7 +388,7 @@ It becomes:
 
 <br>
 
-#### Empty Lines or Without Quotes (Second Check)
+##### Empty Lines or Without Quotes (Second Check)
 Empty lines that only have line breaks `'\n'` or don't have a double quote anywhere will be deleted.
 
 If it is:
