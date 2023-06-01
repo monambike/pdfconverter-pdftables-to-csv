@@ -16,8 +16,8 @@ python pdfconverter.py --ImportPath "C:\\users\\dvp10\\desktop\\EDITAL (2).pdf" 
 
 ## Table of Contents
 
-- [LIBRARIES](#libraries)
-- [FORMATTING](#formatting)
+- [Libraries](#libraries)
+- [Formatting](#formatting)
     - [File Read Handling](#file-read-handling)
         - [Remove Double Quotes](#remove-double-quotes)
         - [Delete Empty Lines](#delete-empty-lines)
