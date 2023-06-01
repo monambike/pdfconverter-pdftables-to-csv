@@ -116,7 +116,7 @@ Starts the first export, which is the export of the unformatted file that will b
 ##### Empty Data in Header
 Removes empty data in the header.
 
-##### If it is:
+If it is:
 ```
 "<data>";"Unnamed: 0";"<data>"
 ```
