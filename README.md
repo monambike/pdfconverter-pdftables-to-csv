@@ -434,7 +434,7 @@ It becomes:
 
 <br>
 
-### **Export \[fullClear\]**
+### Export \[fullClear\]
 Starts the export of the main file with some stricter formatting modifications.
 <table>
     <thead>
