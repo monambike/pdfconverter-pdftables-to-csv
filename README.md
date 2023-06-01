@@ -412,7 +412,7 @@ It becomes:
 
 <br>
 
-#### Three Columns
+##### Three Columns
 Only writes the line if it has at least three columns or more.
 
 If it is:
@@ -434,7 +434,7 @@ It becomes:
 
 <br>
 
-### Export \[fullClear\]
+#### Export \[fullClear\]
 Starts the export of the main file with some stricter formatting modifications.
 <table>
     <thead>
