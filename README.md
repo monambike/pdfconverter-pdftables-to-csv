@@ -55,7 +55,7 @@ List of libraries used for the development of the Python script:
 ## Formatting
 Types of formatting and the files to which they were applied. When a file is shown to be exported (in table format), it means that all the formatting above the export will be applied.
 
-## **File Read Handling**
+## File Read Handling
 Formatting related to reading.
 
 #### Remove Double Quotes
@@ -76,10 +76,10 @@ Converts the header to body to remove unnecessary and detrimental formatting.
 #### Remove Line Breaks
 Removes line breaks that occur when the PDF has a very long line.
 
-## **Conversion File Handling**
+## Conversion File Handling
 Formatting related to conversion.
 
-### **Export \[withoutFormatting\]**
+### Export \[withoutFormatting\]
 Starts the first export, which is the export of the unformatted file that will be formatted later.
 <table>
     <thead>
@@ -199,7 +199,7 @@ It remains the same:
 
 <br>
 
-### **Export \[tableWithBlankCells\]**
+### Export \[tableWithBlankCells\]
 Starts the export of the file to handle the exception when converting a table that has empty cells.
 <table>
     <thead>
@@ -321,7 +321,7 @@ It remains the same:
 
 <br>
 
-### **Export \[main\]**
+### Export \[main\]
 Starts the export of the main file.
 <table>
     <thead>
