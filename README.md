@@ -1,6 +1,7 @@
 <img alt="Static Badge" src="https://img.shields.io/badge/MONAMBIKE-%236c00fa?style=for-the-badge&label=MADE%20BY&labelColor=%23050505"> <img alt="Static Badge" src="https://img.shields.io/badge/CC--BY--4.0%20license-%236c00fa?style=for-the-badge&label=LICENSE&labelColor=%23050505">
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
 
 # PDFConverter - Script
 
@@ -14,13 +15,13 @@ You can also check the branchs [docs](https://github.com/monambike/pdfconverter-
 python pdfconverter.py --ImportPath "C:\\users\\dvp10\\desktop\\EDITAL (2).pdf" --ExportPath "C:\\users\\dvp10\\desktop" --PageNumber "all"
 ```
 
-# Contact
-
-You can find me on likedin by here [linkedin.com/in/monambike/](https://www.linkedin.com/in/monambike/). If you want to see videos about my work you can check my YouTube channel [youtube.com/@monambike_portfolio](https://www.youtube.com/@monambike_portfolio) and if you want to see my artworks you can check at my instagram [instagram.com/monambike_portfolio](https://www.instagram.com/monambike_portfolio).
-
 ## Project Structure
 
 ![image](https://github.com/monambike/pdfconverter-pdftables-to-csv/assets/35270174/c14e73d1-4143-4134-b3da-29f57bbd6680)
+
+# Contact
+
+You can find me on likedin by here [linkedin.com/in/monambike/](https://www.linkedin.com/in/monambike/). If you want to see videos about my work you can check my YouTube channel [youtube.com/@monambike_portfolio](https://www.youtube.com/@monambike_portfolio) and if you want to see my artworks you can check at my instagram [instagram.com/monambike_portfolio](https://www.instagram.com/monambike_portfolio).
 
 ## Table of Contents
 
