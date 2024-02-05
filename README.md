@@ -1,3 +1,7 @@
+<img alt="Static Badge" src="https://img.shields.io/badge/MONAMBIKE-%236c00fa?style=for-the-badge&label=MADE%20BY&labelColor=%23050505"> <img alt="Static Badge" src="https://img.shields.io/badge/CC--BY--4.0%20license-%236c00fa?style=for-the-badge&label=LICENSE&labelColor=%23050505">
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+
 # PDFConverter - Script
 
 PDFConverter is a Python project that needs to be converted into an executable file in order to quickly interpret and convert a large number of tables into PDF format without requiring extensive user interaction.
@@ -9,6 +13,10 @@ You can also check the branchs [docs](https://github.com/monambike/pdfconverter-
 ```
 python pdfconverter.py --ImportPath "C:\\users\\dvp10\\desktop\\EDITAL (2).pdf" --ExportPath "C:\\users\\dvp10\\desktop" --PageNumber "all"
 ```
+
+# Contact
+
+You can find me on likedin by here [linkedin.com/in/monambike/](https://www.linkedin.com/in/monambike/). If you want to see videos about my work you can check my YouTube channel [youtube.com/@monambike_portfolio](https://www.youtube.com/@monambike_portfolio) and if you want to see my artworks you can check at my instagram [instagram.com/monambike_portfolio](https://www.instagram.com/monambike_portfolio).
 
 ## Project Structure
 
