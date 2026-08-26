@@ -1,4 +1,4 @@
-<img alt="Static Badge" src="https://img.shields.io/badge/MONAMBIKE-%236c00fa?style=for-the-badge&label=MADE%20BY&labelColor=%23050505"> <img alt="Static Badge" src="https://img.shields.io/badge/CC--BY--4.0%20license-%236c00fa?style=for-the-badge&label=LICENSE&labelColor=%23050505">
+<img alt="Static Badge" src="https://img.shields.io/badge/MONAMBIKE-%236c00fa?style=for-the-badge&label=MADE%20BY&labelColor=%23050505">
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
