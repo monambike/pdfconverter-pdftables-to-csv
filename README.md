@@ -471,10 +471,10 @@ Starts the export of the main file with some stricter formatting modifications.
 <br>
 <hr>
 
-# License
-
-The license for this repository is available [here](LICENSE). Please refer to the provided link for detailed information regarding the terms and conditions governing the use of this project.
-
 # Contact
 
 You can find me on likedin by here [linkedin.com/in/monambike/](https://www.linkedin.com/in/monambike/). If you want to see videos about my work you can check my YouTube channel [youtube.com/@monambike_portfolio](https://www.youtube.com/@monambike_portfolio) and if you want to see my artworks you can check at my instagram [instagram.com/monambike_portfolio](https://www.instagram.com/monambike_portfolio).
+
+# License
+
+The license for this repository is available [here](LICENSE). Please refer to the provided link for detailed information regarding the terms and conditions governing the use of this project.
