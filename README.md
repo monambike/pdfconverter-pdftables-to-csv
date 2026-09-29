@@ -19,14 +19,6 @@ python pdfconverter.py --ImportPath "C:\\users\\dvp10\\desktop\\EDITAL (2).pdf" 
 
 ![image](https://github.com/monambike/pdfconverter-pdftables-to-csv/assets/35270174/c14e73d1-4143-4134-b3da-29f57bbd6680)
 
-# Contact
-
-You can find me on likedin by here [linkedin.com/in/monambike/](https://www.linkedin.com/in/monambike/). If you want to see videos about my work you can check my YouTube channel [youtube.com/@monambike_portfolio](https://www.youtube.com/@monambike_portfolio) and if you want to see my artworks you can check at my instagram [instagram.com/monambike_portfolio](https://www.instagram.com/monambike_portfolio).
-
-# License
-
-The license for this repository is available [here](LICENSE). Please refer to the provided link for detailed information regarding the terms and conditions governing the use of this project.
-
 ## Table of Contents
 
 - [Libraries](#libraries)
@@ -478,3 +470,11 @@ Starts the export of the main file with some stricter formatting modifications.
 
 <br>
 <hr>
+
+# License
+
+The license for this repository is available [here](LICENSE). Please refer to the provided link for detailed information regarding the terms and conditions governing the use of this project.
+
+# Contact
+
+You can find me on likedin by here [linkedin.com/in/monambike/](https://www.linkedin.com/in/monambike/). If you want to see videos about my work you can check my YouTube channel [youtube.com/@monambike_portfolio](https://www.youtube.com/@monambike_portfolio) and if you want to see my artworks you can check at my instagram [instagram.com/monambike_portfolio](https://www.instagram.com/monambike_portfolio).
